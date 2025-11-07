@@ -1,0 +1,45 @@
+// src/components/ImagePreloader/preloader.scss
+
+@use "sass:color";
+@import "../../global.scss";
+
+/* -------------------------------------------------------------------
+ * PRELOADER CONTAINER
+ * -------------------------------------------------------------------*/
+.preloader-container {
+    display: flex;
+    position: fixed;
+    // CRITICAL FIX: Use 'inset' for reliable full-screen coverage on mobile
+    inset: 0; /* Shorthand for: top: 0; right: 0; bottom: 0; left: 0; */
+    
+    // Note: We are removing 100vw/100vh since 'inset: 0' achieves the same goal
+    z-index: 9999;
+    background-color: var(--color-background);
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+}
+
+.preloader-container.loading {
+    display: flex;
+}
+
+.preloader-logo {
+    max-width: 120px;
+    height: auto;
+    animation: subtlePulse 2s infinite ease-in-out; 
+}
+
+@keyframes subtlePulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+}

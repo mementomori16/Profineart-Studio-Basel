@@ -1,0 +1,113 @@
+.cardContainer {
+    flex: 0 0 70%;
+    padding: 0.2rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem; /* Reduced margin below CardContainer */
+
+    &.landscape {
+        max-width: 1200px;
+    }
+
+    .productTitle {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem; /* Reduced padding around the card */
+        border-radius: 4px;
+        transition: transform 0.3s ease-in-out;
+        overflow: hidden;
+
+        .imageContainer {
+            flex: 70%;
+            max-width: 100%;
+            position: relative;
+            height: 350px; /* Reduced fixed height of the image container */
+            width: 100%; /* Fixed width */
+
+            .image {
+                width: 100%;
+                height: 100%; /* Set height to 100% to fill the container */
+                object-fit: contain;
+                border-radius: 2px;
+                transition: opacity 0.6s ease-in-out;
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .thumbnails {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 0.5rem; /* Reduced margin above thumbnails */
+        padding: 0 1rem;
+        width: 100%; /* Ensure it takes full width */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+
+        .thumbnailContainer {
+            width: 40px; /* Slightly smaller thumbnails */
+            height: 40px;
+            overflow: hidden;
+            border-radius: 5px;
+            margin: 0 3px; /* Smaller margin between thumbnails */
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .infoWrapper {
+        width: 100%;
+        margin-top: 0.5rem; /* Reduced margin above info wrapper */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            flex-direction: column;
+            padding: 0.5rem; /* Further reduced padding for smaller screens */
+        }
+
+        .imageContainer {
+            height: 250px; /* Adjust height for smaller screens */
+        }
+
+        .thumbnails {
+            margin-top: 0.5rem;
+            gap: 5px; /* Smaller gap between thumbnails on smaller screens */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card {
+            padding: 0.25rem; /* Even smaller padding for mobile */
+        }
+
+        .imageContainer {
+            height: 180px; /* Further adjust height for mobile */
+        }
+
+        .image {
+            max-height: 180px;
+            object-fit: contain;
+        }
+    }
+}

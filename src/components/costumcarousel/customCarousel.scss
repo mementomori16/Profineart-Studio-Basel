@@ -1,0 +1,238 @@
+@use "sass:color";
+@import '../../global.scss';
+
+.custom-carousel {
+    // Shared container styles
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+
+    .carousel-text-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: $space-sm;
+
+        .carousel-global-title {
+            font-size: $font-size-h4; 
+            margin-bottom: $space-xs;
+            text-align: center;
+            .highlight {
+                color: $color-primary;
+            }
+        }
+
+        .carousel-global-description,
+        .carousel-product-description {
+            font-size: $font-size-sm;
+            text-align: left;
+            margin-bottom: $space-sm;
+        }
+
+        .carousel-product-title {
+            font-size: $font-size-h5;
+            margin-bottom: $space-sm;
+            text-align: center;
+        }
+    }
+
+    .carousel-visuals {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+        margin-top: $space-md;
+
+        .carousel-image {
+            width: 90%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: $border-radius-lg;
+            box-shadow: $shadow-md;
+            cursor: pointer;
+            margin-bottom: $space-sm;
+        }
+    }
+
+    .explore-button {
+        background-color: transparent;
+        color: $color-primary;
+        border: 2px solid $color-primary;
+        padding: $space-xs $space-sm;
+        cursor: pointer;
+        font-size: $font-size-sm;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        border-radius: 50px;
+        animation: fadeIn 1.4s ease-out;
+        width: auto;
+        display: block;
+        text-align: center;
+        margin: $space-md auto;
+    }
+
+    .dots {
+        display: flex;
+        justify-content: center;
+        margin-top: $space-xs;
+
+        .dot {
+            @include set-responsive-square-size(6px, 6px, 6px);
+            border-radius: 50%;
+            background-color: $color-border-subtle;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            margin: 0 4px;
+            border: 1px solid transparent;
+
+            &:hover {
+                background-color: lighten($color-button-blue-2, 20%);
+                border-color: $color-button-blue-2;
+            }
+
+            &.active {
+                @include set-responsive-square-size(8px, 8px, 8px);
+                background-color: $color-button-blue-2;
+                border-color: $color-button-blue-2;
+            }
+        }
+    }
+
+    .arrows {
+        display: none;
+    }
+
+    .carousel-mobile-layout {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: $color-background;
+        padding-top: $space-md;
+    }
+
+    .carousel-desktop-layout {
+        display: none;
+    }
+
+    // Media query for smaller mobile screens
+    @media (max-width: 480px) {
+        .carousel-image {
+            max-width: 250px;
+            max-height: 20vh;
+        }
+        .carousel-text-content {
+            padding-left: $space-lg;
+            padding-right: $space-lg;
+        }
+    }
+    
+    // Media query for larger mobile screens and small tablets
+    @media (min-width: 481px) and (max-width: 767px) {
+        .custom-carousel {
+            justify-content: center; // Balances the top and bottom gap
+        }
+    }
+
+    // Desktop Styles
+    @media (min-width: $breakpoint-md) {
+        min-height: 87vh;
+        height: auto;
+        padding: 0;
+        justify-content: center;
+
+        .carousel-mobile-layout {
+            display: none;
+        }
+
+        .carousel-desktop-layout {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            background-color: $color-background;
+            padding: 0 5%;
+
+            .carousel-text-content {
+                flex: 1;
+                padding-right: 5%;
+                text-align: left;
+                align-items: flex-start;
+
+                .carousel-global-title {
+                    font-size: $font-size-h1;
+                    text-align: left;
+                }
+
+                .carousel-product-title {
+                    font-size: $font-size-h3;
+                    text-align: left;
+                }
+
+                .carousel-product-description {
+                    font-size: $font-size-base;
+                    text-align: left;
+                }
+            }
+
+            .carousel-visuals {
+                flex: 0 0 45%;
+                padding: $space-md;
+
+                .carousel-image {
+                    max-height: 50vh;
+                    margin-bottom: $space-md;
+                }
+            }
+        }
+
+        .explore-button {
+            padding: $space-sm $space-md;
+            font-size: $font-size-base;
+            margin-top: $space-lg;
+            width: auto;
+        }
+
+        .dots {
+            justify-content: center;
+            margin-top: $spacing-m;
+        }
+
+        .arrows {
+            display: block;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: $color-primary;
+            cursor: pointer;
+            z-index: 10;
+            animation: blink 2s linear infinite; // Restores the blinking animation
+
+            svg {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+}
+
