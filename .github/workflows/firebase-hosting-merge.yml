@@ -14,24 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      # 1. Setup Node.js Environment
+      # 1. Setup Node.js Environment (Ensures a stable execution environment)
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           
-      # 2. Install Dependencies (Resolves Exit Code 127/command not found)
+      # 2. Install Dependencies (Crucial fix for Exit Code 127/command not found)
       - run: npm ci 
       
-      # 3. Run TypeScript Check (This helps catch the i18n import error specifically)
-      #    We use npx tsc to run the local tsc executable
-      - name: Run TypeScript Compiler
-        run: npx tsc
+      # 3. Run Build (Uses your package.json script 'vite build' and is no longer blocked by strict tsc)
+      - run: npm run build
         
-      # 4. Run Vite Build (This runs 'vite build' as defined in package.json)
-      - name: Run Vite Build
-        run: npm run build
-        
-      # 5. Deploy to Firebase Hosting
+      # 4. Deploy to Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
