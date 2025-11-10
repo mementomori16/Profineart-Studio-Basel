@@ -25,10 +25,12 @@ jobs:
       # 3. Run Build (Uses your package.json script 'vite build' and is no longer blocked by strict tsc)
       - run: npm run build
         
-      # 4. Deploy to Firebase Hosting
+      # 4. Deploy to Firebase Hosting (FIX APPLIED HERE)
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PROFINEART_STUDIO_BASEL }}
           channelId: live
           projectId: profineart-studio-basel
+        env: # <--- THIS BLOCK IS REQUIRED
+          FIREBASE_CLI_EXPERIMENTS: webframeworks # <--- THIS LINE IS REQUIRED
