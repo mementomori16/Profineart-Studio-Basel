@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from "./routes/router";
 import "./global.scss";
 // Import your i18n configuration
-import i18n from './i18n.ts'; 
+import i18n from './i18n'; 
 // Import the necessary provider and Suspense component
 import { I18nextProvider } from 'react-i18next';
 
