@@ -1,6 +1,6 @@
 // src/routes/router.tsx
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout"; // Import the new MainLayout component
+import MainLayout from "../../src/layouts/MainLayout"; // Import the new MainLayout component
 
 import Home from "../components/pages/Home/Home";
 import About from "../components/pages/About/About";
