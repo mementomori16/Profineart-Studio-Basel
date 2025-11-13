@@ -7,7 +7,7 @@ $color-primary: rgb(107, 179, 241);
 $color-secondary: #333333;
 $color-background: #b9afac;
 $color-surface: #ffffff;
-$color-navbar:#979191;
+$color-navbar:rgb(32, 32, 32);
 $color-text-white: #FFFFFF;
 $color-text-button: #fa8a3b;
 $color-primary-transparent: rgba(232, 125, 46, 0.15);
@@ -18,11 +18,18 @@ $color-border-subtle: #EBEBEB;
 $color-border-subtle-2: #dbdbdb;
 $color-text-light: #7F8C8D;
 $color-text-dark: #333333;
+$color-text-dark2: #1e1e1e;
+$color-text-dark3: #121212;
 $color-border-light: #EBEBEB;
 $color-alt-background-1: #FFF8F0;
 $color-alt-background-2: #F2F2F2;
+$color-button: rgb(80, 79, 79);
+$color-button-hover: rgb(60, 60, 60);
+
 $color-button-blue: rgb(138, 190, 236);
 $color-button-blue-2: rgb(107, 179, 241);
+$color-navbar-title: #dcdcdc;
+$color-navbar-title-hover: #e9a9a9;
 $color-text-title: #495057;
 $color-text-title-2:#67727d;
 
@@ -204,7 +211,7 @@ a {
 
 .btn-primary {
     @extend .btn;
-    background-color: $color-button-blue-2;
+    background-color: $color-button;
     color: $color-surface;
     box-shadow: $shadow-sm;
     &:hover {
@@ -242,11 +249,11 @@ a {
 
 .btn-blue {
     @extend .btn;
-    background-color: $color-button-blue-2;
+    background-color: $color-button;
     color: $color-text-white;
     box-shadow: $shadow-sm;
     &:hover {
-        background-color: color.adjust($color-button-blue-2, $lightness: -8%);
+        background-color: color.adjust($color-button-hover, $lightness: -8%);
         transform: translateY(-0.0625rem);
         box-shadow: $shadow-md;
     }

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import './navMobile.scss';
 import SearchBar from '../../pages/SearchBar/SearchBar';
 import { Product } from '../../types/Product';
-import logo from '../../../assets/images/icons/Group 163.svg';
+import logo from '../../../assets/images/icons/Group 177.svg';
 import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
 
 interface Route {
@@ -17,8 +17,7 @@ interface Route {
 
 const routes: Route[] = [
   { label: 'home', path: '/' },
-  { label: 'services', path: '/services' },
-  { label: 'projects', path: '/projects' },
+  { label: ('courses'), path: '/courses' },
   { label: 'about', path: '/about' },
   { label: 'contact', path: '/contact' },
 ];

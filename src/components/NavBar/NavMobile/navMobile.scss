@@ -3,15 +3,12 @@
 @use "sass:color";
 @import '../../../global.scss';
 
-// 💡 CHANGE: Increase the base height of the mobile header (e.g., from 2rem to 3rem)
-// The new height is calc(3rem + 2 * #{$space-sm});
-$header-mobile-height: calc(3rem + 2 * #{$space-sm});
+$header-mobile-height: calc(2rem + 2 * #{$space-sm});
 
 .header-mobile {
   position: sticky;
   top: 0;
-  background-color: rgb(32, 32, 32);
-  // This padding combined with the new $header-mobile-height dictates the full header size.
+  background-color: $color-navbar;
   padding: $space-sm $space-lg; 
   z-index: 1000;
   box-shadow: $shadow-sm;
@@ -29,7 +26,6 @@ $header-mobile-height: calc(3rem + 2 * #{$space-sm});
   text-decoration: none !important;
 
   .mobile-logo-img {
-    // 💡 CHANGE: Increase height to make the logo bigger (e.g., from 2rem to 3rem)
     height: 3rem; 
     width: 9.5rem;
     object-fit: contain;
@@ -40,7 +36,7 @@ $header-mobile-height: calc(3rem + 2 * #{$space-sm});
   cursor: pointer;
   z-index: 1010;
   .hamburger-react {
-    color: $color-secondary;
+    color: $color-surface;
   }
   svg path {
     stroke-width: 2px !important;
@@ -51,10 +47,9 @@ $header-mobile-height: calc(3rem + 2 * #{$space-sm});
   position: fixed;
   left: 0;
   transform: translateX(-100%);
-  // This will now use the new, larger $header-mobile-height
   top: $header-mobile-height; 
   height: calc(100vh - #{$header-mobile-height});
-  background-color: $color-surface;
+  background-color: $color-navbar;
   list-style: none;
   padding: $space-lg;
   display: flex;
@@ -67,7 +62,7 @@ $header-mobile-height: calc(3rem + 2 * #{$space-sm});
   z-index: 1005;
 
   // Default for small screens
-  width: 59vw;
+  width: 59vw; 
 
   &.active {
     transform: translateX(0);

@@ -1,12 +1,16 @@
+// CardContainer.tsx
+
 import React, { useEffect, useState } from 'react';
-import { Product } from '../../../types/Product';
+// The import is now USED in the function signature below
+import { Product, ProductImage } from '../../../types/Product'; 
 import ViewGallery from '../../View Gallery/ViewGallery';
 import './cardContainer.scss';
 
 interface CardContainerProps {
-    product: Product; // Accept product as a prop
+    product: Product;
 }
 
+// The logic for checking orientation is simplified as it now runs on a low-res image.
 const getImageOrientation = (imageUrl: string) => {
     const img = new Image();
     img.src = imageUrl;
@@ -19,23 +23,28 @@ const getImageOrientation = (imageUrl: string) => {
 };
 
 const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
-    const [mainImage, setMainImage] = useState<string>(product.image);
+    const [mainImageLowRes, setMainImageLowRes] = useState<string>(product.image.lowResUrl);
+    const [currentHighResUrl, setCurrentHighResUrl] = useState<string>(product.image.highResUrl);
     const [showGallery, setShowGallery] = useState<boolean>(false);
     const [isLandscape, setIsLandscape] = useState<boolean>(false);
     const [opacity, setOpacity] = useState<number>(1);
 
     useEffect(() => {
         if (product) {
-            setMainImage(product.image);
-            getImageOrientation(product.image).then(setIsLandscape);
+            setMainImageLowRes(product.image.lowResUrl);
+            setCurrentHighResUrl(product.image.highResUrl); 
+            getImageOrientation(product.image.lowResUrl).then(setIsLandscape);
         }
     }, [product]);
 
-    const handleThumbnailClick = (thumbnailImage: string) => {
+    // FIX: Explicitly type the 'image' parameter using the imported 'ProductImage' interface.
+    // This resolves the "declared but its value never read" warning for ProductImage.
+    const handleThumbnailClick = (image: ProductImage) => {
         setOpacity(0);
         setTimeout(() => {
-            setMainImage(thumbnailImage);
-            getImageOrientation(thumbnailImage).then(setIsLandscape);
+            setMainImageLowRes(image.lowResUrl);
+            setCurrentHighResUrl(image.highResUrl); 
+            getImageOrientation(image.lowResUrl).then(setIsLandscape);
             setOpacity(1);
         }, 300);
     };
@@ -51,16 +60,24 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
     // Constructing the images array for ViewGallery
     const images = product
         ? [
-            { url: product.image, title: product.title, date: product.date || '' }, // Use a fallback value if date is undefined
+            { 
+                url: product.image.highResUrl, 
+                lowResUrl: product.image.lowResUrl,
+                title: product.title, 
+                date: product.date || '' 
+            }, 
             ...product.thumbnails.map((thumbnail) => ({
-                url: thumbnail,
+                url: thumbnail.highResUrl,
+                lowResUrl: thumbnail.lowResUrl, 
                 title: product.title,
-                date: product.date || '', // Use a fallback value if date is undefined
+                date: product.date || '',
             })),
         ]
         : [];
 
-    const currentImageIndex = product ? images.findIndex(image => image.url === mainImage) : 0;
+    const currentImageIndex = product 
+        ? images.findIndex(image => image.url === currentHighResUrl) 
+        : 0;
 
     return (
         <div className={`cardContainer ${isLandscape ? 'landscape' : ''}`}>
@@ -68,7 +85,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
                 <div className={`imageContainer ${isLandscape ? 'landscape' : 'portrait'}`}>
                     {product ? (
                         <img
-                            src={mainImage}
+                            src={mainImageLowRes} 
                             alt={product.title}
                             className="image"
                             style={{ opacity, cursor: 'zoom-in' }}
@@ -79,19 +96,23 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
                     )}
                 </div>
             </article>
-            {product && product.thumbnails.length > 0 && (
+            
+            {/* The rest of the thumbnail JSX remains the same, calling handleThumbnailClick(product.image) */}
+            {product && (product.thumbnails.length > 0 || product.image) && (
                 <div className="thumbnails">
+                    {/* Main Image Thumbnail */}
                     <button
                         className="thumbnailContainer"
                         onClick={() => handleThumbnailClick(product.image)}
                         style={{ cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
                     >
                         <img
-                            src={product.image}
+                            src={product.image.lowResUrl} 
                             alt={`${product.title} Main Image`}
                             className="thumbnail"
                         />
                     </button>
+                    {/* Additional Thumbnails */}
                     {product.thumbnails.map((thumbnail, index) => (
                         <button
                             key={index}
@@ -100,7 +121,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
                             style={{ cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
                         >
                             <img
-                                src={thumbnail}
+                                src={thumbnail.lowResUrl} 
                                 alt={`${product.title} Thumbnail ${index + 1}`}
                                 className="thumbnail"
                             />
@@ -111,7 +132,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
             {showGallery && product && (
                 <ViewGallery
                     images={images}
-                    currentImageId={currentImageIndex}
+                    currentImageId={currentImageIndex} 
                     onClose={handleCloseGallery}
                 />
             )}

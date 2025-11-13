@@ -14,6 +14,7 @@ const CardPage: React.FC = () => {
   const currentImageId = id ? parseInt(id, 10) : 1;
 
   const allProducts = [
+    ...products.courses,
     ...products.services,
     ...products.portfolio, 
   ];

@@ -15,8 +15,7 @@ const NavDesktop = () => {
 
   const routes = [
   { label: t('home'), path: '/' },
-  { label: t('services'), path: '/services' },
-  { label: t('projects'), path: '/projects' },
+  { label: t('courses'), path: '/courses' },
   { label: t('about'), path: '/about' },
   { label: t('contact'), path: '/contact' },
 ];

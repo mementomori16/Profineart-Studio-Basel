@@ -55,7 +55,7 @@
         font-family: $font-family-base;
         font-size: $font-size-xs;
         font-weight: $font-weight-semibold;
-        color: $color-text-title;
+        color: $color-navbar-title;
         text-decoration: none;
         position: relative;
         padding: 0.5rem 0;
@@ -70,19 +70,19 @@
           left: 0;
           width: 0;
           height: 2px;
-          background-color: $color-button-blue-2;
+          background-color: $color-navbar-title-hover;
           transition: width 0.3s ease-in-out;
         }
 
         &:hover {
-          color: $color-button-blue-2; 
+          color: $color-navbar-title-hover; 
           &::after {
             width: 100%;
           }
         }
 
         &.active {
-          color: $color-button-blue-2;
+          color: $color-navbar-title-hover;
           font-weight: $font-weight-bold;
           
           &::after {

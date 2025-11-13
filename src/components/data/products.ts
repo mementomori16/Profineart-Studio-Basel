@@ -1,7 +1,60 @@
 // src/data/products.ts
 import { Product, Testimonial } from '../types/Product';
 
+export const courses: Product[] = [
+
+  {
+    id: 800, 
+    title: 'Byzantine Icon Painting: Individual Sessions',
+    description:
+      `This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.
+      
+      <h5>Key Techniques & Focus Areas</h5>
+      <ul>
+        <li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li>
+        <li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li>
+        <li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li>
+        <li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using "medieval cubism" principles.</li>
+      </ul>`,
+   image: { 
+            lowResUrl: 'https://i.ibb.co/DBrD41T/100kbphotoshoped-more-bright-1.jpg', 
+            highResUrl: 'https://i.ibb.co/kg0RQm5/best.jpg',
+        }, 
+        // FIX: Added a second example image to show how to use multiple thumbnails
+        thumbnails: [
+            { 
+                lowResUrl: "https://i.ibb.co/gZh2SgPV/100kbcloseup.jpg", 
+                highResUrl: 'https://i.ibb.co/y5g7SZC/IMG-4570.jpg', 
+            },
+            // Example of a second thumbnail:
+            { 
+                lowResUrl: '', // Replace with your actual URL
+                highResUrl: '', // Replace with your actual URL
+            },
+        ],
+    tags: ['Iconography', 'Egg Tempera', 'Classical', 'Individual'],
+    techniques: [ // Renamed from 'icons'
+      'Egg Tempera',
+      '24-Carat Gold Leaf',
+      'Gilding',
+      'Glazing (Lapis Lazuli)',
+      'Underpainting',
+      'Maulstick',
+      'Iconographic Drawing',
+      'Cretan School',
+      'Macedonian School',
+      'Proto-Byzantine',
+      'Fayum Portraiture',
+      'Historical Pigments',
+      'Varnishing',
+      'Panel Preparation',
+      'Fine Brushwork'
+    ],
+},
+]
+
 export const services: Product[] = [
+
   {
     id: 200,
     title: 'Web Application & E-commerce Development',
@@ -431,5 +484,6 @@ export const testimonials: Testimonial[] = [
 export const products = {
   services: services,
   portfolio: portfolio,
+  courses: courses,
   testimonials: testimonials, // Your corrected line
 };

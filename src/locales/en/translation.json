@@ -1,6 +1,6 @@
 {
   "home": "Home",
-  "services": "Software Services",
+  "courses": "Courses",
   "projects": "Projects",
   "about": "About",
   "contact": "Contact",
@@ -16,6 +16,10 @@
         "globalDescription": "Wir verwandeln Ihre Vision in robuste, intuitive und visuell beeindruckende Softwarelösungen.",
         "learnMoreButton": "Mehr über diesen Service erfahren"
     },
+    "coursesPage": {
+    "title": "Courses",
+    "viewButton": "Learn More"
+  },
   "projectsPage": {
     "title": "Projects",
     "viewButton": "View Details"
@@ -30,6 +34,12 @@
     "siteLink": "Site Link:"
   },
   "products": {
+
+    "800": {
+      "title": "Byzantine Icon Painting: Individual Sessions",
+      "description": "This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.<h5>Key Techniques & Focus Areas</h5><ul><li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li><li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li><li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li><li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using \"medieval cubism\" principles.</li></ul>"
+    },
+
     "200": {
       "title": "Web Application & E-commerce Development",
       "description": "Robust web applications and high-converting e-commerce platforms are developed. Solutions are built using JavaScript and TypeScript for a scalable and maintainable codebase. By utilizing modern frameworks, powerful and engaging web applications are architected.<h5>Key Features & Technologies</h5><ul><li><strong>Front-End Development:</strong> Polished and intuitive user interfaces are built using cutting-edge frameworks like React, Next.js, Vue.js, and Svelte. For optimized content delivery and performance, technologies like SvelteKit and Bunny.net CDN are also used.</li><li><strong>Back-End Systems:</strong> The backend is built on Node.js to create a scalable and secure foundation. For specific needs, other robust server-side languages like Java or Golang can also be integrated.</li><li><strong>E-commerce & Payments:</strong> Secure transactions and a rock-solid foundation for growth are ensured through the integration of leading payment gateways such as Stripe, PayPal, and other direct payment methods.</li></ul>"

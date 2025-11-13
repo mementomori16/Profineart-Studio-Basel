@@ -7,9 +7,9 @@ import About from "../components/pages/About/About";
 import Contact from "../components/pages/Contact/Contact";
 import Services from "../components/pages/ServicesPage/Services";
 import CardPage from "../components/pages/Card/CardPage/CardPage";
-import Projects from "../components/pages/Projects/Projects";
 import LegalInfo from "../components/pages/Attributions/Legal-info";
 import Cv from "../components/pages/CV/Cv";
+import Courses from "../components/pages/Courses/Courses";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
       { path: "home", element: <Navigate to="/" replace /> }, 
       
       { path: "about", element: <About /> },
+      { path: "courses", element: <Courses /> },
       { path: "services", element: <Services /> },
-      { path: "projects", element: <Projects /> },
       { path: "card", element: <CardPage /> },
       { path: "card/:id", element: <CardPage /> },
       { path: "contact", element: <Contact /> },

@@ -12,12 +12,18 @@
 
   @media (min-width: $breakpoint-lg) {
     max-width: $breakpoint-lg;
+    padding: 0; 
   }
 
   @media (max-width: $breakpoint-md) {
     padding: $space-md;
   }
 
+  .medium, .infodate {
+    margin-bottom: $space-sm;
+    color: $color-text-title;
+  }
+  
   .description {
     margin: 0;
     font-size: $font-size-base;
@@ -63,88 +69,26 @@
     }
   }
 
-  .iconsSection {
-    margin-top: $space-lg;
-    width: 100%;
-    h4 {
-      margin-bottom: $space-sm;
-      color: $color-text-title;
-      font-size: $font-size-h5;
-      font-weight: $font-weight-semibold;
-    }
-  }
-
-  .iconsList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-sm;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .iconItem {
-    display: flex;
-    align-items: center;
-    gap: $space-xxs;
-    font-size: $font-size-sm;
-    color: $color-secondary;
-    padding: $space-xs $space-sm;
-    border: 1px solid $color-border-subtle;
-    border-radius: $border-radius-sm;
-    background-color: $color-background;
-    transition: all 0.2s ease-in-out;
-
-    svg {
-      flex-shrink: 0;
-      color: $color-primary;
-    }
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: $shadow-sm;
-      background-color: lighten($color-primary, 45%);
-      color: $color-primary;
-      border-color: $color-primary;
-    }
-  }
-  
-  .link-container {
-    display: flex;
-    gap: $space-lg;
-    margin-top: $space-lg;
+  /* New Course Button Styles */
+  .course-button-container {
+    margin-top: $space-md;
     
-    .article-link {
-        text-decoration: none;
-        color: $color-secondary;
-        display: flex;
-        align-items: center;
-        gap: $space-sm;
-        transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-
-        &::before, &::after {
-          content: none;
-        }
-        
-        svg {
-          font-size: 2.2em;
-          color: $color-secondary;
-          transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-          
-          &:hover {
-            color: $color-primary;
-            transform: translateY(-2px);
-          }
-        }
-    }
-
-    .link-text {
-        margin: 0;
-        padding: 0;
-        
-        &::before, &::after {
-            content: none;
-        }
+    .explore-button {
+      background-color: $color-primary;
+      color: $color-surface; /* CORRECTED: Used $color-surface (white) instead of undefined $color-text-inverse */
+      padding: $space-sm $space-lg;
+      border-radius: $border-radius-sm;
+      text-decoration: none;
+      font-weight: $font-weight-semibold;
+      display: inline-flex;
+      align-items: center;
+      gap: $space-xs;
+      transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+      
+      &:hover {
+        background-color: darken($color-primary, 10%);
+        transform: translateY(-2px);
+      }
     }
   }
 }

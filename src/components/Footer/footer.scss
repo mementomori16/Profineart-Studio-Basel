@@ -1,20 +1,19 @@
 @use "sass:color";
-@import '../../global.scss'; // Adjust the path based on your exact file structure
+@import '../../global.scss'; 
 
 .footer {
   width: 100%;
-  background-color: $color-text-light; // Use dark charcoal gray for footer background
-  padding: $space-xxxs $space-lg; // More generous padding for a modern footer
+  background-color: $color-secondary; 
+  padding: $space-xxxs $space-lg; 
   text-align: left;
-  color: $color-background; // Light off-white for main footer text
-  font-size: $font-size-sm; // Small font size for copyright
+  color: $color-background; 
+  font-size: $font-size-sm; 
 
-  margin-top: 0; // Ensures no default margin pushes it down
-
+  margin-top: 0; 
   p {
     color: color.adjust($color-background, $lightness: 40%);
     font-size: $font-size-sm;
-    margin-bottom: $space-sm; // Using global spacing variable
+    margin-bottom: $space-sm; 
     &:last-child {
       margin-bottom: 0;
     }
