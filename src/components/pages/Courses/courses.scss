@@ -5,7 +5,7 @@
   padding: $space-md;
   max-width: $breakpoint-xxl;
   margin: 0 auto;
-  background-color: $color-background;
+  background-color: white;
   font-family: $font-family-base;
 
   .heading {
@@ -52,11 +52,11 @@
     align-items: center;
     text-align: center;
     padding: $space-lg;
-    border: 1px solid $color-border-subtle;
+    border: 1px solid $color-background;
     border-radius: $border-radius-md;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: $shadow-sm;
-    background-color: $color-surface;
+    background-color: $color-background;
 
     &:hover {
       transform: translateY(-5px);
@@ -74,7 +74,7 @@
     .title {
       font-family: $font-family-base;
       margin: 0;
-      font-size: $font-size-h5;
+      font-size: $font-size-h4;
       font-weight: $font-weight-bold;
       margin-bottom: $space-xs;
       color: $color-text-dark2;
@@ -83,7 +83,7 @@
     p {
       font-family: $font-family-base;
       font-size: $font-size-base;
-      color: $color-secondary;
+      color: $color-text-dark2;
       margin-bottom: $space-md;
     }
 
@@ -93,7 +93,7 @@
   margin-top: $space-sm;
   font-size: $font-size-base;
   border-radius: $border-radius-md;
-  font-weight: $font-weight-bold; /* Makes the text bolder */
+  font-weight: $font-weight-bold; 
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for better contrast */
 }
   }

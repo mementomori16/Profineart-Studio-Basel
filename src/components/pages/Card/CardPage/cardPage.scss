@@ -6,7 +6,7 @@
     flex-direction: column;
     padding: global.$space-xl;
     align-items: center;
-    background-color: global.$color-background;
+    background-color: rgb(249, 249, 249);
 
     .pageTitle {
         width: 100%;
@@ -14,7 +14,7 @@
         margin-bottom: global.$space-lg;
         font-size: global.$font-size-h3; 
         font-weight: global.$font-weight-bold;
-        color: global.$color-text-title;
+        color: global.$color-text-dark;
     }
 
     .cardContentWrapper {
