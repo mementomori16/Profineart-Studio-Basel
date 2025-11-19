@@ -1,0 +1,91 @@
+@use "sass:color";
+@use '../../../../global.scss' as *;
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    // Padding is now controlled by the parent .cardContentWrapper and its media queries
+    padding: 0; 
+
+    @media (min-width: $breakpoint-lg) {
+        max-width: $breakpoint-lg;
+    }
+
+    .medium, .infodate {
+        margin-bottom: $space-sm;
+        color: $color-text-light; 
+    }
+    
+    .description {
+        margin: 0;
+        font-size: $font-size-base;
+        color: $color-text-dark2; 
+        max-width: 100%;
+        line-height: 1.7;
+        margin-bottom: $space-md;
+        padding-right: 0;
+
+        h5 {
+            color: $color-text-dark3; 
+            font-size: $font-size-md;
+            font-weight: $font-weight-semibold;
+            margin-top: $space-lg;
+            margin-bottom: $space-sm;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-left: 0;
+
+            li {
+                position: relative;
+                padding-left: $space-md;
+                margin-bottom: $space-sm;
+
+                strong {
+                    color: $color-text-dark2; 
+                    font-weight: $font-weight-semibold;
+                }
+
+                &::before {
+                    content: '•';
+                    color: $color-secondary; 
+                    position: absolute;
+                    left: 0;
+                    font-weight: $font-weight-bold;
+                    font-size: $font-size-md;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+
+    /* New Course Button Styles */
+    .course-button-container {
+        margin-top: $space-md;
+        
+        .explore-button {
+            background-color: $color-navbar;
+            color: $color-surface;
+            padding: $space-sm $space-lg;
+            border-radius: $border-radius-sm;
+            text-decoration: none;
+            font-weight: $font-weight-semibold;
+            display: inline-flex;
+            align-items: center;
+            gap: $space-xs;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            
+            &:hover {
+                background-color: $color-button-hover; 
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+           

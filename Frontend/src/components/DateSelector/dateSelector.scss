@@ -1,0 +1,76 @@
+// src/components/common/DateSelector/dateSelector.scss
+@use '../../global.scss' as global;
+
+.date-selector-container {
+    padding-top: global.$space-lg;
+    border-top: 1px solid global.$color-border-subtle;
+    margin-top: global.$space-lg;
+
+    h4 {
+        color: global.$color-text-title-2;
+        font-size: global.$font-size-h4;
+        margin-bottom: global.$space-md;
+        font-weight: global.$font-weight-semibold;
+    }
+
+    /* Style the react-datepicker container */
+    .react-datepicker-wrapper {
+        display: block;
+        margin-bottom: global.$space-md;
+    }
+
+    /* Style the date input field */
+    .date-input {
+        width: 100%;
+        padding: global.$space-sm global.$space-md;
+        border: 1px solid global.$color-border-subtle-2;
+        border-radius: global.$border-radius-md;
+        background-color: global.$color-surface;
+        color: global.$color-text-dark;
+        font-size: global.$font-size-base;
+        cursor: pointer;
+        &:focus {
+            outline: 2px solid global.$color-primary;
+            border-color: global.$color-primary;
+        }
+    }
+
+    /* Style the calendar dropdown */
+    .react-datepicker {
+        border: 1px solid global.$color-border-subtle-2;
+        border-radius: global.$border-radius-md;
+        box-shadow: global.$shadow-md;
+    }
+
+    /* Style the day cells */
+    .react-datepicker__day--selected,
+    .react-datepicker__day--keyboard-selected {
+        background-color: global.$color-button-blue-2 !important;
+        color: global.$color-text-white;
+        border-radius: global.$border-radius-sm;
+    }
+    
+    /* Hover state for days */
+    .react-datepicker__day:not(.react-datepicker__day--selected):not(.react-datepicker__day--disabled):hover {
+        background-color: global.$color-alt-background-2;
+        border-radius: global.$border-radius-sm;
+    }
+    
+    /* Disabled (unavailable) dates */
+    .react-datepicker__day--disabled {
+        color: global.$color-text-light;
+        cursor: not-allowed;
+    }
+
+    /* Your custom Checkout button style */
+    .btn-checkout {
+        @extend .btn-blue; // Inherits styling from global.scss's .btn-blue
+        width: 100%;
+        padding: global.$space-md;
+        font-size: global.$font-size-md;
+        margin-top: global.$space-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

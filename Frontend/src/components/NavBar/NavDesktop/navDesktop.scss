@@ -1,0 +1,158 @@
+@use "sass:color";
+@import '../../../global.scss';
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: rgb(41, 41, 41);
+  color: $color-secondary;
+  box-shadow: $shadow-sm;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-md $space-xl;
+  gap: $space-lg;
+  
+  // Set a fixed height for the navbar
+  height: 5rem; 
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: $font-weight-bold;
+    color: $color-button-blue-2;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.05rem;
+    flex-shrink: 0;
+
+    .nav-logo-img {
+      // Increased height to make the logo bigger
+      height: 3rem; 
+      width: 10rem;
+      margin-right: 0.5rem;
+      
+    }
+  }
+
+  .nav-menu {
+    list-style: none;
+    display: flex;
+    // RESTORED: Keep titles aligned to the right (flex-end)
+    justify-content: flex-end; 
+    gap: $space-xxl;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    
+    .nav-item {
+      .nav-link {
+        font-family: $font-family-base;
+        // Increased font size for titles
+        font-size: 0.9rem; 
+        font-weight: $font-weight-semibold;
+        color: $color-navbar-title;
+        text-decoration: none;
+        position: relative;
+        padding: 0.5rem 0;
+        transition: color 0.3s ease-in-out;
+        letter-spacing: 0.02rem;
+        white-space: nowrap;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: $color-navbar-title-hover;
+          transition: width 0.3s ease-in-out;
+        }
+
+        &:hover {
+          color: $color-navbar-title-hover; 
+          &::after {
+            width: 100%;
+          }
+        }
+
+        &.active {
+          color: $color-navbar-title-hover;
+          font-weight: $font-weight-bold;
+          
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+      
+      // ➡️ NEW MODIFICATION: Apply extra margin to the last item
+      &:last-child {
+          margin-right: $space-xxl; // Use a variable that gives a noticeable push to the left
+      }
+    }
+  }
+  
+  .nav-right-actions {
+    display: flex;
+    align-items: center;
+    gap: $space-lg;
+    flex-shrink: 0;
+    
+    .search-bar-container {
+      min-width: 250px;
+    }
+  }
+}
+
+@media (max-width: 1279px) {
+  .navbar {
+    padding: $space-md $space-md;
+    gap: $space-md;
+    
+    // ADJUST: Maintain a consistent or slightly reduced navbar height on smaller screens
+    height: 4.5rem; 
+
+    .nav-logo {
+      .nav-logo-img {
+        // ADJUST: Reduce logo height slightly for smaller screens
+        height: 3rem; 
+      }
+    }
+
+    .nav-menu {
+      gap: $space-lg;
+      
+      .nav-item .nav-link {
+        // Increased font size for titles in the media query too
+        font-size: 0.8rem; 
+      }
+      
+      // ➡️ NEW MODIFICATION: Apply extra margin to the last item for smaller screens
+      .nav-item:last-child {
+          margin-right: $space-xl;
+      }
+    }
+    
+    .nav-right-actions {
+      gap: $space-md;
+
+      .search-bar-container {
+        min-width: 200px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .header {
+    display: none;
+  }
+}
