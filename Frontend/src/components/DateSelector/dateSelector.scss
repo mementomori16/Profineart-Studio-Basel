@@ -1,4 +1,5 @@
 // src/components/common/DateSelector/dateSelector.scss
+
 @use '../../global.scss' as global;
 
 .date-selector-container {
@@ -11,6 +12,89 @@
         font-size: global.$font-size-h4;
         margin-bottom: global.$space-md;
         font-weight: global.$font-weight-semibold;
+    }
+
+    .input-group {
+        margin-bottom: global.$space-xl;
+    }
+
+    /* --- 2. Package Selector Styles --- */
+    .package-options {
+        display: flex;
+        flex-direction: column;
+        gap: global.$space-xs;
+    }
+
+    .package-option {
+        display: block;
+        padding: global.$space-sm global.$space-md;
+        border: 1px solid global.$color-border-subtle;
+        border-radius: global.$border-radius-md;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        
+        &:hover {
+            background-color: global.$color-alt-background-2;
+        }
+
+        input[type="radio"] {
+            margin-right: global.$space-sm;
+            accent-color: global.$color-primary; // Colors the radio button itself
+        }
+        
+        // Highlight selected package
+        input[type="radio"]:checked + span { 
+            font-weight: global.$font-weight-bold;
+        }
+    }
+    
+    /* --- 3. Address Input and Validation Styles --- */
+    .address-controls {
+        display: flex;
+        gap: global.$space-sm;
+        margin-bottom: global.$space-sm;
+    }
+
+    .address-input {
+        flex-grow: 1;
+        padding: global.$space-sm global.$space-md;
+        border: 1px solid global.$color-border-subtle-2;
+        border-radius: global.$border-radius-md;
+        font-size: global.$font-size-base;
+        &:focus {
+            outline: 2px solid global.$color-primary;
+            border-color: global.$color-primary;
+        }
+    }
+    
+    .btn-validate {
+        @extend .btn-secondary; // Assuming you have a secondary/neutral button style
+        white-space: nowrap;
+        padding: global.$space-sm global.$space-md;
+    }
+
+    .validation-message {
+        display: flex;
+        align-items: center;
+        margin-top: global.$space-sm;
+        font-size: global.$font-size-sm;
+
+        svg {
+            margin-right: global.$space-xs;
+        }
+
+        &.success {
+            color: global.$color-success; // Define a success color in global.scss
+        }
+        &.error {
+            color: global.$color-danger; // Define a danger/error color in global.scss
+        }
+    }
+
+    /* Style the react-datepicker container */
+    .react-datepicker-wrapper {
+        display: block;
+        margin-bottom: global.$space-md;
     }
 
     /* Style the react-datepicker container */

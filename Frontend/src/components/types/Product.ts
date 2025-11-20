@@ -7,7 +7,6 @@ export interface Testimonial {
     clientTitle?: string;
     clientCompany?: string;
     clientImage: string;
-    
 }
 
 // Interface for a single image, now storing both low-res and high-res URLs
@@ -36,7 +35,7 @@ export interface Product {
     gitlabLink?: string;
     tags?: string[];
     price?: number;
-    icons?: string[];
+    icons?: string[]; // <-- KEPT THIS AS REQUESTED
     stripePriceId: string;
     technologies?: string[];
     techniques?: string[];

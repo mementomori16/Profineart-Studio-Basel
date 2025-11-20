@@ -2,9 +2,8 @@
 import { Product, Testimonial } from '../types/Product';
 
 export const courses: Product[] = [
-
   {
-    id: 800, 
+    id: 800,
     title: 'Byzantine Icon Painting: Individual Sessions',
     description:
       `This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.
@@ -16,19 +15,18 @@ export const courses: Product[] = [
         <li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li>
         <li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using "medieval cubism" principles.</li>
       </ul>`,
-   image: { 
-            lowResUrl: 'https://i.ibb.co/DBrD41T/100kbphotoshoped-more-bright-1.jpg', 
-            highResUrl: 'https://i.ibb.co/kg0RQm5/best.jpg',
-        }, 
-        // FIX: Added a second example image to show how to use multiple thumbnails
-        thumbnails: [
-            { 
-                lowResUrl: "https://i.ibb.co/gZh2SgPV/100kbcloseup.jpg", 
-                highResUrl: 'https://i.ibb.co/y5g7SZC/IMG-4570.jpg', 
-            },
-        ],
+    image: {
+      lowResUrl: 'https://i.ibb.co/DBrD41T/100kbphotoshoped-more-bright-1.jpg',
+      highResUrl: 'https://i.ibb.co/kg0RQm5/best.jpg',
+    },
+    thumbnails: [
+      {
+        lowResUrl: "https://i.ibb.co/gZh2SgPV/100kbcloseup.jpg",
+        highResUrl: 'https://i.ibb.co/y5g7SZC/IMG-4570.jpg',
+      },
+    ],
     tags: ['Iconography', 'Egg Tempera', 'Classical', 'Individual'],
-    techniques: [ // Renamed from 'icons'
+    techniques: [
       'Egg Tempera',
       '24-Carat Gold Leaf',
       'Gilding',
@@ -45,10 +43,13 @@ export const courses: Product[] = [
       'Panel Preparation',
       'Fine Brushwork'
     ],
-    price: 150.00, // Example price (you define this)
-    stripePriceId: 'price_1P6d5T...your_stripe_price_id...xZ', // 🚨 Must be replaced with your actual Stripe Price ID
-},
-]
+    price: 150.00,
+    stripePriceId: 'price_1P6d5T...your_stripe_price_id...xZ',
+    
+    // CRITICAL: This enables the DateSelector component in InfoContainer.tsx
+    medium: 'Course',
+  },
+];
 
 export const services: Product[] = [
 

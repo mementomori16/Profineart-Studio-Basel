@@ -1,17 +1,22 @@
-
 {
   "name": "profineart-studio-basel-backend",
   "version": "1.0.0",
   "description": "Node.js server for Stripe checkout and booking.",
-  "main": "index.ts",  
+  "main": "index.ts",
   "scripts": {
-    "start": "ts-node index.ts", 
-    "dev": "ts-node-dev --respawn index.ts" 
+    "start": "ts-node index.ts",
+    "dev": "ts-node-dev --respawn index.ts"
   },
-  "keywords": [ "stripe", "node", "express" ],
+  "keywords": [
+    "stripe",
+    "node",
+    "express"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/axios": "^0.14.4",
+    "axios": "^1.13.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
