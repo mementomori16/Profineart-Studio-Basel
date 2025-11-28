@@ -1,6 +1,6 @@
 // src/utils/imagePreloader.ts
 
-import { products } from "../../components/data/products";
+import { products } from "../../../../Backend/data/products";
 
 export const preloadImages = (imageUrls: string[]): Promise<void> => {
   const promises = imageUrls.map(url => {

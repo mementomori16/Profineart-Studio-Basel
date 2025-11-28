@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { products as productData } from '../data/products'; 
-import { Product } from '../types/Product'; // Assuming this type exists
+import { products as productData } from '../../../../Backend/data/products'; 
+import { Product } from '../../../../Backend/types/Product'; // Assuming this type exists
 import './customCarousel.scss'; 
 
 // --- RESTORED CODE: Initializing products array ---

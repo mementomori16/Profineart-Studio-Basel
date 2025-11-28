@@ -1,7 +1,7 @@
 // CardContainer.tsx
 
 import React, { useEffect, useState } from 'react';
-import { Product, ProductImage } from '../../../types/Product';
+import { Product, ProductImage } from '../../../../../../Backend/types/Product';
 import ViewGallery from '../../View Gallery/ViewGallery';
 import './cardContainer.scss';
 

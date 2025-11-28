@@ -33,12 +33,96 @@
     "technologiesUsed": "Technologies Used:",
     "siteLink": "Site Link:"
   },
+
+
+  "common": {
+        "loading": "Loading...",
+        "loadingSlots": "Checking schedule...",
+        "nextStep": "Next Step",
+        "processing": "Processing payment...",
+        "backToHome": "Back to Home",
+        "currency": "CHF", 
+        "minutes": "mins",
+        "lessons": "Lessons", 
+        "lesson": "Lesson", 
+        "bestValue": "BEST VALUE" 
+    },
+    
+    "checkout": {
+        "bookNowButton": "Book Now",
+        "mainTitle": "Complete Your Booking",
+        "step1Title": "Select Date & Time",
+        "step2Title": "Contact & Payment Details",
+        "backToSchedule": "Back to Schedule",
+        "successTitle": "Booking Confirmed! 🎉",
+        "successMessage": "Thank you! Your session is successfully booked. A confirmation email with all the details has been sent.",
+        "summaryDate": "Scheduled Date",
+        "errorTitle": "Booking Failed",
+        "errorMessage": "There was an issue processing your request. Please try again.",
+        "tryAgain": "Try Again",
+        
+        "confirmAndPay": "Confirm and Pay",
+        "bookingSummary": "Booking Summary",
+        "summaryPackage": "Package",
+        "totalPrice": "Total Price",
+        
+       
+        "selectPackageTitle": "1. Choose Lesson Package",
+"packageInstruction": "For multi-lesson packages, select your package and book only your first lesson date and time. The remaining sessions will be scheduled directly with your instructor after purchase. Packages do not expire.",        "pickDateAndTimeTitle": "2. Pick Date and Time",
+        "selectDatePlaceholder": "Select a date",
+        "enterAddressTitle": "3. Enter Your Address",
+        "addressPlaceholder": "Enter Address (e.g., street, city, 4052 Basel)",
+        "addressRequired": "Please enter your address.",
+        "addressValidating": "Checking...",
+        "addressCheckButton": "Check Address",
+        "addressValidSuccess": "Service available at this location!",
+        "addressInvalid": "Address is outside the service area or invalid.",
+        "validationError": "An error occurred during address validation.",
+        "continueToDetails": "Continue to Contact Details",
+        "noAvailableSlots": "No available slots found for the selected package on this date.",
+        "loadingSlotsMessage": "Loading slots for {{lessons}} x {{duration}} min..."
+    },
+    
+    "schedule": {
+        "selectPackage": "Select Package Type",
+        "selectDate": "Select Date",
+        "selectTime": "Select Time"
+    },
+    
+    "form": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number (Optional)",
+        "message": "Message / Special Request (Optional)",
+        "date": "Date",
+        "timeSlots": "Available Time Slots"
+    },
+    
+    "packages": {
+        "basic": { "label": "1-Hour Session" },
+        "premium": { "label": "1.5-Hour Extended Session" }
+    },
+    
+    "error": {
+        "productNotFound": "Error: Product not found.",
+        "failedToFetchSchedule": "Could not load the schedule. Please try again.",
+        "invalidRequest": "Invalid request. Please select a package and date.",
+        "completeAllSteps": "Please select a date, time slot, and validate your address."
+    },
+    
+    "validation": {
+        "nameEmailRequired": "Name and Email are required fields.",
+        "slotRequired": "Please select a date and time slot."
+    },
+
   "products": {
 
-    "800": {
+ "800": {
       "title": "Byzantine Icon Painting Individual Sessions",
       "description": "This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.<h5>Key Techniques & Focus Areas</h5><ul><li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li><li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li><li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li><li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using \"medieval cubism\" principles.</li></ul>"
-    },
+    }
+  
+  },
 
     "200": {
       "title": "Web Application & E-commerce Development",
@@ -105,9 +189,9 @@
       "description": "A dynamic web application and portfolio site that demonstrates the creation of robust digital products from concept to completion. This project showcases my expertise as a full-stack developer, combining elegant design with a modern, scalable architecture.<h5>Key Features</h5><ul><li><strong>Responsive Design:</strong> The application is fully responsive, providing a seamless user experience across all devices, including mobile, tablet, and desktop.</li><li><strong>Dynamic Content:</strong> Custom-built components, such as a fully interactive photo gallery with zoom functionality and dynamic carousels, handle products and testimonials.</li><li><strong>Intuitive UX/UI:</strong> Every element, from the navigation menu to the contact form, was meticulously designed for user-friendliness and visual appeal, ensuring effortless engagement.</li></ul><h5>Technology & Architecture</h5><ul><li><strong>Front-End:</strong> Built with React and TypeScript, ensuring a robust and maintainable codebase.</li><li><strong>Back-End:</strong> Powered by Node.js, with a hybrid architecture that leverages API calls for dynamic image assets while using a local JSON data source for content.</li><li><strong>Workflow:</strong> An automated CI/CD pipeline was configured with GitHub Actions and Firebase Hosting, ensuring reliable, hands-off deployment.</li></ul>",
       "link": "https://hieroglyphcode.ch/",
       "githubLink": "https://github.com/mementomori16/hieroglyph-code"
-    }
+    },
 
-  },
+  
   "testimonials": {
     "title": "Client Testimonials",
     "subtitle": "Discover the real impact of our software solutions, straight from our partners.",

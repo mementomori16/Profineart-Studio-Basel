@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import CardContainer from '../CardContainer/CardContainer';
 import InfoContainer from '../InfoContainer/InfoContainer';
 import SimilarProducts from '../../../SimilarProducts/SimilarProducts';
-import { products } from '../../../data/products';
+import { products } from '../../../../../../Backend/data/products';
 import SimilarProjects from '../../../SimilarProjects/Similarprojects';
 import './cardPage.scss';
 

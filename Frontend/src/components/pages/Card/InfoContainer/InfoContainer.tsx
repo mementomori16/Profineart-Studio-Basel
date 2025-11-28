@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Product } from '../../../types/Product';
-import DateSelector from '../../../DateSelector/DateSelector'; // The new component
+import { useNavigate } from 'react-router-dom'; // <--- NEW IMPORT
+import { Product } from '../../../../../../Backend/types/Product';
+// import DateSelector from '../../../DateSelector/DateSelector'; // <--- REMOVE: Replaced by new flow
 
 import './infoContainer.scss';
 
@@ -13,13 +14,12 @@ type Props = {
 
 const InfoContainer: React.FC<Props> = ({ product }) => {
     const { t } = useTranslation();
+    const navigate = useNavigate(); // <--- INITIALIZE NAVIGATE
 
     const translatedDescription = t(`products.${product.id}.description`);
 
-    // Ensure description rendering handles both array and string formats
     const renderDescription = () => {
         if (Array.isArray(product.description)) {
-            // If description is an array, map over it (assuming translation handles structure)
             return (
                 <div className="description">
                     {product.description.map((_paragraph, index) => (
@@ -28,26 +28,37 @@ const InfoContainer: React.FC<Props> = ({ product }) => {
                 </div>
             );
         }
-        // If description is a single string (translated)
         return (
             <p className="description" dangerouslySetInnerHTML={{ __html: translatedDescription }} />
         );
     };
 
+    // --- NEW HANDLER FOR BOOKING ---
+    const handleBookNow = () => {
+        // We navigate to the new OrderPage route, passing the product ID
+        navigate(`/order/${product.id}`); 
+    };
+    // --- END NEW HANDLER ---
 
     return (
         <div className="infoContainer">
             {product.medium && <p className="medium">{product.medium}</p>}
             {product.date && <p className="infodate">{product.date}</p>}
 
-            {/* Description Rendering Logic */}
             {renderDescription()}
 
-            {/* E-COMMERCE DATE SELECTOR & CHECKOUT SECTION 
-                The DateSelector component is rendered only if the medium is 'Course'.
-            */}
+            {/* E-COMMERCE BOOKING ACTION SECTION */}
             {product.medium === 'Course' && (
-                <DateSelector product={product} />
+                <div className="booking-action-container"> 
+                    {/* Add price display here if applicable */}
+                    
+                    <button 
+                        className="btn-book-now" 
+                        onClick={handleBookNow}
+                    >
+                        {t('checkout.bookNowButton')} 
+                    </button>
+                </div>
             )}
         </div>
     );

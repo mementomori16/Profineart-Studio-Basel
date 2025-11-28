@@ -3,8 +3,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // Import the hook
-import { products } from '../data/products';
-import { Product } from '../types/Product';
+import { products } from '../../../../Backend/data/products';
+import { Product } from '../../../../Backend/types/Product';
 import './similarProducts.scss';
 
 interface SimilarProductsProps {

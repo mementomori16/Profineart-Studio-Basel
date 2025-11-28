@@ -1,0 +1,134 @@
+// src/pages/OrderPage/OrderPage.scss
+
+@use "sass:color";
+@use '../../../global.scss' as global; // Import global styles
+
+.order-page {
+    // 1. CONTAINER & BACKGROUND
+    background-color: global.$color-background; 
+    min-height: 100vh;
+    padding-top: global.$space-xxl;
+    padding-bottom: global.$space-xxl;
+    
+    .order-content-wrapper {
+        max-width: global.$breakpoint-lg; 
+        margin: 0 auto;
+        padding: global.$space-xl;
+        
+        // --- Card Styling ---
+        background-color: global.$color-card; 
+        border-radius: global.$border-radius-lg;
+        box-shadow: global.$shadow-lg;
+        display: flex;
+        flex-direction: column;
+        
+        @media (max-width: global.$breakpoint-sm) {
+            padding: global.$space-lg;
+        }
+    }
+    
+    // 2. HEADINGS & TITLES
+    h1 {
+        color: global.$color-text-dark4; 
+        text-align: center;
+        margin-bottom: global.$space-xl;
+    }
+
+    h2 {
+        color: global.$color-text-dark2; 
+        font-size: global.$font-size-h3;
+        font-weight: global.$font-weight-semibold;
+        margin-top: global.$space-lg;
+        margin-bottom: global.$space-md;
+    }
+    
+    // 3. STEP INDICATOR
+    .step-indicator {
+        display: flex;
+        justify-content: center;
+        margin-bottom: global.$space-xxl;
+        
+        span {
+            padding: global.$space-sm global.$space-md;
+            margin: 0 global.$space-xs;
+            border-radius: global.$border-radius-xl;
+            background-color: global.$color-border-subtle; 
+            color: global.$color-text-light;
+            font-weight: global.$font-weight-medium;
+            transition: all 0.3s ease;
+            cursor: default;
+
+            &.active {
+                background-color: global.$color-text-dark2; 
+                color: global.$color-text-white;
+                font-weight: global.$font-weight-bold;
+            }
+        }
+    }
+
+    // 4. GENERAL FORM/SECTION STYLING
+    label {
+        color: global.$color-text-dark2;
+        font-weight: global.$font-weight-semibold;
+        margin-bottom: global.$space-xs;
+        display: block;
+    }
+
+    // This is for the package selection (radio buttons) - Note: Class name seems redundant with the one inside the component, but kept for legacy/parent styles
+    .package-selection {
+        display: flex;
+        flex-direction: column;
+        gap: global.$space-md;
+        margin-bottom: global.$space-xl;
+        
+        @media (min-width: global.$breakpoint-md) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        
+        label {
+            display: block;
+            padding: global.$space-lg;
+            border: 1px solid global.$color-border-subtle-2;
+            border-radius: global.$border-radius-md;
+            cursor: pointer;
+            transition: all 0.2s;
+            background-color: global.$color-surface; 
+            box-shadow: global.$shadow-sm;
+
+            &:hover {
+                border-color: global.$color-button-blue-2; 
+                box-shadow: global.$shadow-md;
+            }
+            
+            &.selected {
+                border: 2px solid global.$color-button-blue-2; 
+                background-color: global.$color-alt-background-2; 
+            }
+        }
+    }
+
+    // 5. INPUT/BUTTONS (using global classes)
+    .checkout-button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: global.$space-xl;
+        
+        .btn-back {
+            @extend .btn-ghost; 
+        }
+        
+        .btn-continue {
+            @extend .btn-blue; 
+        }
+    }
+    
+    // Error styling
+    .alert-error {
+        background-color: global.$color-error;
+        color: global.$color-text-white;
+        padding: global.$space-md;
+        border-radius: global.$border-radius-md;
+        margin-bottom: global.$space-lg;
+    }
+}

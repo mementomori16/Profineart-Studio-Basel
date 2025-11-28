@@ -64,7 +64,6 @@
         }
     }
 
-    /* New Course Button Styles */
     .course-button-container {
         margin-top: $space-md;
         
@@ -84,6 +83,39 @@
                 background-color: $color-button-hover; 
                 transform: translateY(-2px);
             }
+        }
+    }
+    
+    // --- NEW STYLES FOR BOOKING BUTTON ONLY ---
+    .booking-action-container {
+        width: 100%;
+        margin-top: $space-xl;
+        padding-top: $space-lg;
+        border-top: 1px solid $color-border-subtle;
+    }
+    
+    .btn-book-now {
+        // Uses the general dark button style from your global.scss
+        background-color: $color-button;
+        color: $color-text-white; // Assuming $color-text-white is appropriate for dark button
+        border: none;
+        border-radius: $border-radius-md;
+        cursor: pointer;
+        
+        width: 100%; 
+        padding: $space-md $space-lg;
+        font-size: $font-size-h5;
+        font-weight: $font-weight-bold;
+        text-align: center;
+        transition: background-color 0.2s, transform 0.1s;
+
+        &:hover {
+            background-color: $color-button-hover;
+            transform: translateY(-1px);
+        }
+        
+        @media (min-width: $breakpoint-lg) {
+            max-width: 300px; 
         }
     }
 }

@@ -1,0 +1,125 @@
+@import '../../../global.scss'; // Adjust path if necessary
+
+.success-page {
+    // Center the content within the container
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: $space-xxl;
+    padding-bottom: $space-xxl;
+    min-height: 70vh; // Ensure it takes up enough screen height
+    background-color: $color-background; // Assuming this is the main background color
+
+    @media (max-width: $breakpoint-md) {
+        padding-top: $space-xl;
+        padding-bottom: $space-xl;
+    }
+
+    // --- Success State Styles ---
+
+    .success-state {
+        // A specific card-like area for the confirmation content
+        background-color: $color-surface;
+        padding: $space-xxl;
+        border-radius: $border-radius-lg;
+        box-shadow: $shadow-lg;
+        max-width: 900px;
+        width: 100%;
+
+        @media (max-width: $breakpoint-md) {
+            padding: $space-lg;
+        }
+    }
+
+    .success-title {
+        // Style the main success heading
+        font-size: $font-size-h2;
+        color: $color-success; // Use your dedicated success green color
+        font-weight: $font-weight-bold;
+        margin-bottom: $space-md;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-h3;
+        }
+    }
+
+    .success-message {
+        // Style for the primary confirmation message
+        font-size: $font-size-md;
+        color: $color-text-dark;
+        margin-bottom: $space-xl;
+    }
+
+    // --- Confirmation Details Block ---
+    
+    .confirmation-details {
+        text-align: left;
+        padding: $space-lg;
+        margin-bottom: $space-xl;
+        background-color: $color-alt-background-2; // Subtle background for the details box
+        border-radius: $border-radius-md;
+        border-left: 0.25rem solid $color-primary; // Accent border
+
+        h3 {
+            font-size: $font-size-h4;
+            color: $color-text-title;
+            margin-top: 0;
+            margin-bottom: $space-md;
+            border-bottom: 0.0625rem solid $color-border-subtle-2;
+            padding-bottom: $space-xs;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: $space-xs 0;
+                font-size: $font-size-base;
+                color: $color-text-dark; // Darker text for readability
+                line-height: 1.8;
+
+                strong {
+                    // Bold the labels (Name, Email, etc.)
+                    color: $color-text-title-2;
+                    display: inline-block;
+                    min-width: 6rem;
+                    font-weight: $font-weight-medium;
+                }
+            }
+        }
+    }
+
+    // --- Footer Notes ---
+
+    .email-note {
+        font-size: $font-size-sm;
+        color: $color-text-light;
+        margin-bottom: $space-xl;
+        font-style: italic;
+    }
+
+    // --- Error State Styles ---
+
+    .error-state {
+        // Style for when the fulfillment fails
+        padding: $space-xxl;
+        border-radius: $border-radius-lg;
+        box-shadow: $shadow-lg;
+        max-width: 600px;
+        width: 100%;
+        background-color: $color-surface;
+
+        h2 {
+            color: $color-error;
+            margin-bottom: $space-md;
+        }
+
+        p {
+            color: $color-text-dark;
+            margin-bottom: $space-xl;
+        }
+    }
+}

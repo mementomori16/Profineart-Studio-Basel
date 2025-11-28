@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import './navDesktop.scss';
-import { Product } from '../../types/Product';
+import { Product } from '../../../../../Backend/types/Product';
 import logo from '../../../assets/images/icons/Group 177.svg';
 import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
 import { useTranslation } from 'react-i18next';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { products as productData } from "../data/products";
-import { Product } from "../types/Product";
+import { products as productData } from "../../../../Backend/data/products";
+import { Product } from "../../../../Backend/types/Product";
 import { LiaAngleDoubleDownSolid } from "react-icons/lia";
 import { useTranslation } from "react-i18next";
 import './customCarousel.scss';

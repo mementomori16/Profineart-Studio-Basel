@@ -10,6 +10,8 @@ import CardPage from "../components/pages/Card/CardPage/CardPage";
 import LegalInfo from "../components/pages/Attributions/Legal-info";
 import Cv from "../components/pages/CV/Cv";
 import Courses from "../components/pages/Courses/Courses";
+import OrderPage from "../components/pages/OrderPage/OrderPage";
+import SuccessPage from "../components/Order/SucsessPage.tsx/SuccessPage";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +31,10 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "legalinfo", element: <LegalInfo /> },
       { path: "cv", element: <Cv /> },
-    ],
+
+      { path: "order/success", element: <SuccessPage /> }, // Success page route
+      { path: "order/:id", element: <OrderPage /> }  
+    ],      
   },
 ]);
 

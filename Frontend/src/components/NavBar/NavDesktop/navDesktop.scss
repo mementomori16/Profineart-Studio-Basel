@@ -1,5 +1,5 @@
 @use "sass:color";
-@import '../../../global.scss';
+@use '../../../global.scss' as *;
 
 .header {
   position: sticky;

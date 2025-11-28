@@ -1,0 +1,37 @@
+// Backend/tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2022", // Updated target for better NodeNext compatibility
+    
+    // ✅ Keep: Correct settings for ES Module compatibility
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    
+    
+    // ✅ Keep: Standard strictness and interoperability settings
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    
+    // ✅ Keep: Allows importing JSON files as modules
+    "resolveJsonModule": true,
+    
+    // ✅ Keep: Correctly defines the source and output directories
+    "rootDir": "./", 
+    "outDir": "./dist"
+  },
+  "include": [
+    // ✅ Keep: Include all local TypeScript files in the Backend directory
+    "**/*.ts",
+    
+    // ✅ Keep: Continue to include shared files from Frontend (important for compilation)
+    "../Frontend/src/types/*.ts",
+    "../Frontend/src/data/products.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    // ⚠️ OPTIMIZATION: Exclude the output folder itself to prevent circular compilation
+    "dist" 
+  ]
+}

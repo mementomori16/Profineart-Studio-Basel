@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 // Assuming 'courses' is imported from your data file
-import { courses } from '../../data/products'; 
+import { courses } from '../../../../../Backend/data/products'; 
 import './courses.scss'; 
 
 const Courses: React.FC = () => { 
@@ -15,12 +15,17 @@ const Courses: React.FC = () => {
         <div className="coursesPage">
             <h1 className="heading">{t('coursesPage.title')}</h1>
             <div className="gallery">
-                {filteredProducts.map((product) => (
+                {/* Only map over products that are defined and have basic structure
+                  This adds a minor safety check in case the courses array contains null/undefined items.
+                */}
+                {filteredProducts.filter(product => product).map((product) => (
                     <div key={product.id} className="serviceItem">
                         <Link to={`/card/${product.id}`}>
                             <img
-                                // FIX: Access the lowResUrl property to get the image source
-                                src={product.image.lowResUrl}
+                                // 🛑 CRITICAL FIX: Use optional chaining (?.) on 'image' 
+                                // to prevent crash if product.image is undefined/null.
+                                // Fallback to a placeholder image if the URL is missing.
+                                src={product.image?.lowResUrl || '/assets/placeholder-course.jpg'}
                                 alt={t(`products.${product.id}.title`)}
                                 className="image"
                             />

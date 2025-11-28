@@ -7,7 +7,9 @@ $color-primary: rgb(107, 179, 241);
 $color-primary2:rgb(48, 9, 9, 0.9);
 $color-secondary: #333333;
 $color-background: #4f4b4b;
+$color-background-hover: #EBEBEB; // Confirmed this is present
 $color-danger: red;
+$color-rose: rgb(240, 95, 124);
 $color-card: rgb(228, 226, 226);
 $color-surface: #ffffff;
 $color-navbar:rgb(32, 32, 32);
@@ -15,6 +17,7 @@ $color-text-white: #FFFFFF;
 $color-text-button: #fa8a3b;
 $color-primary-transparent: rgba(232, 125, 46, 0.15);
 $color-success: #28A745;
+$color-green-price:rgb(39, 157, 39);
 $color-error: #DC3545;
 $color-warning: #FFC107;
 $color-border-subtle: #EBEBEB;
@@ -152,7 +155,7 @@ $border-radius-xl: 1.2rem;
     position: relative;
     padding-bottom: 0;
     font-size: $font-size-h2;
-} // <-- CRITICAL FIX: Missing closing brace added here
+}
 
 // 8. GLOBAL STYLES (Base Elements and Utility Classes)
 // ----------------------------------------------------
@@ -221,9 +224,15 @@ a {
     color: $color-surface;
     box-shadow: $shadow-sm;
     &:hover {
-        background-color: color.adjust($color-primary, $lightness: -8%);
+        background-color: color.adjust($color-button, $lightness: -8%); // Adjusted color.adjust usage
         transform: translateY(-0.0625rem);
         box-shadow: $shadow-md;
+    }
+    &:disabled {
+        background-color: $color-text-light;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
     }
 }
 
@@ -235,6 +244,10 @@ a {
     &:hover {
         background-color: color.adjust($color-button-blue-2, $lightness: 40%);
         transform: translateY(-0.0625rem);
+    }
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
     }
 }
 

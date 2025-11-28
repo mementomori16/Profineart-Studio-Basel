@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
-import { Product } from '../types/Product';
+import { products } from '../../../../Backend/data/products';
+import { Product } from '../../../../Backend/types/Product';
 import './similarpojects.scss';
 import { useTranslation } from 'react-i18next';
 

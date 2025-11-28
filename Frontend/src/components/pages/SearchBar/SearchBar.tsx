@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { products } from '../../data/products';
-import { Product } from '../../types/Product';
+import { products } from '../../../../../Backend/data/products';
+import { Product } from '../../../../../Backend/types/Product';
 import { useNavigate } from 'react-router-dom';
 import './searchBar.scss';
 import { FaSearch } from 'react-icons/fa';

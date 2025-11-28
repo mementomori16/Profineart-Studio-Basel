@@ -1,0 +1,266 @@
+// Adopted styling and structure from a typical date/time selector component for a cleaner, sectioned form look.
+@use "sass:color";
+@use "../../../global.scss" as global; // Aliasing global to prevent bare `@import` conflict
+
+.contact-details-form { 
+    // Container Styling matching the Date/Time Selector look
+    padding: global.$space-xl;
+    max-width: global.$breakpoint-lg;
+    margin: 0 auto;
+    font-family: global.$font-family-base;
+    background-color: global.$color-card;
+    border-radius: global.$border-radius-md;
+    box-shadow: global.$shadow-md;
+
+    h3 {
+        color: global.$color-text-title;
+        margin-top: 0;
+        margin-bottom: global.$space-lg;
+        font-size: global.$font-size-h3;
+        border-bottom: 2px solid global.$color-border-subtle-2;
+        padding-bottom: global.$space-sm;
+        font-weight: global.$font-weight-bold;
+    }
+
+    h4 {
+        // Used for section titles like "Personal Details"
+        color: global.$color-text-dark2;
+        font-size: global.$font-size-md;
+        font-weight: global.$font-weight-semibold;
+        margin-bottom: global.$space-md;
+        border-bottom: 1px solid global.$color-border-subtle;
+        padding-bottom: global.$space-xs;
+    }
+
+    .form-section {
+        // Wrapper for the form content (not the summary)
+        margin-bottom: global.$space-xxl;
+        padding: global.$space-lg;
+        background-color: global.$color-surface;
+        border-radius: global.$border-radius-md;
+        border: 1px solid global.$color-border-subtle;
+        box-shadow: global.$shadow-sm;
+    }
+    
+    // --- Grid Layouts for Address Fields ---
+    .form-group-grid-address {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: global.$space-md;
+        margin-bottom: global.$space-md;
+
+        // Two-column layout for Street/Apartment
+        @media (min-width: global.$breakpoint-sm) {
+            grid-template-columns: 2fr 1fr;
+        }
+        
+        .form-field {
+            margin-bottom: 0;
+        }
+
+        // Three-column layout for Index, City, Country
+        &.grid-3 {
+             grid-template-columns: 1fr;
+             @media (min-width: global.$breakpoint-sm) {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    }
+
+    .form-field {
+        margin-bottom: global.$space-md;
+
+        label {
+            display: block;
+            margin-bottom: global.$space-xs;
+            font-weight: global.$font-weight-medium;
+            color: global.$color-text-dark3;
+            font-size: global.$font-size-sm;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], textarea, .react-datepicker__input-container input {
+            width: 100%;
+            padding: global.$space-sm;
+            border: 1px solid global.$color-border-subtle-2;
+            border-radius: global.$border-radius-sm;
+            font-size: global.$font-size-base;
+            color: global.$color-text-dark;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+
+            &:focus {
+                outline: none;
+                border-color: global.$color-secondary;
+            }
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    }
+
+    /* --- Summary Card (Booking Summary) --- */
+    .booking-summary {
+        background-color: global.$color-surface; 
+        padding: global.$space-lg;
+        border-radius: global.$border-radius-md;
+        box-shadow: global.$shadow-md;
+        margin-top: global.$space-md;
+        margin-bottom: global.$space-xl;
+
+        h3.h5 {
+            font-size: global.$font-size-h3;
+            border-bottom: 1px solid global.$color-border-subtle-2;
+            padding-bottom: global.$space-sm;
+            margin-bottom: global.$space-md;
+        }
+
+        .justify-content-between {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: global.$space-xs;
+            
+            span:first-child { color: global.$color-text-dark3; }
+            span:last-child { color: global.$color-text-dark; }
+
+            &.fw-bold {
+                border-top: 2px solid global.$color-text-dark;
+                padding-top: global.$space-sm;
+                margin-top: global.$space-sm;
+                
+                span:first-child {
+                    font-size: global.$font-size-h3;
+                    font-weight: global.$font-weight-bold;
+                    color: global.$color-text-dark4;
+                }
+                span:last-child {
+                    font-size: global.$font-size-h2;
+                    font-weight: global.$font-weight-bold;
+                    color: global.$color-secondary;
+                }
+            }
+        }
+    }
+    
+    /* --- DatePicker & Input Group Styling --- */
+    .date-picker-wrapper {
+        .input-group {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            padding: global.$space-sm;
+            background-color: global.$color-primary;
+            color: global.$color-text-white;
+            border-radius: 0 global.$border-radius-sm global.$border-radius-sm 0;
+            border: 1px solid global.$color-primary;
+            margin-left: -1px; 
+            height: 40px; /* Match input height */
+        }
+    }
+    .react-datepicker-wrapper {
+        flex-grow: 1;
+    }
+    .react-datepicker {
+        border: 1px solid global.$color-border-subtle;
+        border-radius: global.$border-radius-sm;
+        box-shadow: global.$shadow-md;
+        font-family: global.$font-family-base;
+    }
+    .react-datepicker__header {
+        background-color: global.$color-background-hover;
+        border-bottom-color: global.$color-border-subtle;
+    }
+    .react-datepicker__day--selected,
+    .react-datepicker__day--keyboard-selected {
+        background-color: global.$color-primary !important;
+        color: global.$color-text-white !important;
+    }
+    .react-datepicker__year-select {
+        padding: global.$space-xs;
+        border-radius: global.$border-radius-sm;
+        border: 1px solid global.$color-border-subtle;
+    }
+    /* --- Error and Buttons --- */
+    .alert-warning {
+        padding: global.$space-md;
+        border-radius: global.$border-radius-sm;
+        background-color: color.adjust(global.$color-warning, $alpha: -0.8);
+        color: global.$color-warning;
+        border: 1px solid global.$color-warning;
+        margin-bottom: global.$space-md;
+        display: flex;
+        align-items: center;
+        gap: global.$space-sm;
+        font-weight: global.$font-weight-semibold;
+    }
+    
+    .d-flex.justify-content-between {
+        margin-top: global.$space-lg;
+
+        .btn-secondary {
+            // Back button style
+            background-color: transparent;
+            color: global.$color-text-dark;
+            border: 1px solid global.$color-border-subtle;
+            padding: global.$space-sm global.$space-lg;
+            border-radius: global.$border-radius-md;
+            transition: background-color 0.2s;
+
+            &:hover:not(:disabled) {
+                background-color: global.$color-alt-background-2;
+            }
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+        
+        .btn-primary {
+            // Confirm and Pay button style
+            background-color: global.$color-button-blue;
+            color: global.$color-text-white;
+            border: 1px solid global.$color-button-blue;
+            padding: global.$space-sm global.$space-lg;
+            border-radius: global.$border-radius-md;
+            font-weight: global.$font-weight-semibold;
+            transition: background-color 0.2s, box-shadow 0.2s;
+
+            &:hover:not(:disabled) {
+                background-color: color.adjust(global.$color-button-blue, $lightness: -10%);
+                box-shadow: global.$shadow-md;
+            }
+            &:disabled {
+                background-color: global.$color-border-subtle-2;
+                color: global.$color-text-light;
+                cursor: not-allowed;
+                box-shadow: none;
+            }
+        }
+    }
+
+    .form-check {
+        padding-left: 0;
+        
+        .form-check-input {
+            margin-right: global.$space-sm;
+            transform: scale(1.2);
+            cursor: pointer;
+            float: none; /* Prevent float from Bootstrap-like styles */
+        }
+        .form-check-label {
+            cursor: pointer;
+            font-size: global.$font-size-base;
+            a {
+                color: global.$color-primary;
+                text-decoration: underline;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

@@ -6,7 +6,7 @@ import Hamburger from 'hamburger-react';
 import { useTranslation } from 'react-i18next';
 import './navMobile.scss';
 import SearchBar from '../../pages/SearchBar/SearchBar';
-import { Product } from '../../types/Product';
+import { Product } from '../../../../../Backend/types/Product';
 import logo from '../../../assets/images/icons/Group 177.svg';
 import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
 

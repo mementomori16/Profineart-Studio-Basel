@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { products } from '../../data/products';
-import { Testimonial } from '../../types/Product';
+import { products } from '../../../../../Backend/data/products';
+import { Testimonial } from '../../../../../Backend/types/Product';
 import './testimonials.scss';
 
 // Helper function to generate placeholder image URL with initials
