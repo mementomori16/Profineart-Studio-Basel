@@ -1,7 +1,8 @@
 // src/routes/router.tsx
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import MainLayout from "../../src/layouts/MainLayout"; // Import the new MainLayout component
+import MainLayout from "../../src/layouts/MainLayout"; 
 
+// Component Imports
 import Home from "../components/pages/Home/Home";
 import About from "../components/pages/About/About";
 import Contact from "../components/pages/Contact/Contact";
@@ -12,30 +13,39 @@ import Cv from "../components/pages/CV/Cv";
 import Courses from "../components/pages/Courses/Courses";
 import OrderPage from "../components/pages/OrderPage/OrderPage";
 import SuccessPage from "../components/Order/SucsessPage.tsx/SuccessPage";
+import Basket from "../components/pages/Cart/Basket/Basket";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />, 
-    children: [
-     
-      { path: "/", element: <Home /> }, 
-      
-      { path: "home", element: <Navigate to="/" replace /> }, 
-      
-      { path: "about", element: <About /> },
-      { path: "courses", element: <Courses /> },
-      { path: "services", element: <Services /> },
-      { path: "card", element: <CardPage /> },
-      { path: "card/:id", element: <CardPage /> },
-      { path: "contact", element: <Contact /> },
-      { path: "legalinfo", element: <LegalInfo /> },
-      { path: "cv", element: <Cv /> },
+    {
+        path: "/",
+        element: <MainLayout />,
+        children: [
 
-      { path: "order/success", element: <SuccessPage /> }, // Success page route
-      { path: "order/:id", element: <OrderPage /> }  
-    ],      
-  },
+            // --- BASIC ROUTES ---
+            { path: "/", element: <Home /> },
+            { path: "home", element: <Navigate to="/" replace /> },
+            { path: "about", element: <About /> },
+            { path: "contact", element: <Contact /> },
+            { path: "services", element: <Services /> },
+            { path: "courses", element: <Courses /> },
+            { path: "legalinfo", element: <LegalInfo /> },
+            { path: "cv", element: <Cv /> },
+
+            // ---------------------------------------------------------
+            // 🛒 *** FIXED ROUTE ORDER ***
+            // Basket must be BEFORE card/:id to prevent route swallowing
+            // ---------------------------------------------------------
+            { path: "basket", element: <Basket /> },
+
+            // PRODUCT PAGE (Dynamic Route)
+            { path: "card/:id", element: <CardPage /> },
+
+            // --- ORDER PROCESS ---
+            { path: "order/:id", element: <OrderPage /> },
+            { path: "order/success", element: <SuccessPage /> },
+        ],
+    },
 ]);
 
 export default router;
+

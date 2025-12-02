@@ -7,7 +7,7 @@ $color-primary: rgb(107, 179, 241);
 $color-primary2:rgb(48, 9, 9, 0.9);
 $color-secondary: #333333;
 $color-background: #4f4b4b;
-$color-background-hover: #EBEBEB; // Confirmed this is present
+$color-background-hover: #EBEBEB; 
 $color-danger: red;
 $color-rose: rgb(240, 95, 124);
 $color-card: rgb(228, 226, 226);
@@ -18,6 +18,8 @@ $color-text-button: #fa8a3b;
 $color-primary-transparent: rgba(232, 125, 46, 0.15);
 $color-success: #28A745;
 $color-green-price:rgb(39, 157, 39);
+$color-blue: rgb(22, 80, 195);
+$color-yellow: rgb(192, 178, 72);
 $color-error: #DC3545;
 $color-warning: #FFC107;
 $color-border-subtle: #EBEBEB;
@@ -57,6 +59,7 @@ $font-size-sm: 0.875rem;
 $font-size-xs: 0.8rem;
 $font-size-xxs: 0.8rem;
 $font-size-md: 1.125rem;
+$font-size-instruction: 1.1rem; // <-- Instruction size added globally
 $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-medium: 500;

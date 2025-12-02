@@ -2,399 +2,402 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 @import '../../../global.scss'; 
 
+/* General Container and Layout */
 .date-time-selector-container {
-    padding: $space-xl;
-    max-width: $breakpoint-lg;
-    margin: 0 auto;
-    font-family: $font-family-base;
-    background-color: $color-card;
-    border-radius: $border-radius-md;
-    box-shadow: $shadow-md;
+    padding: $space-xl 0;
+    font-family: $font-family-base; 
+}
 
-    h3 {
-        color: $color-text-title;
-        margin-top: 0;
-        margin-bottom: $space-lg;
-        font-size: $font-size-h3;
-        border-bottom: 2px solid $color-border-subtle-2;
-        padding-bottom: $space-sm;
-        font-weight: $font-weight-bold;
+.section-group,
+.package-select-group {
+    margin-bottom: $space-xxl;
+    padding: 0; 
+    border: none; 
+    border-radius: $border-radius-sm;
+    background-color: transparent;
+    box-shadow: none;
+}
 
-        svg {
-            margin-right: $space-sm;
-            color: $color-text-button; 
-        }
-    }
-
-    .section-group {
-        margin-bottom: $space-xxl;
-        padding: $space-lg;
-        background-color: $color-surface;
-        border-radius: $border-radius-md;
-        border: 1px solid $color-border-subtle;
-        box-shadow: $shadow-sm;
-    }
+/* Titles and Icons */
+.section-group h3, .package-select-group h3 {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    margin-bottom: $space-md;
+    font-size: $font-size-h3;
+    color: $color-text-dark; 
+    font-weight: $font-weight-semibold;
     
-    // --- 1. Package Selector Styles ---
-    .package-select-group {
-        .package-instruction-text {
-            color: $color-text-light;
-            margin-bottom: $space-lg;
-            font-style: italic;
-            font-size: $font-size-sm;
-        }
-
-        .package-options-columns {
-            display: flex;
-            gap: $space-lg;
-            justify-content: space-between;
-
-            .package-column {
-                flex: 1;
-                min-width: 250px;
-                border: 1px solid $color-border-subtle-2;
-                border-radius: $border-radius-sm;
-                padding: $space-md;
-                background-color: $color-alt-background-2;
-
-                .column-title {
-                    font-size: $font-size-h5;
-                    color: $color-text-dark;
-                    margin-top: 0;
-                    margin-bottom: $space-md;
-                    text-align: center;
-                    border-bottom: 1px dashed $color-border-subtle;
-                    padding-bottom: $space-xs;
-                }
-            }
-        }
-
-        .package-options {
-            display: flex;
-            flex-direction: column;
-            gap: $space-sm;
-
-            .package-option {
-                display: block;
-                border: 2px solid transparent;
-                padding: $space-md;
-                border-radius: $border-radius-sm;
-                cursor: pointer;
-                background-color: $color-surface;
-                transition: all 0.2s ease-in-out;
-                position: relative;
-                box-shadow: $shadow-sm;
-
-                &:hover {
-                    background-color: $color-background-hover;
-                }
-
-                &.selected {
-                    border-color: $color-primary; 
-                    // Uses defined transparent color for subtle tint
-                    background-color: $color-primary-transparent, 5%;
-                }
-
-                input[type="radio"] {
-                    position: absolute;
-                    opacity: 0;
-                }
-                
-                .package-info-wrapper {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                .package-name-lessons {
-                    font-weight: $font-weight-semibold;
-                    color: $color-text-dark;
-                }
-
-                .package-duration {
-                    font-size: $font-size-sm;
-                    color: $color-text-light;
-                    margin-bottom: $space-xs;
-                }
-
-                .package-price {
-                    font-size: $font-size-h5;
-                    color: $color-success; // Direct use of defined variable
-                    font-weight: $font-weight-bold;
-                }
-
-                .featured-label {
-                    position: absolute;
-                    top: -$space-sm;
-                    right: -$space-sm;
-                    background-color: $color-text-button;
-                    color: $color-text-white;
-                    padding: $space-xs $space-sm;
-                    border-radius: $border-radius-sm;
-                    font-size: $font-size-xs;
-                    font-weight: $font-weight-bold;
-                    transform: rotate(3deg);
-                    box-shadow: $shadow-sm;
-                }
-            }
-        }
-    }
-
-    // --- 2. Date and Time Selector Styles ---
-    .date-time-group {
-        .date-time-controls {
-            display: flex;
-            gap: $space-lg;
-
-            .date-picker-wrapper {
-                flex: 1;
-                min-width: 300px;
-                
-                label {
-                    display: block;
-                    margin-bottom: $space-sm;
-                    font-weight: $font-weight-semibold;
-                    color: $color-text-dark;
-                }
-            }
-
-            .time-slot-wrapper {
-                flex: 2;
-                min-width: 450px;
-                
-                label {
-                    display: block;
-                    margin-bottom: $space-sm;
-                    font-weight: $font-weight-semibold;
-                    color: $color-text-dark;
-                }
-
-                .loading-message {
-                    color: $color-primary;
-                    font-style: italic;
-                    padding: $space-md;
-                    background: $color-alt-background-2;
-                    border-radius: $border-radius-sm;
-                    font-size: $font-size-sm;
-                }
-                
-                .no-slots-message {
-                    color: $color-error; // Direct use of defined variable
-                    padding: $space-md;
-                    // Necessary for readable light background, generated from base variable
-                    background: $color-error, 35%;
-                    border: 1px solid $color-error;
-                    border-radius: $border-radius-sm;
-                    font-size: $font-size-sm;
-                }
-            }
-        }
-    }
-
-    // DatePicker input style
-    .date-input {
-        width: 100%;
-        padding: $space-sm;
-        border: 1px solid $color-border-subtle-2;
-        border-radius: $border-radius-sm;
-        box-sizing: border-box;
-        font-size: $font-size-base;
-    }
-
-    // Time Slots Grid
-    .time-slots-grid {
-        display: flex;
-        flex-direction: column;
-        gap: $space-lg;
-        max-height: 400px;
-        overflow-y: auto;
-        padding-right: $space-sm;
-        
-        .time-slot-group {
-            h4 {
-                margin: 0 0 $space-sm 0;
-                color: $color-text-title;
-                font-size: $font-size-h6;
-                font-weight: $font-weight-semibold;
-            }
-            .time-slots-row {
-                display: flex;
-                flex-wrap: wrap;
-                gap: $space-sm;
-            }
-        }
-
-        .time-slot-button {
-            padding: $space-sm $space-md;
-            border: 1px solid $color-primary;
-            border-radius: 20px;
-            background-color: $color-surface;
-            color: $color-primary;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: $font-size-sm;
-
-            &:hover:not(:disabled) {
-                background-color: $color-primary;
-                color: $color-text-white;
-            }
-
-            &.selected {
-                background-color: $color-button-blue;
-                color: $color-text-white;
-                border-color: $color-button-blue;
-            }
-
-            &:disabled {
-                background-color: $color-alt-background-2;
-                color: $color-text-light;
-                border-color: $color-border-subtle-2;
-                cursor: not-allowed;
-            }
-        }
-    }
-
-    // --- DatePicker Overrides for Holidays ---
-    .react-datepicker {
-        border: 1px solid $color-border-subtle;
-        border-radius: $border-radius-sm;
-        box-shadow: $shadow-sm;
-        font-family: $font-family-base;
-    }
-    
-    .react-datepicker__day--outside-month {
-        color: $color-text-light !important;
-    }
-
-    // CRITICAL: Style for Sunday and Holiday dates
-    .react-datepicker__day.calendar-holiday-date,
-    .react-datepicker__day--weekend:not(.react-datepicker__day--outside-month) {
-        color: $color-error !important; 
-        font-weight: $font-weight-bold;
-    }
-    
-    // Ensure the holiday/sunday color is preserved when inactive/filtered
-    .react-datepicker__day--disabled.calendar-holiday-date {
-        // Necessary for readable light background, generated from base variable
-        background-color: $color-error, 35%; 
-        color: $color-error !important; 
-        opacity: 0.6;
-    }
-    
-    // Ensure selected/hovered states override non-selected holiday styles
-    .react-datepicker__day--selected,
-    .react-datepicker__day--keyboard-selected,
-    .react-datepicker__day--selected.calendar-holiday-date,
-    .react-datepicker__day--keyboard-selected.calendar-holiday-date {
-        background-color: $color-primary !important; 
-        color: $color-text-white !important;
-    }
-
-    // --- 3. Address Input and Validation Styles ---
-    .address-controls {
-        display: flex;
-        gap: $space-md;
-        align-items: center;
-
-        .address-input {
-            flex-grow: 1;
-            padding: $space-sm;
-            border: 1px solid $color-border-subtle-2;
-            border-radius: $border-radius-sm;
-            font-size: $font-size-base;
-        }
-
-        .btn-validate {
-            @extend .btn;
-            padding: $space-sm $space-md;
-            background-color: $color-success; 
-            color: $color-text-white;
-            box-shadow: $shadow-sm;
-
-            &:hover:not(:disabled) {
-                // Generates a darker shade for hover
-                background-color: $color-success, 10%;
-            }
-
-            &:disabled {
-                // Generates a lighter shade for disabled state
-                background-color: $color-success, 20%;
-                cursor: not-allowed;
-            }
-        }
-    }
-    
-    .validation-message {
-        margin-top: $space-md;
-        padding: $space-sm $space-md;
-        border-radius: $border-radius-sm;
-        font-weight: $font-weight-semibold;
-        font-size: $font-size-sm;
-        
-        svg {
-            margin-right: $space-xs;
-        }
-
-        &.success {
-            background-color: $color-success, 30%;
-            color: $color-success; // Use base color for text for max contrast
-            border: 1px solid $color-success;
-        }
-
-        &.error {
-            background-color: $color-error, 35%;
-            color: $color-error; // Use base color for text for max contrast
-            border: 1px solid $color-error;
-        }
-    }
-
-    // --- Form Actions ---
-    .form-actions {
-        display: flex;
-        justify-content: flex-end;
-        padding-top: $space-lg;
-
-        .btn-primary {
-            // Inherit base button styles defined globally (.btn-primary)
-            @extend .btn-primary;
-            padding: $space-md $space-xl;
-            font-size: $font-size-h5;
-            
-            &:hover:not(:disabled) {
-                 // Use explicitly defined hover color
-                 background-color: $color-button-hover;
-                 box-shadow: $shadow-lg;
-            }
-        }
+    svg {
+        color: $color-primary; 
+        fill: $color-primary;
     }
 }
 
-// Responsive adjustments
-@media (max-width: $breakpoint-md) {
-    .date-time-selector-container {
-        padding: $space-lg;
-        
-        .package-select-group .package-options-columns {
-            flex-direction: column;
-            gap: $space-md;
-        }
-        .date-time-group .date-time-controls {
-            flex-direction: column;
-            gap: $space-lg;
+.package-instruction-text {
+    font-size: $font-size-instruction;
+    color: $color-text-dark; 
+    margin-bottom: $space-lg; 
+    font-weight: $font-weight-medium;
+    line-height: 1.5;
+}
 
-            .date-picker-wrapper,
-            .time-slot-wrapper {
-                min-width: unset;
-                width: 100%;
-            }
-        }
-        
-        .address-controls {
-            flex-direction: column;
-            align-items: stretch;
-            
-            .btn-validate {
-                width: 100%;
-            }
-        }
+/* --- 1. Package Selector --- */
+.package-options-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-lg;
+    justify-content: flex-start;
+}
+
+.package-column {
+    flex: 1 1 300px;
+    min-width: 250px;
+}
+
+.column-title {
+    font-size: $font-size-h5;
+    color: $color-text-dark;
+    margin-bottom: $space-md;
+    padding-bottom: $space-xs;
+    border-bottom: 2px solid $color-border-subtle;
+}
+
+.package-options {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+}
+
+.package-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid $color-border-subtle-2;
+    border-radius: $border-radius-sm;
+    padding: $space-md;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    background-color: $color-alt-background-2; 
+}
+
+.package-option:hover {
+    border-color: $color-primary;
+    box-shadow: $shadow-sm;
+}
+
+.package-option.selected {
+    border-color: $color-primary;
+    background-color: color.adjust($color-primary-transparent, $alpha: -0.1); 
+    box-shadow: 0 0 0 3px color.adjust($color-primary, $alpha: -0.8);
+}
+
+.package-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.package-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: $space-sm;
+    flex-grow: 1;
+}
+
+.package-name-lessons {
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-base;
+    color: $color-text-dark;
+}
+
+.package-duration {
+    font-size: $font-size-xs;
+    color: $color-text-light;
+}
+
+.package-price {
+    font-size: $font-size-h5;
+    color: $color-success;
+    font-weight: $font-weight-bold;
+    margin-top: $space-xs;
+}
+
+.featured-label {
+    position: absolute;
+    top: -$space-sm;
+    right: -$space-sm;
+    background-color: $color-success;
+    color: $color-text-white;
+    padding: 4px $space-xs; 
+    border-radius: $border-radius-md;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    box-shadow: $shadow-sm;
+}
+
+/* --- 2. Date and Time Selector --- */
+.date-time-group {
+    padding-top: $space-lg;
+    border-top: 1px solid $color-border-subtle;
+}
+
+.date-time-controls {
+    display: flex;
+    gap: $space-lg;
+    flex-wrap: wrap;
+}
+
+.date-picker-wrapper {
+    flex: 1 1 300px;
+    min-width: 280px;
+}
+
+.time-slot-wrapper {
+    flex: 2 1 400px;
+    min-width: 400px;
+}
+
+.date-picker-wrapper label, .time-slot-wrapper label {
+    display: block;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $space-xs;
+    color: $color-text-dark;
+}
+
+/* React Datepicker styling override */
+.date-input {
+    width: 100%;
+    padding: $space-sm;
+    border: 1px solid $color-border-subtle-2;
+    border-radius: $border-radius-md;
+    box-sizing: border-box;
+    font-size: $font-size-base;
+    transition: border-color 0.2s;
+    outline: none;
+    &:focus {
+        border-color: $color-primary; 
+    }
+}
+
+.custom-calendar .react-datepicker__day--selected,
+.custom-calendar .react-datepicker__day--keyboard-selected {
+    background-color: $color-primary !important;
+    color: $color-text-white !important;
+}
+
+/* Holiday/Sunday styling */
+.custom-calendar .calendar-holiday-date {
+    color: $color-error;
+    background-color: color.adjust($color-error, $lightness: 35%);
+    font-weight: $font-weight-bold;
+}
+
+.custom-calendar .react-datepicker__day--disabled.calendar-holiday-date {
+    color: $color-error;
+    background-color: color.adjust($color-error, $lightness: 35%);
+}
+
+/* Time Slot Grid */
+.time-slots-grid {
+    border: 1px solid $color-border-subtle;
+    border-radius: $border-radius-md;
+    padding: $space-md;
+    background-color: $color-surface;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.time-slot-group h4 {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    margin-top: $space-sm;
+    margin-bottom: $space-xs;
+    padding-top: $space-xs;
+    border-top: 1px dashed $color-border-subtle;
+}
+.time-slot-group:first-child h4 {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+}
+
+.time-slots-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs;
+}
+
+.time-slot-button {
+    background-color: $color-alt-background-2;
+    color: $color-text-dark;
+    border: 1px solid $color-border-subtle-2;
+    padding: $space-xs calc($space-sm + 2px);
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    font-size: $font-size-sm;
+    transition: background-color 0.1s, border-color 0.1s;
+}
+
+.time-slot-button:hover:not(:disabled) {
+    background-color: $color-background-hover;
+}
+
+.time-slot-button.selected {
+    background-color: $color-primary;
+    color: $color-text-white;
+    border-color: $color-primary;
+    font-weight: $font-weight-semibold;
+    box-shadow: $shadow-sm;
+}
+
+.time-slot-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.loading-message, .no-slots-message {
+    padding: $space-md;
+    background-color: $color-alt-background-2;
+    border-radius: $border-radius-md;
+    text-align: center;
+    color: $color-text-light;
+    font-style: italic;
+}
+
+.error-message {
+    color: $color-error;
+    font-weight: $font-weight-medium;
+    margin-top: $space-sm;
+    display: flex;
+    align-items: center;
+    gap: calc($space-xs / 2);
+}
+
+/* --- 3. Address Validation --- */
+.address-group {
+    padding-top: $space-lg;
+    border-top: 1px solid $color-border-subtle;
+}
+
+.address-instruction-text {
+    font-size: $font-size-instruction;
+    color: $color-text-dark; 
+    margin-bottom: $space-lg; 
+    font-weight: $font-weight-medium;
+    line-height: 1.5;
+}
+
+.address-controls {
+    display: flex;
+    gap: $space-sm;
+    margin-bottom: $space-md;
+}
+
+.address-input {
+    flex-grow: 1;
+    padding: $space-sm;
+    border: 1px solid $color-border-subtle-2;
+    border-radius: $border-radius-md;
+    font-size: $font-size-base;
+}
+
+.btn-validate {
+    background-color: $color-success;
+    color: $color-text-white;
+    border: none;
+    padding: $space-sm $space-md;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    font-weight: $font-weight-semibold;
+    transition: background-color 0.2s;
+}
+
+.btn-validate:hover:not(:disabled) {
+    background-color: color.adjust($color-success, $lightness: -10%);
+}
+
+.btn-validate:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.validation-message {
+    padding: $space-sm;
+    border-radius: $border-radius-md;
+    display: flex;
+    align-items: center;
+    gap: $space-xs;
+    font-size: $font-size-sm;
+}
+
+.validation-message.success {
+    background-color: color.adjust($color-success, $lightness: 30%);
+    color: $color-text-dark;
+    border: 1px solid color.adjust($color-success, $lightness: 20%);
+}
+
+.validation-message.error {
+    background-color: color.adjust($color-error, $lightness: 35%);
+    color: $color-error;
+    border: 1px solid color.adjust($color-error, $lightness: 20%);
+}
+
+/* --- Form Actions --- */
+.form-actions {
+    margin-top: $space-xxl;
+    padding-top: $space-lg;
+    border-top: 1px solid $color-border-subtle;
+}
+
+.next-step-button {
+    text-align: right;
+}
+
+.btn-primary {
+    background-color: $color-primary;
+    color: $color-text-white;
+    border: none;
+    padding: $space-md $space-xl;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-h5;
+    font-weight: $font-weight-bold;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: $shadow-md;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: $color-button-hover;
+    box-shadow: $shadow-lg;
+}
+
+.btn-primary:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: $breakpoint-md) {
+    .date-time-controls {
+        flex-direction: column;
+        gap: $space-md;
+    }
+
+    .date-picker-wrapper, .time-slot-wrapper {
+        min-width: 100%;
+        flex: none;
+    }
+
+    .address-controls {
+        flex-direction: column;
+    }
+
+    .package-options-columns {
+        flex-direction: column;
     }
 }

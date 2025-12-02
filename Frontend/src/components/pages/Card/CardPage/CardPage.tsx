@@ -9,52 +9,55 @@ import SimilarProjects from '../../../SimilarProjects/Similarprojects';
 import './cardPage.scss';
 
 const CardPage: React.FC = () => {
-  const { t } = useTranslation();
-  const { id } = useParams<{ id: string }>();
-  const currentImageId = id ? parseInt(id, 10) : 1;
+    const { t } = useTranslation();
+    const { id } = useParams<{ id: string }>();
 
-  const allProducts = [
-    ...products.courses,
-    ...products.services,
-    ...products.portfolio, 
-  ];
+    // CRITICAL FIX: Robustly parse the ID to prevent NaN/undefined issues
+    const parsedId = id ? parseInt(id, 10) : NaN;
+    const currentImageId = isNaN(parsedId) ? 0 : parsedId;
 
-  const product = allProducts.find((product) => product.id === currentImageId);
+    const allProducts = [
+        ...products.courses,
+        ...products.services,
+        ...products.portfolio, 
+    ];
 
-  if (!product) {
-    return <p>{t('cardPage.productNotFound')}</p>;
-  }
+    const product = allProducts.find((p) => p.id === currentImageId);
 
-  const isPortfolioProduct = products.portfolio.some(item => item.id === currentImageId);
+    // If product is not found, return error message immediately.
+    if (!product) {
+        console.error(`Product not found for ID: ${id}. Parsed ID: ${currentImageId}`);
+        return <p>{t('cardPage.productNotFound')}</p>;
+    }
 
-  return (
-    <div className="cardPageContainer">
-      <div className="cardContentWrapper">
-        
-        {/* 1. HEADER: Placed inside the card, spans full width */}
-        {product && (
-          <div className="cardHeader">
-            <h1 className="pageTitle">{t(`products.${product.id}.title`)}</h1>
-          </div>
-        )}
+    const isPortfolioProduct = products.portfolio.some(item => item.id === currentImageId);
 
-        {/* 2. LAYOUT WRAPPER: Restores ROW layout for content (Image and Info) */}
-        <div className="cardContentLayout">
-            <CardContainer product={product} /> 
-            <InfoContainer product={product} />
+    return (
+        <div className="cardPageContainer">
+            <div className="cardContentWrapper">
+                
+                {/* 1. HEADER */}
+                <div className="cardHeader">
+                    <h1 className="pageTitle">{t(`products.${product.id}.title`)}</h1>
+                </div>
+
+                {/* 2. LAYOUT WRAPPER */}
+                <div className="cardContentLayout">
+                    <CardContainer product={product} /> 
+                    <InfoContainer product={product} /> 
+                </div>
+
+            </div>
+
+            <div className="similarProductsContainer">
+                {isPortfolioProduct ? (
+                    <SimilarProjects currentProductId={currentImageId} />
+                ) : (
+                    <SimilarProducts currentProductId={currentImageId} />
+                )}
+            </div>
         </div>
-
-      </div>
-
-      <div className="similarProductsContainer">
-        {isPortfolioProduct ? (
-          <SimilarProjects currentProductId={currentImageId} />
-        ) : (
-          <SimilarProducts currentProductId={currentImageId} />
-        )}
-      </div>
-    </div>
-  );
+    );
 };
 
 export default CardPage;

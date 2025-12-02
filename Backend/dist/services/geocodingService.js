@@ -27,31 +27,41 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
  */
 export async function validateAddress(address) {
     if (!OPENCAGE_API_KEY) {
-        return { isValid: false, message: 'Geocoding API key not configured on server.' };
+        return {
+            isValid: false,
+            message: 'Geocoding API key not configured on server.'
+        };
     }
     try {
-        const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${OPENCAGE_API_KEY}&countrycode=ch`;
+        const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${OPENCAGE_API_KEY}&limit=4&no_annotations=1&abbrv=1`;
         const response = await axios.get(url);
-        if (response.data.results.length === 0) {
-            return { isValid: false, message: 'Address could not be found or is incomplete.' };
+        if (!response.data.results || response.data.results.length === 0) {
+            return {
+                isValid: false,
+                message: 'Address could not be found or is incomplete.'
+            };
         }
-        const location = response.data.results[0].geometry;
-        const distanceKm = calculateDistance(BASEL_COORDS.latitude, BASEL_COORDS.longitude, location.lat, location.lng);
+        const results = response.data.results;
+        // sort by confidence
+        const best = results.sort((a, b) => (b.confidence || 0) - (a.confidence || 0))[0];
+        const { lat, lng } = best.geometry;
+        const distanceKm = calculateDistance(BASEL_COORDS.latitude, BASEL_COORDS.longitude, lat, lng);
         if (distanceKm <= MAX_DISTANCE_KM) {
             return {
                 isValid: true,
                 message: `Distance: ${distanceKm.toFixed(2)} km. Service available.`
             };
         }
-        else {
-            return {
-                isValid: false,
-                message: `Address is ${distanceKm.toFixed(2)} km away, exceeding the ${MAX_DISTANCE_KM} km limit from Basel.`
-            };
-        }
+        return {
+            isValid: false,
+            message: `Address is ${distanceKm.toFixed(2)} km away, exceeding the ${MAX_DISTANCE_KM} km limit from Basel.`
+        };
     }
     catch (error) {
         console.error('OpenCage Geocoding Error:', error);
-        return { isValid: false, message: 'Error communicating with geocoding service.' };
+        return {
+            isValid: false,
+            message: 'Error communicating with geocoding service.'
+        };
     }
 }

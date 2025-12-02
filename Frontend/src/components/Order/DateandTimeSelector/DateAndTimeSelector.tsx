@@ -5,10 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DateTime } from 'luxon';
 import { FaCalendarAlt, FaShoppingCart, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-
-// Import all types from the dedicated types file
 import { SlotSelection, LessonPackage, AvailableSlot } from '../../../../../Backend/types/Product';
-
 import './dateAndTimeSelector.scss';
 
 // ====================================================================
@@ -35,8 +32,8 @@ const CLIENT_SWISS_HOLIDAYS: string[] = [
     '2026-05-14', // Ascension Day
     '2026-05-25', // Whit Monday
     '2026-08-01', // Swiss National Day
-    '2026-12-25', // Christmas Day 
-    '2026-12-26', // St. Stephen's Day 
+    '2026-12-25', // Christmas Day
+    '2026-12-26', // St. Stephen's Day
 
     // ------------------- 2027 -------------------
     '2027-01-01', // New Year's Day
@@ -46,8 +43,8 @@ const CLIENT_SWISS_HOLIDAYS: string[] = [
     '2027-05-06', // Ascension Day
     '2027-05-17', // Whit Monday
     '2027-08-01', // Swiss National Day
-    '2027-12-25', // Christmas Day 
-    '2027-12-26', // St. Stephen's Day 
+    '2027-12-25', // Christmas Day
+    '2027-12-26', // St. Stephen's Day
 ];
 
 const isClientSwissHoliday = (dateString: string) => CLIENT_SWISS_HOLIDAYS.includes(dateString);
@@ -92,7 +89,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     // --- Data Transformation for Column Display ---
     // Grouping the packages by Session Type
     const groupedPackages = packages.reduce((acc, pkg) => {
-        const type = pkg.sessionType || 'Other'; 
+        const type = pkg.sessionType || 'Other';
         if (!acc[type]) {
             acc[type] = [];
         }
@@ -124,7 +121,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
             if (!response.data.success) {
                 throw new Error(response.data.message || "Failed to fetch slots.");
             }
-            
+
             const sortedSlots = response.data.slots.sort((a, b) => a.time.localeCompare(b.time));
             setAvailableSlots(sortedSlots);
 
@@ -134,7 +131,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
             const axiosError = axios.isAxiosError(err) ? err : null;
             let errorMessage;
             if (axiosError?.response?.status === 400) {
-                 errorMessage = axiosError.response.data?.message || t('error.invalidRequest');
+                errorMessage = axiosError.response.data?.message || t('error.invalidRequest');
             } else {
                 errorMessage = axiosError?.response?.data?.message || axiosError?.message || (err as Error).message || t('error.failedToFetchSchedule');
             }
@@ -151,9 +148,9 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
             // The backend check is definitive, but this prevents unnecessary API calls
             const date = DateTime.fromISO(formattedDate, { zone: 'utc' });
             if (date.weekday === 7 || isClientSwissHoliday(formattedDate)) {
-                 setAvailableSlots([]);
-                 setError(t('checkout.noServiceOnSundayOrHoliday') || 'No lessons available on Sundays or official holidays.');
-                 return;
+                setAvailableSlots([]);
+                setError(t('checkout.noServiceOnSundayOrHoliday') || 'No lessons available on Sundays or official holidays.');
+                return;
             }
 
             fetchAvailability(formattedDate, selectedPackage.durationMinutes);
@@ -213,10 +210,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         }
     };
 
-    /**
-     * FIX: Adds the 'calendar-holiday-date' class to Sundays and Swiss holidays
-     * for visual coloring in the date picker.
-     */
+
     const getDayClassName = (date: Date) => {
         const dateISO = DateTime.fromJSDate(date).toISODate();
         if (date.getDay() === 0) { // Sunday
@@ -227,16 +221,13 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         }
         return '';
     };
-
-    /**
-     * FIX: Filters out Sundays and Swiss holidays, preventing selection.
-     */
+    
     const filterAvailableDates = (date: Date) => {
         const dateISO = DateTime.fromJSDate(date).toISODate();
         const today = new Date();
-        today.setHours(0,0,0,0);
+        today.setHours(0, 0, 0, 0);
         const isPast = date < today;
-        
+
         // Exclude Sundays (day 0) and Holidays from selection
         if (date.getDay() === 0 || (dateISO && isClientSwissHoliday(dateISO))) {
             return false;
@@ -247,7 +238,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
     // Group slots by hour for cleaner display
     const groupedSlots = availableSlots.reduce((acc, slot) => {
-        const hourKey = slot.time.substring(0, 2); 
+        const hourKey = slot.time.substring(0, 2);
         if (!acc[hourKey]) {
             acc[hourKey] = [];
         }
@@ -258,7 +249,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
     return (
         <div className="date-time-selector-container">
-            {/* 1. PACKAGE SELECTOR */}
             <div className="section-group package-select-group">
                 <h3><FaShoppingCart /> {t('checkout.selectPackageTitle')}</h3>
                 <p className="package-instruction-text">
@@ -309,13 +299,11 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                             onChange={(date: Date | null) => setSelectedDate(date)}
                             dateFormat="dd MMMM yyyy"
                             minDate={new Date()}
-                            // FIX: Use the updated filter to exclude Sundays/Holidays
                             filterDate={filterAvailableDates}
                             placeholderText={t('checkout.selectDatePlaceholder')}
                             className="date-input"
                             isClearable={true}
                             calendarClassName="custom-calendar"
-                            // FIX: Use the updated day class name function for coloring
                             dayClassName={getDayClassName}
                         />
                     </div>
@@ -331,23 +319,23 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                                 {Object.entries(groupedSlots)
                                     .sort(([hourA], [hourB]) => hourA.localeCompare(hourB))
                                     .map(([hour, slots]) => (
-                                    <div key={hour} className="time-slot-group">
-                                        <h4>{hour}:00</h4>
-                                        <div className="time-slots-row">
-                                            {slots.map(slot => (
-                                                <button
-                                                    key={slot.time}
-                                                    type="button"
-                                                    className={`time-slot-button ${selectedSlot?.time === slot.time ? 'selected' : ''}`}
-                                                    onClick={() => setSelectedSlot(slot)}
-                                                    disabled={!slot.isAvailable}
-                                                >
-                                                    {slot.time}
-                                                </button>
-                                            ))}
+                                        <div key={hour} className="time-slot-group">
+                                            <h4>{hour}:00</h4>
+                                            <div className="time-slots-row">
+                                                {slots.map(slot => (
+                                                    <button
+                                                        key={slot.time}
+                                                        type="button"
+                                                        className={`time-slot-button ${selectedSlot?.time === slot.time ? 'selected' : ''}`}
+                                                        onClick={() => setSelectedSlot(slot)}
+                                                        disabled={!slot.isAvailable}
+                                                    >
+                                                        {slot.time}
+                                                    </button>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
                             </div>
                         ) : (
                             // Display a specific message if a holiday/Sunday was selected but filtered out.
@@ -360,7 +348,12 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
             {/* 3. ADDRESS INPUT AND VALIDATION */}
             <div className="section-group address-group">
-                <h3><FaMapMarkerAlt /> {t('checkout.enterAddressTitle')}</h3>
+                <h3><FaMapMarkerAlt /> {t('checkout.enterAddressTitle') || '3. Enter your address'}</h3>
+                
+                <p className="address-instruction-text">
+                    {t('checkout.addressInstruction') || "The teacher can drive to your address if it is within a **25 km radius** of Basel. This includes parts of Basel, Basel-Land, northern Aargau, and the border towns of Germany (Lörrach, Weil am Rhein, Grenzach-Wyhlen) and France (Saint-Louis, Hésingue, and others). Please check your address below."}
+                </p>
+
                 <div className="address-controls">
                     <input
                         type="text"

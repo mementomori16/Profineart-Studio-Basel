@@ -5,10 +5,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     width: 100%;
-    // Padding is now controlled by the parent .cardContentWrapper and its media queries
     padding: 0; 
+    position: relative; // Ensure z-index works for children
 
     @media (min-width: $breakpoint-lg) {
         max-width: $breakpoint-lg;
@@ -86,38 +85,79 @@
         }
     }
     
-    // --- NEW STYLES FOR BOOKING BUTTON ONLY ---
+    // --- CRITICAL FIXES FOR BUTTON INTERACTION ---
     .booking-action-container {
         width: 100%;
         margin-top: $space-xl;
         padding-top: $space-lg;
         border-top: 1px solid $color-border-subtle;
+        
+        // Ensure this container is on top
+        position: relative; 
+        z-index: 10; 
+        
+        display: flex;
+        flex-direction: column; 
+        gap: $space-md; 
+        
+        @media (min-width: $breakpoint-sm) {
+            flex-direction: row; 
+            gap: $space-lg;
+        }
     }
     
-    .btn-book-now {
-        // Uses the general dark button style from your global.scss
-        background-color: $color-button;
-        color: $color-text-white; // Assuming $color-text-white is appropriate for dark button
-        border: none;
-        border-radius: $border-radius-md;
-        cursor: pointer;
+    .btn-book-now, .btn-add-to-cart {
+        // Ensure the button is a separate stacking context and clickable
+        position: relative; 
+        z-index: 12; 
         
         width: 100%; 
+        max-width: none; 
+        
+        @extend .btn;
         padding: $space-md $space-lg;
         font-size: $font-size-h5;
         font-weight: $font-weight-bold;
+        border-radius: $border-radius-md;
         text-align: center;
         transition: background-color 0.2s, transform 0.1s;
 
+        // ADD THESE TWO PROPERTIES:
+        cursor: pointer !important; 
+        user-select: none; 
+                
+        @media (min-width: $breakpoint-sm) {
+            width: auto;
+            flex-grow: 1; 
+        }
+    }
+
+    .btn-book-now {
+        background-color: $color-button;
+        color: $color-text-white; 
+        
         &:hover {
             background-color: $color-button-hover;
             transform: translateY(-1px);
         }
+    }
+    
+    .btn-add-to-cart {
+        background-color: $color-button-blue-2; 
+        color: $color-text-white;
         
-        @media (min-width: $breakpoint-lg) {
-            max-width: 300px; 
+        &:hover:not(:disabled) {
+            background-color: color.adjust($color-button-blue-2, $lightness: -10%);
+            transform: translateY(-1px);
+        }
+        
+        &:disabled {
+            background-color: $color-text-light;
+            color: $color-text-dark;
+            cursor: not-allowed;
+            opacity: 0.8;
+            transform: none;
         }
     }
 }
-
            

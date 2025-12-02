@@ -35,85 +35,105 @@
   },
 
 
+ 
   "common": {
-        "loading": "Loading...",
-        "loadingSlots": "Checking schedule...",
-        "nextStep": "Next Step",
-        "processing": "Processing payment...",
-        "backToHome": "Back to Home",
-        "currency": "CHF", 
-        "minutes": "mins",
-        "lessons": "Lessons", 
-        "lesson": "Lesson", 
-        "bestValue": "BEST VALUE" 
-    },
-    
-    "checkout": {
-        "bookNowButton": "Book Now",
-        "mainTitle": "Complete Your Booking",
-        "step1Title": "Select Date & Time",
-        "step2Title": "Contact & Payment Details",
-        "backToSchedule": "Back to Schedule",
-        "successTitle": "Booking Confirmed! 🎉",
-        "successMessage": "Thank you! Your session is successfully booked. A confirmation email with all the details has been sent.",
-        "summaryDate": "Scheduled Date",
-        "errorTitle": "Booking Failed",
-        "errorMessage": "There was an issue processing your request. Please try again.",
-        "tryAgain": "Try Again",
-        
-        "confirmAndPay": "Confirm and Pay",
-        "bookingSummary": "Booking Summary",
-        "summaryPackage": "Package",
-        "totalPrice": "Total Price",
-        
-       
-        "selectPackageTitle": "1. Choose Lesson Package",
-"packageInstruction": "For multi-lesson packages, select your package and book only your first lesson date and time. The remaining sessions will be scheduled directly with your instructor after purchase. Packages do not expire.",        "pickDateAndTimeTitle": "2. Pick Date and Time",
-        "selectDatePlaceholder": "Select a date",
-        "enterAddressTitle": "3. Enter Your Address",
-        "addressPlaceholder": "Enter Address (e.g., street, city, 4052 Basel)",
-        "addressRequired": "Please enter your address.",
-        "addressValidating": "Checking...",
-        "addressCheckButton": "Check Address",
-        "addressValidSuccess": "Service available at this location!",
-        "addressInvalid": "Address is outside the service area or invalid.",
-        "validationError": "An error occurred during address validation.",
-        "continueToDetails": "Continue to Contact Details",
-        "noAvailableSlots": "No available slots found for the selected package on this date.",
-        "loadingSlotsMessage": "Loading slots for {{lessons}} x {{duration}} min..."
-    },
-    
+    "loading": "Loading...",
+    "loadingSlots": "Checking schedule...",
+    "nextStep": "Next Step",
+    "processing": "Processing payment...",
+    "backToHome": "Back to Home",
+    "currency": "CHF",
+    "minutes": "mins",
+    "lessons": "Lessons",
+    "lesson": "Lesson",
+    "bestValue": "BEST VALUE",
+    "unknown": "Unknown",
+    "remove": "Remove"         
+  },
+  "checkout": {
+    "bookNowButton": "Book Now",
+    "mainTitle": "Complete Your Booking",
+    "step1Title": "Select Date & Time",
+    "step2Title": "Contact & Payment Details",
+    "backToSchedule": "Back to Schedule",
+    "successTitle": "Booking Confirmed! 🎉",
+    "successMessage": "Thank you! Your session is successfully booked. A confirmation email with all the details has been sent.",
+    "summaryDate": "Scheduled Date",
+    "errorTitle": "Booking Failed",
+    "errorMessage": "There was an issue processing your request. Please try again.",
+    "tryAgain": "Try Again",
+    "confirmAndPay": "Confirm and Pay",
+    "bookingSummary": "Booking Summary",
+    "summaryPackage": "Package",
+    "totalPrice": "Total Price",
+    "selectPackageTitle": "1. Choose Lesson Package",
+    "packageInstruction": "For multi-lesson packages, select your package and book only your first lesson date and time. The remaining sessions will be scheduled directly with your instructor after purchase. Packages do not expire.",
+    "pickDateAndTimeTitle": "2. Pick Date and Time",
+    "selectDatePlaceholder": "Select a date",
+    "enterAddressTitle": "3. Enter Your Address",
+    "addressPlaceholder": "Enter Address (e.g., street, city, 4052 Basel)",
+    "addressRequired": "Please enter your address.",
+    "addressValidating": "Checking...",
+    "addressCheckButton": "Check Address",
+    "addressValidSuccess": "Service available at this location!",
+    "addressInvalid": "Address is outside the service area or invalid.",
+    "validationError": "An error occurred during address validation.",
+    "continueToDetails": "Continue to Contact Details",
+    "noAvailableSlots": "No available slots found for the selected package on this date.",
+    "loadingSlotsMessage": "Loading slots for {{lessons}} x {{duration}} min...",
+    "personalDetails": "Personal Details",
+    "addressDetails": "Address Details",
+    "addressInstruction": "The teacher can drive to your address if it is within a 25 km radius of Basel City. This includes Basel-Land, northern Aargau, and the border towns of Germany and France. Please check your address below.",
+    "toOrder": "Checkout"      
+  },
     "schedule": {
         "selectPackage": "Select Package Type",
         "selectDate": "Select Date",
         "selectTime": "Select Time"
     },
-    
     "form": {
         "name": "Full Name",
         "email": "Email Address",
         "phone": "Phone Number (Optional)",
         "message": "Message / Special Request (Optional)",
         "date": "Date",
-        "timeSlots": "Available Time Slots"
+        "timeSlots": "Available Time Slots",
+        "dateOfBirth": "Date of Birth",
+        "dobPlaceholder": "DD/MM/YYYY",
+        "streetAndNumber": "Street and Number",
+        "apartmentAndFloor": "Apartment / Floor (Optional)",
+        "index": "Postal Code (Index)",
+        "city": "City",
+        "country": "Country",
+        "iAgreeTo": "I agree to the",
+        "termsOfUse": "Terms of Use"
     },
-    
     "packages": {
         "basic": { "label": "1-Hour Session" },
         "premium": { "label": "1.5-Hour Extended Session" }
     },
-    
     "error": {
         "productNotFound": "Error: Product not found.",
         "failedToFetchSchedule": "Could not load the schedule. Please try again.",
         "invalidRequest": "Invalid request. Please select a package and date.",
         "completeAllSteps": "Please select a date, time slot, and validate your address."
     },
-    
     "validation": {
         "nameEmailRequired": "Name and Email are required fields.",
-        "slotRequired": "Please select a date and time slot."
+        "slotRequired": "Please select a date and time slot.",
+        "requiredFields": "Name, Email, and all main Address fields (Street, Postal Code, City, Country) are required.",
+        "dobRequired": "Date of Birth is required.",
+        "termsRequired": "You must agree to the Terms of Use."
     },
+
+    "cart": {
+    "mainTitle": "Your Basket",
+    "emptyMessage": "Your basket is empty.",
+    "backToCourses": "Back to Courses",
+    "itemsCount": "You have {{count}} item(s) in your basket.",
+    "clearAll": "Clear Basket",
+    "itemDescriptionShort": "This is a brief description of your selected item."
+},
 
   "products": {
 

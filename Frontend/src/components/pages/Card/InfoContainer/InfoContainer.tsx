@@ -1,10 +1,9 @@
 // src/components/pages/Card/InfoContainer/InfoContainer.tsx
-
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom'; // <--- NEW IMPORT
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../../../context/CartContext/CartContext';
 import { Product } from '../../../../../../Backend/types/Product';
-// import DateSelector from '../../../DateSelector/DateSelector'; // <--- REMOVE: Replaced by new flow
 
 import './infoContainer.scss';
 
@@ -14,31 +13,48 @@ type Props = {
 
 const InfoContainer: React.FC<Props> = ({ product }) => {
     const { t } = useTranslation();
-    const navigate = useNavigate(); // <--- INITIALIZE NAVIGATE
+    const navigate = useNavigate();
+    const { addItemToCart, isProductInCart } = useCart();
 
     const translatedDescription = t(`products.${product.id}.description`);
 
+    // --- RENDER DESCRIPTION LOGIC ---
     const renderDescription = () => {
         if (Array.isArray(product.description)) {
             return (
                 <div className="description">
                     {product.description.map((_paragraph, index) => (
-                        <p key={index} dangerouslySetInnerHTML={{ __html: t(`products.${product.id}.description`) }} />
+                        <p
+                            key={index}
+                            dangerouslySetInnerHTML={{
+                                __html: t(`products.${product.id}.description[${index}]`),
+                            }}
+                        />
                     ))}
                 </div>
             );
         }
-        return (
-            <p className="description" dangerouslySetInnerHTML={{ __html: translatedDescription }} />
-        );
+        return <p className="description" dangerouslySetInnerHTML={{ __html: translatedDescription }} />;
+    };
+    // --- END RENDER DESCRIPTION LOGIC ---
+
+    // --- BOOK NOW HANDLER ---
+    const handleBookNow = () => {
+        navigate(`/order/${product.id}`);
     };
 
-    // --- NEW HANDLER FOR BOOKING ---
-    const handleBookNow = () => {
-        // We navigate to the new OrderPage route, passing the product ID
-        navigate(`/order/${product.id}`); 
+    // --- ADD TO CART + NAVIGATE HANDLER ---
+    const handleAddToCartAndGoToBasket = () => {
+        // Add product if not already in cart
+        if (!isProductInCart(product.id)) {
+            addItemToCart(product);
+            console.log(`Product ${product.id} added to cart`);
+        } else {
+            console.log(`Product ${product.id} already in cart`);
+        }
+        // Always navigate to basket page
+        navigate('/basket');
     };
-    // --- END NEW HANDLER ---
 
     return (
         <div className="infoContainer">
@@ -47,16 +63,19 @@ const InfoContainer: React.FC<Props> = ({ product }) => {
 
             {renderDescription()}
 
-            {/* E-COMMERCE BOOKING ACTION SECTION */}
             {product.medium === 'Course' && (
-                <div className="booking-action-container"> 
-                    {/* Add price display here if applicable */}
-                    
-                    <button 
-                        className="btn-book-now" 
-                        onClick={handleBookNow}
+                <div className="booking-action-container">
+                    <button
+                        className="btn-add-to-cart"
+                        onClick={handleAddToCartAndGoToBasket}
                     >
-                        {t('checkout.bookNowButton')} 
+                        {isProductInCart(product.id)
+                            ? t('checkout.inCartButton')
+                            : t('checkout.addToCartButton')}
+                    </button>
+
+                    <button className="btn-book-now" onClick={handleBookNow}>
+                        {t('checkout.bookNowButton')}
                     </button>
                 </div>
             )}
@@ -65,4 +84,6 @@ const InfoContainer: React.FC<Props> = ({ product }) => {
 };
 
 export default InfoContainer;
+
+
 
