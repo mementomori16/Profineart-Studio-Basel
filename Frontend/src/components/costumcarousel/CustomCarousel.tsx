@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+// Assuming productData follows the structure: { services: Product[], courses: Product[] }
 import { products as productData } from '../../../../Backend/data/products'; 
-import { Product } from '../../../../Backend/types/Product'; // Assuming this type exists
+import { Product } from '../../../../Backend/types/Product'; 
 import './customCarousel.scss'; 
 
-// --- RESTORED CODE: Initializing products array ---
+// --- MODIFIED CODE: Initializing products array with courses only ---
+// This now correctly expects Product.image to be of type ProductImage
 const products: Product[] = [
-    ...(productData.services || []),
+    ...(productData.courses || []), // Fetching only products from 'courses'
 ];
-// ---------------------------------------------------
+// -------------------------------------------------------------------
 
 const New: React.FC = () => {
     const { t } = useTranslation();
@@ -43,6 +45,7 @@ const New: React.FC = () => {
     };
 
     if (totalProducts === 0) {
+        // Fallback for when no products (courses) are available
         return <div className="new-component-layout container">{t('loading')}...</div>;
     }
     
@@ -74,12 +77,13 @@ const New: React.FC = () => {
                         title={`View details for ${t(`products.${currentProduct.id}.title`)}`}
                     >
                         <div 
-                            // REMOVED: shadow-lg rounded-lg classes from here
                             className="service-card"
                             onClick={() => handleCtaClick(currentProduct.id)}
                         >
                             <img
-                                src={currentProduct.image} 
+                                // FIX: Accessing the lowResUrl property to resolve 
+                                // "Type 'ProductImage' is not assignable to type 'string'" error
+                                src={currentProduct.image.lowResUrl} 
                                 alt={t(`products.${currentProduct.id}.title`)}
                                 className="card-image" 
                             />
@@ -89,7 +93,6 @@ const New: React.FC = () => {
                             </h3>
                             
                             <button 
-                                // REMOVED: btn btn-secondary btn-sm classes from here
                                 className="view-button" 
                                 onClick={(e) => { 
                                     e.stopPropagation(); 

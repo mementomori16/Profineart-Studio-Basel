@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import New from "../../costumcarousel/CustomCarousel";
-import Services from "../ServicesPage/Services";
+// Removed import Services from "../ServicesPage/Services";
 import Testimonials from "../Testimonials/Testimonials";
 import Contact from "../Contact/Contact";
-import Projects from "../Projects/Projects";
+// Removed import Projects from "../Projects/Projects";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import './home.scss';
@@ -37,19 +37,23 @@ const Home: React.FC = () => {
 
         <div className="section-divider"></div>
 
-        {/* SERVICES SECTION (Now first in this group) */}
+        {/* SERVICES SECTION - REMOVED FOR NOW */}
+        {/*
         <div className="stripe homepage-section">
           <Services />
         </div>
         
         <div className="section-divider"></div> 
+        */}
         
-        {/* PROJECTS SECTION (Now immediately after Services) */}
+        {/* PROJECTS SECTION - REMOVED FOR NOW */}
+        {/*
         <div className="stripe homepage-section">
           <Projects />
         </div>
         
         <div className="section-divider"></div>
+        */}
 
         <div className="stripe homepage-section">
           <Testimonials />
