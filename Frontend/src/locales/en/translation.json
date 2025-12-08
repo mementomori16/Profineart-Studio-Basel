@@ -31,8 +31,12 @@
   "cardPage": {
     "productNotFound": "Product not found",
     "technologiesUsed": "Technologies Used:",
-    "siteLink": "Site Link:"
+    "siteLink": "Site Link:",
+    "mediumForPrivateLessonsCheck": "Course", 
+    "mediumType": "Course",            
+    "mediumType_privateLessons": "Individual Sessions"
   },
+
 
 
  
@@ -52,6 +56,7 @@
   },
   "checkout": {
     "bookNowButton": "Book Now",
+    "addToCartButton": "Add to Cart",
     "mainTitle": "Complete Your Booking",
     "step1Title": "Select Date & Time",
     "step2Title": "Contact & Payment Details",
@@ -84,7 +89,8 @@
     "personalDetails": "Personal Details",
     "addressDetails": "Address Details",
     "addressInstruction": "The teacher can drive to your address if it is within a 25 km radius of Basel City. This includes Basel-Land, northern Aargau, and the border towns of Germany and France. Please check your address below.",
-    "toOrder": "Checkout"      
+    "toOrder": "Add to Basket", 
+    "checkoutButtonText": "Checkout" 
   },
     "schedule": {
         "selectPackage": "Select Package Type",
@@ -136,13 +142,17 @@
 },
 
   "products": {
-
- "800": {
-      "title": "Byzantine Icon Painting Individual Sessions",
-      "description": "This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.<h5>Key Techniques & Focus Areas</h5><ul><li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li><li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li><li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li><li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using \"medieval cubism\" principles.</li></ul>"
+    "800": {
+        "title": "Byzantine Icon Painting Individual Sessions",
+        "description": "This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.<h5>Key Techniques & Focus Areas</h5><ul><li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li><li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li><li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li><li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using \"medieval cubism\" principles.</li></ul>",
+        "briefDescription": "Exclusive, focused instruction in Byzantine Icon Painting for all skill levels. Master Egg Tempera, 24-Carat Gold Leaf, and historical techniques from various schools with Ilya Medvedev.",
+        
+        "detailsSection": {
+            "title": "In-Depth Course Curriculum", 
+            "text": "<p>This comprehensive individual course is divided into three major modules, ensuring a holistic understanding and mastery of the Byzantine tradition from start to finish. Each module is intensely practical, utilizing techniques passed down from the Old Masters.</p><h3>Module 1: Foundations and Materials (The Board)</h3><p>This module focuses entirely on the preparation phase, which is vital for the longevity and spiritual depth of the finished icon. We cover traditional wood selection, the application of Gesso (Levkas), and the secrets to achieving a perfectly smooth, porous base ready to receive pigment.</p><ul><li>Wood Panel Selection and Shaping.</li><li>Traditional Rabbit Skin Glue preparation.</li><li>Application of 8-10 layers of Levkas (Gesso).</li><li>Advanced sanding and polishing techniques.</li></ul><h3>Module 2: Gilding and Drawing (The Light)</h3><p>Learn the sacred art of applying <strong>24-carat gold leaf</strong> using the traditional Bole technique. Mastery of gilding is essential as the gold represents Divine Light.</p><ul><li>Preparing the Poliment (Bole) in red and yellow hues.</li><li>Application of genuine 24-carat gold leaf (water gilding).</li><li>Burnishing techniques for a mirror finish.</li><li>Detailed underdrawing (Grafia) on the gold and Gesso surface.</li></ul><h3>Module 3: Painting and Glazing (The Form)</h3><p>The core painting module, where you will use raw pigments ground in **egg tempera** emulsion. The focus is on achieving volume and luminosity through a structured layering system, adhering strictly to classical iconographic principles.</p><ul><li>Mixing and grinding historical pigments (e.g., Cinnabar, Azurite).</li><li>The Glazing Technique: applying multiple transparent layers (proplasma, dark and light sinkiry).</li><li>Mastering the 'Liki' (Face) through \"medieval cubism\" and structured light.</li><li>Final varnishing and protective steps.</li></ul>"
+        }
     }
-  
-  },
+},
 
     "200": {
       "title": "Web Application & E-commerce Development",

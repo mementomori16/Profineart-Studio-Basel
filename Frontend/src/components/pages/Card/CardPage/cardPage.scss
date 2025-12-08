@@ -1,3 +1,5 @@
+// src/components/pages/Card/cardPage.scss
+
 @use "sass:color";
 @use '../../../../global.scss' as global;
 
@@ -18,17 +20,16 @@
     }
 
     .cardContentWrapper {
-        // --- LIFTED CARD STYLES ---
         background-color: global.$color-card; 
         border-radius: global.$border-radius-lg;
         box-shadow: global.$shadow-lg;
         overflow: hidden;
         
-        // --- LAYOUT FIX: Use COLUMN to stack HEADER and CONTENTLAYOUT ---
         display: flex;
         flex-direction: column; 
         align-items: center;
         width: 100%;
+        // Max width of the entire white/card container (XXL)
         max-width: global.$breakpoint-xxl; 
         padding: 0; 
         
@@ -38,22 +39,26 @@
             border-top-left-radius: global.$border-radius-lg;
             border-top-right-radius: global.$border-radius-lg;
 
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        // --- NEW WRAPPER TO RESTORE ROW LAYOUT FOR IMAGE AND TEXT ---
         .cardContentLayout {
             width: 100%;
             display: flex;
-            flex-direction: column; // Default for mobile stacking
+            flex-direction: column; 
             
+            // Default (Mobile/Tablet) padding
             padding: global.$space-xl; 
-
+            
+            // Separator between main content and details frame
+            border-bottom: 2px solid global.$color-border-subtle;
+            margin-bottom: 0; 
+            
             @media (min-width: global.$breakpoint-lg) {
-                // Restore the ROW layout for desktop content only
                 flex-direction: row; 
                 align-items: flex-start;
-                padding: global.$space-xxl; 
+                // Large screen padding: Horizontal space-xxl, Vertical space-xl
+                padding: global.$space-xl global.$space-xxl; 
             }
         }
         
@@ -67,7 +72,6 @@
             align-items: center;
 
             @media (min-width: global.$breakpoint-lg) {
-                // IMAGE (RIGHT) - 35% WIDTH
                 width: 35%; 
                 margin-left: global.$space-xl; 
                 margin-bottom: 0;
@@ -81,7 +85,6 @@
             padding: 0; 
             
             @media (min-width: global.$breakpoint-lg) {
-                // TEXT (LEFT) - 65% WIDTH
                 width: 65%; 
                 max-width: none; 
                 order: 1; 
@@ -89,6 +92,18 @@
             }
         }
     }
+    
+    // STYLES FOR PRODUCT DETAILS FRAME: Alignment control
+    .productDetailsFrame {
+        margin-top: 0; 
+        margin-bottom: global.$space-xxl; 
+        width: 100%;
+        
+        // Ensure this is not set here, as it's controlled internally by the component's SCSS
+        // max-width: global.$breakpoint-xxl; 
+        // padding-left/right: (controlled by component SCSS)
+    }
+
 
     .similarProductsContainer,
     .otherProductsContainer {
@@ -96,10 +111,4 @@
         max-width: global.$breakpoint-xl;
         margin-top: global.$space-xxl;
     }
-
-    // SCROLLBAR STYLES
-    ::-webkit-scrollbar { width: global.$space-xxs; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(69, 69, 69, 0.5); border-radius: global.$border-radius-lg; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(68, 66, 66, 0.7); }
 }

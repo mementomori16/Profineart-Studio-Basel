@@ -85,8 +85,7 @@
         }
     }
 
-    /* --- Summary Card (Booking Summary) --- */
-    .booking-summary {
+.booking-summary {
         padding: global.$space-lg global.$space-xl;
         background-color: global.$color-surface;
         border-radius: global.$border-radius-md;
@@ -105,12 +104,61 @@
             margin-bottom: global.$space-md;
         }
 
+        /* ➡️ NEW: Product Info Container */
+        .summary-product-info {
+            display: flex;
+            align-items: flex-start;
+            gap: global.$space-md;
+            margin-bottom: global.$space-lg;
+            padding-bottom: global.$space-md;
+            border-bottom: 1px solid global.$color-border-subtle;
+           // ➡️ FIX: Add cursor pointer for clickability
+           cursor: pointer; 
+           transition: opacity 0.2s; 
+
+           &:hover {
+            opacity: 0.9;
+           }
+
+
+            .product-image-container {
+                flex-shrink: 0;
+                width: 100px;
+                height: 75px;
+                overflow: hidden;
+                border-radius: global.$border-radius-sm;
+            }
+
+            .product-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; 
+            }
+
+            .product-details {
+                flex-grow: 1;
+            }
+        }
+        
         /* --- Course Title Styling --- */
-        .booking-course-title {
-            font-size: global.$font-size-h4;
+        .course-title { // Renamed from .booking-course-title for consistency
+            font-size: global.$font-size-h5;
             color: global.$color-text-dark;
             font-weight: global.$font-weight-bold;
-            margin-bottom: global.$space-sm;
+            margin: 0 0 global.$space-xxs 0; /* Adjusted margin */
+        }
+        
+        /* ➡️ NEW: Brief Description Styling */
+        .brief-description {
+            font-size: global.$font-size-sm;
+            color: global.$color-text-dark3;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
+        /* --- Details Section (Date, Package, Price) --- */
+        .summary-details {
+            padding-top: global.$space-sm;
         }
 
         .justify-content-between {

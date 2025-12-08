@@ -59,6 +59,9 @@ export interface Testimonial {
 export interface ProductImage {
     lowResUrl: string;
     highResUrl: string;
+    altText?: string; 
+    caption?: string;
+    thumbnails?: ProductImage[];
 }
 
 export interface Product {
@@ -67,8 +70,11 @@ export interface Product {
     date?: string;
     medium?: string;
     description: string | string[];
+    briefDescription: string;
     image: ProductImage;
     thumbnails: ProductImage[];
+    detailsTitle?: string; 
+    detailsImages?: ProductImage[];
     likes?: number;
     views?: number;
     link?: string;

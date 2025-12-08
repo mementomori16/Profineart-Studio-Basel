@@ -17,8 +17,9 @@ const InfoContainer: React.FC<Props> = ({ product }) => {
     const { addItemToCart, isProductInCart } = useCart();
 
     const translatedDescription = t(`products.${product.id}.description`);
+    const itemInCart = isProductInCart(product.id);
 
-    // --- RENDER DESCRIPTION LOGIC ---
+    // ... (renderDescription logic remains unchanged) ...
     const renderDescription = () => {
         if (Array.isArray(product.description)) {
             return (
@@ -34,56 +35,78 @@ const InfoContainer: React.FC<Props> = ({ product }) => {
                 </div>
             );
         }
-        return <p className="description" dangerouslySetInnerHTML={{ __html: translatedDescription }} />;
+        return <div className="description" dangerouslySetInnerHTML={{ __html: translatedDescription }} />;
     };
-    // --- END RENDER DESCRIPTION LOGIC ---
 
-    // --- BOOK NOW HANDLER ---
+
+    // --- RENDER MEDIUM LOGIC (Updated path to cardPage) ---
+    const renderMedium = () => {
+        if (!product.medium) return null;
+
+        // ✅ UPDATED PATH: Get the value for the comparison from cardPage
+        const mediumToChange = t('cardPage.mediumForPrivateLessonsCheck', { defaultValue: 'Course' });
+
+        // Use the dynamic value for the comparison
+        const context = product.medium === mediumToChange ? 'privateLessons' : 'default';
+
+        return (
+            <p className="medium">
+                {/* ✅ UPDATED PATH: Use cardPage.mediumType with context */}
+                {t('cardPage.mediumType', { context: context, defaultValue: product.medium })}
+            </p>
+        );
+    };
+    // --- END RENDER MEDIUM LOGIC ---
+
+    // --- BUTTONS LOGIC ---
+    
+    // ✅ UPDATED PATH: Check if product.medium matches the value defined in cardPage
+    const isBookableMedium = product.medium === t('cardPage.mediumForPrivateLessonsCheck', { defaultValue: 'Course' });
+
     const handleBookNow = () => {
         navigate(`/order/${product.id}`);
     };
 
-    // --- ADD TO CART + NAVIGATE HANDLER ---
     const handleAddToCartAndGoToBasket = () => {
-        // Add product if not already in cart
-        if (!isProductInCart(product.id)) {
+        if (!itemInCart) {
             addItemToCart(product);
-            console.log(`Product ${product.id} added to cart`);
-        } else {
-            console.log(`Product ${product.id} already in cart`);
         }
-        // Always navigate to basket page
         navigate('/basket');
+    };
+    
+    const getCartButtonTextKey = () => {
+        return itemInCart ? 'checkout.toOrder' : 'checkout.addToCartButton';
     };
 
     return (
         <div className="infoContainer">
-            {product.medium && <p className="medium">{product.medium}</p>}
-            {product.date && <p className="infodate">{product.date}</p>}
-
-            {renderDescription()}
-
-            {product.medium === 'Course' && (
-                <div className="booking-action-container">
+            {isBookableMedium && (
+                <div className="booking-action-container center-buttons">
                     <button
-                        className="btn-add-to-cart"
+                        className={`btn-add-to-cart ${itemInCart ? 'in-cart' : ''}`}
                         onClick={handleAddToCartAndGoToBasket}
                     >
-                        {isProductInCart(product.id)
-                            ? t('checkout.inCartButton')
-                            : t('checkout.addToCartButton')}
+                        {t(getCartButtonTextKey())}
                     </button>
 
-                    <button className="btn-book-now" onClick={handleBookNow}>
+                    <button 
+                        className="btn-book-now" 
+                        onClick={handleBookNow}
+                    >
                         {t('checkout.bookNowButton')}
                     </button>
                 </div>
             )}
+
+            {renderMedium()} 
+            
+            {product.date && <p className="infodate">{product.date}</p>}
+
+            {renderDescription()}
         </div>
     );
 };
 
 export default InfoContainer;
-
 
 

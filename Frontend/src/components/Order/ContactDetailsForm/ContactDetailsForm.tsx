@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaCalendarAlt, FaExclamationCircle } from 'react-icons/fa';
 import { format, parseISO } from 'date-fns';
+import { useNavigate } from 'react-router-dom'; // ⬅️ IMPORTED: For navigation
 
 import { Product, SlotSelection, CustomerDetails, LessonPackage } from '../../../../../Backend/types/Product';
 import { PRODUCT_PACKAGES } from '../../../../../Backend/data/products';
@@ -41,6 +42,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     isLoading,
 }) => {
     const { t } = useTranslation();
+    const navigate = useNavigate(); // ⬅️ Initialized useNavigate
 
     const [details, setDetails] = useState<ExtendedCustomerDetails>({
         ...initialDetails,
@@ -61,8 +63,15 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
         return pkg ? t(`packages.${pkg.id}.label`, { defaultValue: pkg.label }) : t('common.unknown');
     };
 
+    const getProductBriefDescription = (id: number) => t(`products.${id}.briefDescription`); 
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setDetails({ ...details, [e.target.name]: e.target.value });
+    };
+
+    // ⬅️ ADDED: Handler to navigate to the product card page
+    const handleProductClick = () => {
+        navigate(`/card/${product.id}`); 
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -110,22 +119,44 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
 
             <div className="booking-summary">
                 <h3 className="h5">{t('checkout.bookingSummary')}</h3>
-                <p className="course-title"><strong>{product.title}</strong></p>
                 
-                <div className="justify-content-between">
-                    <span>{t('checkout.summaryDate')}:</span>
-                    <span>
-                        {format(parseISO(slotSelection.selectedDate), 'dd/MM/yyyy')} | Time: {slotSelection.selectedTime}
-                    </span>
+                {/* ⬅️ ATTACHED CLICK HANDLER HERE */}
+                <div 
+                    className="summary-product-info" 
+                    onClick={handleProductClick} 
+                >
+                    <div className="product-image-container">
+                        <img 
+                            src={product.image?.lowResUrl || ''} 
+                            alt={product.title} 
+                            className="product-image" 
+                        />
+                    </div>
+                    <div className="product-details">
+                        <p className="course-title"><strong>{product.title}</strong></p>
+                        {getProductBriefDescription(product.id) && (
+                            <p className="brief-description">{getProductBriefDescription(product.id)}</p>
+                        )}
+                    </div>
                 </div>
-                <div className="justify-content-between">
-                    <span>{t('checkout.summaryPackage')}:</span>
-                    <span>{getPackageLabel(slotSelection.packageId)}</span>
-                </div>
-                {/* Only one line before total price */}
-                <div className="justify-content-between fw-bold">
-                    <span>{t('checkout.totalPrice')}:</span>
-                    <span>{formattedPrice}</span>
+                {/* ⬅️ END NEW PRODUCT INFO CONTAINER */}
+
+                <div className="summary-details">
+                    <div className="justify-content-between">
+                        <span>{t('checkout.summaryDate')}:</span>
+                        <span>
+                            {format(parseISO(slotSelection.selectedDate), 'dd/MM/yyyy')} | Time: {slotSelection.selectedTime}
+                        </span>
+                    </div>
+                    <div className="justify-content-between">
+                        <span>{t('checkout.summaryPackage')}:</span>
+                        <span>{getPackageLabel(slotSelection.packageId)}</span>
+                    </div>
+                    {/* Only one line before total price */}
+                    <div className="justify-content-between fw-bold">
+                        <span>{t('checkout.totalPrice')}:</span>
+                        <span>{formattedPrice}</span>
+                    </div>
                 </div>
             </div>
 

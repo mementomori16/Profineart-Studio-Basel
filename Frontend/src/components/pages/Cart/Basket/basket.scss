@@ -1,176 +1,199 @@
+// src/components/pages/Cart/basket.scss
+
 @use "sass:color";
 @use '../../../../global.scss' as global;
 
 .shopping-basket-page {
-  // Page container padding and centered layout
-  padding: global.$space-lg 0;
-  max-width: global.$breakpoint-xl;
-  margin: 0 auto;
+    // Page container padding and centered layout
+    padding: global.$space-lg 0;
+    max-width: global.$breakpoint-xxl; 
+    margin: 0 auto;
 
-  .text-center {
-    text-align: center;
-    margin-bottom: global.$space-lg;
-    color: global.$color-text-dark;
-    font-size: global.$font-size-h3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      margin-right: 0.5rem;
-    }
-  }
-
-  .basket-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: global.$space-lg;
-    padding: global.$space-md;
-  }
-
-  .basket-list {
-    display: flex;
-    flex-direction: column;
-    gap: global.$space-md;
-  }
-
-  .basket-item-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: global.$space-md;
-    background-color: global.$color-card;
-    border-radius: global.$border-radius-md;
-    box-shadow: global.$shadow-sm;
-    border: 1px solid global.$color-border-subtle;
-
-    .item-image-container {
-      width: 100px;
-      height: 75px;
-      margin-right: global.$space-md;
-      overflow: hidden;
-      border-radius: global.$border-radius-sm;
-      flex-shrink: 0;
-
-      .item-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    .item-details {
-      flex-grow: 1;
-
-      h3 {
-        margin: 0 0 global.$space-xxs 0;
-        font-size: global.$font-size-h6;
-        font-weight: global.$font-weight-bold;
+    .text-center {
+        text-align: center;
+        margin-bottom: global.$space-xl; 
+        margin-top: 0;
         color: global.$color-text-dark;
-      }
-
-      p {
-        margin: 0;
-        font-size: global.$font-size-sm;
-        color: global.$color-text-light;
-      }
-    }
-
-    .item-actions {
-      display: flex;
-      gap: global.$space-sm;
-      align-items: center;
-
-      .btn-checkout {
-        @extend .btn;
-        background-color: global.$color-secondary;
-        color: global.$color-text-white;
-        padding: global.$space-xs global.$space-md;
-        border-radius: global.$border-radius-sm;
-        font-weight: global.$font-weight-medium;
-
-        &:hover {
-          background-color: color.adjust(global.$color-secondary, $lightness: 10%);
-          box-shadow: global.$shadow-md;
-          transform: translateY(-0.0625rem);
-        }
-      }
-
-      .btn-remove {
-        @extend .btn;
+        font-size: global.$font-size-h3;
         display: flex;
         align-items: center;
-        background-color: global.$color-error;
-        color: global.$color-text-white;
-        padding: global.$space-xs global.$space-md;
-        border-radius: global.$border-radius-sm;
-        font-weight: global.$font-weight-medium;
+        justify-content: center;
 
         svg {
-          margin-right: 0.25rem;
+            margin-right: 0.5rem;
+        }
+    }
+
+    .basket-frame {
+        width: 100%; 
+        max-width: global.$breakpoint-xxl; 
+        margin: 0 auto; 
+        background-color: global.$color-surface;
+        border: 0.0625rem solid global.$color-border-subtle;
+        border-radius: global.$border-radius-lg;
+        box-shadow: global.$shadow-md;
+        padding: global.$space-xl; 
+        
+        @media (max-width: global.$breakpoint-md) {
+            padding: global.$space-lg;
+            width: 100%;
+        }
+    }
+
+    .basket-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: global.$space-lg;
+        padding: 0; 
+    }
+
+    .basket-list {
+        display: flex;
+        flex-direction: column;
+        gap: global.$space-md;
+    }
+
+    .basket-item-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: global.$space-md;
+        background-color: global.$color-button-languege;
+        border-radius: global.$border-radius-xl;
+        box-shadow: global.$shadow-sm;
+        border: 0.0625rem solid global.$color-border-subtle;
+
+        .item-image-container,
+        .item-details {
+            cursor: pointer; 
+            transition: opacity 0.2s;
+        }
+        
+        .item-image-container:hover,
+        .item-details:hover {
+            opacity: 0.85; 
         }
 
-        &:hover {
-          background-color: color.adjust(global.$color-error, $lightness: -10%);
-          box-shadow: global.$shadow-md;
-          transform: translateY(-0.0625rem);
+        .item-image-container {
+            width: 6.25rem;
+            height: 4.6875rem;
+            margin-right: global.$space-md;
+            overflow: hidden;
+            border-radius: global.$border-radius-sm;
+            flex-shrink: 0;
+
+            .item-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
         }
-      }
+
+        .item-details {
+            flex-grow: 1;
+            margin-right: global.$space-md;
+
+            h3 {
+                margin: 0 0 global.$space-xxs 0;
+                font-size: global.$font-size-h6;
+                font-weight: global.$font-weight-bold;
+                color: global.$color-text-dark;
+            }
+
+            p {
+                margin: 0;
+                font-size: global.$font-size-sm;
+                color: global.$color-text-dark2; 
+            }
+        }
+
+        .item-actions {
+            display: flex;
+            gap: global.$space-sm;
+            align-items: center;
+
+            .btn-checkout {
+                // Uses the new smaller, Dark Gray Secondary CTA
+                @extend .btn-cta-secondary; 
+                padding: global.$space-xs global.$space-lg;
+                border-radius: global.$border-radius-xl;
+                font-weight: global.$font-weight-medium;
+            }
+
+            .btn-remove {
+                @extend .btn;
+                display: flex;
+                align-items: center;
+                background-color: global.$color-error;
+                color: global.$color-text-white;
+                padding: global.$space-xs global.$space-md;
+                border-radius: global.$border-radius-xl;
+                font-weight: global.$font-weight-medium;
+
+                svg {
+                    margin-right: 0.25rem;
+                }
+
+                &:hover {
+                    background-color: color.adjust(global.$color-error, $lightness: -10%);
+                    box-shadow: global.$shadow-md;
+                    transform: translateY(-0.0625rem);
+                }
+            }
+        }
     }
-  }
 
-  .basket-empty-message {
-    text-align: center;
-    padding: global.$space-xxl;
-    border: 2px dashed global.$color-border-subtle-2;
-    border-radius: global.$border-radius-lg;
-    background-color: global.$color-surface;
+    .basket-empty-message {
+        text-align: center;
+        padding: global.$space-xxl;
+        border: 0.125rem dashed global.$color-border-subtle-2;
+        border-radius: global.$border-radius-lg;
+        background-color: global.$color-surface;
 
-    p {
-      font-size: global.$font-size-h5;
-      color: global.$color-text-light;
+        p {
+            font-size: global.$font-size-h5;
+            color: global.$color-text-light;
+        }
+
+        .btn-back-to-courses {
+            // Uses the new smaller, Deep Plum Primary CTA
+            @extend .btn-cta-primary;
+            margin-top: global.$space-lg;
+        }
     }
 
-    .btn-back-to-courses {
-      @extend .btn-primary;
-      background-color: global.$color-primary;
-      margin-top: global.$space-lg;
+    .basket-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: global.$space-md;
+        border-top: 0.0625rem solid global.$color-border-subtle;
+
+        p {
+            font-size: global.$font-size-md;
+            font-weight: global.$font-weight-semibold;
+            color: global.$color-text-dark;
+            margin: 0;
+        }
+
+        .btn-clear-cart {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            color: global.$color-error;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: global.$space-xs;
+            font-size: global.$font-size-sm;
+
+            svg {
+                margin-right: 0.25rem;
+            }
+
+            &:hover {
+                color: color.adjust(global.$color-error, $lightness: -10%);
+            }
+        }
     }
-  }
-
-  .basket-summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: global.$space-md;
-    border-top: 1px solid global.$color-border-subtle;
-
-    p {
-      font-size: global.$font-size-md;
-      font-weight: global.$font-weight-semibold;
-      color: global.$color-text-dark;
-      margin: 0;
-    }
-
-    .btn-clear-cart {
-      display: flex;
-      align-items: center;
-      background: none;
-      border: none;
-      color: global.$color-error;
-      cursor: pointer;
-      text-decoration: underline;
-      padding: global.$space-xs;
-      font-size: global.$font-size-sm;
-
-      svg {
-        margin-right: 0.25rem;
-      }
-
-      &:hover {
-        color: color.adjust(global.$color-error, $lightness: -10%);
-      }
-    }
-  }
 }
-

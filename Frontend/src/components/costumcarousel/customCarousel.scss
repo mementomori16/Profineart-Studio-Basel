@@ -238,14 +238,14 @@
             border: 1px solid transparent;
 
             &:hover {
-                background-color: $color-button-blue;
-                border-color: $color-button-blue-2;
+                background-color: $color-button;
+                border-color: $color-button;
             }
 
             &.active {
                 @include set-responsive-square-size(0.8rem, 0.8rem, 0.8rem); 
-                background-color: $color-button-blue-2;
-                border-color: $color-button-blue-2;
+                background-color: $color-button;
+                border-color: $color-button;
                 border-radius: 50%; 
             }
         }

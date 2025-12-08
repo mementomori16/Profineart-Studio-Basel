@@ -1,3 +1,5 @@
+// src/components/pages/Card/InfoContainer/infoContainer.scss
+
 @use "sass:color";
 @use '../../../../global.scss' as *;
 
@@ -7,24 +9,31 @@
     align-items: flex-start;
     width: 100%;
     padding: 0; 
-    position: relative; // Ensure z-index works for children
+    position: relative;
 
     @media (min-width: $breakpoint-lg) {
         max-width: $breakpoint-lg;
     }
 
-    .medium, .infodate {
+    // FIX: Targeting the p element explicitly to ensure high specificity for color change
+    p.medium { 
         margin-bottom: $space-sm;
-        color: $color-text-light; 
+        color: $color-text-dark2; /* Darker color for visibility */
+        font-weight: $font-weight-semibold; 
     }
     
+    .infodate {
+        margin-bottom: $space-sm;
+        color: $color-text-light;
+    }
+
     .description {
         margin: 0;
         font-size: $font-size-base;
         color: $color-text-dark2; 
         max-width: 100%;
         line-height: 1.7;
-        margin-bottom: $space-md;
+        margin-bottom: $space-lg; 
         padding-right: 0;
 
         h5 {
@@ -36,14 +45,17 @@
         }
 
         ul {
-            list-style: none;
+            list-style: none; /* Remove default bullets */
             padding: 0;
             margin-left: 0;
+            margin-top: $space-sm;
 
             li {
                 position: relative;
-                padding-left: $space-md;
-                margin-bottom: $space-sm;
+                padding-left: 0;
+                margin-bottom: $space-xs;
+                line-height: 1.6;
+                margin-top: $space-xs; 
 
                 strong {
                     color: $color-text-dark2; 
@@ -51,48 +63,25 @@
                 }
 
                 &::before {
-                    content: '•';
-                    color: $color-secondary; 
-                    position: absolute;
-                    left: 0;
-                    font-weight: $font-weight-bold;
-                    font-size: $font-size-md;
-                    line-height: 1;
+                    content: none; /* Remove any custom bullets/icons */
                 }
             }
         }
-    }
-
-    .course-button-container {
-        margin-top: $space-md;
         
-        .explore-button {
-            background-color: $color-navbar;
-            color: $color-surface;
-            padding: $space-sm $space-lg;
-            border-radius: $border-radius-sm;
-            text-decoration: none;
-            font-weight: $font-weight-semibold;
-            display: inline-flex;
-            align-items: center;
-            gap: $space-xs;
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-            
-            &:hover {
-                background-color: $color-button-hover; 
-                transform: translateY(-2px);
-            }
+        p {
+            list-style: none; /* Ensure no list style on paragraphs */
+            padding-left: 0;
+            margin-bottom: $space-md; 
         }
     }
-    
-    // --- CRITICAL FIXES FOR BUTTON INTERACTION ---
+
+    // --- BUTTONS STYLING ---
     .booking-action-container {
         width: 100%;
-        margin-top: $space-xl;
-        padding-top: $space-lg;
-        border-top: 1px solid $color-border-subtle;
+        margin-top: 0; 
+        padding-top: 0;
+        border-top: none; 
         
-        // Ensure this container is on top
         position: relative; 
         z-index: 10; 
         
@@ -100,14 +89,20 @@
         flex-direction: column; 
         gap: $space-md; 
         
+        margin-bottom: $space-lg; 
+        
         @media (min-width: $breakpoint-sm) {
             flex-direction: row; 
-            gap: $space-lg;
+            gap: $space-md;
+            justify-content: flex-start; 
+            align-self: flex-start; 
+            max-width: none; 
+            margin-left: 0;
+            margin-right: 0;
         }
     }
     
     .btn-book-now, .btn-add-to-cart {
-        // Ensure the button is a separate stacking context and clickable
         position: relative; 
         z-index: 12; 
         
@@ -115,49 +110,44 @@
         max-width: none; 
         
         @extend .btn;
-        padding: $space-md $space-lg;
-        font-size: $font-size-h5;
-        font-weight: $font-weight-bold;
-        border-radius: $border-radius-md;
+        
+        border-radius: $border-radius-xl; 
+        
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
         text-align: center;
-        transition: background-color 0.2s, transform 0.1s;
+        transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
 
-        // ADD THESE TWO PROPERTIES:
         cursor: pointer !important; 
         user-select: none; 
-                
+        
         @media (min-width: $breakpoint-sm) {
             width: auto;
-            flex-grow: 1; 
+            flex-grow: 0; 
+            max-width: 200px; 
         }
     }
 
-    .btn-book-now {
-        background-color: $color-button;
-        color: $color-text-white; 
+    .btn-add-to-cart {
+        // Primary CTA (Deep Plum/Maroon)
+        @extend .btn-cta-primary; 
+        border-radius: $border-radius-xl; 
         
-        &:hover {
-            background-color: $color-button-hover;
-            transform: translateY(-1px);
+        &.in-cart {
+            @extend .btn-cta-secondary; 
+            border-radius: $border-radius-xl; 
         }
     }
     
-    .btn-add-to-cart {
-        background-color: $color-button-blue-2; 
-        color: $color-text-white;
-        
+    .btn-book-now {
+        // FIX 2: Switched to SECONDARY CTA (Dark Gray) for distinction
+        @extend .btn-cta-secondary; 
+        border-radius: $border-radius-xl; 
+
         &:hover:not(:disabled) {
-            background-color: color.adjust($color-button-blue-2, $lightness: -10%);
-            transform: translateY(-1px);
-        }
-        
-        &:disabled {
-            background-color: $color-text-light;
-            color: $color-text-dark;
-            cursor: not-allowed;
-            opacity: 0.8;
-            transform: none;
+            background-color: $color-cta-secondary-hover; 
+            transform: translateY(-0.0625rem);
+            box-shadow: $shadow-md;
         }
     }
 }
-           

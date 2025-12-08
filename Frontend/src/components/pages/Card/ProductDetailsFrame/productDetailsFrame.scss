@@ -1,0 +1,153 @@
+// src/components/pages/Card/ProductDetailsFrame/productDetailsFrame.scss
+
+@use '../../../../global.scss' as global;
+
+.productDetailsFrame {
+    width: 100%;
+    
+    // 🛑 FIX 1: Max width must MATCH the main card wrapper's max width for alignment
+    max-width: global.$breakpoint-xxl; 
+    margin: 0 auto; 
+    
+    // 🛑 FIX 2: Set the required horizontal padding here, matching the internal padding
+    // of the .cardContentLayout (InfoContainer/CardContainer area).
+    // This ensures the content aligns perfectly across the horizontal axis.
+    padding: global.$space-lg global.$space-xl; 
+    padding-top: 0; // Remove top padding; separation is handled by the border above
+    padding-bottom: global.$space-lg; // Add standard bottom padding
+    
+    @media (min-width: global.$breakpoint-lg) {
+        // Match the large screen padding: space-xxl
+        padding-left: global.$space-xxl; 
+        padding-right: global.$space-xxl; 
+    }
+
+    .detailsTitle {
+        font-size: global.$font-size-h3;
+        font-weight: global.$font-weight-bold;
+        color: global.$color-text-dark2; 
+        margin-bottom: global.$space-xl;
+        text-align: left; 
+    }
+    
+    // Two-column layout container (Text 65%, Images 35% on desktop)
+    .detailsContentLayout {
+        display: flex; 
+        flex-direction: column; /* Default stack on mobile */
+        gap: global.$space-xl;
+        align-items: flex-start; 
+
+        @media (min-width: global.$breakpoint-lg) {
+            flex-direction: row; 
+            gap: global.$space-xxl; 
+        }
+    }
+
+    .detailsText {
+        line-height: 1.7;
+        width: 100%;
+        order: 1; 
+        
+        @media (min-width: global.$breakpoint-lg) {
+            width: 65%; 
+        }
+
+        // 🛑 FIX 3: BULLET REMOVAL and internal element styling consistency
+        p {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: global.$space-md; 
+            color: global.$color-text-dark2; 
+        }
+
+        ul, ol {
+            list-style: none; /* Remove default bullets/numbers */
+            padding-left: 0;
+            margin-left: 0;
+        }
+        
+        li {
+            list-style: none;
+            padding-left: 0;
+            &::before {
+                content: none; /* Remove custom bullets/icons */
+            }
+            color: global.$color-text-dark2; // Ensure list text color is correct
+        }
+        
+        h5 {
+            color: global.$color-text-dark3;
+            font-size: global.$font-size-md;
+            font-weight: global.$font-weight-semibold;
+            margin-top: global.$space-lg;
+            margin-bottom: global.$space-sm;
+        }
+    }
+
+    .detailsImageGallery {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        order: 2; 
+
+        @media (min-width: global.$breakpoint-lg) {
+            width: 35%; 
+        }
+        
+        gap: global.$space-xl;
+        margin-top: 0; 
+
+        .detailImageWrapper {
+             display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%; 
+            border-radius: global.$border-radius-sm;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .detailImage {
+            width: 100%;
+            height: auto; 
+            max-height: 350px; 
+            object-fit: contain; 
+            border-radius: global.$border-radius-sm;
+            margin-bottom: global.$space-xs; 
+        }
+
+        .imageCaption {
+            font-size: global.$font-size-sm;
+            color: global.$color-text-light;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: global.$space-md;
+        }
+    }
+
+    /* Media Queries for responsive image sizing and stacking */
+    @media (max-width: global.$breakpoint-md) {
+        .detailsImageGallery {
+            .detailImage {
+                max-height: 250px; 
+            }
+        }
+    }
+
+    @media (max-width: global.$breakpoint-sm) {
+         .detailsTitle {
+            font-size: global.$font-size-h4; 
+         }
+        .detailsImageGallery {
+            .detailImage {
+                max-height: 180px; 
+            }
+        }
+    }
+}

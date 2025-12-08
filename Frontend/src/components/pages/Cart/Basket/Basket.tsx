@@ -12,12 +12,20 @@ const BasketItemCard: React.FC<{
   onCheckout: (id: number) => void;
 }> = ({ item, onRemove, onCheckout }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const getProductName = (id: number) => t(`products.${id}.title`);
+  const getProductBriefDescription = (id: number) => t(`products.${id}.briefDescription`); 
+  
+  // ➡️ FIXED: Handler for navigation to use the correct URL structure /card/:id
+  const handleItemClick = () => {
+      navigate(`/card/${item.id}`); 
+  };
 
   return (
     <div className="basket-item-card">
-      <div className="item-image-container">
+      {/* 1. Clickable Image Container */}
+      <div className="item-image-container" onClick={handleItemClick}>
         <img
           src={item.image?.lowResUrl || ''}
           alt={getProductName(item.id)}
@@ -25,14 +33,15 @@ const BasketItemCard: React.FC<{
         />
       </div>
 
-      <div className="item-details">
+      {/* 2. Clickable Details */}
+      <div className="item-details" onClick={handleItemClick}>
         <h3>{getProductName(item.id)}</h3>
-        <p>{t('cart.itemDescriptionShort')}</p>
+        <p>{getProductBriefDescription(item.id)}</p> 
       </div>
 
       <div className="item-actions">
         <button className="btn-checkout" onClick={() => onCheckout(item.id)}>
-          {t('checkout.toOrder')}
+          {t('checkout.checkoutButtonText')}
         </button>
         <button className="btn-remove" onClick={() => onRemove(item.id)}>
           <FiTrash style={{ marginRight: '0.25rem' }} />
@@ -56,12 +65,13 @@ const Basket: React.FC = () => {
 
   return (
     <div className="shopping-basket-page container">
-      <h1 className="text-center">
-        <FiShoppingCart style={{ marginRight: '0.5rem' }} />
-        {t('cart.mainTitle')}
-      </h1>
+      
+      <div className="basket-frame">
+        <h1 className="text-center">
+          <FiShoppingCart style={{ marginRight: '0.5rem' }} />
+          {t('cart.mainTitle')}
+        </h1>
 
-      <div className="basket-content-wrapper">
         {cart.length === 0 ? (
           <div className="basket-empty-message">
             <p>{t('cart.emptyMessage')}</p>
@@ -73,7 +83,7 @@ const Basket: React.FC = () => {
             </button>
           </div>
         ) : (
-          <>
+          <div className="basket-content-wrapper">
             <div className="basket-list">
               {cart.map(item => (
                 <BasketItemCard
@@ -92,7 +102,7 @@ const Basket: React.FC = () => {
                 {t('cart.clearAll')}
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

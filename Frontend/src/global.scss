@@ -1,48 +1,65 @@
+// src/components/global.scss
+
 @use "sass:color";
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
 // 1. COLOR PALETTE
 // ----------------------------------------------------
-$color-primary: rgb(107, 179, 241);
-$color-primary2:rgb(48, 9, 9, 0.9);
-$color-secondary: #333333;
-$color-background: #4f4b4b;
-$color-background-hover: #EBEBEB; 
-$color-danger: red;
-$color-rose: rgb(240, 95, 124);
-$color-card: rgb(228, 226, 226);
+
+// --- A. Base / Utility Colors ---
 $color-surface: #ffffff;
-$color-navbar:rgb(32, 32, 32);
+$color-secondary: #333333; // General Text Color / Secondary Dark
 $color-text-white: #FFFFFF;
-$color-text-button: #fa8a3b;
-$color-primary-transparent: rgba(232, 125, 46, 0.15);
-$color-success: #28A745;
-$color-green-price:rgb(39, 157, 39);
-$color-blue: rgb(22, 80, 195);
-$color-yellow: rgb(192, 178, 72);
-$color-error: #DC3545;
-$color-warning: #FFC107;
-$color-border-subtle: #EBEBEB;
-$color-border-subtle-2: #dbdbdb;
-$color-text-light: #7F8C8D;
-$color-text-brown:rgb(92, 21, 21);;
-$color-text-dark: #333333;
+$color-background: #4f4b4b; // Body background
+$color-background-hover: #EBEBEB; 
+$color-card: rgb(228, 226, 226);
+$color-alt-background-1: #FFF8F0;
+$color-alt-background-2: #F2F2F2;
+
+// --- B. Text Colors ---
+$color-text-light: #7F8C8D; // Medium Gray for secondary text
+$color-text-dark: #333333; // Used for Secondary CTA background
 $color-text-dark2: #1e1e1e;
 $color-text-dark3: #121212;
 $color-text-dark4: #080808;
-$color-border-light: #EBEBEB;
-$color-alt-background-1: #FFF8F0;
-$color-alt-background-2: #F2F2F2;
-$color-button: rgb(80, 79, 79);
-$color-button-hover: rgb(60, 60, 60);
-$color-button-languege:rgb(233, 231, 231);
-
-$color-button-blue: rgb(138, 190, 236);
-$color-button-blue-2: rgb(107, 179, 241);
-$color-navbar-title: #dcdcdc;
-$color-navbar-title-hover: #ffffff;
 $color-text-title: #495057;
 $color-text-title-2:#67727d;
+$color-text-brown:rgb(92, 21, 21);
+
+// --- C. Primary/Link Colors (Fallback/Standard) ---
+$color-primary: rgb(107, 179, 241); // Default Link Color
+$color-primary2:rgb(48, 9, 9, 0.9);
+$color-primary-transparent: rgba(232, 125, 46, 0.15);
+
+// --- D. High-Conversion CTA Colors (Warm Gray-Reddish Scheme) ---
+$color-cta-primary-warm: #5C253B; // Deep Plum/Maroon (Primary CTA)
+$color-cta-primary-hover: color.adjust($color-cta-primary-warm, $lightness: -10%); 
+$color-cta-secondary: $color-text-dark; // Secondary CTA: Dark Gray #333333
+$color-cta-secondary-hover: $color-text-dark2; // Slightly darker #1e1e1e
+
+// --- E. Status / Alert Colors ---
+$color-danger: red;
+$color-error: #DC3545;
+$color-success: #28A745;
+$color-warning: #FFC107;
+$color-green-price:rgb(39, 157, 39);
+$color-yellow: rgb(192, 178, 72);
+
+// --- F. Border Colors ---
+$color-border-subtle: #EBEBEB;
+$color-border-subtle-2: #dbdbdb;
+$color-border-light: #EBEBEB;
+
+// --- G. Navigation & Legacy Colors (Kept for existing components) ---
+$color-navbar:rgb(32, 32, 32);
+$color-navbar-title: #dcdcdc;
+$color-navbar-title-hover: #ffffff;
+$color-button: rgb(80, 79, 79); // Legacy Button (Used by .btn-primary)
+$color-button-hover: rgb(60, 60, 60);
+$color-button-languege:rgb(233, 231, 231);
+$color-button-blue: rgb(80, 79, 79);   // **FIXED: Reintroduced for external dependency**
+$color-button-blue-2: rgb(50, 49, 49); // **FIXED: Reintroduced for external dependency**
+
 
 // 2. TYPOGRAPHY
 // ----------------------------------------------------
@@ -59,7 +76,7 @@ $font-size-sm: 0.875rem;
 $font-size-xs: 0.8rem;
 $font-size-xxs: 0.8rem;
 $font-size-md: 1.125rem;
-$font-size-instruction: 1.1rem; // <-- Instruction size added globally
+$font-size-instruction: 1.1rem; 
 $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-medium: 500;
@@ -205,8 +222,9 @@ a {
     }
 }
 
+// REDUCED BUTTON PADDING FOR SMALLER SIZE
 .btn {
-    padding: $space-md $space-lg;
+    padding: $space-sm $space-md; // Reduced for smaller buttons
     border-radius: $border-radius-md;
     border: none;
     font-weight: $font-weight-semibold;
@@ -221,18 +239,74 @@ a {
     }
 }
 
+// ----------------------------------------------------
+// CTA BUTTONS (Warm Gray-Reddish Scheme)
+// ----------------------------------------------------
+
+// 🚀 PRIMARY CALL-TO-ACTION (Deep Plum/Maroon)
+.btn-cta-primary {
+    @extend .btn;
+    background-color: $color-cta-primary-warm; 
+    color: $color-text-white; 
+    box-shadow: $shadow-md;
+    
+    &:hover:not(:disabled) {
+        background-color: $color-cta-primary-hover; 
+        transform: translateY(-0.0625rem);
+        box-shadow: $shadow-lg;
+    }
+    
+    &:disabled {
+        background-color: $color-text-light;
+        color: $color-secondary;
+        cursor: not-allowed;
+        opacity: 0.7;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+// ✅ SECONDARY CALL-TO-ACTION (Dark Gray)
+.btn-cta-secondary {
+    @extend .btn;
+    background-color: $color-cta-secondary; 
+    color: $color-text-white;
+    border: 1px solid $color-cta-secondary; 
+    box-shadow: $shadow-sm;
+    
+    &:hover:not(:disabled) {
+        background-color: $color-cta-secondary-hover;
+        transform: translateY(-0.0625rem);
+        box-shadow: $shadow-md;
+    }
+    
+    &:disabled {
+        background-color: $color-text-light;
+        color: $color-secondary;
+        cursor: not-allowed;
+        opacity: 0.7;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+// ----------------------------------------------------
+// Legacy Button Definitions 
+// ----------------------------------------------------
+
 .btn-primary {
     @extend .btn;
     background-color: $color-button;
     color: $color-surface;
     box-shadow: $shadow-sm;
     &:hover {
-        background-color: color.adjust($color-button, $lightness: -8%); // Adjusted color.adjust usage
+        background-color: color.adjust($color-button, $lightness: -8%); 
         transform: translateY(-0.0625rem);
         box-shadow: $shadow-md;
     }
     &:disabled {
         background-color: $color-text-light;
+        color: $color-secondary;
         cursor: not-allowed;
         box-shadow: none;
         transform: none;
@@ -243,9 +317,9 @@ a {
     @extend .btn;
     background-color: transparent;
     color: $color-primary;
-    border: 0.0625rem solid $color-button-blue-2;
+    border: 0.0625rem solid $color-primary; 
     &:hover {
-        background-color: color.adjust($color-button-blue-2, $lightness: 40%);
+        background-color: color.adjust($color-primary, $lightness: 40%);
         transform: translateY(-0.0625rem);
     }
     &:disabled {
@@ -262,7 +336,7 @@ a {
     padding: $space-xs $space-sm;
     font-weight: $font-weight-normal;
     &:hover {
-        color: $color-button-blue-2;
+        color: $color-primary; 
         background-color: transparent;
         transform: none;
         text-decoration: underline;
@@ -271,7 +345,8 @@ a {
 
 .btn-blue {
     @extend .btn;
-    background-color: $color-button;
+    // Uses the now-defined $color-button-blue
+    background-color: $color-button-blue;
     color: $color-text-white;
     box-shadow: $shadow-sm;
     &:hover {
