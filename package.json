@@ -1,14 +1,20 @@
 {
   "name": "professional-fine-art-studio-root",
   "version": "1.0.0",
-"scripts": {
+  "scripts": {
     "start:client": "npm --prefix Frontend run dev",
     "start:server": "npm --prefix Backend run dev",
-    
-  
-    "dev": "concurrently --kill-others \"npm run start:client\" \"npm run start:server\"" 
+    "build": "npm --prefix Frontend run build",
+    "dev": "concurrently --kill-others \"npm run start:client\" \"npm run start:server\""
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "@vitejs/plugin-react-swc": "^4.2.2",
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.7"
+  },
+  "dependencies": {
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
   }
 }
