@@ -1,153 +1,120 @@
-// src/components/pages/Card/InfoContainer/infoContainer.scss
+@use '../../../../global.scss' as global;
 
-@use "sass:color";
-@use '../../../../global.scss' as *;
+@mixin caption-style {
+    .imageCaption {
+        font-size: global.$font-size-sm !important;
+        color: global.$color-text-light !important;
+        margin-top: global.$space-sm;
+        text-align: center;
+        line-height: 1.4;
+    }
+}
 
-.infoContainer {
+.infoContainer-text {
+    .mobile-buttons-wrapper {
+        margin-top: global.$space-lg;
+        margin-bottom: global.$space-xl;
+
+        @media (min-width: global.$breakpoint-lg) {
+            display: none;
+        }
+    }
+
+    .infodate {
+        color: global.$color-text-light;
+        margin-bottom: global.$space-sm;
+        font-weight: global.$font-weight-bold;
+    }
+
+    .description,
+    .detailsText {
+        line-height: 1.7;
+
+        h2,
+        h3,
+        h4 {
+            color: global.$color-text-dark !important;
+            margin-top: global.$space-lg;
+            margin-bottom: global.$space-md;
+            font-size: global.$font-size-h4;
+        }
+
+        p {
+            margin-bottom: global.$space-md;
+            color: global.$color-secondary;
+            font-size: global.$font-size-base;
+        }
+    }
+
+    .detailsSection-wrapper {
+        margin-top: global.$space-xxxl;
+
+        .detailsTitle {
+            text-align: center;
+            color: global.$color-text-dark !important;
+            margin-bottom: global.$space-xl;
+        }
+    }
+
+    .mobile-only-img {
+        display: block;
+        @include caption-style;
+
+        @media (min-width: global.$breakpoint-lg) {
+            display: none;
+        }
+    }
+}
+
+.infoContainer-visual {
+    display: none;
+
+    @media (min-width: global.$breakpoint-lg) {
+        display: flex;
+        flex-direction: column;
+        gap: global.$space-xxl;
+        width: 100%;
+    }
+}
+
+.booking-action-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    padding: 0; 
-    position: relative;
+    gap: global.$space-md;
+    align-items: center;
 
-    @media (min-width: $breakpoint-lg) {
-        max-width: $breakpoint-lg;
-    }
-
-    // FIX: Targeting the p element explicitly to ensure high specificity for color change
-    p.medium { 
-        margin-bottom: $space-sm;
-        color: $color-text-dark2; /* Darker color for visibility */
-        font-weight: $font-weight-semibold; 
-    }
-    
-    .infodate {
-        margin-bottom: $space-sm;
-        color: $color-text-light;
-    }
-
-    .description {
-        margin: 0;
-        font-size: $font-size-base;
-        color: $color-text-dark2; 
-        max-width: 100%;
-        line-height: 1.7;
-        margin-bottom: $space-lg; 
-        padding-right: 0;
-
-        h5 {
-            color: $color-text-dark3; 
-            font-size: $font-size-md;
-            font-weight: $font-weight-semibold;
-            margin-top: $space-lg;
-            margin-bottom: $space-sm;
-        }
-
-        ul {
-            list-style: none; /* Remove default bullets */
-            padding: 0;
-            margin-left: 0;
-            margin-top: $space-sm;
-
-            li {
-                position: relative;
-                padding-left: 0;
-                margin-bottom: $space-xs;
-                line-height: 1.6;
-                margin-top: $space-xs; 
-
-                strong {
-                    color: $color-text-dark2; 
-                    font-weight: $font-weight-semibold;
-                }
-
-                &::before {
-                    content: none; /* Remove any custom bullets/icons */
-                }
-            }
-        }
-        
-        p {
-            list-style: none; /* Ensure no list style on paragraphs */
-            padding-left: 0;
-            margin-bottom: $space-md; 
-        }
-    }
-
-    // --- BUTTONS STYLING ---
-    .booking-action-container {
+    .btn-add-to-cart,
+    .btn-book-now {
         width: 100%;
-        margin-top: 0; 
-        padding-top: 0;
-        border-top: none; 
-        
-        position: relative; 
-        z-index: 10; 
-        
-        display: flex;
-        flex-direction: column; 
-        gap: $space-md; 
-        
-        margin-bottom: $space-lg; 
-        
-        @media (min-width: $breakpoint-sm) {
-            flex-direction: row; 
-            gap: $space-md;
-            justify-content: flex-start; 
-            align-self: flex-start; 
-            max-width: none; 
-            margin-left: 0;
-            margin-right: 0;
-        }
-    }
-    
-    .btn-book-now, .btn-add-to-cart {
-        position: relative; 
-        z-index: 12; 
-        
-        width: 100%; 
-        max-width: none; 
-        
-        @extend .btn;
-        
-        border-radius: $border-radius-xl; 
-        
-        font-size: $font-size-base;
-        font-weight: $font-weight-semibold;
-        text-align: center;
-        transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
-
-        cursor: pointer !important; 
-        user-select: none; 
-        
-        @media (min-width: $breakpoint-sm) {
-            width: auto;
-            flex-grow: 0; 
-            max-width: 200px; 
-        }
+        max-width: 15rem;
+        border-radius: global.$border-radius-xl !important;
+        padding: global.$space-sm global.$space-md;
     }
 
     .btn-add-to-cart {
-        // Primary CTA (Deep Plum/Maroon)
-        @extend .btn-cta-primary; 
-        border-radius: $border-radius-xl; 
-        
-        &.in-cart {
-            @extend .btn-cta-secondary; 
-            border-radius: $border-radius-xl; 
-        }
+        @extend .btn-cta-primary;
     }
-    
-    .btn-book-now {
-        // FIX 2: Switched to SECONDARY CTA (Dark Gray) for distinction
-        @extend .btn-cta-secondary; 
-        border-radius: $border-radius-xl; 
 
-        &:hover:not(:disabled) {
-            background-color: $color-cta-secondary-hover; 
-            transform: translateY(-0.0625rem);
-            box-shadow: $shadow-md;
-        }
+    .btn-book-now {
+        @extend .btn-cta-secondary;
     }
+}
+
+.detailImageWrapper {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: global.$space-lg;
+
+    .detailImage {
+        width: 100%;
+        height: auto;
+        max-height: 20rem;
+        object-fit: contain;
+        border-radius: global.$border-radius-md;
+    }
+
+    @include caption-style;
 }

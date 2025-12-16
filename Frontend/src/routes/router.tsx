@@ -14,6 +14,7 @@ import Courses from "../components/pages/Courses/Courses";
 import OrderPage from "../components/pages/OrderPage/OrderPage";
 import SuccessPage from "../components/Order/SucsessPage.tsx/SuccessPage";
 import Basket from "../components/pages/Cart/Basket/Basket";
+import TermsOfUse from "../components/pages/TermsOfUse/TermsOfUse";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
             { path: "services", element: <Services /> },
             { path: "courses", element: <Courses /> },
             { path: "legalinfo", element: <LegalInfo /> },
+            { path: "terms-of-use", element: <TermsOfUse /> },
             { path: "cv", element: <Cv /> },
 
             // ---------------------------------------------------------

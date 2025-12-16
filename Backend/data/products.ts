@@ -8,38 +8,37 @@ export const courses: Product[] = [
     id: 800,
     title: 'Byzantine Icon Painting Individual Sessions',
     description:
-      `This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.
-      
-      <h5>Key Techniques & Focus Areas</h5>
-      <ul>
-        <li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li>
-        <li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li>
-        <li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li>
-        <li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using "medieval cubism" principles.</li>
-      </ul>`,
+      ``,
       briefDescription: 'Individual instruction focusing on Egg Tempera, Gilding, and Byzantine historical schools.',
+      badge: "Historical & Traditional",
     image: {
       lowResUrl: 'https://i.ibb.co/DBrD41T/100kbphotoshoped-more-bright-1.jpg',
       highResUrl: 'https://i.ibb.co/kg0RQm5/best.jpg',
+      caption: 'Jesus Christ Pontocrator. Artist: Ilya Medvedev',
     },
     // CORRECTED STRUCTURE
     thumbnails: [
       {
-        lowResUrl: "https://i.ibb.co/gZh2SgPV/100kbcloseup.jpg",
-        highResUrl: 'https://i.ibb.co/y5g7SZC/IMG-4570.jpg',
+        lowResUrl: "https://i.ibb.co/mVYD615H/IMG-4570120kb.jpg",
+        highResUrl: 'https://i.ibb.co/mVYD615H/IMG-4570120kb.jpg',
       },  
     ],
- detailsTitle: 'In-Depth Course Curriculum', // Can be used by the component
+ detailsTitle: 'In-Depth Course Curriculum', 
     detailsImages: [
       {
-        lowResUrl: 'https://i.ibb.co/WWx2fhv/newphotoshoped-darker-2025-more-bright.jpg', // Replace with your detail image 1
+        lowResUrl: 'https://i.ibb.co/wNgF6c9M/3.jpg', 
         highResUrl: 'https://i.ibb.co/WWx2fhv/newphotoshoped-darker-2025-more-bright.jpg',
-        caption: 'A view of the initial wood panel preparation process.',
+        caption: 'Virgin and the Child. Artist: Ilya Medvedev',
       },
       {
-        lowResUrl: 'https://i.ibb.co/j9hMh9wN/smaller-smaller-2-2025.png', // Replace with your detail image 2
-        highResUrl: 'https://i.ibb.co/j9hMh9wN/smaller-smaller-2-2025.png',
-        caption: 'Applying the gold leaf during the gilding module.',
+        lowResUrl: 'https://i.ibb.co/chG9pv25/smaller2025-120kb.jpg', 
+        highResUrl: 'https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
+        caption: 'Presentation of Christ at the Temple. Artist: Ilya Medvedev',
+      },
+      {
+        lowResUrl: 'https://i.ibb.co/6R2BLYQ8/IMG-4588ph120kb.jpg', 
+        highResUrl: 'https://i.ibb.co/8nkdprgS/IMG-4588ph500kb.jpg',
+        caption: 'Virgin Mary at Annunsiation. Artist: Ilya Medvedev',
       },
     
     ],
@@ -79,6 +78,61 @@ export const courses: Product[] = [
         <li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using "medieval cubism" principles.</li>
       </ul>`,
       briefDescription: 'Individual instruction focusing on Egg Tempera, Gilding, and Byzantine historical schools.',
+      badge: "Oil Painting Study",
+    // CORRECTED STRUCTURE
+  
+    image: {
+      lowResUrl: 'https://i.ibb.co/4ds7LRB/Detail1-photoshoped-2025-small.jpg',
+      highResUrl: 'https://i.ibb.co/4ds7LRB/Detail1-photoshoped-2025-small.jpg',
+    },
+    // CORRECTED STRUCTURE
+    thumbnails: [
+      {
+        lowResUrl: "https://i.ibb.co/C5nyCr4D/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-Ilya-Medvedev120kb.jpg",
+        highResUrl: 'https://i.ibb.co/pJ2rtSj/photoshoped-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-Ilya-Medvedev-big-resolution.jpg',
+      },
+      {
+        lowResUrl: "https://i.ibb.co/1G4060P9/Ilya-Medvedev-next-to-his-painting-ph25.jpg",
+        highResUrl: 'https://i.ibb.co/Z6qQKGXs/Ilya-Medvedev-next-to-his-painting-ph25.jpg',
+      },
+    ],
+    tags: ['Iconography', 'Egg Tempera', 'Classical', 'Individual'],
+    techniques: [
+      'Egg Tempera',
+      '24-Carat Gold Leaf',
+      'Gilding',
+      'Glazing (Lapis Lazuli)',
+      'Underpainting',
+      'Maulstick',
+      'Iconographic Drawing',
+      'Cretan School',
+      'Macedonian School',
+      'Proto-Byzantine',
+      'Fayum Portraiture',
+      'Historical Pigments',
+      'Varnishing',
+      'Panel Preparation',
+      'Fine Brushwork'
+    ],
+    price: 150.00,
+    stripePriceId: 'price_1P6d5T...your_stripe_price_id...xZ',
+    medium: 'Course',
+  },
+   {
+    id: 802,
+    title: 'Pastel & Mixed Technique Drawing',
+    description:
+      `This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.
+      
+      <h5>Key Techniques & Focus Areas</h5>
+      <ul>
+        <li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li>
+        <li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li>
+        <li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li>
+        <li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using "medieval cubism" principles.</li>
+      </ul>`,
+      briefDescription: 'Individual instruction focusing on Egg Tempera, Gilding, and Byzantine historical schools.',
+      badge: "Oil Painting Study",
     // CORRECTED STRUCTURE
   
     image: {

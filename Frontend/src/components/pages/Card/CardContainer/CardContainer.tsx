@@ -1,12 +1,11 @@
-// CardContainer.tsx
-
 import React, { useEffect, useState } from 'react';
 import { Product, ProductImage } from '../../../../../../Backend/types/Product';
-import ViewGallery from '../../View Gallery/ViewGallery';
+// Note: We can remove ViewGallery from here if CardPage is now handling the gallery globally
 import './cardContainer.scss';
 
 interface CardContainerProps {
     product: Product;
+    onOpenGallery: (index: number) => void; // Added this to fix the CardPage error
 }
 
 const getImageOrientation = (imageUrl: string) => {
@@ -20,10 +19,10 @@ const getImageOrientation = (imageUrl: string) => {
     });
 };
 
-const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
+const CardContainer: React.FC<CardContainerProps> = ({ product, onOpenGallery }) => {
     const [mainImageLowRes, setMainImageLowRes] = useState<string>(product.image.lowResUrl);
     const [currentHighResUrl, setCurrentHighResUrl] = useState<string>(product.image.highResUrl);
-    const [showGallery, setShowGallery] = useState<boolean>(false);
+    const [currentCaption, setCurrentCaption] = useState<string | undefined>(product.image.caption);
     const [isLandscape, setIsLandscape] = useState<boolean>(false);
     const [opacity, setOpacity] = useState<number>(1);
 
@@ -31,6 +30,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
         if (product) {
             setMainImageLowRes(product.image.lowResUrl);
             setCurrentHighResUrl(product.image.highResUrl);
+            setCurrentCaption(product.image.caption);
             getImageOrientation(product.image.lowResUrl).then(setIsLandscape);
         }
     }, [product]);
@@ -40,46 +40,21 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
         setTimeout(() => {
             setMainImageLowRes(image.lowResUrl);
             setCurrentHighResUrl(image.highResUrl);
+            setCurrentCaption(image.caption);
             getImageOrientation(image.lowResUrl).then(setIsLandscape);
             setOpacity(1);
         }, 300);
     };
 
+    // Calculate the index for the global gallery based on current high-res URL
     const handleImageClick = () => {
-        setShowGallery(true);
+        const images = [product.image, ...product.thumbnails];
+        const index = images.findIndex(img => img.highResUrl === currentHighResUrl);
+        onOpenGallery(index >= 0 ? index : 0);
     };
-
-    const handleCloseGallery = () => {
-        setShowGallery(false);
-    };
-
-    // Constructing the images array for ViewGallery
-    const images = product
-        ? [
-            {
-                url: product.image.highResUrl,
-                lowResUrl: product.image.lowResUrl,
-                title: product.title,
-                date: product.date || ''
-            },
-            ...product.thumbnails.map((thumbnail) => ({
-                url: thumbnail.highResUrl,
-                lowResUrl: thumbnail.lowResUrl,
-                title: product.title,
-                date: product.date || '',
-            })),
-        ]
-        : [];
-
-    const currentImageIndex = product
-        ? images.findIndex(image => image.url === currentHighResUrl)
-        : 0;
 
     return (
         <div className={`cardContainer ${isLandscape ? 'landscape' : ''}`}>
-            
-            {/* The problematic <article className="card"> wrapper has been removed */}
-            
             <div className={`imageContainer ${isLandscape ? 'landscape' : 'portrait'}`}>
                 {product ? (
                     <img
@@ -94,22 +69,15 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
                 )}
             </div>
             
-            {/* Thumbnails are direct children of .cardContainer */}
             {product && (product.thumbnails.length > 0 || product.image) && (
                 <div className="thumbnails">
-                    {/* Main Image Thumbnail */}
                     <button
                         className="thumbnailContainer"
                         onClick={() => handleThumbnailClick(product.image)}
                         style={{ cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
                     >
-                        <img
-                            src={product.image.lowResUrl}
-                            alt={`${product.title} Main Image`}
-                            className="thumbnail"
-                        />
+                        <img src={product.image.lowResUrl} alt="Main" className="thumbnail" />
                     </button>
-                    {/* Additional Thumbnails */}
                     {product.thumbnails.map((thumbnail, index) => (
                         <button
                             key={index}
@@ -117,21 +85,14 @@ const CardContainer: React.FC<CardContainerProps> = ({ product }) => {
                             onClick={() => handleThumbnailClick(thumbnail)}
                             style={{ cursor: 'pointer', border: 'none', background: 'none', padding: 0 }}
                         >
-                            <img
-                                src={thumbnail.lowResUrl}
-                                alt={`${product.title} Thumbnail ${index + 1}`}
-                                className="thumbnail"
-                            />
+                            <img src={thumbnail.lowResUrl} alt={`Thumb ${index}`} className="thumbnail" />
                         </button>
                     ))}
                 </div>
             )}
-            {showGallery && product && (
-                <ViewGallery
-                    images={images}
-                    currentImageId={currentImageIndex}
-                    onClose={handleCloseGallery}
-                />
+
+            {currentCaption && (
+                <p className="imageCaption">{currentCaption}</p>
             )}
         </div>
     );

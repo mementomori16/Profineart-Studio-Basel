@@ -282,20 +282,31 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                     />
                 </div>
 
-                <div className="form-check mb-4">
-                    <input
-                        type="checkbox"
-                        id="termsAgreed"
-                        className="form-check-input"
-                        checked={termsAgreed}
-                        onChange={(e) => setTermsAgreed(e.target.checked)}
-                        required
-                        disabled={isLoading}
-                    />
-                    <label className="form-check-label" htmlFor="termsAgreed">
-                        {t('form.iAgreeTo')} <a href="/terms" target="_blank">{t('form.termsOfUse')}</a> <span className="text-danger">*</span>
-                    </label>
-                </div>
+               // Find this section near the bottom of your ContactDetailsForm.tsx
+
+<div className="form-check mb-4">
+    <input
+        type="checkbox"
+        id="termsAgreed"
+        className="form-check-input"
+        checked={termsAgreed}
+        onChange={(e) => setTermsAgreed(e.target.checked)}
+        required
+        disabled={isLoading}
+    />
+    <label className="form-check-label" htmlFor="termsAgreed">
+        {/* Updated href to match your router path "/terms-of-use" */}
+        {t('form.iAgreeTo')}{' '}
+        <a 
+            href="/terms-of-use" 
+            target="_blank" 
+            rel="noopener noreferrer"
+        >
+            {t('form.termsOfUse')}
+        </a> 
+        <span className="text-danger"> *</span>
+    </label>
+</div>
 
                 <div className="d-flex justify-content-between">
                     <button

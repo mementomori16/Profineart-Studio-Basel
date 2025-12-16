@@ -1,114 +1,94 @@
-// src/components/pages/Card/cardPage.scss
-
-@use "sass:color";
 @use '../../../../global.scss' as global;
 
 .cardPageContainer {
     display: flex;
     flex-direction: column;
-    padding: global.$space-lg global.$space-lg;
+    padding: global.$space-lg;
     align-items: center;
-    
-    .pageTitle {
-        width: 100%;
-        text-align: center;
-        margin: 0; 
-        padding: global.$space-md 0;
-        font-size: global.$font-size-h3; 
-        font-weight: global.$font-weight-bold;
-        color: global.$color-text-dark; 
+
+    /* Small mobile refinement */
+    @media (max-width: global.$breakpoint-sm) {
+        padding: global.$space-md;
     }
 
     .cardContentWrapper {
-        background-color: global.$color-card; 
+        background-color: global.$color-card;
         border-radius: global.$border-radius-lg;
         box-shadow: global.$shadow-lg;
-        overflow: hidden;
-        
-        display: flex;
-        flex-direction: column; 
-        align-items: center;
         width: 100%;
-        // Max width of the entire white/card container (XXL)
-        max-width: global.$breakpoint-xxl; 
-        padding: 0; 
-        
+        max-width: global.$breakpoint-xxl;
+        overflow: hidden;
+
         .cardHeader {
             width: 100%;
-            padding: global.$space-sm 0; 
-            border-top-left-radius: global.$border-radius-lg;
-            border-top-right-radius: global.$border-radius-lg;
+            padding: global.$space-md 0;
+            position: relative;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            /* Etched highlight line */
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background-color: rgba(255, 255, 255, 0.9);
+                pointer-events: none;
+            }
+
+            .pageTitle {
+                margin: 0;
+                font-size: global.$font-size-h2;
+                font-weight: global.$font-weight-bold;
+                color: global.$color-text-dark !important;
+
+                @media (max-width: global.$breakpoint-sm) {
+                    font-size: global.$font-size-h3;
+                }
+            }
         }
 
         .cardContentLayout {
-            width: 100%;
-            display: flex;
-            flex-direction: column; 
-            
-            // Default (Mobile/Tablet) padding
-            padding: global.$space-xl; 
-            
-            // Separator between main content and details frame
-            border-bottom: 2px solid global.$color-border-subtle;
-            margin-bottom: 0; 
-            
-            @media (min-width: global.$breakpoint-lg) {
-                flex-direction: row; 
-                align-items: flex-start;
-                // Large screen padding: Horizontal space-xxl, Vertical space-xl
-                padding: global.$space-xl global.$space-xxl; 
-            }
-        }
-        
-        .cardContainer {
-            width: 100%;
-            margin-bottom: global.$space-xl;
-            box-sizing: border-box;
-            padding: 0; 
             display: flex;
             flex-direction: column;
-            align-items: center;
+            padding: global.$space-xl;
+            gap: global.$space-xl;
+
+            /* Small mobile refinement */
+            @media (max-width: global.$breakpoint-sm) {
+                padding: global.$space-md;
+            }
 
             @media (min-width: global.$breakpoint-lg) {
-                width: 35%; 
-                margin-left: global.$space-xl; 
-                margin-bottom: 0;
-                order: 2; 
-                padding: 0;
+                flex-direction: row;
+                gap: global.$space-xxl;
+                padding: global.$space-xl global.$space-xxl;
+            }
+
+            .column-left {
+                width: 100%;
+                order: 2;
+
+                @media (min-width: global.$breakpoint-lg) {
+                    width: 65%;
+                    order: 1;
+                }
+            }
+
+            .column-right {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: global.$space-xxl;
+                order: 1;
+
+                @media (min-width: global.$breakpoint-lg) {
+                    width: 35%;
+                    order: 2;
+                }
             }
         }
-
-        .infoContainer {
-            width: 100%;
-            padding: 0; 
-            
-            @media (min-width: global.$breakpoint-lg) {
-                width: 65%; 
-                max-width: none; 
-                order: 1; 
-                padding: 0;
-            }
-        }
-    }
-    
-    // STYLES FOR PRODUCT DETAILS FRAME: Alignment control
-    .productDetailsFrame {
-        margin-top: 0; 
-        margin-bottom: global.$space-xxl; 
-        width: 100%;
-        
-        // Ensure this is not set here, as it's controlled internally by the component's SCSS
-        // max-width: global.$breakpoint-xxl; 
-        // padding-left/right: (controlled by component SCSS)
-    }
-
-
-    .similarProductsContainer,
-    .otherProductsContainer {
-        width: 100%;
-        max-width: global.$breakpoint-xl;
-        margin-top: global.$space-xxl;
     }
 }

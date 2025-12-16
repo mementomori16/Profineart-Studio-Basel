@@ -1,19 +1,19 @@
-// src/components/pages/Attributions/Legal-info.tsx
+// src/components/pages/TermsOfUse/TermsOfUse.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './legal-info.scss'; 
+import './termsOfUse.scss';
 
-const LegalInfo: React.FC = () => {
+const TermsOfUse: React.FC = () => {
   const { t } = useTranslation();
 
-  // Mapping the 11 sections defined for Privacy Policy
-  const sections = Array.from({ length: 11 }, (_, i) => i + 1);
+  // Array to map the 9 sections from translation.json
+  const sections = Array.from({ length: 9 }, (_, i) => i + 1);
 
   return (
     <div className="cardPageContainer">
       <div className="cardContentWrapper">
         <div className="cardHeader">
-          <h1 className="pageTitle">{t('legalPage.mainTitle')}</h1>
+          <h1 className="pageTitle">{t('termsPage.mainTitle')}</h1>
         </div>
 
         <div className="terms-body-content">
@@ -21,9 +21,9 @@ const LegalInfo: React.FC = () => {
             <div className="terms-section" key={num}>
               <p className="section-text">
                 <span className="section-number">{num}. </span>
-                <span className="section-title">{t(`legalPage.privacyPolicy.section${num}.title`)}</span>
+                <span className="section-title">{t(`termsPage.section${num}.title`)}</span>
                 <br />
-                {t(`legalPage.privacyPolicy.section${num}.text`)}
+                {t(`termsPage.section${num}.text`)}
               </p>
             </div>
           ))}
@@ -33,4 +33,4 @@ const LegalInfo: React.FC = () => {
   );
 };
 
-export default LegalInfo;
+export default TermsOfUse;

@@ -1,17 +1,14 @@
-// src/components/pages/Cart/basket.scss
-
 @use "sass:color";
 @use '../../../../global.scss' as global;
 
 .shopping-basket-page {
-    // Page container padding and centered layout
     padding: global.$space-lg 0;
-    max-width: global.$breakpoint-xxl; 
+    max-width: global.$breakpoint-xxl;
     margin: 0 auto;
 
     .text-center {
         text-align: center;
-        margin-bottom: global.$space-xl; 
+        margin-bottom: global.$space-xl;
         margin-top: 0;
         color: global.$color-text-dark;
         font-size: global.$font-size-h3;
@@ -25,18 +22,21 @@
     }
 
     .basket-frame {
-        width: 100%; 
-        max-width: global.$breakpoint-xxl; 
-        margin: 0 auto; 
+        width: 100%;
+        max-width: global.$breakpoint-xxl;
+        margin: 0 auto;
         background-color: global.$color-surface;
         border: 0.0625rem solid global.$color-border-subtle;
         border-radius: global.$border-radius-lg;
         box-shadow: global.$shadow-md;
-        padding: global.$space-xl; 
-        
+        padding: global.$space-xl;
+
         @media (max-width: global.$breakpoint-md) {
             padding: global.$space-lg;
-            width: 100%;
+        }
+
+        @media (max-width: global.$breakpoint-sm) {
+            padding: global.$space-md;
         }
     }
 
@@ -44,7 +44,6 @@
         display: flex;
         flex-direction: column;
         gap: global.$space-lg;
-        padding: 0; 
     }
 
     .basket-list {
@@ -53,6 +52,9 @@
         gap: global.$space-md;
     }
 
+    /* -------------------------------
+       BASKET ITEM CARD (RESPONSIVE)
+    -------------------------------- */
     .basket-item-card {
         display: flex;
         justify-content: space-between;
@@ -62,16 +64,23 @@
         border-radius: global.$border-radius-xl;
         box-shadow: global.$shadow-sm;
         border: 0.0625rem solid global.$color-border-subtle;
+        gap: global.$space-md;
+
+        @media (max-width: global.$breakpoint-md) {
+            flex-direction: column;
+            align-items: stretch;
+            text-align: center;
+        }
 
         .item-image-container,
         .item-details {
-            cursor: pointer; 
+            cursor: pointer;
             transition: opacity 0.2s;
         }
-        
+
         .item-image-container:hover,
         .item-details:hover {
-            opacity: 0.85; 
+            opacity: 0.85;
         }
 
         .item-image-container {
@@ -81,6 +90,12 @@
             overflow: hidden;
             border-radius: global.$border-radius-sm;
             flex-shrink: 0;
+
+            @media (max-width: global.$breakpoint-md) {
+                margin-right: 0;
+                margin-bottom: global.$space-sm;
+                align-self: center;
+            }
 
             .item-image {
                 width: 100%;
@@ -93,6 +108,10 @@
             flex-grow: 1;
             margin-right: global.$space-md;
 
+            @media (max-width: global.$breakpoint-md) {
+                margin-right: 0;
+            }
+
             h3 {
                 margin: 0 0 global.$space-xxs 0;
                 font-size: global.$font-size-h6;
@@ -103,7 +122,7 @@
             p {
                 margin: 0;
                 font-size: global.$font-size-sm;
-                color: global.$color-text-dark2; 
+                color: global.$color-text-dark2;
             }
         }
 
@@ -112,12 +131,25 @@
             gap: global.$space-sm;
             align-items: center;
 
+            @media (max-width: global.$breakpoint-md) {
+                justify-content: center;
+                width: 100%;
+            }
+
+            @media (max-width: global.$breakpoint-sm) {
+                flex-direction: column;
+                width: 100%;
+            }
+
             .btn-checkout {
-                // Uses the new smaller, Dark Gray Secondary CTA
-                @extend .btn-cta-secondary; 
+                @extend .btn-cta-secondary;
                 padding: global.$space-xs global.$space-lg;
                 border-radius: global.$border-radius-xl;
                 font-weight: global.$font-weight-medium;
+
+                @media (max-width: global.$breakpoint-sm) {
+                    width: 100%;
+                }
             }
 
             .btn-remove {
@@ -129,6 +161,11 @@
                 padding: global.$space-xs global.$space-md;
                 border-radius: global.$border-radius-xl;
                 font-weight: global.$font-weight-medium;
+
+                @media (max-width: global.$breakpoint-sm) {
+                    width: 100%;
+                    justify-content: center;
+                }
 
                 svg {
                     margin-right: 0.25rem;
@@ -143,6 +180,9 @@
         }
     }
 
+    /* -------------------------------
+       EMPTY BASKET
+    -------------------------------- */
     .basket-empty-message {
         text-align: center;
         padding: global.$space-xxl;
@@ -156,18 +196,26 @@
         }
 
         .btn-back-to-courses {
-            // Uses the new smaller, Deep Plum Primary CTA
             @extend .btn-cta-primary;
             margin-top: global.$space-lg;
         }
     }
 
+    /* -------------------------------
+       SUMMARY (RESPONSIVE)
+    -------------------------------- */
     .basket-summary {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: global.$space-md;
         border-top: 0.0625rem solid global.$color-border-subtle;
+
+        @media (max-width: global.$breakpoint-sm) {
+            flex-direction: column;
+            gap: global.$space-sm;
+            text-align: center;
+        }
 
         p {
             font-size: global.$font-size-md;
@@ -197,3 +245,4 @@
         }
     }
 }
+

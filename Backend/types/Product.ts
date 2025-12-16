@@ -71,6 +71,7 @@ export interface Product {
     medium?: string;
     description: string | string[];
     briefDescription: string;
+    badge?: string; 
     image: ProductImage;
     thumbnails: ProductImage[];
     detailsTitle?: string; 

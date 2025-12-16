@@ -1,0 +1,85 @@
+@use '../../../global.scss' as global;
+
+.productDetailsFrame {
+    width: 100%;
+    max-width: global.$breakpoint-xxl;
+    margin: 0 auto;
+    padding: global.$space-lg global.$space-xl;
+    padding-top: 0;
+
+    .detailsTitle {
+        font-size: global.$font-size-h3; // Unified main title size
+        font-weight: global.$font-weight-bold;
+        color: global.$color-text-dark2; // Unified color
+        margin-top: global.$space-lg;
+        margin-bottom: global.$space-xl;
+        text-align: center;
+    }
+
+    .detailsContentLayout {
+        display: flex;
+        flex-direction: column;
+        gap: global.$space-xl;
+
+        @media (min-width: global.$breakpoint-lg) {
+            flex-direction: row;
+            gap: global.$space-xxl;
+        }
+    }
+
+    .detailsText {
+        line-height: 1.7; // Legal-style line height
+        width: 100%;
+
+        @media (min-width: global.$breakpoint-lg) {
+            width: 65%;
+        }
+
+        p {
+            margin-bottom: global.$space-md;
+            color: global.$color-text-dark2;
+        }
+
+        h2 {
+            font-size: global.$font-size-h4; // Unified subtitle size
+            font-weight: global.$font-weight-bold;
+            color: global.$color-text-dark2; 
+            margin-top: global.$space-lg;
+            margin-bottom: global.$space-sm;
+        }
+
+        // Smaller accent titles
+        h5 {
+            color: global.$color-text-dark3;
+            font-size: global.$font-size-base;
+            font-weight: global.$font-weight-semibold;
+            margin-top: global.$space-md;
+        }
+    }
+
+    .detailsImageGallery {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: global.$space-lg;
+
+        @media (min-width: global.$breakpoint-lg) {
+            width: 35%;
+        }
+
+        .detailImage {
+            width: 100%;
+            height: auto;
+            border-radius: global.$border-radius-sm;
+            object-fit: contain;
+            background-color: global.$color-surface; // Clean background for art
+        }
+
+        .imageCaption {
+            font-size: global.$font-size-xs;
+            color: global.$color-text-light;
+            text-align: center;
+            margin-top: global.$space-xs;
+        }
+    }
+}

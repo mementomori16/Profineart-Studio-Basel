@@ -5,41 +5,45 @@
   "about": "About",
   "contact": "Contact",
   "cv": "CV",
+
   "homePage": {
-        "aboutTeaserTitle": "About",
-        "aboutTeaserDescription": "Your digital presence deserves more than a template. Hieroglyph Code is your all-in-one partner for custom web and mobile development, from concept to completion and beyond.<h5>Driven by Expertise</h5>Led by Ilya Medvedev, a Certified Full-Stack Developer based in Basel, Switzerland, Hieroglyph Code is passionate about transforming complex ideas into elegant, user-friendly software. By combining technical precision with creative vision, the firm delivers custom solutions that truly elevate your digital presence.<h5>A Focus on Key Services</h5><ul><li><strong>Full-Stack Development:</strong> Powerful full-stack applications that are responsive and fast.</li><li><strong>Specialized Features:</strong> Services include building APIs, robust e-commerce platforms, secure login systems, and seamless payment integrations.</li><li><strong>Maintenance & Support:</strong> Reliable ongoing maintenance and updates to ensure your digital tools always run smoothly.</li></ul>",
-        "learnMoreButton": "Click For More"
-    },
-      "carousel": {
-        "globalTitlePrimary": "Hieroglyph Code",
-        "globalTitleSecondary": "Digitale Exzellenz gestalten",
-        "globalDescription": "Wir verwandeln Ihre Vision in robuste, intuitive und visuell beeindruckende Softwarelösungen.",
-        "learnMoreButton": "Mehr über diesen Service erfahren"
-    },
-    "coursesPage": {
-    "title": "Courses",
-    "viewButton": "Learn More"
+    "aboutTeaserTitle": "About",
+    "aboutTeaserDescription": "Your digital presence deserves more than a template. Hieroglyph Code is your all-in-one partner for custom web and mobile development, from concept to completion and beyond.<h5>Driven by Expertise</h5>Led by Ilya Medvedev, a Certified Full-Stack Developer based in Basel, Switzerland, Hieroglyph Code is passionate about transforming complex ideas into elegant, user-friendly software. By combining technical precision with creative vision, the firm delivers custom solutions that truly elevate your digital presence.<h5>A Focus on Key Services</h5><ul><li><strong>Full-Stack Development:</strong> Powerful full-stack applications that are responsive and fast.</li><li><strong>Specialized Features:</strong> Services include building APIs, robust e-commerce platforms, secure login systems, and seamless payment integrations.</li><li><strong>Maintenance & Support:</strong> Reliable ongoing maintenance and updates to ensure your digital tools always run smoothly.</li></ul>",
+    "learnMoreButton": "Click For More"
   },
+
+  "carousel": {
+    "globalTitlePrimary": "Hieroglyph Code",
+    "globalTitleSecondary": "Digitale Exzellenz gestalten",
+    "globalDescription": "Wir verwandeln Ihre Vision in robuste, intuitive und visuell beeindruckende Softwarelösungen.",
+    "learnMoreButton": "Mehr über diesen Service erfahren"
+  },
+
+  "coursesPage": {
+    "title": "Courses",
+    "viewButton": "Learn More",
+    "popular": "Popular"
+  },
+
   "projectsPage": {
     "title": "Projects",
     "viewButton": "View Details"
   },
+
   "servicesPage": {
     "title": "Software Services",
     "viewButton": "View Details"
   },
+
   "cardPage": {
     "productNotFound": "Product not found",
     "technologiesUsed": "Technologies Used:",
     "siteLink": "Site Link:",
-    "mediumForPrivateLessonsCheck": "Course", 
-    "mediumType": "Course",            
+    "mediumForPrivateLessonsCheck": "Course",
+    "mediumType": "Course",
     "mediumType_privateLessons": "Individual Sessions"
   },
 
-
-
- 
   "common": {
     "loading": "Loading...",
     "loadingSlots": "Checking schedule...",
@@ -52,11 +56,13 @@
     "lesson": "Lesson",
     "bestValue": "BEST VALUE",
     "unknown": "Unknown",
-    "remove": "Remove"         
+    "remove": "Remove"
   },
+
   "checkout": {
     "bookNowButton": "Book Now",
-    "addToCartButton": "Add to Cart",
+    "addToCartButton": "Add to Basket",
+    "alreadyInBasket": "In Your Basket",
     "mainTitle": "Complete Your Booking",
     "step1Title": "Select Date & Time",
     "step2Title": "Contact & Payment Details",
@@ -89,70 +95,90 @@
     "personalDetails": "Personal Details",
     "addressDetails": "Address Details",
     "addressInstruction": "The teacher can drive to your address if it is within a 25 km radius of Basel City. This includes Basel-Land, northern Aargau, and the border towns of Germany and France. Please check your address below.",
-    "toOrder": "Add to Basket", 
-    "checkoutButtonText": "Checkout" 
+    "toOrder": "Add to Basket",
+    "checkoutButtonText": "Checkout"
   },
-    "schedule": {
-        "selectPackage": "Select Package Type",
-        "selectDate": "Select Date",
-        "selectTime": "Select Time"
-    },
-    "form": {
-        "name": "Full Name",
-        "email": "Email Address",
-        "phone": "Phone Number (Optional)",
-        "message": "Message / Special Request (Optional)",
-        "date": "Date",
-        "timeSlots": "Available Time Slots",
-        "dateOfBirth": "Date of Birth",
-        "dobPlaceholder": "DD/MM/YYYY",
-        "streetAndNumber": "Street and Number",
-        "apartmentAndFloor": "Apartment / Floor (Optional)",
-        "index": "Postal Code (Index)",
-        "city": "City",
-        "country": "Country",
-        "iAgreeTo": "I agree to the",
-        "termsOfUse": "Terms of Use"
-    },
-    "packages": {
-        "basic": { "label": "1-Hour Session" },
-        "premium": { "label": "1.5-Hour Extended Session" }
-    },
-    "error": {
-        "productNotFound": "Error: Product not found.",
-        "failedToFetchSchedule": "Could not load the schedule. Please try again.",
-        "invalidRequest": "Invalid request. Please select a package and date.",
-        "completeAllSteps": "Please select a date, time slot, and validate your address."
-    },
-    "validation": {
-        "nameEmailRequired": "Name and Email are required fields.",
-        "slotRequired": "Please select a date and time slot.",
-        "requiredFields": "Name, Email, and all main Address fields (Street, Postal Code, City, Country) are required.",
-        "dobRequired": "Date of Birth is required.",
-        "termsRequired": "You must agree to the Terms of Use."
-    },
 
-    "cart": {
+  "schedule": {
+    "selectPackage": "Select Package Type",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time"
+  },
+
+  "form": {
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number (Optional)",
+    "message": "Message / Special Request (Optional)",
+    "date": "Date",
+    "timeSlots": "Available Time Slots",
+    "dateOfBirth": "Date of Birth",
+    "dobPlaceholder": "DD/MM/YYYY",
+    "streetAndNumber": "Street and Number",
+    "apartmentAndFloor": "Apartment / Floor (Optional)",
+    "index": "Postal Code (Index)",
+    "city": "City",
+    "country": "Country",
+    "iAgreeTo": "I agree to the",
+    "termsOfUse": "Terms of Use"
+  },
+
+  "packages": {
+    "basic": { "label": "1-Hour Session" },
+    "premium": { "label": "1.5-Hour Extended Session" }
+  },
+
+  "error": {
+    "productNotFound": "Error: Product not found.",
+    "failedToFetchSchedule": "Could not load the schedule. Please try again.",
+    "invalidRequest": "Invalid request. Please select a package and date.",
+    "completeAllSteps": "Please select a date, time slot, and validate your address."
+  },
+
+  "validation": {
+    "nameEmailRequired": "Name and Email are required fields.",
+    "slotRequired": "Please select a date and time slot.",
+    "requiredFields": "Name, Email, and all main Address fields (Street, Postal Code, City, Country) are required.",
+    "dobRequired": "Date of Birth is required.",
+    "termsRequired": "You must agree to the Terms of Use."
+  },
+
+  "cart": {
     "mainTitle": "Your Basket",
     "emptyMessage": "Your basket is empty.",
     "backToCourses": "Back to Courses",
     "itemsCount": "You have {{count}} item(s) in your basket.",
     "clearAll": "Clear Basket",
     "itemDescriptionShort": "This is a brief description of your selected item."
-},
+  },
 
-  "products": {
-    "800": {
-        "title": "Byzantine Icon Painting Individual Sessions",
-        "description": "This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.<h5>Key Techniques & Focus Areas</h5><ul><li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li><li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li><li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li><li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using \"medieval cubism\" principles.</li></ul>",
-        "briefDescription": "Exclusive, focused instruction in Byzantine Icon Painting for all skill levels. Master Egg Tempera, 24-Carat Gold Leaf, and historical techniques from various schools with Ilya Medvedev.",
-        
-        "detailsSection": {
-            "title": "In-Depth Course Curriculum", 
-            "text": "<p>This comprehensive individual course is divided into three major modules, ensuring a holistic understanding and mastery of the Byzantine tradition from start to finish. Each module is intensely practical, utilizing techniques passed down from the Old Masters.</p><h3>Module 1: Foundations and Materials (The Board)</h3><p>This module focuses entirely on the preparation phase, which is vital for the longevity and spiritual depth of the finished icon. We cover traditional wood selection, the application of Gesso (Levkas), and the secrets to achieving a perfectly smooth, porous base ready to receive pigment.</p><ul><li>Wood Panel Selection and Shaping.</li><li>Traditional Rabbit Skin Glue preparation.</li><li>Application of 8-10 layers of Levkas (Gesso).</li><li>Advanced sanding and polishing techniques.</li></ul><h3>Module 2: Gilding and Drawing (The Light)</h3><p>Learn the sacred art of applying <strong>24-carat gold leaf</strong> using the traditional Bole technique. Mastery of gilding is essential as the gold represents Divine Light.</p><ul><li>Preparing the Poliment (Bole) in red and yellow hues.</li><li>Application of genuine 24-carat gold leaf (water gilding).</li><li>Burnishing techniques for a mirror finish.</li><li>Detailed underdrawing (Grafia) on the gold and Gesso surface.</li></ul><h3>Module 3: Painting and Glazing (The Form)</h3><p>The core painting module, where you will use raw pigments ground in **egg tempera** emulsion. The focus is on achieving volume and luminosity through a structured layering system, adhering strictly to classical iconographic principles.</p><ul><li>Mixing and grinding historical pigments (e.g., Cinnabar, Azurite).</li><li>The Glazing Technique: applying multiple transparent layers (proplasma, dark and light sinkiry).</li><li>Mastering the 'Liki' (Face) through \"medieval cubism\" and structured light.</li><li>Final varnishing and protective steps.</li></ul>"
-        }
+"products": {
+  "800": {
+   "title": "Byzantine Iconography",
+    "briefDescription": "Unlock the ancient secrets of sacred painting through exclusive, live individual sessions with a focus on historical techniques and mastery of Egg Tempera.",
+    "description": "<h3>The Program Focus</h3><p>This unique program offers exclusive individual sessions in person, dedicated to mastering the technical skills, historical, and spiritual depth of Byzantine iconography.</p><h3>Questions You Will Answer</h3><h5>Secrets of the Masters</h5><p>What are the secrets known only to professional icon painters and experienced restorers? We explore the composition of iconography and how the shimmering, vibrant colors are created.</p><h5>Flawless Glazing Technique</h5><p>How is the complex technique of Egg Tempera Glazing flawlessly executed?</p><h5>Mastery of Line and Form</h5><p>How to create perfect lines with a single brush stroke and draw an ideal circle with a brush? How is the volume of drapery and the mass of folds created in the clothing of iconographic figures?</p><h5>The Art of Faces and Gilding</h5><p>How are the faces of the saints painted so they appear to come alive in dim light and by candlelight? How to cover the icon with genuine gold leaf, and how to create fine folds and patterns with gold?</p>",
+    "badge": "Historical & Traditional",
+    "detailsSection": {
+      "title": "In-Depth Program Content and Technical Mastery",
+      "text": "<h2>What You Will Master</h2><h5>Iconographic Drawing and Form</h5><p>You will thoroughly study iconographic drawing principles, including portraits, landscape, architecture, and animals, within the Byzantine tradition. You will master the principles of iconographic cubism and symbolism of form.</p><h5>Painting Techniques and Materials</h5><p>You will master multi-layer glazing and underpainting techniques. You will thoroughly study pigments, water-based paints, and Egg Tempera. You will master the correct technique for working with brushes and the maulstick.</p><h5>Schools and Traditions</h5><p>You will explore various iconographic traditions: Proto-Byzantine technique, Fayum portraits, and Roman drawing. This includes the Cretan, Russian, Macedonian, Roman, and Coptic schools.</p><h3>Artistic and Philosophical Heritage</h3><p>The iconography course is a deep immersion into ancient art and the techniques of old masters, offering a powerful foundation for any artist. Iconography is an art where every element such as color, gesture, and pose is a symbol conveying metaphysical meaning. You will learn to read and create this complex visual language, developing the ability for conceptual and narrative painting. Mastering iconographic drawing, symbolism, egg tempera glazing, and gilding provides a durable, high-quality technical base for creating works in both traditional and unique modern contexts. These skills are in demand in restoration, museums, and in the international segment of elite art, including teaching and creating original icons.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons and can repeat the purchase as needed. Note that all necessary materials and equipment are not included in the session cost. The student purchases them independently following the instruction of the teacher. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France. Cost and duration are the same for all private programs.</p>"
     }
-},
+  },
+
+     "801": {
+      "badge": "Oil Techniques",
+      "title": "Oil Painting Study",
+      "briefDescription": "Exclusive, focused instruction in Byzantine Icon Painting for all skill levels. Master Egg Tempera, 24-Carat Gold Leaf, and historical techniques from various schools with Ilya Medvedev.",
+      "description": "This highly professional program offers exclusive, focused instruction with Ilya Medvedev. The curriculum is tailored to fit all skill levels, from beginners wishing to learn the fundamentals to highly advanced professional painters seeking specialized historical techniques.<h5>Key Techniques & Focus Areas</h5><ul><li><strong>Technical Mastery:</strong> Learn the professional secrets of Egg Tempera Glazing, Old Master techniques, and achieving luminous color.</li><li><strong>24-Carat Gold Leaf:</strong> Comprehensive training in applying and drawing with gold leaf (Gilding Mastery).</li><li><strong>Historical Schools:</strong> In-depth study of the Cretan, Macedonian, Russian, and Coptic traditions.</li><li><strong>Advanced Form:</strong> Mastering volume, drapery, and the spiritual representation of icon faces (Liki) using \"medieval cubism\" principles.</li></ul>",
+  
+      "detailsSection": {
+        "title": "In-Depth Course Curriculum",
+        "text": "<p>This comprehensive individual course is divided into three major modules, ensuring a holistic understanding and mastery of the Byzantine tradition from start to finish. Each module is intensely practical, utilizing techniques passed down from the Old Masters.</p><h3>Module 1: Foundations and Materials (The Board)</h3><p>This module focuses entirely on the preparation phase, which is vital for the longevity and spiritual depth of the finished icon. We cover traditional wood selection, the application of Gesso (Levkas), and the secrets to achieving a perfectly smooth, porous base ready to receive pigment.</p><ul><li>Wood Panel Selection and Shaping.</li><li>Traditional Rabbit Skin Glue preparation.</li><li>Application of 8-10 layers of Levkas (Gesso).</li><li>Advanced sanding and polishing techniques.</li></ul><h3>Module 2: Gilding and Drawing (The Light)</h3><p>Learn the sacred art of applying <strong>24-carat gold leaf</strong> using the traditional Bole technique. Mastery of gilding is essential as the gold represents Divine Light.</p><ul><li>Preparing the Poliment (Bole) in red and yellow hues.</li><li>Application of genuine 24-carat gold leaf (water gilding).</li><li>Burnishing techniques for a mirror finish.</li><li>Detailed underdrawing (Grafia) on the gold and Gesso surface.</li></ul><h3>Module 3: Painting and Glazing (The Form)</h3><p>The core painting module, where you will use raw pigments ground in <strong>egg tempera</strong> emulsion. The focus is on achieving volume and luminosity through a structured layering system, adhering strictly to classical iconographic principles.</p><ul><li>Mixing and grinding historical pigments (e.g., Cinnabar, Azurite).</li><li>The Glazing Technique: applying multiple transparent layers (proplasma, dark and light sinkiry).</li><li>Mastering the 'Liki' (Face) through \"medieval cubism\" and structured light.</li><li>Final varnishing and protective steps.</li></ul>"
+
+     }
+    }
+  },
+
+
 
     "200": {
       "title": "Web Application & E-commerce Development",
@@ -295,51 +321,93 @@
     "privacyError": "Please accept the privacy policy to send your message."
   },
 
-  "legalPage": {
-    "mainTitle": "Privacy Policy & Legal",
-    "attributions": {
-      "title": "Attributions",
-      "textPrefix": "The illustrations on this website are by",
-      "textSuffix": "."
+"legalPage": {
+  "mainTitle": "Privacy Policy & Legal",
+  "privacyPolicy": {
+    "section1": { 
+      "title": "Introduction", 
+      "text": "The protection of personal data is a primary concern. Data processing is conducted exclusively within the framework of applicable legal requirements, specifically the Swiss Federal Act on Data Protection (FADP) and the General Data Protection Regulation (GDPR)." 
     },
-     "privacyPolicy": {
-      "title": "Privacy Policy",
-      "section1": {
-        "title": "Introduction",
-        "text": "The protection of your personal data is an important concern for us. In this privacy policy, we inform you about which personal data we collect, what we use it for, and what rights you have. In doing so, we adhere to the provisions of the Swiss Data Protection Act (revDSG) and, where applicable, the European General Data Protection Regulation (GDPR)."
-      },
-      "section2": {
-        "title": "Responsible Party",
-        "text": "The operator of this website is responsible for data processing on this website. If you have any questions about data protection, you can reach us via the contact form on this website."
-      },
-      "section3": {
-        "title": "Type and Scope of Data Processing",
-        "text": "a) Data that you provide to us\n\nWe process personal data that you voluntarily submit to us, especially when you use our contact form. This generally includes: name (optional), email address, and the content of your message. This data is processed exclusively to answer your inquiries and for further communication with you.\n\nb) Data that is collected automatically\n\nWhen you visit our website, our servers automatically collect technical data. This includes: the IP address of your device, date and time of access, name of the accessed page, operating system and browser type, and the referral URL. This data is used to ensure the security of our website, for error analysis, and for the statistical optimization of our services."
-      },
-      "section4": {
-        "title": "Purpose of Data Processing",
-        "text": "We process your data for the following purposes: to process your inquiries and to communicate with you; to provide and ensure the functionality and security of our website and our software solutions; and for the statistical analysis of website usage to optimize our services."
-      },
-      "section5": {
-        "title": "Legal Basis for Data Processing",
-        "text": "The processing of your data is based on the following legal grounds: your consent (e.g., by submitting the contact form); and our legitimate interest in data processing (e.g., to improve our services)."
-      },
-      "section6": {
-        "title": "Data Disclosure to Third Parties and Data Processing Abroad",
-        "text": "We only disclose your data to third parties if this is necessary for the provision of our services (e.g., hosting providers) or if there is a legal obligation. Our website is hosted via Firebase Hosting, with servers located in Zurich (europe-west6). The data processed there therefore remains within Switzerland. For the statistical analysis of website usage, we use Google Analytics. The data collected in this process is also processed within the EU. We ensure that these providers are contractually obligated to guarantee an adequate level of data protection."
-      },
-      "section7": {
-        "title": "Cookies and Similar Technologies",
-        "text": "We do not currently use cookies on our website. However, we reserve the right to use cookies and similar technologies in the future to facilitate usage and improve functionality. In this case, you will be informed accordingly."
-      },
-      "section8": {
-        "title": "Your Rights as a Data Subject",
-        "text": "Under the revDSG, you have the following rights: right to information, right to rectification, right to erasure, right to object, and right to withdraw consent. To exercise your rights, please contact via email: contact@hieroglyphcode.ch, or by the contact form on the contact page."
-      },
-      "section9": {
-        "title": "Changes to this Privacy Policy",
-        "text": "We reserve the right to change this privacy policy at any time. The current version will be published on this page."
-      }
+    "section2": { 
+      "title": "Responsible Party", 
+      "text": "Responsibility for data processing lies with the operator of this application. Inquiries regarding data protection may be submitted via the contact form located on the contact page." 
+    },
+    "section3": { 
+      "title": "Intellectual Property and Copyright", 
+      "text": "All images of paintings, drawings, and artistic content are original works by Ilya Medvedev. Unauthorized use, reproduction, distribution, or modification of these images is strictly prohibited under any conditions. All photographs within the application are the exclusive property of the operator." 
+    },
+    "section4": { 
+      "title": "Scope of Data Processing", 
+      "text": "Data processing includes information voluntarily submitted (such as name, email address, physical address, and date of birth) and technical data (IP address, device type) collected automatically for security and optimization purposes." 
+    },
+    "section5": { 
+      "title": "Payments (Stripe & Google Pay)", 
+      "text": "Order processing is managed via Stripe. This includes Credit Cards and Digital Wallets such as Google Pay. No sensitive payment or credit card data is stored on the application servers." 
+    },
+    "section6": { 
+      "title": "Hosting and Data Location", 
+      "text": "The application is hosted via Firebase (Google Cloud). Servers are located in Zurich, Switzerland (region: europe-west6), ensuring that data remains within Swiss jurisdiction." 
+    },
+    "section7": { 
+      "title": "Cookies", 
+      "text": "Strictly necessary session cookies are utilized to enable booking functionality and form submissions. Marketing or third-party tracking cookies are not employed." 
+    },
+    "section8": { 
+      "title": "Data Disclosure", 
+      "text": "Data is disclosed to third parties only when necessary for service fulfillment (e.g., Payroll Plus AG for billing purposes) or when required by legal obligation." 
+    },
+    "section9": { 
+      "title": "Subject Rights", 
+      "text": "Under the FADP, rights exist regarding information, rectification, erasure, and data portability. To exercise these rights, communication should be directed through the contact form." 
+    },
+    "section10": { 
+      "title": "Data Security", 
+      "text": "SSL/TLS encryption is implemented to protect the transmission of confidential content and personal inquiries." 
+    },
+    "section11": { 
+      "title": "Changes", 
+      "text": "The right to update this privacy policy is reserved. The most current version is maintained on this page." 
+    }
+  }
+},
+
+  "termsPage": {
+    "mainTitle": "Terms of Use",
+    "section1": {
+      "title": "Scope of Service",
+      "text": "Profineart Studio Basel, represented by Ilya Medvedev, provides private art instruction. Services are provided on a freelance basis via Payroll Plus AG."
+    },
+    "section2": {
+      "title": "Geographic Limitations",
+      "text": "Standard service area includes Basel and locations within a 25km radius. Locations outside this radius require prior confirmation."
+    },
+    "section3": {
+      "title": "Booking and Scheduling",
+      "text": "Initial sessions are booked via the online calendar. Subsequent package lessons are scheduled directly with the instructor."
+    },
+    "section4": {
+      "title": "Pricing and Payment",
+      "text": "All prices are in CHF and include travel within the 25km radius. Payment is due at the time of booking."
+    },
+    "section5": {
+      "title": "Cancellation Policy",
+      "text": "Cancellations must be made 48 hours in advance. Late cancellations incur a 50 CHF fee, except in cases of medical emergency."
+    },
+    "section6": {
+      "title": "Refund Policy",
+      "text": "Single lessons are non-refundable. For packages of 5 or 10, a refund of remaining units is possible if the client is dissatisfied after the first lesson."
+    },
+    "section7": {
+      "title": "Student Responsibility",
+      "text": "Progress depends on student engagement and completion of assignments. The instructor is not liable for property damage at the lesson location."
+    },
+    "section8": {
+      "title": "Communication",
+      "text": "Primary communication is via email. Phone contact is provided only after a confirmed booking."
+    },
+    "section9": {
+      "title": "Governing Law",
+      "text": "This agreement is governed by the laws of Switzerland. The place of jurisdiction is Basel."
     }
   },
    
@@ -465,7 +533,7 @@
     
     "education": {
       "fullStack": { 
-        "title": "Open University: INT college – Institute of Innovation & Technology", 
+        "title": "Open University: INT college - Institute of Innovation & Technology", 
         "date": "Apr 2023 — Jul 2024", 
         "degree": "Full Stack Developer",
         "url": "https://www.linkedin.com/school/int-college-institute-of-technology-innovation/posts/?feedView=all" 

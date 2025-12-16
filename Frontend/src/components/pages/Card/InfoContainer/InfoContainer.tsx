@@ -1,108 +1,97 @@
-// src/components/pages/Card/InfoContainer/InfoContainer.tsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../../context/CartContext/CartContext';
 import { Product } from '../../../../../../Backend/types/Product';
-
 import './infoContainer.scss';
 
 type Props = {
     product: Product;
+    isTextOnly: boolean;
+    onOpenGallery?: (index: number) => void;
 };
 
-const InfoContainer: React.FC<Props> = ({ product }) => {
+const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const { addItemToCart, isProductInCart } = useCart();
 
-    const translatedDescription = t(`products.${product.id}.description`);
+    const detailsTextKey = `products.${product.id}.detailsSection.text`;
+    const detailsText = t(detailsTextKey);
+    const isDetailsTextMissing = detailsText === detailsTextKey;
+
     const itemInCart = isProductInCart(product.id);
+    const isBookable = product.medium === t('cardPage.mediumForPrivateLessonsCheck');
 
-    // ... (renderDescription logic remains unchanged) ...
-    const renderDescription = () => {
-        if (Array.isArray(product.description)) {
-            return (
-                <div className="description">
-                    {product.description.map((_paragraph, index) => (
-                        <p
-                            key={index}
-                            dangerouslySetInnerHTML={{
-                                __html: t(`products.${product.id}.description[${index}]`),
-                            }}
-                        />
-                    ))}
-                </div>
-            );
-        }
-        return <div className="description" dangerouslySetInnerHTML={{ __html: translatedDescription }} />;
-    };
+    // Reusable Booking Buttons
+    const BookingButtons = isBookable ? (
+        <div className="booking-action-container">
+            <button 
+                className={`btn-add-to-cart ${itemInCart ? 'in-cart' : ''}`}
+                onClick={() => { if(!itemInCart) addItemToCart(product); navigate('/basket'); }}
+            >
+                {itemInCart ? t('checkout.alreadyInBasket') : t('checkout.addToCartButton')}
+            </button>
+            <button className="btn-book-now" onClick={() => navigate(`/order/${product.id}`)}>
+                {t('checkout.bookNowButton')}
+            </button>
+        </div>
+    ) : null;
 
-
-    // --- RENDER MEDIUM LOGIC (Updated path to cardPage) ---
-    const renderMedium = () => {
-        if (!product.medium) return null;
-
-        // ✅ UPDATED PATH: Get the value for the comparison from cardPage
-        const mediumToChange = t('cardPage.mediumForPrivateLessonsCheck', { defaultValue: 'Course' });
-
-        // Use the dynamic value for the comparison
-        const context = product.medium === mediumToChange ? 'privateLessons' : 'default';
-
+    const renderImg = (index: number, isMobile: boolean) => {
+        const image = product.detailsImages?.[index];
+        if (!image) return null;
         return (
-            <p className="medium">
-                {/* ✅ UPDATED PATH: Use cardPage.mediumType with context */}
-                {t('cardPage.mediumType', { context: context, defaultValue: product.medium })}
-            </p>
+            <button 
+                key={index} 
+                className={`detailImageWrapper ${isMobile ? 'mobile-only-img' : ''}`} 
+                onClick={() => onOpenGallery?.(index)}
+            >
+                <img src={image.lowResUrl} alt="" className="detailImage" />
+                {image.caption && <p className="imageCaption">{image.caption}</p>}
+            </button>
         );
     };
-    // --- END RENDER MEDIUM LOGIC ---
 
-    // --- BUTTONS LOGIC ---
-    
-    // ✅ UPDATED PATH: Check if product.medium matches the value defined in cardPage
-    const isBookableMedium = product.medium === t('cardPage.mediumForPrivateLessonsCheck', { defaultValue: 'Course' });
+    if (isTextOnly) {
+        return (
+            <div className="infoContainer-text">
+                {/* PLACED HERE: Directly under CardContainer on mobile */}
+                <div className="mobile-buttons-wrapper">
+                    {BookingButtons}
+                </div>
 
-    const handleBookNow = () => {
-        navigate(`/order/${product.id}`);
-    };
+                {product.date && <p className="infodate">{product.date}</p>}
+                <div className="description" dangerouslySetInnerHTML={{ __html: t(`products.${product.id}.description`) }} />
 
-    const handleAddToCartAndGoToBasket = () => {
-        if (!itemInCart) {
-            addItemToCart(product);
-        }
-        navigate('/basket');
-    };
-    
-    const getCartButtonTextKey = () => {
-        return itemInCart ? 'checkout.toOrder' : 'checkout.addToCartButton';
-    };
+                {!isDetailsTextMissing && (
+                    <div className="detailsSection-wrapper">
+                        {renderImg(0, true)}
+                        
+                        <h2 className="detailsTitle">
+                            {product.detailsTitle || t(`products.${product.id}.detailsSection.title`)}
+                        </h2>
+
+                        <div className="detailsText">
+                            {detailsText.split('<h3>').map((chunk, i) => (
+                                <React.Fragment key={i}>
+                                    {i > 0 && renderImg(i, true)}
+                                    <div dangerouslySetInnerHTML={{ __html: i === 0 ? chunk : '<h3>' + chunk }} />
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        );
+    }
 
     return (
-        <div className="infoContainer">
-            {isBookableMedium && (
-                <div className="booking-action-container center-buttons">
-                    <button
-                        className={`btn-add-to-cart ${itemInCart ? 'in-cart' : ''}`}
-                        onClick={handleAddToCartAndGoToBasket}
-                    >
-                        {t(getCartButtonTextKey())}
-                    </button>
-
-                    <button 
-                        className="btn-book-now" 
-                        onClick={handleBookNow}
-                    >
-                        {t('checkout.bookNowButton')}
-                    </button>
-                </div>
-            )}
-
-            {renderMedium()} 
-            
-            {product.date && <p className="infodate">{product.date}</p>}
-
-            {renderDescription()}
+        <div className="infoContainer-visual">
+            {BookingButtons}
+            <div className="detailsImageGallery">
+                {product.detailsImages?.map((_, index) => renderImg(index, false))}
+            </div>
         </div>
     );
 };
