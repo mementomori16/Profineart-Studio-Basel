@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+// IMPORTANT: Ensure this path is correct for your project structure
 import { courses } from '../../../../../Backend/data/products'; 
 import './courses.scss';
 
@@ -17,7 +18,7 @@ const Courses: React.FC = () => {
                     .map((product) => (
                         <div key={product.id} className="serviceItem">
 
-                            {/* Badge per product */}
+                            {/* Badge per product: Condition remains valid because we kept a placeholder value */}
                             {product.badge && (
                                 <div className="badge">
                                     {t(`products.${product.id}.badge`)}
@@ -36,12 +37,11 @@ const Courses: React.FC = () => {
 
                             <h2 className="title">{t(`products.${product.id}.title`)}</h2>
 
-                            {/* Brief description */}
-                            {product.briefDescription && (
-                                <p className="subtitle">
-                                    {t(`products.${product.id}.briefDescription`)}
-                                </p>
-                            )}
+                            {/* Brief description: REMOVED the product.briefDescription condition. 
+                                It now relies solely on the i18n key. */}
+                            <p className="subtitle">
+                                {t(`products.${product.id}.briefDescription`)}
+                            </p>
 
                             <Link to={`/card/${product.id}`}>
                                 <button className="viewButton">

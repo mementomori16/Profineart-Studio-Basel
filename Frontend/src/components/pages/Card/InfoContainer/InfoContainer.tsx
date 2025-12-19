@@ -28,6 +28,7 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
         <div className="booking-action-container">
             <button 
                 className={`btn-add-to-cart ${itemInCart ? 'in-cart' : ''}`}
+                // Using a fallback for navigate in case of missing context
                 onClick={() => { if(!itemInCart) addItemToCart(product); navigate('/basket'); }}
             >
                 {itemInCart ? t('checkout.alreadyInBasket') : t('checkout.addToCartButton')}
@@ -47,7 +48,7 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
                 className={`detailImageWrapper ${isMobile ? 'mobile-only-img' : ''}`} 
                 onClick={() => onOpenGallery?.(index)}
             >
-                <img src={image.lowResUrl} alt="" className="detailImage" />
+                <img src={image.lowResUrl} alt={image.altText || t(`products.${product.id}.title`)} className="detailImage" />
                 {image.caption && <p className="imageCaption">{image.caption}</p>}
             </button>
         );
@@ -62,17 +63,21 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
                 </div>
 
                 {product.date && <p className="infodate">{product.date}</p>}
+                
+                {/* Description is now a single HTML string from i18n */}
                 <div className="description" dangerouslySetInnerHTML={{ __html: t(`products.${product.id}.description`) }} />
 
                 {!isDetailsTextMissing && (
                     <div className="detailsSection-wrapper">
                         {renderImg(0, true)}
                         
+                        {/* DETAILS TITLE: REMOVED the product.detailsTitle fallback condition */}
                         <h2 className="detailsTitle">
-                            {product.detailsTitle || t(`products.${product.id}.detailsSection.title`)}
+                            {t(`products.${product.id}.detailsSection.title`)}
                         </h2>
 
                         <div className="detailsText">
+                            {/* Assuming detailsText is large and split by <h3> for image injection */}
                             {detailsText.split('<h3>').map((chunk, i) => (
                                 <React.Fragment key={i}>
                                     {i > 0 && renderImg(i, true)}

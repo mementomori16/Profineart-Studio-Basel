@@ -1,71 +1,100 @@
-@use "sass:color";
 @import '../../global.scss';
 
 .similarProducts {
+  // Using variables for spacing, max-width, etc., as per your original file.
   margin-top: $space-xl;
   padding: $space-md;
-  text-align: center;
-  max-width: $breakpoint-lg;
+  max-width: $breakpoint-xxl;
   margin-left: auto;
   margin-right: auto;
-  
+  background-color: $color-card;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+
   h2 {
-    @include services-heading;
-    font-size: $font-size-h4;
-    color: $color-text-title;
+    font-size: $font-size-h3;
+    color: $color-secondary;
+    text-align: center;
     margin-bottom: $space-lg;
   }
 
   .scrollableGallery {
     display: flex;
-    overflow-x: auto;
-    gap: $space-lg;
+    gap: $space-md;
+    overflow-x: auto; 
     padding: $space-sm 0;
     -webkit-overflow-scrolling: touch;
 
     &::-webkit-scrollbar {
-      height: 8px;
+      // Converted from 6px
+      height: 0.375rem; 
     }
+
     &::-webkit-scrollbar-thumb {
       background-color: $color-border-subtle-2;
       border-radius: $border-radius-sm;
     }
+
     &::-webkit-scrollbar-track {
       background: $color-alt-background-2;
     }
 
     .similarProductItem {
-      flex: 0 0 auto;
-      width: 180px;
+      // Prevents shrinking, essential for horizontal scroll
+      flex: 0 0 auto; 
+      width: 15.375rem; 
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      text-decoration: none;
-      transition: transform 0.2s ease-in-out;
-      
-      &:hover {
-        transform: translateY(-$space-xs);
-      }
 
       .image {
         width: 100%;
-        height: 120px;
+        height: 7.5rem; 
         object-fit: cover;
         border-radius: $border-radius-sm;
-        border: 1px solid $color-border-light;
-        box-shadow: $shadow-sm;
+        border: 1px solid $color-border-light; 
       }
 
       .title {
         margin-top: $space-sm;
         font-size: $font-size-sm;
-        color: $color-text-title;
         font-weight: $font-weight-semibold;
+        color: $color-navbar;
+        text-align: center;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  // --- Media Queries ---
+  
+  @media (max-width: $breakpoint-lg) {
+    padding-left: $space-lg;
+    padding-right: $space-lg;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding-left: $space-md;
+    padding-right: $space-md;
+
+    .scrollableGallery {
+      gap: $space-sm;
+      
+      // Ensure the container fills its space nicely on small screens
+      width: 100%; 
+      
+      .similarProductItem {
+        // Converted from 120px
+        width: 7.5rem; 
+        
+        .image {
+          // Converted from 100px
+          height: 6.25rem; 
+        }
       }
     }
   }

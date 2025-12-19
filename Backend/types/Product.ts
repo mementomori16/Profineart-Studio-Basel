@@ -65,28 +65,21 @@ export interface ProductImage {
 }
 
 export interface Product {
+    briefDescription: any;
+    title: string | undefined;
     id: number;
-    title: string;
+    // title: string; // Removed - fetched from i18n
     date?: string;
     medium?: string;
-    description: string | string[];
-    briefDescription: string;
-    badge?: string; 
+    // description: string | string[]; // Removed - fetched from i18n
+    // briefDescription: string; // Removed - fetched from i18n
+    // badge?: string; // Removed - fetched from i18n
     image: ProductImage;
     thumbnails: ProductImage[];
-    detailsTitle?: string; 
+    // detailsTitle?: string; // Removed - fetched from i18n
     detailsImages?: ProductImage[];
     likes?: number;
     views?: number;
     link?: string;
-    githubLink?: string;
-    gitlabLink?: string;
-    tags?: string[];
-    price?: number;
-    icons?: string[];
-    stripePriceId?: string; 
-    // ----------------------------
-    technologies?: string[];
-    techniques?: string[];
-    testimonials?: Testimonial[];
+    badge?: string;
 }

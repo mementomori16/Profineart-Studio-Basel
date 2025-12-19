@@ -1,23 +1,39 @@
 @use '../../../../global.scss' as global;
+@use "sass:color";
 
 @mixin caption-style {
     .imageCaption {
-        font-size: global.$font-size-sm !important;
+        font-size: global.$font-size-xs !important;
         color: global.$color-text-light !important;
         margin-top: global.$space-sm;
         text-align: center;
         line-height: 1.4;
+        
+
+        /* SHORTEN THE LINE WIDTH USING REM */
+        max-width: 20rem;     /* Limits the horizontal stretch */
+        margin-left: auto;    /* Centers the block */
+        margin-right: auto;   /* Centers the block */
+
+        /* FORCE 2 LINES ONLY */
+        display: -webkit-box;
+        -webkit-line-clamp: 2; 
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+        /* Optional: Adding a bit of padding so it doesn't touch the card edges */
+        padding: 0 global.$space-sm; 
     }
 }
 
 .infoContainer-text {
     .mobile-buttons-wrapper {
-        margin-top: global.$space-lg;
-        margin-bottom: global.$space-xl;
-
-        @media (min-width: global.$breakpoint-lg) {
-            display: none;
-        }
+        display: block;
+        margin-top: global.$space-xxxs; 
+        margin-bottom: global.$space-xl; 
+        @media (min-width: 1024px) { display: none; }
     }
 
     .infodate {
@@ -25,56 +41,51 @@
         margin-bottom: global.$space-sm;
         font-weight: global.$font-weight-bold;
     }
+    
 
-    .description,
-    .detailsText {
+    .description, .detailsText {
         line-height: 1.7;
-
-        h2,
-        h3,
-        h4 {
-            color: global.$color-text-dark !important;
-            margin-top: global.$space-lg;
-            margin-bottom: global.$space-md;
-            font-size: global.$font-size-h4;
+        
+        h2, h3, h4, h5 { 
+            color: global.$color-text-dark !important; 
+            margin-top: global.$space-lg; 
+            margin-bottom: global.$space-md; 
+            font-size: global.$font-size-h4; 
         }
 
-        p {
-            margin-bottom: global.$space-md;
-            color: global.$color-secondary;
-            font-size: global.$font-size-base;
+        p { 
+            margin-bottom: global.$space-md; 
+            color: global.$color-secondary; 
+            font-size: global.$font-size-base; 
         }
     }
 
     .detailsSection-wrapper {
         margin-top: global.$space-xxxl;
-
+        
         .detailsTitle {
-            text-align: center;
+            text-align: left; 
             color: global.$color-text-dark !important;
             margin-bottom: global.$space-xl;
+            font-size: 1.5rem; 
+            text-transform: none;
+            letter-spacing: 0.05em;
         }
     }
 
     .mobile-only-img {
         display: block;
         @include caption-style;
-
-        @media (min-width: global.$breakpoint-lg) {
-            display: none;
-        }
+        @media (min-width: 1024px) { display: none; }
     }
 }
 
 .infoContainer-visual {
-    display: none;
-
-    @media (min-width: global.$breakpoint-lg) {
-        display: flex;
-        flex-direction: column;
-        gap: global.$space-xxl;
-        width: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: global.$space-md; // Using smaller gap to keep buttons near top
+    width: 100%;
+    @media (max-width: 1024px) { display: none; }
 }
 
 .booking-action-container {
@@ -82,39 +93,47 @@
     flex-direction: column;
     gap: global.$space-md;
     align-items: center;
+    margin-bottom: global.$space-lg; // Space before the first detail image
 
-    .btn-add-to-cart,
-    .btn-book-now {
+    .btn-add-to-cart, .btn-book-now {
         width: 100%;
-        max-width: 15rem;
-        border-radius: global.$border-radius-xl !important;
+        max-width: 15rem; 
+        border-radius: global.$border-radius-xl !important; 
         padding: global.$space-sm global.$space-md;
+        color: global.$color-text-white !important;
+        border: none;
+        font-weight: global.$font-weight-bold;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+
+        &:hover { transform: translateY(-2px); }
     }
 
-    .btn-add-to-cart {
-        @extend .btn-cta-primary;
+    .btn-add-to-cart { 
+        background-color: color.adjust(global.$color-cta-primary-warm, $lightness: -6%);
+        &:hover { background-color: color.adjust(global.$color-cta-primary-warm, $lightness: -13%); }
     }
 
-    .btn-book-now {
-        @extend .btn-cta-secondary;
+    .btn-book-now { 
+        background-color: global.$color-cta-primary-warm; 
+        &:hover { background-color: global.$color-cta-primary-hover; }
     }
 }
 
 .detailImageWrapper {
-    background: none;
+    background: transparent;
     border: none;
     padding: 0;
-    width: 100%;
+    width: 100%; 
     cursor: pointer;
-    margin-bottom: global.$space-lg;
+    margin-bottom: global.$space-xxxl; // Space between sequential images
 
     .detailImage {
-        width: 100%;
+        width: 100%; 
         height: auto;
         max-height: 20rem;
         object-fit: contain;
         border-radius: global.$border-radius-md;
     }
-
     @include caption-style;
 }
