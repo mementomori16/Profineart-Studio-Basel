@@ -1,0 +1,117 @@
+@use "sass:color";
+@use '../../../global.scss' as global;
+@import '../Card/CardPage/CardPage.scss'; 
+
+
+.pricing-how-it-works {
+    .pageTitle {
+        color: global.$color-text-dark2 !important;
+        font-weight: global.$font-weight-bold;
+        font-size: global.$font-size-h3;
+    }
+
+    // SINGLE FRAME FOR TEXT CONTENT
+    .main-info-frame {
+        background-color: rgba(255, 255, 255, 0.4); 
+        border-radius: global.$border-radius-lg; 
+        padding: global.$space-lg;
+        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+        box-shadow: global.$shadow-sm;
+
+        .intro-text {
+            color: global.$color-text-dark4;
+            font-size: global.$font-size-base;
+            line-height: 1.7;
+            margin-bottom: global.$space-xl;
+        }
+
+        .section-block {
+            margin-bottom: global.$space-xl;
+            &:last-child { margin-bottom: 0; }
+
+            h3 {
+                color: global.$color-text-dark2 !important;
+                font-size: 1.3rem;
+                margin-bottom: global.$space-sm;
+                font-weight: global.$font-weight-bold;
+            }
+
+            p {
+                color: global.$color-text-dark4;
+                line-height: 1.7;
+                margin-bottom: global.$space-md;
+            }
+        }
+    }
+
+    // REFINED COURSE LINK (Elegant, not heavy)
+    .course-link-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: global.$space-md global.$space-lg;
+        margin: global.$space-xl 0;
+        border: 1px solid global.$color-primary2; 
+        border-radius: global.$border-radius-md;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        background: transparent;
+
+        .link-text-content {
+            .link-title {
+                color: global.$color-primary2;
+                font-weight: global.$font-weight-bold;
+                font-size: global.$font-size-md;
+                display: block;
+            }
+            .link-desc {
+                color: global.$color-text-dark4;
+                font-size: global.$font-size-sm;
+            }
+        }
+
+        .arrow-icon {
+            color: global.$color-primary2;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            background-color: rgba(48, 9, 9, 0.05); // Very light tint of primary2
+            box-shadow: global.$shadow-sm;
+            .arrow-icon { transform: translateX(5px); }
+        }
+    }
+
+    // SIDEBAR PRICE LIST FRAME
+    .price-sidebar-frame {
+        background-color: rgba(255, 255, 255, 0.4); 
+        border-radius: global.$border-radius-lg; 
+        padding: global.$space-lg;
+        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+        box-shadow: global.$shadow-sm;
+
+        .sidebar-title {
+            color: global.$color-text-dark2 !important;
+            font-size: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: global.$space-sm;
+            margin-bottom: global.$space-lg;
+        }
+
+        .price-group {
+            margin-bottom: global.$space-lg;
+            .group-label { color: global.$color-text-dark2; font-weight: global.$font-weight-bold; }
+            .duration-sublabel { font-size: global.$font-size-xs; color: global.$color-text-light; }
+            
+            .price-row {
+                display: flex;
+                justify-content: space-between;
+                padding: global.$space-xxs 0;
+                color: global.$color-text-dark4;
+                .pkg-price { color: global.$color-green-price; font-weight: global.$font-weight-bold; }
+            }
+        }
+    }
+}

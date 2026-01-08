@@ -282,7 +282,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                     />
                 </div>
 
-               // Find this section near the bottom of your ContactDetailsForm.tsx
+               
 
 <div className="form-check mb-4">
     <input
@@ -304,7 +304,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
         >
             {t('form.termsOfUse')}
         </a> 
-        <span className="text-danger"> *</span>
+        <span className="text-danger"></span>
     </label>
 </div>
 

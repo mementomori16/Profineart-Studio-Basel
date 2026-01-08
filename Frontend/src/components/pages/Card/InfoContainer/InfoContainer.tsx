@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../../context/CartContext/CartContext';
@@ -9,6 +9,28 @@ type Props = {
     product: Product;
     isTextOnly: boolean;
     onOpenGallery?: (index: number) => void;
+};
+
+// --- HELPER COMPONENT FOR SILENT LOADING ---
+const DetailImage: React.FC<{ url: string, alt: string, caption?: string, onClick?: () => void }> = ({ url, alt, caption, onClick }) => {
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => setLoaded(true);
+    }, [url]);
+
+    return (
+        <button className="detailImageWrapper" onClick={onClick}>
+            <img 
+                src={url} 
+                alt={alt} 
+                className={`detailImage ${loaded ? 'loaded' : ''}`} 
+            />
+            {caption && <p className="imageCaption">{caption}</p>}
+        </button>
+    );
 };
 
 const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) => {
@@ -23,12 +45,10 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
     const itemInCart = isProductInCart(product.id);
     const isBookable = product.medium === t('cardPage.mediumForPrivateLessonsCheck');
 
-    // Reusable Booking Buttons
     const BookingButtons = isBookable ? (
         <div className="booking-action-container">
             <button 
                 className={`btn-add-to-cart ${itemInCart ? 'in-cart' : ''}`}
-                // Using a fallback for navigate in case of missing context
                 onClick={() => { if(!itemInCart) addItemToCart(product); navigate('/basket'); }}
             >
                 {itemInCart ? t('checkout.alreadyInBasket') : t('checkout.addToCartButton')}
@@ -42,49 +62,55 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
     const renderImg = (index: number, isMobile: boolean) => {
         const image = product.detailsImages?.[index];
         if (!image) return null;
+        
         return (
-            <button 
-                key={index} 
-                className={`detailImageWrapper ${isMobile ? 'mobile-only-img' : ''}`} 
-                onClick={() => onOpenGallery?.(index)}
-            >
-                <img src={image.lowResUrl} alt={image.altText || t(`products.${product.id}.title`)} className="detailImage" />
-                {image.caption && <p className="imageCaption">{image.caption}</p>}
-            </button>
+            <div key={index} className={isMobile ? 'mobile-only-img' : ''}>
+                <DetailImage 
+                    url={image.lowResUrl} 
+                    alt={image.altText || t(`products.${product.id}.title`)}
+                    caption={image.caption}
+                    onClick={() => onOpenGallery?.(index)}
+                />
+            </div>
         );
     };
+
+    // Logic to split the HTML string for mobile staggered layout
+    const splitIndex = detailsText.indexOf('</p>') + 4; 
+    const firstPart = detailsText.substring(0, splitIndex);
+    const secondPart = detailsText.substring(splitIndex);
 
     if (isTextOnly) {
         return (
             <div className="infoContainer-text">
-                {/* PLACED HERE: Directly under CardContainer on mobile */}
                 <div className="mobile-buttons-wrapper">
                     {BookingButtons}
                 </div>
 
                 {product.date && <p className="infodate">{product.date}</p>}
                 
-                {/* Description is now a single HTML string from i18n */}
-                <div className="description" dangerouslySetInnerHTML={{ __html: t(`products.${product.id}.description`) }} />
+                <div className="content-frame">
+                    <div className="description" dangerouslySetInnerHTML={{ __html: t(`products.${product.id}.description`) }} />
+                </div>
 
                 {!isDetailsTextMissing && (
                     <div className="detailsSection-wrapper">
                         {renderImg(0, true)}
-                        
-                        {/* DETAILS TITLE: REMOVED the product.detailsTitle fallback condition */}
-                        <h2 className="detailsTitle">
-                            {t(`products.${product.id}.detailsSection.title`)}
-                        </h2>
 
-                        <div className="detailsText">
-                            {/* Assuming detailsText is large and split by <h3> for image injection */}
-                            {detailsText.split('<h3>').map((chunk, i) => (
-                                <React.Fragment key={i}>
-                                    {i > 0 && renderImg(i, true)}
-                                    <div dangerouslySetInnerHTML={{ __html: i === 0 ? chunk : '<h3>' + chunk }} />
-                                </React.Fragment>
-                            ))}
+                        <div className="details-content-group">
+                            <div className="content-frame split-top">
+                                <h3 className="detailsTitle">{t(`products.${product.id}.detailsSection.title`)}</h3>
+                                <div className="detailsText" dangerouslySetInnerHTML={{ __html: firstPart }} />
+                            </div>
+
+                            {renderImg(1, true)}
+
+                            <div className="content-frame split-bottom">
+                                <div className="detailsText" dangerouslySetInnerHTML={{ __html: secondPart }} />
+                            </div>
                         </div>
+
+                        {product.detailsImages?.slice(2).map((_, index) => renderImg(index + 2, true))}
                     </div>
                 )}
             </div>
@@ -94,9 +120,7 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
     return (
         <div className="infoContainer-visual">
             {BookingButtons}
-            <div className="detailsImageGallery">
-                {product.detailsImages?.map((_, index) => renderImg(index, false))}
-            </div>
+            {product.detailsImages?.map((_, index) => renderImg(index, false))}
         </div>
     );
 };

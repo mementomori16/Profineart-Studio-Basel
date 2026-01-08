@@ -1,0 +1,67 @@
+@use "sass:color";
+@use '../../../global.scss' as global;
+@import '../Card/CardPage/CardPage.scss'; 
+
+@mixin student-caption-style {
+    .imageCaption {
+        font-size: global.$font-size-xs !important;
+        color: global.$color-text-light !important;
+        margin-top: global.$space-sm;
+        text-align: center;
+        line-height: 1.4;
+        margin-bottom: global.$space-lg;
+        // Keep captions visible or sync them with image loading if desired
+    }
+}
+
+.students-works-page {
+    .student-photos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: global.$space-xl;
+        margin-top: global.$space-xl;
+        @include student-caption-style;
+
+        .photo-item {
+            .image-zoom-trigger {
+                cursor: pointer;
+                border-radius: global.$border-radius-md;
+                overflow: hidden;
+                box-shadow: global.$shadow-sm;
+                background: #fdfdfd; 
+
+                .student-img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    
+                    // --- SILENT LOADING LOGIC ---
+                    opacity: 0;
+                    transition: opacity 0.8s ease-in-out, transform 0.5s ease;
+                    will-change: opacity, transform;
+
+                    // Preserve your artistic filters
+                    filter: contrast(1.02) saturate(1.05); 
+
+                    &.loaded {
+                        opacity: 1;
+                    }
+                }
+
+                &:hover .student-img.loaded {
+                    transform: scale(1.03);
+                }
+            }
+        }
+    }
+
+    .sidebar-info-frame {
+        background-color: rgba(255, 255, 255, 0.4); 
+        border-radius: global.$border-radius-lg; 
+        padding: global.$space-lg;
+        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+        
+        h3 { color: global.$color-text-dark2; margin-bottom: global.$space-sm; }
+        p { color: global.$color-text-dark4; font-size: global.$font-size-sm; line-height: 1.6; }
+    }
+}

@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import helmet from 'helmet'; // Added helmet
 import { getAvailableSlots } from './services/availabilityService.js';
 import { createStripeCheckoutSession, fulfillOrder } from './services/checkoutService.js';
 import { validateAddress } from './services/geocodingService.js';
@@ -18,8 +19,19 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// --- Middleware ---
-app.use(cors());
+// --- Security Middleware Stack ---
+
+// 1. Helmet: Sets various HTTP headers to protect against common attacks
+app.use(helmet()); 
+
+// 2. CORS: Restrict access to your frontend domain only
+app.use(cors({
+    origin: process.env.CLIENT_URL || 'http://localhost:5173', 
+    methods: ['GET', 'POST'],
+    credentials: true,
+}));
+
+// 3. Body Parser: Parses incoming JSON (placed after security checks)
 app.use(express.json());
 
 // --- Helper Function: getErrorMessage
@@ -81,7 +93,8 @@ app.post('/api/validate-address', async (req: Request, res: Response) => {
         if (validationResult.isValid) {
             res.json({ success: true, message: validationResult.message });
         } else {
-            res.status(400).json({ success: false, message: validationResult.message });
+            // Use 422 Unprocessable Entity for validation failures rather than 400
+            res.status(422).json({ success: false, message: validationResult.message });
         }
     } catch (error) {
         console.error('API Error in /api/validate-address:', getErrorMessage(error));
@@ -92,6 +105,11 @@ app.post('/api/validate-address', async (req: Request, res: Response) => {
 // 4. Stripe Checkout Session Creation Endpoint
 app.post('/api/create-checkout-session', async (req: Request, res: Response) => {
     try {
+        // Validation: Ensure req.body has necessary fields before calling service
+        if (!req.body.packageId || !req.body.email) {
+            return res.status(400).json({ success: false, message: 'Missing required checkout information.' });
+        }
+
         const session = await createStripeCheckoutSession(req.body, stripe);
         res.json({ checkoutUrl: session.url });
     } catch (error) {
@@ -101,6 +119,8 @@ app.post('/api/create-checkout-session', async (req: Request, res: Response) => 
 });
 
 // 5. Order Fulfillment and Confirmation Endpoint
+// SECURITY NOTE: This endpoint is vulnerable to manual calling.
+// It is highly recommended to replace this with a Stripe Webhook.
 app.post('/api/order/fulfill', async (req: Request, res: Response) => {
     try {
         const { sessionId } = req.body;
@@ -108,14 +128,12 @@ app.post('/api/order/fulfill', async (req: Request, res: Response) => {
             return res.status(400).json({ success: false, message: 'Missing or invalid session ID.' });
         }
 
-        // Call the service to confirm payment and retrieve booking details
         const fulfillmentResult = await fulfillOrder(sessionId, stripe);
 
-        // Return the confirmed details to the SuccessPage component
         res.json({ 
             success: true, 
             message: 'Order successfully fulfilled.',
-            bookingDetails: fulfillmentResult // contains name, email, date, package, etc.
+            bookingDetails: fulfillmentResult 
         });
 
     } catch (error) {
@@ -126,7 +144,6 @@ app.post('/api/order/fulfill', async (req: Request, res: Response) => {
         });
     }
 });
-
 
 // --- Server Listener ---
 app.listen(PORT, () => {

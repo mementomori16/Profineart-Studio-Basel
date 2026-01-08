@@ -4,8 +4,8 @@ export const courses = [
         id: 800,
         badge: 'has_badge',
         image: {
-            lowResUrl: 'https://i.ibb.co/DBrD41T/100kbphotoshoped-more-bright-1.jpg',
-            highResUrl: 'https://i.ibb.co/kg0RQm5/best.jpg',
+            lowResUrl: 'https://i.ibb.co/DH18FBpL/100kbphotoshoped-more-bright-1.jpg',
+            highResUrl: 'https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
             caption: 'Jesus Christ Pontocrator. Egg Tempera and 24 Karat Gold on Primed Wood Panel. Artist: Ilya Medvedev',
         },
         thumbnails: [
@@ -39,21 +39,21 @@ export const courses = [
         id: 801,
         badge: 'has_badge',
         image: {
-            lowResUrl: 'https://i.ibb.co/C5nyCr4D/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-Ilya-Medvedev120kb.jpg',
-            highResUrl: 'https://i.ibb.co/kg0RQm5/best.jpg',
-            caption: 'Two nudes. Oil on canvas. Artist: Ilya Medvedev',
+            lowResUrl: 'https://i.ibb.co/FbRvJv6d/Vanitas-ph12-2025120kb.jpg',
+            highResUrl: 'https://i.ibb.co/qMLc4c6j/Vanitas-ph12-2025.jpg',
+            caption: 'Skulls, Fruits and Flowers. Oil on canvas. Artist: Ilya Medvedev',
         },
         thumbnails: [
             {
-                lowResUrl: "https://i.ibb.co/1G4060P9/Ilya-Medvedev-next-to-his-painting-ph25.jpg",
-                highResUrl: 'https://i.ibb.co/mVYD615H/IMG-4570120kb.jpg',
+                lowResUrl: "",
+                highResUrl: '',
             },
         ],
         detailsImages: [
             {
-                lowResUrl: 'https://i.ibb.co/FbRvJv6d/Vanitas-ph12-2025120kb.jpg',
-                highResUrl: 'https://i.ibb.co/qMLc4c6j/Vanitas-ph12-2025.jpg',
-                caption: 'Skulls, Fruits and Flowers. Oil on canvas. Artist: Ilya Medvedev',
+                lowResUrl: 'https://i.ibb.co/236P0Kzm/Detail1-photoshoped-12-2025120kb.jpg',
+                highResUrl: 'https://i.ibb.co/ZzzzjMHT/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-500kb.jpg',
+                caption: 'Two Nudes. Oil on canvas. Artist: Ilya Medvedev',
             },
             {
                 lowResUrl: 'https://i.ibb.co/mrgBT7rW/good100kb.jpg',
@@ -62,7 +62,7 @@ export const courses = [
             },
             {
                 lowResUrl: 'https://i.ibb.co/6RCSpq0h/IMG-4906-photoshoped-12-2025-120kb.jpg',
-                highResUrl: 'https://i.ibb.co/WWx2fhv/newphotoshoped-darker-2025-more-bright.jpg',
+                highResUrl: 'https://i.ibb.co/84YtZNQs/IMG-4906-photoshoped-12-2025-500kb.jpg',
                 caption: 'Nude on chair. Oil on canvas. Artist: Ilya Medvedev',
             },
         ],
@@ -71,12 +71,12 @@ export const courses = [
         title: undefined
     },
     {
-        id: 803,
+        id: 802,
         badge: 'has_badge',
         image: {
             lowResUrl: 'https://i.ibb.co/tP1wnd89/photoshoped2025final120kb.jpg',
             highResUrl: 'https://i.ibb.co/PvKs8FBC/photoshoped2025final500kb.jpg',
-            caption: 'E.T. Artist: Ilya Medvedev',
+            caption: 'E.T. Mixed technique on Cardboard. Artist: Ilya Medvedev',
         },
         thumbnails: [
             {
@@ -91,14 +91,154 @@ export const courses = [
                 caption: 'Baby Lion. Mixed technique on Paper. Artist: Ilya Medvedev',
             },
             {
-                lowResUrl: 'https://i.ibb.co/mrgBT7rW/good100kb.jpg',
-                highResUrl: 'https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
-                caption: 'Presentation of Christ at the Temple. Artist: Ilya Medvedev',
+                lowResUrl: 'https://i.ibb.co/WW9CK96g/Parrot-Scanned-and-photoshoped-smaller123kb.jpg',
+                highResUrl: 'https://i.ibb.co/9kCGfTXV/Parrot-Scanned-and-photoshoped-smaller2500kb.jpg',
+                caption: 'Parrot. Mixed technique on Cardboard. Artist: Ilya Medvedev',
             },
             {
-                lowResUrl: 'https://i.ibb.co/6R2BLYQ8/IMG-4588ph120kb.jpg',
-                highResUrl: 'https://i.ibb.co/8nkdprgS/IMG-4588ph500kb.jpg',
-                caption: 'Virgin Mary at Annunsiation. Artist: Ilya Medvedev',
+                lowResUrl: 'https://i.ibb.co/PGsqYvcV/Joe-Pesci-small-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/C3QhM3F8/Joe-Pesci-small-500kb.jpg',
+                caption: 'Joe Pesci. Mixed technique on Paper. Artist: Ilya Medvedev',
+            },
+        ],
+        medium: 'Course',
+        briefDescription: undefined,
+        title: undefined
+    },
+    {
+        id: 803,
+        badge: 'has_badge',
+        image: {
+            lowResUrl: 'https://i.ibb.co/qYMcNV5T/No-borders500kb.jpg',
+            highResUrl: 'https://i.ibb.co/qYMcNV5T/No-borders500kb.jpg',
+            caption: 'Nude on Sofa and Skull. Aquarelle on Cotton Paper. Artist: Ilya Medvedev',
+        },
+        thumbnails: [
+            {
+                lowResUrl: "https://i.ibb.co/r2Kppz3k/No-borders-croped120kb.jpg",
+                highResUrl: 'https://i.ibb.co/s9NtNcTq/No-borders-croped500kb.jpg',
+            },
+        ],
+        detailsImages: [
+            {
+                lowResUrl: 'https://i.ibb.co/NgRQ495X/IMG-4459-no-borders-ph12-25-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/TxX2504t/IMG-4459-no-borders-ph12-25.jpg',
+                caption: 'Port view. Aquarelle on Cotton Paper. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/V0W4WP4r/NO-BORDERS-Pregnant-Celine-in-Caesaria-Watercolors-on-cotton-paper-2025-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/SXRTQy2v/NO-BORDERS-Pregnant-Celine-in-Caesaria-Watercolors-on-cotton-paper-2025-500kb.jpg',
+                caption: 'Pregnant nude.Aquarelle on Cotton Paper .Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/XkYHBt74/IMG-7751photoshoped-2-2025-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/xKTYVb1t/IMG-7751photoshoped-2-2025-500kb.jpg',
+                caption: 'Nude with two Skulls. Aquarelle on Cotton Paper. Artist: Ilya Medvedev',
+            },
+        ],
+        medium: 'Course',
+        briefDescription: undefined,
+        title: undefined
+    },
+    {
+        id: 804,
+        badge: 'has_badge',
+        image: {
+            lowResUrl: 'https://i.ibb.co/21vqpXcQ/IMG-32273-120kb.jpg',
+            highResUrl: 'https://i.ibb.co/MkP7wmqz/IMG-32273-500kb.jpg',
+            caption: 'Study of Feet on a Striped Throw. Oil Pastels on Paper. Artist: Ilya Medvedev',
+        },
+        thumbnails: [
+            {
+                lowResUrl: "https://i.ibb.co/vvh5hLsF/IMG-32273closeup-120kb.jpg",
+                highResUrl: 'https://i.ibb.co/gZM6WBzn/IMG-32273closeup-500kb.jpg',
+            },
+        ],
+        detailsImages: [
+            {
+                lowResUrl: 'https://i.ibb.co/jkR92FW1/SKM-C45818070115150-0002small-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/wFhBKYyr/SKM-C45818070115150-0002small-500kb.jpg',
+                caption: 'Celine. Oil Pastels Paper. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/tMswwhVb/katya-photoshop-2025-ph120kb.jpg',
+                highResUrl: 'https://i.ibb.co/svNG3htZ/katya-photoshop-2025-ph500kb.jpg',
+                caption: 'Nude in the Nature. Oil Pastels on Paper. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/JwRnjv8W/IMG-2825ph1225-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/MkP7wmqz/IMG-32273-500kb.jpg',
+                caption: 'Calella, Barselona, Spain. Oil Pastels on Paper. Artist: Ilya Medvedev',
+            },
+        ],
+        medium: 'Course',
+        briefDescription: undefined,
+        title: undefined
+    },
+    {
+        id: 805,
+        badge: 'has_badge',
+        image: {
+            lowResUrl: 'https://i.ibb.co/4352JQH/Copy-of-marble-sculpture-of-Lely-Venus-2-c-BCE-on-a-piece-of-anchient-Roman-marble-found-in-Caesar.jpg',
+            highResUrl: 'https://i.ibb.co/m5WVpFrF/Copy-of-marble-sculpture-of-Lely-Venus-2-c-BCE-on-a-piece-of-anchient-Roman-marble-found-in-Caesar.jpg',
+            caption: 'Lely Venus. Acrylic on Ancient Roman Marble. Artist: Ilya Medvedev',
+        },
+        thumbnails: [
+            {
+                lowResUrl: "https://i.ibb.co/hJ7Ym8Fq/IMG-9900ph1225.jpg",
+                highResUrl: 'https://i.ibb.co/bgQ4vnhk/IMG-9900ph1225.jpg',
+            },
+        ],
+        detailsImages: [
+            {
+                lowResUrl: 'https://i.ibb.co/0pB0Scdj/IMG-2652-SMALL120kb.jpg',
+                highResUrl: 'https://i.ibb.co/DHBnzXCZ/IMG-2652-SMALL500kb.jpg',
+                caption: 'Gorgon Medusa. Acrylic on Ancient Roman Marble. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/fdzchc21/Copy-of-marble-sculpture-of-sleeping-Hermaphroditus-ph12-25-120-kb.jpg',
+                highResUrl: 'https://i.ibb.co/F4Kywvbs/Copy-of-marble-sculpture-of-sleeping-Hermaphroditus-ph12-25-500-kb.jpg',
+                caption: 'Sleeping Hermaphroditus. Acrylic on Ancient Roman Marble. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/bMf7Gvz5/IMG-4615-ph12-25-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/Q3Dh6DBz/IMG-4615-ph12-25-500kb.jpg',
+                caption: 'Angel of God. Tempera on Dead Sea Stone. Artist: Ilya Medvedev',
+            },
+        ],
+        medium: 'Course',
+        briefDescription: undefined,
+        title: undefined
+    },
+    {
+        id: 806,
+        badge: 'has_badge',
+        image: {
+            lowResUrl: 'https://i.ibb.co/23DHF3XH/Mcdonalds-2010-Oil-on-canvas-145-x-191-cm-Ilya-Medvedev-ph01-26-100kb.jpg',
+            highResUrl: 'https://i.ibb.co/0Vz0cz5M/Mcdonalds-2010-Oil-on-canvas-145-x-191-cm-Ilya-Medvedev-ph01-26-500kb.jpg',
+            caption: 'McDonalds Meal. Oil on Canvas. Artist: Ilya Medvedev',
+        },
+        thumbnails: [
+            {
+                lowResUrl: "https://i.ibb.co/4RzG3Rrk/IMG-5405-120kb.jpg",
+                highResUrl: 'https://i.ibb.co/Q7hhphsT/IMG-5405-500kb.jpg',
+            },
+        ],
+        detailsImages: [
+            {
+                lowResUrl: 'https://i.ibb.co/Kzmt87FR/photoshoped01-11-2024-01-26-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/DHBnzXCZ/IMG-2652-SMALL500kb.jpg',
+                caption: 'The Gym. Oil on Canvas. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/fdzchc21/Copy-of-marble-sculpture-of-sleeping-Hermaphroditus-ph12-25-120-kb.jpg',
+                highResUrl: 'https://i.ibb.co/F4Kywvbs/Copy-of-marble-sculpture-of-sleeping-Hermaphroditus-ph12-25-500-kb.jpg',
+                caption: 'Sleeping Hermaphroditus. Acrylic on Ancient Roman Marble. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://i.ibb.co/bMf7Gvz5/IMG-4615-ph12-25-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/Q3Dh6DBz/IMG-4615-ph12-25-500kb.jpg',
+                caption: 'Angel of God. Tempera on Dead Sea Stone. Artist: Ilya Medvedev',
             },
         ],
         medium: 'Course',
@@ -209,20 +349,60 @@ export const PRODUCT_PACKAGES = [
 export const testimonials = [
     {
         id: 1,
-        quote: "I can recommend Ilya's work, and him personally, with full conviction. I don't even know where to begin in highlighting his qualities. His personality is exceptional, and this shines through in his work. He's not your typical programmer. I have a feeling he started that field of study simply to satisfy his brilliant mind. But Ilya's work is more than just coding. His range of experience seems endless, which makes his input incredibly valuable. He's knowledgeable in art as well as current technological developments. His creativity overflows. He genuinely invests himself in his work rather than just fulfilling a task. What's truly valuable is that he contributes for the benefit of the client. He's always thinking, \"What else could be helpful? What could make this new homepage even more up-to-date?\" Things I couldn't even imagine existed are commonplace for him, and he incorporates them. He also possesses a patience and kindness that made our collaboration incredibly pleasant. My objections, ideas, wishes... everything! He always took everything to heart and implemented it. Even when my work required something a bit old-fashioned, he made an absolute effort to find the best solution for me. It's a gift to have Ilya by my side, both for the design and the maintenance of my homepage.",
-        clientName: "Daniela Hagmann",
-        clientTitle: "Co",
-        clientCompany: "Lebend-Ich",
-        clientImage: "https://i.ibb.co/xKGQtdbJ/Portrait-7-photoshoped.jpg",
+        quote: "",
+        clientName: "",
+        clientTitle: "",
+        clientCompany: "",
+        clientImage: "",
     },
     {
         id: 2,
-        quote: "We were incredibly pleased with Ilya's contributions to our team. He played a key role in developing several components of our main PWA, consistently maintaining a positive attitude and fostering a great atmosphere in the workplace. Ilya is a true asset!",
-        clientName: "Tal Yaron",
-        clientTitle: "CEO",
-        clientCompany: "FreeDi",
-        clientImage: "https://i.ibb.co/1Jt1c6kC/1670996333512.jpg",
+        quote: "",
+        clientName: "",
+        clientTitle: "",
+        clientCompany: "",
+        clientImage: "",
     }
+];
+export const artistProfile = [
+    {
+        lowResUrl: 'https://i.ibb.co/NnY8mcHR/20210815-155250120kb.jpg', // Placeholder: Use your "Working" photo low-res
+        highResUrl: 'https://i.ibb.co/8nkdprgS/IMG-4588ph500kb.jpg', // Placeholder: Use your "Working" photo high-res
+        caption: 'Ilya Medvedev during the artistic process'
+    },
+    {
+        lowResUrl: 'https://i.ibb.co/Z6F6yVtz/PXL-20251101-MPph01-26-120kb.jpg', // Placeholder: Use your "Next to artwork" low-res
+        highResUrl: 'https://i.ibb.co/Z6qQKGXs/Ilya-Medvedev-next-to-his-painting-ph25.jpg', // Placeholder: Use your "Next to artwork" high-res
+        caption: 'Student during artistic work process'
+    }
+];
+export const studentGalleryData = [
+    {
+        lowResUrl: "https://i.ibb.co/Zp79DR1k/DSC-9010-120kb.jpg",
+        highResUrl: "https://i.ibb.co/4wmQv0zZ/PXL-20251101-500kb.jpg",
+        caption: "Comando Divers. Acrylic on Canvas"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/Z6F6yVtz/PXL-20251101-MPph01-26-120kb.jpg",
+        highResUrl: "https://i.ibb.co/xKrWX9Yd/PXL-20251101-MPph01-26-500kb.jpg",
+        caption: "Work Process"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/4wzFDgzz/DSC-8392-120kb.jpg",
+        highResUrl: "https://i.ibb.co/d4r83Ly9/DSC-8392-500kb.jpg",
+        caption: "Oil Painting - Process"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/whjYftsJ/DSC-9013-120kb.jpg",
+        highResUrl: "path/to/student-img2-high.jpg",
+        caption: "Academic Drawing - Progress Study"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/qLff1rsx/PXL-20251101-120kb.jpg",
+        highResUrl: "https://i.ibb.co/4wmQv0zZ/PXL-20251101-500kb.jpg",
+        caption: "Oil Painting - Process"
+    },
+    // ... add more as needed
 ];
 // --- Export ---
 export const products = {

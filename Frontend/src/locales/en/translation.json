@@ -1,43 +1,63 @@
 {
   "home": "Home",
-  "courses": "Courses",
-  "projects": "Projects",
+  "howItWorks": "Pricing & Format",
+  "courses": "Course Booking",
   "about": "About",
+  "studentsWorks": "Students Gallery",
   "contact": "Contact",
   "cv": "CV",
 
+  "welcomeHero": {
+    "serviceTitle": "Professional Fine Art & Contemporary painting lessons in your private environment",
+    "companyName": "Profineart Studio Basel",
+    "ctaButton": "Course Booking"
+  },
+
   "homePage": {
-    "aboutTeaserTitle": "About",
-    "aboutTeaserDescription": "Your digital presence deserves more than a template. Hieroglyph Code is your all-in-one partner for custom web and mobile development, from concept to completion and beyond.<h5>Driven by Expertise</h5>Led by Ilya Medvedev, a Certified Full-Stack Developer based in Basel, Switzerland, Hieroglyph Code is passionate about transforming complex ideas into elegant, user-friendly software. By combining technical precision with creative vision, the firm delivers custom solutions that truly elevate your digital presence.<h5>A Focus on Key Services</h5><ul><li><strong>Full-Stack Development:</strong> Powerful full-stack applications that are responsive and fast.</li><li><strong>Specialized Features:</strong> Services include building APIs, robust e-commerce platforms, secure login systems, and seamless payment integrations.</li><li><strong>Maintenance & Support:</strong> Reliable ongoing maintenance and updates to ensure your digital tools always run smoothly.</li></ul>",
+   "aboutTeaserTitle": "Professional Art Education in Basel",
+    "aboutTeaserDescription": "",
     "learnMoreButton": "Click For More"
   },
 
+  "aboutPage": {
+    "title": "ProFineArt Studio Basel: Contemporary Fine Art Pedagogy",
+    "intro": "ProFineArt Studio Basel is the private educational project and professional practice of Ilya Medvedev, a contemporary fine artist and certified senior educator. As the sole creator, owner, and instructor, Ilya Medvedev manages every aspect of the project, providing specialized mentorship that combines historical tradition with contemporary artistic standards. All communication and instruction are conducted in English.",
+    "mobileTitle": "A Dedicated Mobile Education",
+    "mobileText": "ProFineArt Studio Basel operates as a mobile educational project rather than a physical school. There is no public studio or atelier for students to visit. This structure is designed to provide high-level fine art education within the student’s own environment. Ilya Medvedev travels directly to the student's private home or personal studio space to conduct every session. This ensures that the learning process is integrated into the student’s personal creative setting.",
+    "backgroundTitle": "Academic and Professional Background",
+    "backgroundText": "The curriculum is built upon a foundation of significant academic achievement and international experience. Ilya Medvedev holds a Bachelor of Education in Fine Arts (B.Ed.FA) and an Art Teaching Certification from the Hamidrasha Faculty of the Arts, as well as Master of Fine Arts studies from the Bezalel Academy of Arts and Design. With a career as a freelance artist spanning over 15 years, Ilya Medvedev brings a wealth of museum-level experience to the teaching process. This includes seven years of intensive study in Byzantine Icon Painting in Greece and Jerusalem, providing a rare technical depth in ancient media such as Egg Tempera.",
+    "methodologyTitle": "Individual Courses and Methodology",
+    "methodologyText": "The education provided focuses on mastering the visual language of fine art across several disciplines. The Byzantine Iconography course explores the sacred techniques of the old masters, focusing on historical accuracy and the mastery of light. The Oil Painting and Aquarelle programs emphasize the chemistry of materials, archival integrity, and the transition from classical underpainting to modern textures. In Academic Drawing, the focus is on developing a freehand 'eye-brain-hand' connection without the use of stencils or projectors. Other specialized courses include Mixed Media, Contemporary Painting, and Stone Painting, each designed to help the student navigate the complexities of form, color, and conceptual expression.",
+    "artFactsLink": "View Ilya Medvedev Profile on ArtFacts"
+},
+
+"studentsWorksPage": {
+    "title": "Student Gallery & Progress",
+    "intro": "A glimpse into the creative journey of my students. These works reflect the mastery of technique and personal expression developed during our private sessions within their own homes.",
+    "disclaimer": "All works shown were created by students of various levels under the mentorship of Ilya Medvedev.",
+    "categories": {
+        "iconography": "Byzantine Iconography",
+        "drawing": "Academic Drawing",
+        "painting": "Oil & Aquarelle"
+    }
+},
+
   "carousel": {
-    "globalTitlePrimary": "Hieroglyph Code",
-    "globalTitleSecondary": "Digitale Exzellenz gestalten",
-    "globalDescription": "Wir verwandeln Ihre Vision in robuste, intuitive und visuell beeindruckende Softwarelösungen.",
-    "learnMoreButton": "Mehr über diesen Service erfahren"
+    "globalTitlePrimary": "Individual Fine Art Painting Courses in Basel",
+    "globalTitleSecondary": "Find what course can fit you the best",
+    "globalDescription": "Develop a professional painting with private training tailored to your goals. Whether mastering the physics of Aquarelle or the structural logic of Mixed Media, we bring the studio to your home in Basel and the area.",
+    "learnMoreButton": "Explore Fine Art Courses"
   },
 
   "coursesPage": {
-    "title": "Courses",
-    "viewButton": "Learn More",
+    "title": "Fine Art Painting Courses",
+    "viewButton": "Learn & Book",
     "popular": "Popular"
-  },
-
-  "projectsPage": {
-    "title": "Projects",
-    "viewButton": "View Details"
-  },
-
-  "servicesPage": {
-    "title": "Software Services",
-    "viewButton": "View Details"
   },
 
   "cardPage": {
     "productNotFound": "Product not found",
-    "technologiesUsed": "Technologies Used:",
+    "technologiesUsed": "",
     "siteLink": "Site Link:",
     "mediumForPrivateLessonsCheck": "Course",
     "mediumType": "Course",
@@ -154,7 +174,7 @@
 
 "products": {
   "800": {
-    "title": "Byzantine Iconography",
+    "title": "Byzantine Iconography Course",
     "briefDescription": "Unlock the ancient secrets of sacred painting through exclusive, live individual sessions with a focus on historical techniques and mastery of Egg Tempera.",
     
     "badge": "Historical & Traditional",
@@ -163,96 +183,84 @@
      
     "detailsSection": {
       "title": "Program Content and Technical Mastery",
-      "text": "<h5>Foundational Freehand Drawing</h5><p>The core of this program is the mastery of freehand drawing without stencils or projectors. You will learn to construct the human body from scratch: from the anatomy of hands and feet to diverse portraits of infants, adults, and the elderly including features like beards and baldness. We cover everything from the nude form to detailed clothing, footwear, and jewelry. This is the essential basis of the Byzantine program; mastering these fundamentals is required before transitioning to color painting to ensure the integrity of your artistic development.</p><h5>Painting Techniques and Materials</h5><p>You will master multi-layer glazing and underpainting techniques. You will thoroughly study pigments, water-based paints, and Egg Tempera. You will master the correct technique for working with brushes and the maulstick.</p><h5>Schools and Traditions</h5><p>You will explore various iconographic traditions: Proto-Byzantine technique, Fayum portraits, and Roman drawing. This includes the Cretan, Russian, Macedonian, Roman, and Coptic schools.</p><h3>Artistic and Philosophical Heritage</h3><p>The iconography course is a deep immersion into ancient art and the techniques of old masters, offering a powerful foundation for any artist. Iconography is an art where every element such as color, gesture, and pose is a symbol conveying metaphysical meaning. You will learn to read and create this complex visual language, developing the ability for conceptual and narrative painting. Mastering iconographic drawing, symbolism, egg tempera glazing, and gilding provides a durable, high-quality technical base for creating works in both traditional and unique modern contexts.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons and can repeat the purchase as needed. Note that all necessary materials and equipment are not included in the session cost. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>"
+      "text": "<h5>Foundational Freehand Drawing</h5><p>The core of this program is the mastery of freehand drawing without stencils or projectors. You will learn to construct the human body from scratch: from the anatomy of hands and feet to diverse portraits of infants, adults, and the elderly including features like beards and baldness. We cover everything from the nude form to detailed clothing, footwear, and jewelry. This is the essential basis of the Byzantine program; mastering these fundamentals is required before transitioning to color painting to ensure the integrity of your artistic development.</p><h5>Painting Techniques and Materials</h5><p>You will master multi-layer glazing and underpainting techniques. You will thoroughly study pigments, water-based paints, and Egg Tempera. You will master the correct technique for working with brushes and the maulstick.</p><h5>Schools and Traditions</h5><p>You will explore various iconographic traditions: Proto-Byzantine technique, Fayum portraits and Roman Painting. Iconography Schools Roman, Cretan, Russian, Macedonian and Coptic.</p><h3>Artistic and Philosophical Heritage</h3><p>The iconography course is a deep immersion into ancient art and the techniques of old masters, offering a powerful foundation for any artist. Iconography is an art where every element such as color, gesture, and pose is a symbol conveying metaphysical meaning. You will learn to read and create this complex visual language, developing the ability for conceptual and narrative painting. Mastering iconographic drawing, symbolism, egg tempera glazing, and gilding provides a durable, high-quality technical base for creating works in both traditional and unique modern contexts.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons and can repeat the purchase as needed. Note that all necessary materials and equipment are not included in the session cost. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>" 
     }
   },
 
      "801": {
-      "title": "Oil Painting Mastery",
-    "briefDescription": "Master the world’s most versatile medium through private sessions. From Alla Prima to classical glazing, build a powerful foundation in traditional and modern oil techniques.",
+     "title": "Oil Painting Course",
+    "briefDescription": "Master the world’s most versatile and prestigious medium. From classical underpainting to modern textures, build a professional foundation in oil painting mastery.",
     "badge": "Classical & Contemporary",
-    "description": "<h3>The Program Focus</h3><p>Oil painting is the most prestigious and flexible technique in art history. This program is designed to simplify its complexities, providing artists with a powerful foundation to achieve results ranging from transparent watercolors to massive, textured impasto.</p><h2>Questions You Will Answer</h2><h5>The Core Foundation</h5><p>What are the primary components that serve as the base for a masterpiece? We strip away the overwhelming options to focus on the essential pillars that allow you to build complex structures in your work.</p><h5>The Art of the Underpainting</h5><p>How do you use charcoal, pastel, egg tempera, or acrylics to create a roadmap for your oil layers? We explore how the initial sketch can exist as a standalone work or a vital guide for the final painting.</p><h5>Glazing and Multi-Layer Techniques</h5><p>How do you execute the complex 'glazing' technique for hyper-realistic details? We master the transition from broad strokes to the detailed rendering of portraits, hands, and drapery using specialized soft brushes.</p><h5>Chemistry of Oils and Varnishes</h5><p>Which oils are best for large-scale works, and which are required for hyper-realism? We demystify solvents, various oil grades, and final varnishing techniques to protect and enhance your artistic vision.</p>",
+    "description": "<h3>The Program Focus</h3><p>Oil painting is the most prestigious and flexible technique in art history, from translucent watercolor-like washes to thick, massive impasto. This program is designed to simplify its complex variables, providing artists with a powerful foundation that even experienced painters often struggle to master.</p><h2>Questions You Will Answer</h2><h5>The Fundamentals</h5><p>Which components serve as the essential base for oil painting? Why does one painting glow with deep, vibrant colors while another appears dull and dry? How do you create light, shadow, and perfect color transitions?</p><h5>Anatomy and Portraiture</h5><p>How to paint the human body and create a portrait? What is the secret to rendering skin texture and lifelike tones? How do you create halftones and seamless transitions?</p><h5>Tools and Materials</h5><p>What is the purpose of coarse vs. soft brushes, and why are specific varnishes and thinners essential? Which pigments and oils are best for large-scale works, and which are required for small, detailed miniatures? Why choose between canvas, wood, or paper?</p>",
 
     "detailsSection": {
       "title": "Program content and technical mastery",
-      "text": "<h2>What you will master</h2><h5>Foundational Drawing and Composition</h5><p>Traditional drawing is the heart of oil painting. You will learn to master form and proportion, using various sources including photographs, works by old masters, and live studio setups. Depending on your goals, we may work on still life, live model posing, or 'en plein air' sessions to capture landscapes and figures under the open sky.</p><h5>Canvas Preparation and Materials</h5><p>You will learn the professional craft of preparing your surface: stretching canvases, selecting between linen, cotton, or synthetic materials, and understanding thread thickness. We cover the vital connection between glues and gesso (chalk, acrylic, or oil) and how they dictate the vibrancy, gloss, and longevity of your colors.</p><h5>Advanced Application Techniques</h5><p>We explore the full spectrum of oil application—from the rapid 'Alla Prima' method to meticulous multi-layering. You will learn which brushes are designed for specific stages, allowing you to create everything from atmospheric tones to sharp, fine details.</p><h3>Artistic and Philosophical Heritage</h3><p>Mastering oil painting is an immersion into the techniques that have defined fine art for centuries. By understanding the relationship between the canvas, the primer, and the pigment, you gain total control over the final result. These skills are essential for any artist looking to increase the quality and value of their work in the international art market.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons. Note that all necessary materials and equipment are not included in the session cost. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>"
-    }
+       "text": "<h5>Foundational Drawing and Composition</h5><p>Traditional drawing is the heart of oil painting. Sometimes the drawing is created during the oil painting process. This requires a high level of mastery which we will cover during the course. You will learn to command form and proportion using various sources: photographs, old masters, or live studio setups. We may work on still life, live models, or 'en plein air' sessions to capture landscapes and figures under the open sky.</p><h5>The Art of the Underpainting</h5><p>You will master the technique of the initial sketch using charcoal, pastel, graphite, egg tempera, acrylic, or oil. This stage simplifies the entire painting process and can often stand alone as a finished work or serve as the vital structural map for your layers.</p><h5>Canvas and Surface Preparation</h5><p>You will learn the professional art of surface preparation: stretching canvases (linen, cotton, or synthetic) and understanding thread weight. We study the critical link between glues and gesso—including gypsum, acrylic, and oil-based primers—and how they directly influence the vibrancy, gloss, and archival quality of your work.</p><h5>Advanced Application and Multi-Layering</h5><p>We explore the spectrum from 'Alla Prima' to complex glazing (layering). You will learn to use specialized soft brushes for airy tones and fine details in portraits and drapery. We study the chemistry of oils—such as linseed and walnut—and which varieties are suited for hyper-realism versus large-scale works. You will also master the use of the maulstick and final varnishing to protect and highlight specific details.</p><h3>Artistic and Philosophical Heritage</h3><p>Mastering oil painting is an immersion into the primary language of fine art that has dominated the global market for centuries. In contemporary art, deep command of oils sets an artist apart, offering a level of material depth and prestige valued by galleries and collectors. This course provides the technical mastery to move between hyper-realism and expressive abstraction. By controlling every variable—from the hand-primed canvas to the final varnish—you ensure your work possesses the archival integrity and visual power required for museum-level exhibitions and elite private commissions.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons. Note that all necessary materials and equipment are not included in the session cost. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>"
+     }
+    },
+
+    "802": {
+    "title": "Mixed Media Drawing Course",
+  "briefDescription": "Master the versatile fusion of dry and wet media to create sophisticated illustrations and fine art, bridging the gap between classical drawing and modern painting.",
+  "badge": "Versatile & Illustrative",
+  "description": "<h3>The Program Focus</h3><p>This program develops a powerful artistic foundation by mastering the interaction of various materials, creating works that sit on the fine line between classical drawing and professional painting.</p><h2>Questions You Will Answer</h2><h5>Layering and Logic</h5><p>How do you effectively combine graphite and pastel with water-based paints? We explore the structural logic of layering—whether following a classical sequence or a creative, spontaneous order.</p><h5>Media Synergy</h5><p>How can tools like airbrushes, markers, and dry pigments be used alongside traditional brushes to achieve depth and texture?</p><h5>Mastery of Detail</h5><p>How do you execute precise detailing using ink, pens, and fine brushes to bring a piece to its final, professional polish?</p><h5>Historical and Modern Context</h5><p>How did masters like Dürer and Da Vinci use these techniques? How are these methods applied today in digital industries and character design?</p>",
+  "detailsSection": {
+    "title": "Program Content and Technical Mastery",
+    "text": "<h5>Advanced Material Science</h5><p>You will gain comprehensive knowledge of pigments, alcohol-based markers, India ink, and various water-based media like tempera, aquarelle, gouache, and acrylic. You will learn to work on diverse surfaces including paper, cardboard, and wood, understanding how each substrate responds to different media.</p><h5>Technique and Execution</h5><p>The course covers everything from foundational graphite sketching to advanced finishing. You will master classical drawing techniques, the rendering of drapery, and specialized application methods using airbrushes or sponges to achieve unique atmospheric effects.</p><h5>Professional Versatility</h5><p>The skills gained here are highly sought after in modern industry, from children's book illustration and fashion design to architectural visualization. We also explore how these physical works are digitized for use in graphic design and the video game industry.</p><h3>Artistic and Philosophical Heritage</h3><p>Mastering mixed media allows an artist to break free from the constraints of a single medium. By mastering both dry and wet techniques, you build a versatile technical base that supports both monochrome realism and vibrant, multi-layered compositions. Whether you aim for gallery-level fine art or commercial illustration, this course provides the tools to produce works of professional depth and complexity.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons. Note that all materials and equipment are not included. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>" 
     }
   },
 
+  "803": {
+  "title": "Aquarelle Course",
+  "briefDescription": "Master the delicate balance of water and light. From precise photographic-based linear drawing to advanced glazing, develop professional skills in the sophisticated medium of Aquarelle.",
+  "badge": "Light & Translucent",
+  "description": "<h3>The Program Focus</h3><p>Aquarelle is the art of controlling the elements of water and pigment. This program is designed to reveal the uniqueness of this specific medium: from understanding the physics of paper to creating sophisticated, large-scale works.</p><h2>Questions You Will Answer</h2><h5>Secrets of Mastery</h5><p>What is the true magic and uniqueness of Aquarelle? We will explore how to maintain color purity, avoid overworking the paper, and prevent unwanted surface damage.</p><h5>Technical Excellence</h5><p>How do you achieve a perfectly smooth wash without visible streaks? What is granulation, and how can you turn this effect into an artistic advantage?</p><h5>Speed and Patience</h5><p>How to work meticulously and calmly, given that Aquarelle requires patience? At the same time—how do you learn to make instant decisions while the paint is still wet?</p>",
+  "detailsSection": {
+    "title": "Program Content and Technical Mastery",
+    "text": "<h5>Foundational Drawing and Basics</h5><p>A high-quality Aquarelle begins with a flawless graphite linear drawing. The primary priority of this program is mastering the transfer of a photographic prototype into a precise initial sketch. While working from photography is our first priority to ensure structural accuracy, we also learn to adapt these skills to live setups, including still lifes, models, and 'en plein air' sessions.</p><h5>Material Science</h5><p>You will study various paper types and understand how their quality directly impacts the final result. We will master methods for mounting paper on wooden boards and learn to use the board's tilt angle to achieve unique color effects.</p><h5>Tools and Paint Chemistry</h5><p>The program includes an in-depth study of Aquarelle paint types and mixing principles. You will learn to work with professional brushes—including those with French ferrules—and use auxiliary materials such as gum arabic and masking fluid.</p><h5>Application Techniques</h5><p>We will practice both wet-on-wet (alla prima) and wet-on-dry techniques, as well as multi-layer glazing, which allows for the creation of deep, transparent colors.</p><h3>Artistic and Philosophical Heritage</h3><p>Modern Aquarelle has evolved far beyond small-scale sketches. Mastering this art opens doors to prestigious contemporary art exhibitions and international festivals across Italy, the USA, France, and beyond. Today, these works reach impressive dimensions, captivating viewers with the grandeur of large-scale masterpieces and the precision of hyperrealism. Simultaneously, Aquarelle remains the ideal tool for abstraction and expression. This course provides a powerful technical foundation for professional illustration in books and magazines, as well as applications in fashion design.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons. Note that all necessary materials and equipment are not included in the session cost. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>"
+  }
+ },
+
+"804": {
+  "title": "Academic Drawing Course",
+  "briefDescription": "Master the language of line, light, and shadow. Build a powerful 'eye-brain-hand' connection through freehand techniques and classical anatomical study.",
+  "badge": "Foundational & Structural",
+  "description": "<h3>The Program Focus</h3><p>Graphics are the bedrock of all visual arts. While painting communicates through color and emotion, graphics speak the language of line, stroke, and contrast. This program focuses on developing the cognitive and physical mastery required to render the world with precision and character.</p><h2>Questions You Will Answer</h2><h5>The Human Form</h5><p>How do you accurately construct the human face and body? What are the secrets to achieving realistic proportions and capturing the essence of a subject?</p><h5>Composition and Scale</h5><p>Why do some drawings fail to fit the paper, and how do you master spatial planning? How do you measure objects with your eye to ensure perfect scale every time?</p><h5>The Logic of Light</h5><p>How is light and shadow created to give a flat surface three-dimensional volume? How do you manage transitions between sharp contrasts and soft gradients?</p><h5>Overcoming the Blank Page</h5><p>What should you do when a drawing feels 'stuck'? You will learn to view mistakes as part of the structural process, removing the fear of the white canvas.</p>",
+  "detailsSection": {
+    "title": "Program Content and Technical Mastery",
+    "text": "<h5>The Power of the Freehand Stroke</h5><p>In an era of projectors and AI, the art of the 'free hand' is becoming a rare and elite skill. This course rejects stencils in favor of developing a true biological 'handwriting.' You will learn to hold the hand correctly, creating effortless circles and fluid lines that form the skeleton of any great work. This process enhances spatial imagination and fine motor coordination, allowing for creative freedom that mechanical aids cannot provide.</p><h5>Material Science and Specialized Media</h5><p>You will gain a professional understanding of the interaction between media and substrate. We study diverse paper types tailored for graphite, charcoal, and pastel. The curriculum covers the taxonomy of graphite grades, professional methods for sharpening lead cores, and the correct use of various erasers, blending stumps (tortillions), and fixative varnishes. We also introduce the sophisticated 'Dry Brush' technique, bridging the gap between drawing and painting.</p><h5>Anatomical Foundation and Texture</h5><p>Anatomy is the most vital pillar of graphics. We focus on the realistic forms of the human body, providing the necessary base for any future work in color. You will master the 'stroke'—learning to control line thickness and density. Beyond graphite, we explore the deep blacks of natural and compressed charcoal and the vibrant layering of soft and hard pastels to create professional-grade textures.</p><h3>Artistic and Philosophical Heritage</h3><p>Mastering freehand drawing is a profound cognitive exercise that builds a direct connection between perception and execution. Unlike tracing, which limits you to a single form, freehand drawing allows you to evolve the image as you work. This course transforms the student from a craftsman into an artist with a signature style, providing a technical foundation that is respected in both classical galleries and modern design industries.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons. Note that all necessary materials and equipment are not included in the session cost. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>"
+  }
+},
+
+"805": {
+    "title": "Stone Painting Course",
+    "briefDescription": "Master the ancient and modern art of painting on stone. From prehistoric petroglyphs to contemporary fine art, learn to transform raw geological forms into eternal masterpieces.",
+    "badge": "Unique & Tactile",
+    "description": "<h3>The Program Focus</h3><p>Painting on stone is both one of the oldest and most contemporary forms of self-expression. Unlike a flat canvas, <u>stone is a three-dimensional, eternal object</u> that challenges the artist to work with its unique shape, weight, and geological history.</p><h2>Questions You Will Answer</h2><h5>The Heritage of Stone</h5><p>How did our ancestors use ochre and charcoal to create sacred petroglyphs in caves like Altamira? What are the secrets of the 16th-century masters, like Sebastiano del Пьомбо, who used the <u>natural veins of marble and slate</u> to mimic clouds and waves?</p><h5>Modern Fine Art vs. Craft</h5><p>How to transition from simple decorative pebbles to 'High Art'? We explore the works of modern masters who transform stones into hyper-realistic animals or surreal conceptual objects.</p><h5>Technical Durability</h5><p>How do you ensure that paint <u>never chips, cracks, or fades</u>? We will master the layering techniques necessary for the stone to be handled freely and remain an 'ultimate' durable art object.</p><h5>The Philosophy of Form</h5><p>How can a crack, depression, or the natural contour of a rock become a vital part of your composition? You will learn to 'see' the hidden image within the raw material.</p>",
+    
+    "detailsSection": {
+      "title": "Program Content and Technical Mastery",
+      "text": "<h5>Surface Preparation and Leveling</h5><p>Finding a perfectly flat stone is rare. You will learn to <u>engineer your own surface</u> by creating specialized primers and grounds. We cover materials that allow you to level uneven surfaces or create a specific texture over the stone, ensuring professional paint adhesion on even the 'slickest' minerals.</p><h5>Miniature and Multi-Layer Painting</h5><p>Working on stone often involves miniature painting, requiring extreme patience and precision. You will master the <u>sequential application of layers</u> using various media: Oil, Acrylic, Tempera, or even Watercolor. This process includes detailed sketching and building volume through glazing, similar to classical iconography and academic drawing.</p><h5>3D Thinking and Problem Solving</h5><p>The course develops <u>'volumetric' thinking</u>. Unlike a flat sheet of paper, a stone requires you to account for a 360-degree view and a non-linear surface. This skill is essential for solving complex artistic problems related to irregular shapes and three-dimensional textures.</p><h3>Artistic and Philosophical Heritage</h3><p>Mastering stone painting provides a powerful foundation for <u>design and construction</u>. The patience and precision gained here are directly applicable to other irregular objects and modern industries. In the future, students can apply these skills in <b>Architectural Decor</b> (customizing marble or granite interiors), <b>Jewelry Design</b> (miniatures on semi-precious gems), and <b>Game Development</b>—where a deep understanding of geological textures and light interaction is vital for realistic 3D texturing. This course transforms a simple natural element into a sophisticated medium for conceptual and narrative art.</p><h3>Format and Logistics</h3><p>The training is conducted as private individual sessions with the teacher traveling to the student's home for maximum comfort and efficiency. You choose your package of 1, 5, or 10 lessons. Note that all necessary materials and equipment are not included in the session cost. Lessons are conducted in Basel, Basel-Landschaft, and bordering suburbs of Germany and France.</p>" 
+    }
+  },
+
+  "806": {
+  "title": "Contemporary Painting Course",
+  "briefDescription": "Master the fusion of Old Master discipline and contemporary vision. Learn to create high-level art that balances technical perfection with raw, conceptual power.",
+  "badge": "Ultracontemporery & Academic",
+  "description": "<h3>The Program Focus</h3><p>Does contemporary art require skill, or is it just ideas? This course proves that the strongest modern artists are masters of tradition. We explore painting as a visceral act of gesture and drama, moving far beyond mechanical copying or simple illustration.</p><h2>Questions You Will Answer</h2><h5>The Reality of Style</h5><p>What defines the line between Hyperrealism and Magical Realism? Why does modern painting value 'unfinished' edges and visible drips alongside extreme precision?</p><h5>Market and Meaning</h5><p>How do you distinguish 'High Art' from Kitsch? Is your work a commercial product or a museum-level masterpiece?</p><h5>The Power of Tradition</h5><p>How do we use history as a toolkit rather than a cage? Why is the mastery of the human form still the ultimate weapon of the contemporary painter?</p>",
+
+  "detailsSection": {
+    "title": "Program Content and Technical Mastery",
+    "text": "<h5>The Modern Alchemy of Paint</h5><p>You will master the physical 'event' of painting: from <b>Alla Prima</b> and heavy impasto to the sophisticated secrets of multi-layered <b>Glazing</b>. We focus on 'psychological likeness' rather than just photographic accuracy.</p><h5>Deconstructing the Masters</h5><p>Learn to 'hack' the methods of the greats to build your own signature style. We explore how to balance technical perfection with the courage to destroy and reinvent a canvas, losing the fear of the 'spoiled' work in favor of raw expression.</p><h5>The Technical Base</h5><p>We cover the essential physics of oil painting: from surface preparation and underpainting to the chemistry of mediums. This course provides the structural foundation required for museum-level exhibitions and professional gallery representation.</p><h3>Format and Logistics</h3><p>Private individual sessions conducted at the student's home for maximum efficiency. Choose a package of 1, 5, or 10 lessons. Materials are not included. Lessons are available in Basel, Basel-Landschaft, and neighboring suburbs of Germany and France.</p>"}
+  }
+},
 
 
-    "200": {
-      "title": "Web Application & E-commerce Development",
-      "description": "Robust web applications and high-converting e-commerce platforms are developed. Solutions are built using JavaScript and TypeScript for a scalable and maintainable codebase. By utilizing modern frameworks, powerful and engaging web applications are architected.<h5>Key Features & Technologies</h5><ul><li><strong>Front-End Development:</strong> Polished and intuitive user interfaces are built using cutting-edge frameworks like React, Next.js, Vue.js, and Svelte. For optimized content delivery and performance, technologies like SvelteKit and Bunny.net CDN are also used.</li><li><strong>Back-End Systems:</strong> The backend is built on Node.js to create a scalable and secure foundation. For specific needs, other robust server-side languages like Java or Golang can also be integrated.</li><li><strong>E-commerce & Payments:</strong> Secure transactions and a rock-solid foundation for growth are ensured through the integration of leading payment gateways such as Stripe, PayPal, and other direct payment methods.</li></ul>"
-    },
-    "201": {
-      "title": "UI/UX Design & Prototyping",
-      "description": "An exceptional digital product begins with an outstanding user experience. The service specializes in creating intuitive, engaging, and visually stunning user interfaces (UI) and user experiences (UX) that captivate audiences.<h5>Key Features & Process</h5><ul><li><strong>User-Centered Design:</strong> The comprehensive process covers everything from initial user research and detailed wireframing to interactive prototypes and polished final designs.</li><li><strong>Intuitive Experiences:</strong> The focus is on ensuring a digital product is not only functional but also a joy to use and a memorable experience for every user.</li></ul>"
-    },
-    "202": {
-      "title": "Mobile App Development",
-      "description": "Innovative ideas are brought to the fingertips of millions through the development of high-performance, responsive mobile applications with React Native. This ensures a fluid and consistent user experience across both iOS and Android.<h5>Core Components</h5><ul><li><strong>UI/UX Design:</strong> The service crafts intuitive UI/UX designs, supported by Redux for seamless state management.</li><li><strong>Backend Integration:</strong> Robust backend systems are integrated, ensuring apps are built to truly stand out.</li><li><strong>Visuals & Functionality:</strong> Expect pixel-perfect visuals and unshakeable functionality with every tap and swipe, designed to engage users and keep them coming back.</li></ul>"
-    },
-    "203": {
-      "title": "Performance Optimization & SEO Audits",
-      "description": "Website visibility is significantly boosted and user experience is enhanced with specialized performance and SEO audits.<h5>Audit Process</h5><ul><li><strong>In-depth Analysis:</strong> The process includes an in-depth analysis of a site to identify speed bottlenecks, evaluate Core Web Vitals, and ensure optimal search engine friendliness.</li><li><strong>Actionable Reports:</strong> The service provides detailed, actionable reports and strategic recommendations to dramatically improve loading times, responsiveness, and organic search rankings.</li><li><strong>Goal-Oriented Results:</strong> The goal is to ensure a website achieves its full potential and attracts a significantly larger audience.</li></ul>"
-    },
-    "204": {
-      "title": "Custom API Development & Integration",
-      "description": "Different systems are enabled to communicate effortlessly, providing a powerful backend for cutting-edge applications. The service specializes in designing and building secure, scalable, and highly efficient APIs (Application Programming Interfaces). Whether architecting a custom RESTful or GraphQL API from scratch or seamlessly integrating with essential third-party services like payment gateways or CRM systems, the focus is always on ensuring smooth data flow and flawless connectivity that empowers operations.<h5>Core Functionalities & Technologies</h5><ul><li><strong>API Development:</strong> Custom APIs are built from the ground up to meet unique needs, enabling applications to communicate with other services and fetch data from external resources.</li><li><strong>Core Technologies:</strong> The backend APIs are developed using powerful server-side technologies like Node.js with frameworks such as Express.js, NestJS, or Koa.js. Libraries like Mongoose (for MongoDB) or Sequelize (for SQL databases) are also utilized to manage data. Data integrity and security are ensured with proper validation and authentication methods.</li></ul>"
-    },
-    "205": {
-      "title": "Website Maintenance & Content Management",
-      "description": "A website is a living asset, and the services ensure it remains sharp, secure, and always up-to-date.<h5>Maintenance Services</h5><ul><li><strong>Comprehensive Coverage:</strong> Website maintenance covers both front-end polish and critical back-end stability.</li><li><strong>Proactive Management:</strong> The process includes regular updates, crucial performance optimizations, and meticulous content management. From cleaning up unused files to integrating exciting new features, websites are managed proactively.</li><li><strong>Client Focus:</strong> This allows a client to fully focus on their core business, with the peace of mind that their online platform is consistently performing at its absolute peak.</li></ul>"
-    },
-    "206": {
-      "title": "WordPress Development",
-      "description": "The full power of an online presence is unlocked with custom WordPress solutions tailored precisely to specific needs.<h5>Development & Functionality</h5><ul><li><strong>E-commerce & Events:</strong> The service handles everything from establishing a powerful e-commerce store with WooCommerce to managing complex event schedules.</li><li><strong>Multilingual Support:</strong> A seamless multilingual experience is created using tools like Polylang.</li><li><strong>Bespoke Solutions:</strong> From the initial core installation to bespoke plugin development, a WordPress site will be robust, user-friendly, and perfectly aligned with the unique business objectives, ensuring maximum impact.</li></ul>"
-    },
-    "207": {
-      "title": "Static Website Development",
-      "description": "Websites are crafted to load in an instant and provide a razor-sharp user experience.<h5>Key Features</h5><ul><li><strong>Lightning-Fast Performance:</strong> The service specializes in building lightning-fast static websites using pure Vanilla JavaScript, HTML5, and SCSS.</li><li><strong>High Optimization:</strong> These sites are not only visually appealing; they are also highly optimized for speed, inherently secure, and built for maximum efficiency.</li><li><strong>Ideal Use Cases:</strong> Perfect for dynamic portfolios, impactful marketing pages, or any project where immediate loading and impeccable design are paramount to captivating a message instantly.</li></ul>"
-    },
-    "208": {
-      "title": "Progressive Web App (PWA) Development",
-      "description": "The gap between traditional web and native mobile applications is seamlessly bridged with a Progressive Web App (PWA). An existing web presence can be transformed into an installable, app-like experience that truly excels.<h5>Core PWA Benefits</h5><ul><li><strong>Enhanced Performance:</strong> The apps work offline and load instantly.</li><li><strong>Increased Engagement:</strong> They are capable of sending rich push notifications directly to users.</li><li><strong>Improved Accessibility:</strong> Unparalleled user engagement and enhanced accessibility are delivered without the need for complex app store downloads, providing a remarkably smooth and fast experience across all devices and networks.</li></ul>"
-    },
-    "100": {
-      "title": "Application for Democratic Voting",
-      "description": "Contribution to the development of custom popup components for the delib-5.web.app platform. The project leveraged Figma for design and Next.js with TypeScript for implementation.<h5>Key Contributions</h5><ul><li><strong>Interactive Popups:</strong> A double-paged popup component was developed with fully interactive elements, allowing users to navigate between the two pages and return to the first one.</li><li><strong>Bug Fixes & Performance:</strong> The work also included bug fixes and CSS corrections, resulting in a noticeable improvement in overall site functionality and performance by 15%.</li><li><strong>Collaboration:</strong> This was a collaborative effort with a team of eight members, with all work coordinated via Slack to ensure seamless communication and progress.</li></ul>"
-    },
-    "101": {
-      "title": "Music Study Application",
-      "description": "Maintenance and active development of frontend components for a Swiss-based music application that provides online and in-person lessons for students.<h5>Development & Technology</h5><ul><li><strong>Frontend Development:</strong> As part of this effort, two new front-page components were added and translated into four languages (English, French, Italian, and Spanish), improving the site's homepage explanation by 30% and giving users a clearer understanding of the platform's purpose. The platform uses Svelte and SvelteKit.</li><li><strong>Integrations:</strong> Payment services were integrated via Stripe, and content delivery was optimized with BunnyNet CDN.</li><li><strong>Project Ecosystem:</strong> The project operates within a comprehensive development ecosystem that includes a Golang backend, Postgres DB, Docker, Heroku, and GitLab for seamless collaboration and deployment.</li></ul>"
-    },
-    "102": {
-      "title": "Orchestra Concerts Platform",
-      "description": "A comprehensive, multilingual WordPress website was developed for a Swiss-based philharmonic orchestra.<h5>Platform Features & Development</h5><ul><li><strong>Custom Event Management:</strong> The platform features a custom event management system, with core functionality extended through deep customization of PHP files.</li><li><strong>Multilingual Support:</strong> The site is fully translatable via the Polylang plugin, ensuring a seamless experience for a diverse audience.</li><li><strong>Technical Scope:</strong> The project scope included domain implementation, SSL certificate management, secure hosting deployment, and ongoing maintenance of the MySQL database and PHP backend to ensure long-term stability and performance.</li></ul>"
-    },
-    "103": {
-      "title": "Mobile Psychological Therapy Services Website",
-      "description": "A bespoke, high-performance website was developed for a psychological support practice. Built from scratch using Vanilla JavaScript, styled with SASS and CSS, and powered by a Node.js backend, the site is exceptionally lightweight and fast.<h5>Project Scope & Features</h5><ul><li><strong>Development & Deployment:</strong> The entire project lifecycle, from initial design to production deployment, was handled with demonstrated expertise in domain registration, DNS management, SSL/TLS configuration, and cloud deployment via Firebase.</li><li><strong>Interactive Elements:</strong> The application features a custom 'read more/read less' button, a dynamic testimonials component and a picture gallery. Additionally, the privacy policy was meticulously crafted to meet official Swiss medical health standards.</li><li><strong>Analytics & Optimization:</strong> For ongoing optimization, Google Analytics was deployed to track site functionality and user activity, providing data used for continuous improvement of the user experience.</li></ul>"
-    },
-    "104": {
-      "title": "Custom E-commerce Platform Online Store",
-      "description": "Development of a high-converting online store with secure payments and inventory management, engineered to significantly boost client sales. The platform's architecture is built with a focus on performance, scalability, and a seamless user experience, utilizing a robust RESTful API for efficient data handling. <h5>Front-End Components and User Experience</h5> <ul> <li><strong>Product Card & Detail Page:</strong> A custom card component provides a clean display of products. Clicking a card opens a dedicated product page with a custom-developed image gallery featuring a thumbnail-based navigation system and a smooth zoom component for detailed viewing. Each product page includes a likes counter, a view counter, and product sharing options via social media or a direct link.</li> <li><strong>Navigation & Discovery:</strong> The site employs multiple product carousel components to enhance user discovery. These include a homepage carousel for featured products, a carousel for similar items based on a user's current view, and another for additional related products. A search bar is also available, providing users with a fast and efficient way to find products.</li> <li><strong>Interactive Features:</strong> Core components were developed to improve site usability and performance. This includes a lazy-load component to optimize loading times, a 'push up' button for easy navigation, and a notification popup for age-gated content, limiting adult product viewing for users under 18.</li> </ul> <h5>Backend and Core Functionality</h5> <ul> <li><strong>Secure Transactions:</strong> The Stripe payment component and shopping basket component were implemented to handle secure transactions and inventory management. This integration ensures a smooth and reliable checkout process for customers.</li> <li><strong>User Authentication:</strong> A Login component was integrated, offering users the convenience of a Google account for quick and easy sign-in.</li> </ul> <h5>Unique Features</h5> <ul> <li><strong>Audio Player:</strong> A custom audio player component was developed and placed in the footer, providing a unique user experience. It allows users to start music upon entering the site, with controls for volume and mute.</li> </ul>"
-    },
-    "105": {
-      "title": "Messenger component for Mobile App",
-      "description": "A front-end messenger component was developed for a mobile application, built using React Native.<h5>Component Features</h5><ul><li><strong>User Interface:</strong> The component features a user's name and photo, text fields, message timestamps, a message notification icon with an unread count, and read/unread status arrows.</li><li><strong>Functionality:</strong> A search bar was also included to allow users to search for specific users or messages.</li><li><strong>Interactive Elements:</strong> An additional popup component was created to include a 'write a message' button, as well as buttons for location, notifications, and announcements, providing a comprehensive and intuitive user experience.</li></ul>"
-    },
-    "106": {
-       "title": "Software Serivces Web App",
-      "description": "A dynamic web application and portfolio site that demonstrates the creation of robust digital products from concept to completion. This project showcases my expertise as a full-stack developer, combining elegant design with a modern, scalable architecture.<h5>Key Features</h5><ul><li><strong>Responsive Design:</strong> The application is fully responsive, providing a seamless user experience across all devices, including mobile, tablet, and desktop.</li><li><strong>Dynamic Content:</strong> Custom-built components, such as a fully interactive photo gallery with zoom functionality and dynamic carousels, handle products and testimonials.</li><li><strong>Intuitive UX/UI:</strong> Every element, from the navigation menu to the contact form, was meticulously designed for user-friendliness and visual appeal, ensuring effortless engagement.</li></ul><h5>Technology & Architecture</h5><ul><li><strong>Front-End:</strong> Built with React and TypeScript, ensuring a robust and maintainable codebase.</li><li><strong>Back-End:</strong> Powered by Node.js, with a hybrid architecture that leverages API calls for dynamic image assets while using a local JSON data source for content.</li><li><strong>Workflow:</strong> An automated CI/CD pipeline was configured with GitHub Actions and Firebase Hosting, ensuring reliable, hands-off deployment.</li></ul>",
-      "link": "https://hieroglyphcode.ch/",
-      "githubLink": "https://github.com/mementomori16/hieroglyph-code"
-    },
 
-  
   "testimonials": {
     "title": "Client Testimonials",
-    "subtitle": "Discover the real impact of our software solutions, straight from our partners.",
+    "subtitle": "Discover the real impact of Profineart Lessons, straight from our partners.",
     "readMoreButton": "Read More",
     "ariaLabels": {
       "previousTestimonial": "Previous testimonial",
@@ -261,38 +269,19 @@
       "closeModal": "Close modal"
     },
     "1": {
-      "quote": "I can recommend Ilya's work, and him personally, with full conviction. I don't even know where to begin in highlighting his qualities. His personality is exceptional, and this shines through in his work. He's not your typical programmer. I have a feeling he started that field of study simply to satisfy his brilliant mind. But Ilya's work is more than just coding. His range of experience seems endless, which makes his input incredibly valuable. He's knowledgeable in art as well as current technological developments. His creativity overflows. He genuinely invests himself in his work rather than just fulfilling a task. What's truly valuable is that he contributes for the benefit of the client. He's always thinking, \"What else could be helpful? What could make this new homepage even more up-to-date?\" Things I couldn't even imagine existed are commonplace for him, and he incorporates them. He also possesses a patience and kindness that made our collaboration incredibly pleasant. My objections, ideas, wishes... everything! He always took everything to heart and implemented it. Even when my work required something a bit old-fashioned, he made an absolute effort to find the best solution for me. It's a gift to have Ilya by my side, both for the design and the maintenance of my homepage.",
-      "clientName": "Daniela Hagmann",
-      "clientTitle": "Co",
-      "clientCompany": "Lebend-Ich"
+      "quote": "",
+      "clientName": "Samantha",
+      "clientTitle": "",
+      "clientCompany": "My class with Ilya was great. Ilya was friendly, very knowledgeable, encouraging, and completely adaptable to my needs and goals. It was fun planning long-term projects with him and discussing styles and art history. If you're looking for a teacher who is experienced, knowledgeable, and easygoing, I highly recommend Ilya!"
     },
     "2": {
-      "quote": "We were incredibly pleased with Ilya's contributions to our team. He played a key role in developing several components of our main PWA, consistently maintaining a positive attitude and fostering a great atmosphere in the workplace. Ilya is a true asset!",
-      "clientName": "Tal Yaron",
-      "clientTitle": "CEO",
-      "clientCompany": "FreeDi"
+      "quote": "",
+      "clientName": "",
+      "clientTitle": "",
+      "clientCompany": ""
     }
   },
-  "aboutPage": {
-    "titlePrefix": "About",
-    "titleSuffix": "HIEROGLYPH CODE",
-    "intro1": "Welcome to Hieroglyph Code, a custom software solutions service led by Ilya Medvedev, a full-stack Software Engineer based in Basel, Switzerland. The service combines technical expertise with creative artistry to deliver professional, user-friendly, and scalable digital experiences. Hieroglyph Code specializes in crafting solutions that are not only functional but also intuitive and visually appealing.",
-    "intro2": "Hieroglyph Code is dedicated to building high-quality applications by leveraging modern web technologies, AI tools, and a meticulous eye for detail. The foundation of the work is a deep knowledge of TypeScript and Vanilla JavaScript, which ensures the delivery of robust and scalable applications using frameworks like React, Next.js, React Native, Vue.js, Svelte.js, Node.js, CSS3, and SASS.",
-    "servicesTitle": "Software Services",
-    "servicesIntro": "At Hieroglyph Code, services encompass comprehensive custom software development, from initial concept to final deployment:",
-    "serviceList": {
-      "fullStack": "Full Stack Web & Mobile Development: Responsive, robust applications are built using modern technologies like TypeScript, Vanilla JavaScript, React.js, Next.js, React Native, Vue.js, Svelte.js, Node.js, CSS3, and SASS.",
-      "backEnd": "Back-End & API Development: Secure and scalable back-end services are created with Node.js and custom API development is handled. The service has extensive experience with various databases, including MongoDB, Firebase, MySQL, and Postgres DB. The service also integrates platforms like Stripe for e-commerce.",
-      "wordpress": "WordPress Development & Maintenance: Services range from designing and building new e-commerce sites with Divi and Elementor to optimizing and maintaining existing platforms, with a specific focus on customizing plugins using PHP.",
-      "aiTools": "AI Tools & Integration: Platforms like Google AI Studio and Gemini are leveraged to streamline development workflows, optimize component code, and generate content outlines for efficient and innovative solutions.",
-      "devOps": "DevOps & Deployment: The development and deployment process is streamlined using modern tools like Docker, GitLab, and Heroku. This includes essential services like SSL and DNS implementation to ensure a secure and reliable online presence.",
-      "uiUx": "UI/UX Focused Development: With proficiency in tools like Figma and Photoshop, Hieroglyph Code ensures that applications are not only powerful but also delightful to use, with careful attention to design details and user engagement."
-    },
-    "outro": "Hieroglyph Code is committed to clear communication and delivering solutions precisely tailored to client needs, always with a focus on clean, efficient, and lightweight code.",
-    "ctaTitle": "Ready to discuss your next project?",
-    "ctaButton": "Get in Touch"
-  },
-
+  
   "similarProducts": {
     "exploreOtherCourses": "Explore Other Courses"
   },
@@ -301,15 +290,37 @@
     "exploreOtherProjects": "Explore Other Projects"
   },
 
- 
+
+
+"howItWorksPage": {
+    "title": "Pricing & Format",
+    "sidebarTitle": "Price List",
+    "intro": "Profineart Studio Basel provides private art instruction exclusively in English. Training is conducted in individual sessions for maximum comfort.",
+    "option2Title": "2-Session Format",
+    "option2FullDesc": "Each visit consists of 90 minutes of focused instruction (45 + 45 min).",
+    "option15Title": "1.5-Session Format",
+    "option15FullDesc": "Each visit consists of 70 minutes of focused instruction.",
+    "option1Title": "1-Session Format",
+    "option1FullDesc": "Each visit consists of 45 minutes of focused instruction.",
+    "coursesLinkTitle": "Course Catalog & Direct Booking",
+    "coursesLinkSub": "View full curriculum details and initiate direct orders for sessions here.",
+    "locationTitle": "Service Area",
+    "locationText": "Individual lessons are available in the town of Basel at the client's home or studio. Travel is included within a 25 km radius of Basel (Basel-Land, northern Aargau, border towns of Germany and France).",
+    "bookingTitle": "Booking & Payment",
+    "bookingText": "During the online booking of the picked course, you will be able to book the date and time, mentioning your location, address, contact and any additional information.",
+    "refundTitle": "Package Refunds",
+    "refundText": "While single trial lessons are final, multi-lesson packages offer flexibility. If for any reason the full package cannot be completed, a refund for any remaining unused units is available upon request."
+},
+
+
   "contactPage": {
     "title": "Contact",
     "imageCaption": "Basel, Switzerland",
-    "description": "Ready to discuss your project? Hieroglyph Code is based in Basel, Switzerland, and specializes in transforming ideas into reality. Reach out today to start a conversation about your custom software needs. All inquiries are typically answered within office hours. You can write directly to the following email or use the contact form.",
+    "description": "",
     "emailPrefix": "Email:",
-    "contactEmail": "contact@hieroglyphcode.ch",
+    "contactEmail": "",
     "connectTitle": "Let's Connect",
-    "connectDescription": "While the work is primarily remote, consultations are available in Basel or via a video call to discuss your project in detail.",
+    "connectDescription": "",
     "form": {
       "namePlaceholder": "Your Name",
       "emailPlaceholder": "Your Email",
@@ -411,152 +422,7 @@
       "title": "Governing Law",
       "text": "This agreement is governed by the laws of Switzerland. The place of jurisdiction is Basel."
     }
-  },
-   
-"cvPage": {
-    "titlePrefix": "Full-Stack Developer",
-    "titleSuffix": "Ilya Medvedev",
-    "email": "contact@hieroglyphcode.ch",
-    "location": "Basel, Switzerland, CH",
-    
-    "aboutTitle": "About",
-    "projectsTitle": "Projects",
-    "skillsTitle": "Skills",
-    "educationTitle": "Education",
-    "languagesTitle": "Languages",
-    
-    "intro1": "As a Full-Stack Developer with a foundation in fine arts, I create web applications that are as intuitive and visually compelling as they are powerful and efficient. I specialize in building clean, performant code that drives speed and stability, delivering end-to-end solutions built on TypeScript and the MERN stack, from conceptual design to deployment.",
-    
-    "intro2": "My core expertise spans React, Node.js, and advanced styling with SCSS, and I am proficient with modern frameworks like Next.js, Vue.js, and Svelte/SvelteKit. This technical foundation is merged with a Fine Arts background to create aesthetically compelling web applications, bridging the gap between design and development.",
-    
-    "intro3": "I specialize in engineering complex, reusable front-end systems and features. This includes crucial components like authentication flows, chat widgets, and advanced multimedia components—for example, zoomable galleries and adjustable audio players. I also design the related backend components for real-time integration, such as view counters and likes. I prioritize resolving critical CSS/UX issues to ensure optimal user interaction.",
-    
-    "intro4": "This focus on the user experience drives tangible outcomes, including boosting user-friendliness by 15% and enhancing user engagement by 30% on commercial applications. I manage the entire application lifecycle, including API integration, full-stack testing with Cypress, and setting up CI/CD pipelines using tools like GitHub and GitLab.",
-    
-    "portfolioUrl": "http://localhost:5173/projects",
-    
-    "projects": {
-      "p1_hieroglyph": {
-        "company": "Hieroglyph Code",
-        "title": "Custom Software Solutions (Professional Services web app)",
-        "date": "Jul 2025 — Sep 2025",
-        "bullets": [
-          "Full-Stack Architecture: Engineered a RESTful API with Node.js and Express.js to handle all content, including dynamic image assets fetched from an external server, creating a highly efficient front-end.",
-          "Key Components: Developed from scratch: Product Card, Interactive Gallery, Product Carousel, Navbar, Language Switcher, Search Functionality, Preloader and other components.",
-          "Design & UX: Utilized Figma to collaborate on and implement the front-end design, ensuring a professional and user-friendly interface.",
-          "End-to-End Quality Assurance: Implemented a dedicated test suite using Cypress to establish reliable End-to-End (E2E) testing for core user journeys, ensuring site integrity and preventing regressions across major components.",
-          "Workflow: Implemented a CI/CD pipeline using GitHub Actions for automated deployments."
-        ],
-        "links": {
-          "live": "https://hieroglyphcode.ch/",
-          "code": "https://github.com/mementomori16/hieroglyph-code"
-        }
-      },
-      "p2_loctoc": {
-        "company": "Loctoc PTE. LTD",
-        "title": "Full Stack Developer (Freelance Project)",
-        "date": "Jun 2025 — Jul 2025",
-        "bullets": [
-          "Boosted user-friendliness by 15% and client clarity by 30% by actively developing frontend components for a Swiss-based music application using Svelte and SvelteKit.",
-          "Integrated payment services via Stripe and optimized content delivery with BunnyNet CDN.",
-          "Collaborated within a comprehensive development ecosystem involving Golang, Postgres DB, Docker, Heroku, and GitLab."
-        ],
-        "links": {
-          "live": "https://hieroglyphcode.ch/",
-          "code": "https://gitlab.com/loctoc"
-        }
-      },
-      "p3_mindconnect": {
-        "company": "Mindconnect.ai",
-        "title": "AI Chatbot (Full Stack Developer Intern)",
-        "date": "Oct 2024 — Dec 2024",
-        "bullets": [
-          "Engineered and implemented a user authentication system from the ground up using Ant Design, Vue.js 3, and TypeScript to enable secure user login via Google Sign-in.",
-          "Built an AI chat component from scratch, focusing on an intuitive and responsive UI with TypeScript, Vue.js 3, and SASS.",
-          "Collaborated with backend developer to integrate frontend components, ensuring seamless data flow."
-        ],
-        "links": {
-          "note": "Codebase not publicly available."
-        }
-      },
-      "p4_freedi": {
-        "company": "FreeDi",
-        "title": "AI-Powered Group Decision Platform (Full Stack Developer Intern)",
-        "date": "Jun 2024 — Oct 2024",
-        "bullets": [
-          "Designed and implemented an API function utilizing Google Generate AI, demonstrating direct experience integrating AI into web functionalities.",
-          "Successfully built Login and User components from scratch using Next.js, Redux.js, Node.js, TypeScript, and Firebase.",
-          "Developed a responsive Popup Notification component using Figma, TypeScript, React, and SASS, which increased user engagement by 10%."
-        ],
-        "links": {
-          "live": "https://delib-5.web.app/",
-          "code": "https://github.com/mementomori16/delib-5-p"
-        }
-      },
-      "p5_danielahagmann": {
-        "company": "Daniela Hagmann",
-        "title": "Mobile Psychological Therapy Services Website (Client Project)",
-        "date": "Oct 2023 — Dec 2023",
-        "bullets": [
-          "Core Stack: Engineered with a Node.js backend and a Vanilla JavaScript front-end, with styling handled by SASS and CSS for optimal performance.",
-          "Full-Lifecycle Management: Handled the entire project lifecycle, including domain registration, DNS management, and SSL/TLS configuration, with final deployment to Firebase.",
-          "Analytics & Compliance: Integrated Google Analytics and ensured compliance with official Swiss medical health standards."
-        ],
-        "links": {
-          "live": "https://lebend-ich.ch/",
-          "code": "https://github.com/mementomori16/Daniela-Hagmann-"
-        }
-      }
-    },
-    
-    "skillCategory": {
-      "frontEnd": {
-        "title": "FRONT-END"
-      },
-      "backEnd": {
-        "title": "BACK-END"
-      },
-      "databases": {
-        "title": "DATABASES"
-      },
-      "ai": {
-        "title": "AI TOOLS"
-      },
-      "platforms": {
-        "title": "PLATFORMS & SERVICES"
-      },
-      "design": {
-        "title": "DESIGN & UI"
-      },
-      "cms": {
-        "title": "CMS & TOOLS"
-      }
-    },
-    
-    "education": {
-      "fullStack": { 
-        "title": "Open University: INT college - Institute of Innovation & Technology", 
-        "date": "Apr 2023 — Jul 2024", 
-        "degree": "Full Stack Developer",
-        "url": "https://www.linkedin.com/school/int-college-institute-of-technology-innovation/posts/?feedView=all" 
-      },
-      "bachelor": { 
-        "title": "Hamidrasha-Faculty of the Arts", 
-        "date": "Oct 2007 — Jun 2011", 
-        "degree": "B.F.A.ed",
-        "url": "https://en.wikipedia.org/wiki/HaMidrasha_%E2%80%93_Faculty_of_the_Arts"
-      },
-      "highSchool": { 
-        "title": "Ort Geula High School", 
-        "date": "Sep 1998 — Jun 2000", 
-        "degree": "High School Diploma (Graphic Design Focus)" 
-      }
-    },
-    
-    "languages": {
-      "english": { "name": "English", "fluency": "Native/Bilingual" },
-      "russian": { "name": "Russian", "fluency": "Native/Bilingual" },
-      "german": { "name": "German", "fluency": "Conversational B1" }
-    }
   }
+   
+
 }

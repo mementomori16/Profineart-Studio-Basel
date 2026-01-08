@@ -2,8 +2,17 @@
 @use "sass:color";
 @use '../../../global.scss' as global;
 
+// This is the main "Frame" for the whole page
 .terms-body-content {
+  /* --- MATCHING THE COURSES FRAME --- */
   width: 100%;
+  max-width: global.$breakpoint-xxl;
+  margin: 0 auto;
+  
+  // This ensures the page "frame" has the same depth/color as Courses
+  background-color: transparent; 
+  
+  // Padding and Layout
   padding: global.$space-xl global.$space-xxl;
   display: flex;
   flex-direction: column;
@@ -14,8 +23,9 @@
   }
 
   .terms-section {
+    // Ensuring the text inside the frame is readable
     .section-text {
-      color: global.$color-secondary;
+      color: global.$color-text-dark4; // Matching the InfoContainer text color
       font-size: global.$font-size-base;
       line-height: 1.7;
       margin: 0;
@@ -24,7 +34,7 @@
 
     .section-number, 
     .section-title {
-      color: global.$color-text-dark;
+      color: global.$color-text-dark2; // Matching the Courses title color
       font-weight: global.$font-weight-bold;
     }
 

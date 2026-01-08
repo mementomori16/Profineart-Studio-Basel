@@ -1,7 +1,7 @@
+// src/components/pages/Courses/Courses.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// IMPORTANT: Ensure this path is correct for your project structure
 import { courses } from '../../../../../Backend/data/products'; 
 import './courses.scss';
 
@@ -9,52 +9,55 @@ const Courses: React.FC = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="coursesPage">
-            <h1 className="heading">{t('coursesPage.title', 'Our Courses')}</h1>
+        <div className="cardPageContainer courses-section">
+            <div className="cardContentWrapper">
+                {/* Header Section with the Line */}
+                <div className="title-section">
+                    <h1 className="pageTitle">{t('coursesPage.title', 'Our Courses')}</h1>
+                    <div className="title-underline"></div>
+                </div>
 
-            <div className="gallery">
-                {courses
-                    .filter(product => product)
-                    .map((product) => (
-                        <div key={product.id} className="serviceItem">
+                <div className="gallery">
+                    {courses
+                        .filter(product => product)
+                        .map((product) => (
+                            <div key={product.id} className="serviceItem">
+                                {product.badge && (
+                                    <div className="badge">
+                                        {t(`products.${product.id}.badge`)}
+                                    </div>
+                                )}
 
-                            {/* Badge per product: Condition remains valid because we kept a placeholder value */}
-                            {product.badge && (
-                                <div className="badge">
-                                    {t(`products.${product.id}.badge`)}
+                                <Link to={`/card/${product.id}`}>
+                                    <div className="image-wrapper">
+                                        <img
+                                            src={product.image?.lowResUrl || '/assets/placeholder-course.jpg'}
+                                            alt={t(`products.${product.id}.title`)}
+                                            className="image"
+                                        />
+                                    </div>
+                                </Link>
+
+                                <h2 className="title">{t(`products.${product.id}.title`)}</h2>
+
+                                <div className="description-frame">
+                                    <p className="subtitle">
+                                        {t(`products.${product.id}.briefDescription`)}
+                                    </p>
                                 </div>
-                            )}
 
-                            <Link to={`/card/${product.id}`}>
-                                <div className="image-wrapper">
-                                    <img
-                                        src={product.image?.lowResUrl || '/assets/placeholder-course.jpg'}
-                                        alt={t(`products.${product.id}.title`)}
-                                        className="image"
-                                    />
-                                </div>
-                            </Link>
-
-                            <h2 className="title">{t(`products.${product.id}.title`)}</h2>
-
-                            {/* Brief description: REMOVED the product.briefDescription condition. 
-                                It now relies solely on the i18n key. */}
-                            <p className="subtitle">
-                                {t(`products.${product.id}.briefDescription`)}
-                            </p>
-
-                            <Link to={`/card/${product.id}`}>
-                                <button className="viewButton">
-                                    {t('coursesPage.viewButton', 'Learn More')}
-                                </button>
-                            </Link>
-                        </div>
-                    ))}
+                                <Link to={`/card/${product.id}`}>
+                                    <button className="viewButton">
+                                        {t('coursesPage.viewButton', 'Learn More')}
+                                    </button>
+                                </Link>
+                            </div>
+                        ))}
+                </div>
             </div>
         </div>
     );
 };
 
 export default Courses;
-
 

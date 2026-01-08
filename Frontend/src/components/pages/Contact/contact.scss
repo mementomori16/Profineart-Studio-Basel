@@ -78,6 +78,15 @@
             object-fit: contain;
             object-position: center;
             border-radius: $border-radius-md;
+
+            // --- SILENT LOADING ---
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            will-change: opacity;
+
+            &.loaded {
+                opacity: 1;
+            }
         }
 
         .image-caption {
@@ -85,30 +94,6 @@
             color: $color-text-light;
             margin-top: $space-sm;
             padding: $space-xs 0;
-        }
-
-        .overlay-icon {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba($color-primary, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-
-            img {
-                width: $space-xl;
-                height: $space-xl;
-                filter: invert(1);
-            }
-        }
-
-        &:hover .overlay-icon {
-            opacity: 1;
         }
     }
 
@@ -130,7 +115,6 @@
         text-align: left;
     }
     
-    // Updated styles for the new icon layout
     .contact-email-link {
         display: flex;
         align-items: center;
@@ -143,7 +127,6 @@
         }
     }
     
-    // Style for the new icon
     .contact-email-icon {
         font-size: 1.2rem;
         color: $color-button-blue-2;

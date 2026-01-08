@@ -9,12 +9,13 @@ import Contact from "../components/pages/Contact/Contact";
 import Services from "../components/pages/ServicesPage/Services";
 import CardPage from "../components/pages/Card/CardPage/CardPage";
 import LegalInfo from "../components/pages/Attributions/Legal-info";
-import Cv from "../components/pages/CV/Cv";
 import Courses from "../components/pages/Courses/Courses";
 import OrderPage from "../components/pages/OrderPage/OrderPage";
 import SuccessPage from "../components/Order/SucsessPage.tsx/SuccessPage";
 import Basket from "../components/pages/Cart/Basket/Basket";
 import TermsOfUse from "../components/pages/TermsOfUse/TermsOfUse";
+import HowItWorks from "../components/pages/HowitWorks/Pricing";
+import StudentsWorks from "../components/pages/StudentsWorks/StudentsWorks";
 
 const router = createBrowserRouter([
     {
@@ -29,9 +30,11 @@ const router = createBrowserRouter([
             { path: "contact", element: <Contact /> },
             { path: "services", element: <Services /> },
             { path: "courses", element: <Courses /> },
+            { path: "how-it-works", element: <HowItWorks /> },
+            { path: "students-works", element: <StudentsWorks /> },
             { path: "legalinfo", element: <LegalInfo /> },
             { path: "terms-of-use", element: <TermsOfUse /> },
-            { path: "cv", element: <Cv /> },
+         
 
             // ---------------------------------------------------------
             // 🛒 *** FIXED ROUTE ORDER ***

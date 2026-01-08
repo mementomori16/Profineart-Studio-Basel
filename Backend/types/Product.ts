@@ -22,7 +22,7 @@ export interface SlotSelection {
     selectedTime: string;
     packageId: string;
     lessons: number;
-    durationMinutes: number; // (CONSISTENT)
+    durationMinutes: number; 
     price: number;
     address: string;
 }
@@ -68,15 +68,10 @@ export interface Product {
     briefDescription: any;
     title: string | undefined;
     id: number;
-    // title: string; // Removed - fetched from i18n
     date?: string;
     medium?: string;
-    // description: string | string[]; // Removed - fetched from i18n
-    // briefDescription: string; // Removed - fetched from i18n
-    // badge?: string; // Removed - fetched from i18n
     image: ProductImage;
     thumbnails: ProductImage[];
-    // detailsTitle?: string; // Removed - fetched from i18n
     detailsImages?: ProductImage[];
     likes?: number;
     views?: number;

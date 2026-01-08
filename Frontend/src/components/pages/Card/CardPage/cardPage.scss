@@ -3,16 +3,12 @@
 .cardPageContainer {
     display: flex;
     flex-direction: column;
-    padding: global.$space-lg;
+    padding: global.$space-xs global.$space-lg global.$space-lg global.$space-lg; 
     align-items: center;
-    
-    /* CRITICAL FIX: Ensures children do not create overall page overflow, 
-       forcing the inner scrollbar to be used. */
     overflow-x: hidden; 
 
-    /* Small mobile refinement */
     @media (max-width: global.$breakpoint-sm) {
-        padding: global.$space-md;
+        padding: 0 global.$space-xs global.$space-xs global.$space-xs; 
     }
 
     .cardContentWrapper {
@@ -21,26 +17,25 @@
         box-shadow: global.$shadow-lg;
         width: 100%;
         max-width: global.$breakpoint-xxl;
-        /* Keep overflow: hidden here to contain card layout elements */
         overflow: hidden;
 
         .cardHeader {
             width: 100%;
-            padding: global.$space-md 0;
+            padding: global.$space-md 0 global.$space-lg 0; 
             position: relative;
             text-align: center;
-            
-            /* CONVERSION: 1px border changed to rem */
             border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.15); 
 
-            /* Etched highlight line */
+            @media (max-width: global.$breakpoint-sm) {
+                padding: global.$space-sm 0 global.$space-md 0; 
+            }
+
             &::after {
                 content: '';
                 position: absolute;
-                bottom: -0.125rem; /* Converted from -2px */
+                bottom: -0.125rem; 
                 left: 0;
                 width: 100%;
-                /* CONVERSION: 1px height changed to rem */
                 height: 0.0625rem; 
                 background-color: rgba(255, 255, 255, 0.9);
                 pointer-events: none;
@@ -48,12 +43,14 @@
 
             .pageTitle {
                 margin: 0;
-                font-size: global.$font-size-h2;
+                font-size: global.$font-size-h3;
                 font-weight: global.$font-weight-bold;
-                color: global.$color-text-dark !important;
+                color: global.$color-text-dark2 !important;
+                line-height: 1.2;
 
                 @media (max-width: global.$breakpoint-sm) {
                     font-size: global.$font-size-h3;
+                    padding: 0 global.$space-xs;
                 }
             }
         }
@@ -63,22 +60,24 @@
             flex-direction: column;
             padding: global.$space-xl;
             gap: global.$space-xl;
+            // FIX: Added margin-top to separate images/text from the etched line
+            margin-top: global.$space-md; 
 
-            /* Small mobile refinement */
             @media (max-width: global.$breakpoint-sm) {
-                padding: global.$space-md;
+                padding: global.$space-xs; 
+                gap: global.$space-md;
+                margin-top: global.$space-sm;
             }
 
             @media (min-width: global.$breakpoint-lg) {
                 flex-direction: row;
-                gap: global.$space-xxl;
-                padding: global.$space-xl global.$space-xxl;
+                gap: global.$space-lg; 
+                padding: global.$space-xl global.$space-xl;
             }
 
             .column-left {
                 width: 100%;
                 order: 2;
-
                 @media (min-width: global.$breakpoint-lg) {
                     width: 65%;
                     order: 1;
@@ -91,7 +90,6 @@
                 flex-direction: column;
                 gap: global.$space-md;
                 order: 1;
-
                 @media (min-width: global.$breakpoint-lg) {
                     width: 35%;
                     order: 2;
@@ -102,9 +100,8 @@
     
     .similarProductsContainer {
         width: 100%;
-        
+        margin-top: global.$space-xxl;
         @media (max-width: global.$breakpoint-lg) {
-            // Ensures the container doesn't get artificially constrained
             max-width: none; 
         }
     }

@@ -1,314 +1,197 @@
 @use "sass:color";
-@import '../../global.scss'; 
+@use '../../global.scss' as global;
 
-// 2. Component Specific Styles
-.new-component-layout {
-    // Shared container styles
+.new-hero-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    background-color: global.$color-background;
+    overflow: hidden;
+    padding: global.$space-md;
+
+    // THE MASTER FRAME (Wraps Title Section + Card Section)
+    .master-component-frame {
+        background-color: rgba(255, 255, 255, 0.4); // From your infoContainer logic
+        border-radius: global.$border-radius-lg;
+        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+        box-shadow: global.$shadow-sm;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        padding: global.$space-lg;
+        width: 100%;
+        max-width: global.$breakpoint-xxl;
+        gap: global.$space-xl;
+        
+        // Final adjustment to keep the whole thing perfectly centered/upward
+        transform: translateY(-1rem); 
+
+        @media (min-width: global.$breakpoint-md) {
+            flex-direction: row;
+            padding: global.$space-xxl;
+            gap: global.$space-xxxl;
+            // Ensure internal alignment is tight
+            align-items: stretch; 
+        }
+
+        @media (max-width: global.$breakpoint-sm) {
+            padding: global.$space-md;
+            gap: global.$space-lg;
+        }
+    }
+}
+
+// TEXT SECTION (Inside the Master Frame)
+.text-section {
+    flex: 1;
+    max-width: 480px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    text-align: center;
+
+    @media (min-width: global.$breakpoint-md) {
+        text-align: left;
+    }
+
+    .main-title {
+        margin: 0;
+        .highlight { 
+            color: global.$color-cta-primary-warm;
+            font-size: clamp(1.8rem, 4vw, 2.3rem);
+            font-weight: global.$font-weight-extrabold;
+            display: inline-block;
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                width: 50%;
+                height: 3px;
+                background-color: global.$color-cta-primary-warm;
+                border-radius: 2px;
+            }
+        }
+        .secondary-title { 
+            color: global.$color-text-dark; 
+            font-size: clamp(1.4rem, 3vw, 1.9rem); 
+            display: block; 
+            margin-top: global.$space-xs; 
+        }
+    }
+
+    .description-text { 
+        color: global.$color-text-dark4; 
+        margin: global.$space-md 0;
+        font-size: global.$font-size-base;
+        line-height: 1.6;
+        @media (max-width: global.$breakpoint-sm) {
+            display: none; // Keep mobile compact
+        }
+    }
+
+    .explore-button {
+        align-self: center; // Center on mobile
+        @media (min-width: global.$breakpoint-md) {
+            align-self: flex-start; // Align left on desktop
+        }
+        background-color: global.$color-cta-primary-warm;
+        color: global.$color-text-white;
+        border: none;
+        padding: global.$space-sm global.$space-xl;
+        border-radius: global.$border-radius-xl;
+        font-weight: global.$font-weight-bold;
+        transition: transform 0.2s ease;
+
+        &:hover { transform: translateY(-2px); }
+    }
+}
+
+// CAROUSEL SECTION (Inside the Master Frame)
+.carousel-visuals {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    padding: 0; 
-    position: relative;
-    overflow: hidden;
-    
+    justify-content: center;
+    max-width: 400px;
 
-    /* --- Mobile Layout (default) --- */
-    .content-layout {
+    .controls-row {
         display: flex;
-        flex-direction: column;
-        width: 100%;
-        // FIX 1: Reduced bottom padding for mobile
-        padding: $space-lg $space-md $space-sm $space-md; 
-        
-        @media (max-width: $breakpoint-sm) {
-            // FIX 1: Reduced bottom padding for small phones
-            padding: $space-md $space-sm $space-xs $space-sm;
-        }
-    }
-
-    /* -------------------- HALF 1: Text Section (Titles & Description) -------------------- */
-    .text-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center; // Keeps titles and button centered on mobile
-        text-align: center; // Keeps text centered within its own element on mobile
-        width: 100%;
-        margin-bottom: $space-xl; // Space below text before the card visuals
-
-        .main-title {
-            // Restore the original mixin (using this for general responsive scaling)
-            @include responsive-text($font-size-h4, $font-size-h5, $font-size-h6, $space-xs, $space-xxs, $space-xxs);
-            margin-bottom: $space-sm;
-            text-align: center; 
-            line-height: 1.1; // Tighten line height for titles
-            
-            .highlight {
-                color: $color-primary; 
-                font-weight: $font-weight-extrabold;
-                
-                // Title Mobile Size: H1/H2 range
-                font-size: $font-size-h1; 
-                
-                display: block; 
-                margin-bottom: $space-md; 
-            }
-
-            .secondary-title {
-                color: $color-text-title-2;
-                font-weight: $font-weight-bold;
-                
-                // Title Mobile Size: H2/H3 range
-                font-size: $font-size-h2; 
-                
-                display: block; 
-                text-transform: none; 
-                letter-spacing: normal;
-                margin-top: $space-xxs;
-            }
-            
-            // Adjust smaller mobile screens
-            @media (max-width: $breakpoint-sm) {
-                .highlight {
-                    font-size: $font-size-h2; 
-                }
-                .secondary-title {
-                    font-size: $font-size-h3; 
-                }
-            }
-
-            .mobile-break {
-                display: none; 
-            }
-        }
-
-        .description-text {
-            // FIX: Making font size explicitly bigger on mobile/default
-            font-size: $font-size-md; 
-            color: $color-text-dark;
-            line-height: 1.5;
-            margin-bottom: $space-xl; 
-            
-            @media (max-width: $breakpoint-sm) {
-                // Ensure it scales down slightly for very small phones if needed
-                font-size: $font-size-base; 
-            }
-        }
-        
-        .explore-button {
-            /* * UPDATED STYLE: Transparent background, gray outline, gray text 
-             * Using $color-text-dark for border and text color.
-             */
-            @extend .btn; 
-            background-color: transparent;
-            color: $color-text-title;
-            border: 2px solid $color-text-title; 
-            padding: $space-sm $space-lg;
-            margin-top: $space-md; 
-            font-size: $font-size-base; 
-            border-radius: $border-radius-xl; 
-            font-weight: $font-weight-bold; 
-            text-shadow: none; 
-            width: auto;
-            display: block;
-            text-align: center;
-            
-            &:hover {
-                // Subtle fill on hover
-                background-color: $color-alt-background-2; 
-                border-color: $color-secondary; 
-                color: $color-secondary;
-                transform: translateY(-0.0625rem);
-                box-shadow: $shadow-sm; 
-            }
-
-            .arrow {
-                transition: transform 0.3s ease;
-            }
-
-            &:hover .arrow {
-                transform: translateX($space-xs);
-            }
-        }
-    }
-
-    /* -------------------- HALF 2: Single Card & Bullets -------------------- */
-    .carousel-visuals {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 0;
-        
-        .card-link-wrapper {
-            display: flex;
-            justify-content: center;
+        gap: global.$space-xs;
+    }
+
+    .nav-arrow {
+        background: none;
+        border: none;
+        color: global.$color-text-light;
+        font-size: 3.5rem;
+        cursor: pointer;
+        &:hover { color: global.$color-cta-primary-warm; }
+    }
+
+    // THE INDIVIDUAL CARD (Nested Frame)
+    .serviceItem {
+        background-color: rgba(255, 255, 255, 0.6); // Slightly lighter to pop from master frame
+        padding: global.$space-md;
+        border-radius: global.$border-radius-md;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: global.$shadow-sm;
+        text-align: center;
+
+        .image-wrapper {
             width: 100%;
-            max-width: 25rem; 
-            text-decoration: none;
+            height: clamp(150px, 22vh, 210px);
+            border-radius: global.$border-radius-sm;
+            overflow: hidden;
+            margin-bottom: global.$space-sm;
+            img { width: 100%; height: 100%; object-fit: cover; }
         }
 
-        .service-card {
-            /* FIX 1: Apply standard card styles (shadow, border, radius) */
-            border: 1px solid $color-border-subtle;
-            border-radius: $border-radius-md;
-            box-shadow: $shadow-sm; 
-            
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: $space-lg; 
-            background-color: $color-surface;
+        .title { color: global.$color-text-dark; margin-bottom: global.$space-xxs; font-size: 1.2rem; }
+
+        .subtitle { 
+            font-size: global.$font-size-xs;
+            color: global.$color-text-light;
+            padding: global.$space-sm;
+            background: rgba(255,255,255,0.7);
+            border-radius: global.$border-radius-lg; // Rounded frame as requested
+            margin-bottom: global.$space-md;
+            height: 3.2rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .viewButton { 
+            background-color: global.$color-cta-primary-warm;
+            color: white;
+            border: none;
             width: 100%;
-            
-            /* FIX 2: Removed fixed height properties for correct mobile button placement */
-            height: auto; 
-            min-height: 20rem; 
-            max-height: none; 
-            
-            justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            cursor: pointer;
-
-            &:hover {
-                transform: translateY(-5px); 
-                box-shadow: $shadow-md; 
-            }
-            
-            @media (max-width: $breakpoint-sm) {
-                padding: $space-md; 
-                min-height: 18rem;
-            }
-        }
-
-        .card-image {
-            /* FIX 3: Ensures the entire image is visible without cropping */
-            width: 90%; 
-            height: auto; 
-            max-width: 90%;
-            max-height: 180px; /* Constrain height to allow room for title/button */
-            object-fit: contain; /* CRITICAL: Prevents cropping */
-            
-            border-radius: $border-radius-sm; 
-            margin-bottom: $space-md; 
-            
-            // Center the image
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-        
-        .card-title {
-            font-size: $font-size-h5;
-            font-weight: $font-weight-semibold; 
-            color: $color-text-title;
-            margin: 0;
-            margin-bottom: $space-xs; 
-            line-height: 1.2;
-        }
-
-        .view-button {
-            /* FIX 4: Updated button styling to match gallery cards */
-            @extend .btn-blue; 
-            padding: $space-sm $space-lg;
-            margin-top: $space-sm; 
-            font-size: $font-size-base; 
-            border-radius: $border-radius-md; 
-            font-weight: $font-weight-bold; 
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
-            width: auto; 
+            padding: global.$space-sm;
+            border-radius: global.$border-radius-xl;
+            font-weight: global.$font-weight-bold;
         }
     }
-    
+
     .dots {
         display: flex;
-        justify-content: center;
-        margin-top: $space-lg; 
-        
+        gap: 8px;
+        margin-top: global.$space-md;
         .dot {
-            @include set-responsive-square-size(0.6rem, 0.6rem, 0.6rem); 
-            border-radius: 50%; 
-            background-color: $color-border-subtle;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-            margin: 0 $space-xxs;
-            border: 1px solid transparent;
-
-            &:hover {
-                background-color: $color-button;
-                border-color: $color-button;
-            }
-
-            &.active {
-                @include set-responsive-square-size(0.8rem, 0.8rem, 0.8rem); 
-                background-color: $color-button;
-                border-color: $color-button;
-                border-radius: 50%; 
-            }
-        }
-    }
-
-    /* ==================== RESPONSIVENESS: Desktop/Tablet Fixes ==================== */
-    @media (min-width: $breakpoint-md) {
-        min-height: 87vh; 
-        height: auto;
-        justify-content: center;
-        
-        .content-layout {
-            display: flex;
-            flex-direction: row; 
-            width: 100%; 
-            max-width: $breakpoint-xxl; 
-            padding: $space-xxl $space-xl $space-lg $space-xl; 
-
-            .text-section {
-                flex: 1;
-                padding-right: $space-xxl;
-                text-align: center;
-                align-items: center;
-                margin-bottom: 0; 
-
-                .main-title {
-                    font-size: $font-size-h1; 
-                    text-align: center;
-
-                    .highlight {
-                        font-size: $font-size-h1; 
-                        margin-bottom: $space-lg; 
-                    }
-
-                    .secondary-title {
-                        font-size: $font-size-h2; 
-                    }
-                }
-                
-                .description-text {
-                    font-size: $font-size-base; 
-                    max-width: 600px;
-                }
-            }
-
-            .carousel-visuals {
-                flex: 0 0 45%;
-                padding: 0;
-
-                .card-link-wrapper {
-                    max-width: none;
-                }
-                
-                .service-card {
-                    min-height: 24rem; 
-                    max-height: 30rem;
-                    padding: $space-xl;
-                }
-
-                .card-image {
-                    max-height: 220px; 
-                }
-            }
+            width: 8px; height: 8px; border-radius: 50%;
+            background: global.$color-border-subtle-2;
+            &.active { background: global.$color-cta-primary-warm; }
         }
     }
 }

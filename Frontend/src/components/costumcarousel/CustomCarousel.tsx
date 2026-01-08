@@ -1,123 +1,119 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// Assuming productData follows the structure: { services: Product[], courses: Product[] }
 import { products as productData } from '../../../../Backend/data/products'; 
 import { Product } from '../../../../Backend/types/Product'; 
 import './customCarousel.scss'; 
 
-// --- MODIFIED CODE: Initializing products array with courses only ---
-// This now correctly expects Product.image to be of type ProductImage
-const products: Product[] = [
-    ...(productData.courses || []), // Fetching only products from 'courses'
-];
-// -------------------------------------------------------------------
+// Fetching courses from the backend data
+const products: Product[] = [...(productData.courses || [])];
 
 const New: React.FC = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const totalProducts = products.length;
-
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Auto-change logic
+    // Auto-slide functionality (5 seconds)
     useEffect(() => {
         if (totalProducts === 0) return;
-        
         const intervalId = setInterval(() => {
-            setCurrentIndex(prevIndex => (prevIndex + 1) % totalProducts);
-        }, 4000); // Change card every 4 seconds
-
+            setCurrentIndex((prev) => (prev + 1) % totalProducts);
+        }, 5000); 
         return () => clearInterval(intervalId);
     }, [totalProducts]);
 
-    const currentProduct = products[currentIndex] || products[0]; 
+    const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % totalProducts);
+    const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + totalProducts) % totalProducts);
 
-    const highlightedText = t('carousel.globalTitlePrimary');
-    const secondaryText = t('carousel.globalTitleSecondary');
+    const currentProduct = products[currentIndex]; 
 
-    const globalDescription = t('carousel.globalDescription');
-    const learnMoreButtonText = t('carousel.learnMoreButton');
-    const viewButtonText = t('servicesPage.viewButton');
-    
-    const handleCtaClick = (id: number) => {
-        navigate(`/card/${id}`);
-    };
+    // Safety check if product doesn't exist
+    if (!currentProduct) return null;
 
-    if (totalProducts === 0) {
-        // Fallback for when no products (courses) are available
-        return <div className="new-component-layout container">{t('loading')}...</div>;
-    }
-    
     return (
-        <div className="new-component-layout container">
-            
-            <div className="content-layout"> 
+        <section className="new-hero-wrapper">
+            {/* The Master Frame: Wraps both text and carousel */}
+            <div className="master-component-frame container"> 
                 
+                {/* Left side: Title, Description, and CTA Button */}
                 <div className="text-section">
                     <h1 className="main-title">
-                        <span className="highlight">{highlightedText}</span>
-                        <br className="mobile-break"/> 
-                        <span className="secondary-title">{secondaryText}</span>
+                        <span className="highlight">
+                            {t('carousel.globalTitlePrimary')}
+                        </span>
+                        <span className="secondary-title">
+                            {t('carousel.globalTitleSecondary')}
+                        </span>
                     </h1>
+                    
                     <p className="description-text">
-                        {globalDescription}
+                        {t('carousel.globalDescription')}
                     </p>
-                    <button
-                        className="explore-button"
-                        onClick={() => handleCtaClick(currentProduct.id)}
+                    
+                    <button 
+                        className="explore-button" 
+                        onClick={() => navigate(`/card/${currentProduct.id}`)}
                     >
-                        {learnMoreButtonText} <span className="arrow">→</span>
+                        {t('carousel.learnMoreButton')} →
                     </button>
                 </div>
 
-                <div className="media-section carousel-visuals">
-                    <div 
-                        className="card-link-wrapper"
-                        title={`View details for ${t(`products.${currentProduct.id}.title`)}`}
-                    >
-                        <div 
-                            className="service-card"
-                            onClick={() => handleCtaClick(currentProduct.id)}
-                        >
-                            <img
-                                // FIX: Accessing the lowResUrl property to resolve 
-                                // "Type 'ProductImage' is not assignable to type 'string'" error
-                                src={currentProduct.image.lowResUrl} 
-                                alt={t(`products.${currentProduct.id}.title`)}
-                                className="card-image" 
-                            />
-                            
-                            <h3 className="card-title">
-                                {t(`products.${currentProduct.id}.title`)}
-                            </h3>
-                            
-                            <button 
-                                className="view-button" 
-                                onClick={(e) => { 
-                                    e.stopPropagation(); 
-                                    handleCtaClick(currentProduct.id); 
-                                }}
-                            >
-                                {viewButtonText}
-                            </button>
+                {/* Right side: Carousel Visuals (Card + Navigation) */}
+                <div className="carousel-visuals">
+                    <div className="controls-row">
+                        {/* Previous Arrow */}
+                        <button className="nav-arrow" onClick={prevSlide}>‹</button>
+                        
+                        {/* The Individual Product Card */}
+                        <div className="card-container">
+                            <div className="serviceItem" onClick={() => navigate(`/card/${currentProduct.id}`)}>
+                                {currentProduct.badge && (
+                                    <div className="badge">
+                                        {t(`products.${currentProduct.id}.badge`)}
+                                    </div>
+                                )}
+                                
+                                <div className="image-wrapper">
+                                    <img 
+                                        src={currentProduct.image.lowResUrl} 
+                                        alt={t(`products.${currentProduct.id}.title`)} 
+                                    />
+                                </div>
+                                
+                                <h3 className="title">
+                                    {t(`products.${currentProduct.id}.title`)}
+                                </h3>
+                                
+                                {/* Framed Description inside the card */}
+                                <p className="subtitle">
+                                    {t(`products.${currentProduct.id}.briefDescription`)}
+                                </p>
+                                
+                                <button className="viewButton">
+                                    {t('coursesPage.viewButton')}
+                                </button>
+                            </div>
                         </div>
+
+                        {/* Next Arrow */}
+                        <button className="nav-arrow" onClick={nextSlide}>›</button>
                     </div>
 
-                    {/* Bullets for navigation */}
+                    {/* Pagination Dots */}
                     <div className="dots">
-                        {products.map((product, index) => (
-                            <div
-                                key={product.id} 
-                                className={`dot ${index === currentIndex ? 'active' : ''}`}
-                                onClick={() => setCurrentIndex(index)}
-                                aria-label={`Go to slide ${index + 1}: ${t(`products.${product.id}.title`)}`}
+                        {products.map((_, index) => (
+                            <div 
+                                key={index} 
+                                className={`dot ${index === currentIndex ? 'active' : ''}`} 
+                                onClick={() => setCurrentIndex(index)} 
                             />
                         ))}
                     </div>
                 </div>
+
             </div>
-        </div>
+        </section>
     );
 };
 

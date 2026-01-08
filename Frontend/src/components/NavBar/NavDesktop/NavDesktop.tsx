@@ -2,7 +2,6 @@ import { NavLink, Link } from 'react-router-dom';
 import './navDesktop.scss';
 import logo from '../../../assets/images/icons/Group 177.svg';
 import { FaShoppingBasket } from 'react-icons/fa'; // Elegant basket icon
-import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../../../context/CartContext/CartContext';
 
@@ -13,6 +12,8 @@ const NavDesktop = () => {
   const routes = [
     { label: t('home'), path: '/' },
     { label: t('courses'), path: '/courses' },
+    { label: t('howItWorks'), path: '/how-it-works' },
+    { label: t('studentsWorks'), path: '/students-works' },
     { label: t('about'), path: '/about' },
     { label: t('contact'), path: '/contact' },
   ];
@@ -39,7 +40,7 @@ const NavDesktop = () => {
         </ul>
 
         <div className="nav-right-actions">
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
 
           <Link to="/basket" className="basket-icon">
             <FaShoppingBasket size={24} />
