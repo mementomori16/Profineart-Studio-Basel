@@ -378,8 +378,43 @@ export const artistProfile = [
 ];
 export const studentGalleryData = [
     {
+        lowResUrl: "https://i.ibb.co/DfWGcCkN/Dubi-2024-07-05-120kb.jpg",
+        highResUrl: "https://i.ibb.co/DHnfDGt6/Dubi-2024-07-05-500kb.jpg",
+        caption: "Still Life. Acrylic and Oil on Canvas"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/XfQhhwFz/DSC-8393-120kb.jpg",
+        highResUrl: "https://i.ibb.co/9mJg6tPF/DSC-8393-500kb.jpg",
+        caption: "Sculpture Head Study"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/wG9J19r/DSC-9018-120kb.jpg",
+        highResUrl: "https://i.ibb.co/pr9YW3Yh/DSC-9018-500kb.jpg",
+        caption: "Sea Wave. Acrylic on Canvas"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/W1TqXfZ/Samantha2025-12-06-120kb.jpg",
+        highResUrl: "https://i.ibb.co/yF0gJ9Bw/Samantha2025-12-06-500kb.jpg",
+        caption: "Landscape. Oil on Canvas"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/8DwZBf25/DSC-1914-120kb.jpg",
+        highResUrl: "https://i.ibb.co/pBnkM4Yj/DSC-1914-500kb.jpg",
+        caption: "Ballet Dancer. Oil on Canvas"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/DPjc9TSp/severine-icon-painting-process120kb.jpg",
+        highResUrl: "https://i.ibb.co/3yRF8gCJ/20220727-500kb.jpg",
+        caption: "Sketching Study"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/q3xsWYpv/PXL-120kb.jpg",
+        highResUrl: "https://i.ibb.co/0VXtqGRH/PXL-500kb.jpg",
+        caption: "Oil Colors and Brushes Setup"
+    },
+    {
         lowResUrl: "https://i.ibb.co/Zp79DR1k/DSC-9010-120kb.jpg",
-        highResUrl: "https://i.ibb.co/4wmQv0zZ/PXL-20251101-500kb.jpg",
+        highResUrl: "https://i.ibb.co/C5774rX1/DSC-9010-500kb.jpg",
         caption: "Comando Divers. Acrylic on Canvas"
     },
     {
@@ -388,9 +423,19 @@ export const studentGalleryData = [
         caption: "Work Process"
     },
     {
+        lowResUrl: "https://i.ibb.co/21LgXgLb/DSC-9251-120kb.jpg",
+        highResUrl: "https://i.ibb.co/21LgXgLb/DSC-9251-120kb.jpg",
+        caption: "Nude Study. Acrylic on Canvas"
+    },
+    {
         lowResUrl: "https://i.ibb.co/4wzFDgzz/DSC-8392-120kb.jpg",
         highResUrl: "https://i.ibb.co/d4r83Ly9/DSC-8392-500kb.jpg",
         caption: "Oil Painting - Process"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/4nZW5prs/DSC-0377-120kb.jpg",
+        highResUrl: "https://i.ibb.co/4nZW5prs/DSC-0377-120kb.jpg",
+        caption: "Comando Divers. Acrylic on Canvas"
     },
     {
         lowResUrl: "https://i.ibb.co/whjYftsJ/DSC-9013-120kb.jpg",
