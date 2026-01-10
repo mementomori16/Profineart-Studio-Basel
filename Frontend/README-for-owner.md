@@ -88,3 +88,7 @@ Bash
 
 npx cypress run
 This command will execute all tests in the cypress/e2e folder using the Electron browser by default and generate videos and screenshots of any failures.
+
+How to deploy on firebase: 
+1. npm run build
+2. firebase deploy --only hosting

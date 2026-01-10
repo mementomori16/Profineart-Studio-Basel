@@ -1,7 +1,8 @@
 import * as dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import helmet from 'helmet'; // Added helmet
+import helmet from 'helmet';
+import { onRequest } from 'firebase-functions/v2/https'; // 1. Added Firebase Import
 import { getAvailableSlots } from './services/availabilityService.js';
 import { createStripeCheckoutSession, fulfillOrder } from './services/checkoutService.js';
 import { validateAddress } from './services/geocodingService.js';
@@ -17,24 +18,25 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 });
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 // --- Security Middleware Stack ---
-
-// 1. Helmet: Sets various HTTP headers to protect against common attacks
 app.use(helmet()); 
 
-// 2. CORS: Restrict access to your frontend domain only
+// 2. Updated CORS to include your real domain and Firebase defaults
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173', 
+    origin: [
+        process.env.CLIENT_URL || 'http://localhost:5173',
+        'https://profineart.ch',
+        /\.web\.app$/,
+        /\.firebaseapp\.com$/
+    ],
     methods: ['GET', 'POST'],
     credentials: true,
 }));
 
-// 3. Body Parser: Parses incoming JSON (placed after security checks)
 app.use(express.json());
 
-// --- Helper Function: getErrorMessage
+// --- Helper Function ---
 function getErrorMessage(error: unknown): string {
     if (error instanceof Error) return error.message;
     return String(error);
@@ -42,111 +44,63 @@ function getErrorMessage(error: unknown): string {
 
 // --- Routes ---
 
-// 1. Root/Status Route
 app.get('/', (req: Request, res: Response) => {
-    res.json({ message: 'Server is running and operational.' });
+    res.json({ message: 'Server is running via Firebase Cloud Functions.' });
 });
 
-// 2. Schedule Availability Endpoint
 app.get('/api/schedule/slots', async (req: Request, res: Response) => {
     try {
         const { productId, date, duration } = req.query;
-
-        console.log(`[API] Received request for slots: productId=${productId}, date=${date}, duration=${duration}`);
-
-        if (!productId || typeof productId !== 'string') {
-            return res.status(400).json({ success: false, message: 'Error: productId is missing or invalid.' });
+        if (!productId || typeof productId !== 'string' || !date || typeof date !== 'string' || !duration) {
+            return res.status(400).json({ success: false, message: 'Missing parameters.' });
         }
-        if (!date || typeof date !== 'string') {
-            return res.status(400).json({ success: false, message: 'Error: date is missing or invalid.' });
-        }
-        if (!duration) {
-            return res.status(400).json({ success: false, message: 'Error: duration (in minutes) is missing from the query parameters.' });
-        }
-
         const durationMinutes = parseInt(duration as string, 10);
-
-        if (isNaN(durationMinutes) || durationMinutes <= 0) {
-            return res.status(400).json({ success: false, message: `Error: duration must be a valid positive number, received "${duration}".` });
-        }
-
         const slots = await getAvailableSlots(productId, date, durationMinutes);
-
         res.json({ success: true, slots });
-
     } catch (error) {
-        console.error('API Error in /api/schedule/slots:', getErrorMessage(error));
-        res.status(500).json({ success: false, message: 'Failed to fetch schedule due to server error.' });
+        res.status(500).json({ success: false, message: 'Failed to fetch slots.' });
     }
 });
 
-// 3. Address Validation Endpoint
 app.post('/api/validate-address', async (req: Request, res: Response) => {
     try {
         const { address } = req.body;
-        if (!address) {
-            return res.status(400).json({ success: false, message: 'Address is required for validation.' });
-        }
-
+        if (!address) return res.status(400).json({ success: false, message: 'Address required.' });
         const validationResult = await validateAddress(address);
-
-        if (validationResult.isValid) {
-            res.json({ success: true, message: validationResult.message });
-        } else {
-            // Use 422 Unprocessable Entity for validation failures rather than 400
-            res.status(422).json({ success: false, message: validationResult.message });
-        }
+        res.status(validationResult.isValid ? 200 : 422).json({ success: validationResult.isValid, message: validationResult.message });
     } catch (error) {
-        console.error('API Error in /api/validate-address:', getErrorMessage(error));
-        res.status(500).json({ success: false, message: 'Failed to process address validation.' });
+        res.status(500).json({ success: false, message: 'Address validation error.' });
     }
 });
 
-// 4. Stripe Checkout Session Creation Endpoint
 app.post('/api/create-checkout-session', async (req: Request, res: Response) => {
     try {
-        // Validation: Ensure req.body has necessary fields before calling service
         if (!req.body.packageId || !req.body.email) {
-            return res.status(400).json({ success: false, message: 'Missing required checkout information.' });
+            return res.status(400).json({ success: false, message: 'Missing info.' });
         }
-
         const session = await createStripeCheckoutSession(req.body, stripe);
         res.json({ checkoutUrl: session.url });
     } catch (error) {
-        console.error('API Error in /api/create-checkout-session:', getErrorMessage(error));
-        res.status(500).json({ success: false, message: 'Failed to create Stripe session.' });
+        res.status(500).json({ success: false, message: 'Stripe session error.' });
     }
 });
 
-// 5. Order Fulfillment and Confirmation Endpoint
-// SECURITY NOTE: This endpoint is vulnerable to manual calling.
-// It is highly recommended to replace this with a Stripe Webhook.
 app.post('/api/order/fulfill', async (req: Request, res: Response) => {
     try {
         const { sessionId } = req.body;
-        if (!sessionId || typeof sessionId !== 'string') {
-            return res.status(400).json({ success: false, message: 'Missing or invalid session ID.' });
-        }
-
+        if (!sessionId) return res.status(400).json({ success: false, message: 'Missing session ID.' });
         const fulfillmentResult = await fulfillOrder(sessionId, stripe);
-
-        res.json({ 
-            success: true, 
-            message: 'Order successfully fulfilled.',
-            bookingDetails: fulfillmentResult 
-        });
-
+        res.json({ success: true, bookingDetails: fulfillmentResult });
     } catch (error) {
-        console.error('API Error in /api/order/fulfill:', getErrorMessage(error));
-        res.status(500).json({ 
-            success: false, 
-            message: `Order fulfillment failed: ${getErrorMessage(error)}` 
-        });
+        res.status(500).json({ success: false, message: 'Fulfillment failed.' });
     }
 });
 
-// --- Server Listener ---
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-    console.log(`Access the backend at http://localhost:${PORT}`);
-});
+// --- FIREBASE DEPLOYMENT EXPORT ---
+// We remove app.listen and replace it with this:
+export const api = onRequest({
+    region: 'europe-west1',
+    memory: '256MiB',
+    maxInstances: 10,  // Safety Cap
+    concurrency: 80
+}, app);

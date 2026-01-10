@@ -6,7 +6,6 @@ import MainLayout from "../../src/layouts/MainLayout";
 import Home from "../components/pages/Home/Home";
 import About from "../components/pages/About/About";
 import Contact from "../components/pages/Contact/Contact";
-import Services from "../components/pages/ServicesPage/Services";
 import CardPage from "../components/pages/Card/CardPage/CardPage";
 import LegalInfo from "../components/pages/Attributions/Legal-info";
 import Courses from "../components/pages/Courses/Courses";
@@ -28,7 +27,6 @@ const router = createBrowserRouter([
             { path: "home", element: <Navigate to="/" replace /> },
             { path: "about", element: <About /> },
             { path: "contact", element: <Contact /> },
-            { path: "services", element: <Services /> },
             { path: "courses", element: <Courses /> },
             { path: "how-it-works", element: <HowItWorks /> },
             { path: "students-works", element: <StudentsWorks /> },

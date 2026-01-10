@@ -56,7 +56,7 @@ interface DateAndTimeSelectorProps {
     packages: LessonPackage[];
 }
 
-const BACKEND_URL = 'http://localhost:3001';
+const BACKEND_URL = '';
 
 const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, onNextStep, packages }) => {
     const { t } = useTranslation();
