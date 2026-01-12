@@ -18,7 +18,7 @@ const routes: Route[] = [
   { label: 'home', path: '/' },
   { label: 'courses', path: '/courses' },
   { label: 'about', path: '/about' },
-  { label: 'contact', path: '/contact' },
+  
 ];
 
 const NavMobile = () => {

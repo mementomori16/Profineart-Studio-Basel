@@ -8,7 +8,7 @@
   "cv": "CV",
 
   "welcomeHero": {
-    "serviceTitle": "Professional Fine Art & Contemporary painting lessons in your private environment",
+    "serviceTitle": "Professional Fine Art & Contemporary painting courses in your private environment",
     "companyName": "Profineart Studio Basel",
     "ctaButton": "Course Booking"
   },
@@ -422,7 +422,14 @@
       "title": "Governing Law",
       "text": "This agreement is governed by the laws of Switzerland. The place of jurisdiction is Basel."
     }
-  }
+  },
    
-
+"footer": {
+  "brandName": "Profineart Studio Basel",
+  "description": "Professional Fine Art & Contemporary painting courses in your private environment",
+  "explore": "Explore",
+  "rights": "All rights reserved.",
+  "legal": "Legal Info",
+  "terms": "Terms of Use"
+}
 }

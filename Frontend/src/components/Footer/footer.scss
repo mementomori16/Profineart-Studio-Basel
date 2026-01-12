@@ -1,37 +1,81 @@
+// src/components/Footer/footer.scss
 @use "sass:color";
-@use '../../global.scss' as *;
+@import '../../global.scss';
 
 .footer {
   width: 100%;
-  background-color: $color-secondary; 
-  padding: $space-xxxs $space-lg; 
-  text-align: left;
-  color: $color-background; 
-  font-size: $font-size-sm; 
+  background-color: $color-secondary; // #333333
+  padding: $space-xl $space-lg;
+  color: $color-surface; // #ffffff
 
-  margin-top: 0; 
-  p {
-    color: color.adjust($color-background, $lightness: 40%);
-    font-size: $font-size-sm;
-    margin-bottom: $space-sm; 
-    &:last-child {
-      margin-bottom: 0;
+  .footer-content {
+    max-width: $breakpoint-xl;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $space-xl;
+    padding-bottom: $space-lg;
+    border-bottom: 1px solid rgba($color-surface, 0.1);
+  }
+
+  .footer-column {
+    .footer-header {
+      color: $color-surface;
+      font-size: $font-size-h5;
+      margin-bottom: $space-md;
+      margin-top: 0;
+    }
+
+    .footer-description, .footer-subtext {
+      color: color.adjust($color-surface, $lightness: -30%);
+      font-size: $font-size-sm;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-bottom: $space-xs;
+        a {
+          color: color.adjust($color-surface, $lightness: -20%);
+          font-size: $font-size-sm;
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: $space-sm;
+      margin-bottom: $space-xs;
+      
+      .footer-icon {
+        color: $color-primary;
+      }
+
+      a {
+        color: $color-surface;
+        font-size: $font-size-sm;
+        &:hover { text-decoration: underline; }
+      }
     }
   }
-}
 
-// Ensure the link is never underlined by targeting all states
-.footer-link,
-.footer-link:visited,
-.footer-link:active,
-.footer-link:hover {
-  font-size: $font-size-sm;
-  font-weight: $font-weight-normal;
-  color: lighten($color-background, 40%); // Consistent with paragraph text
-  text-decoration: none !important;
-  transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-  color: $color-surface; // Hover to the primary orange accent color
+  .footer-bottom {
+    max-width: $breakpoint-xl;
+    margin: $space-md auto 0;
+    p {
+      color: color.adjust($color-surface, $lightness: -40%);
+      font-size: $font-size-xs;
+      margin: 0;
+    }
+    .footer-link {
+      color: inherit;
+      &:hover { color: $color-surface; }
+    }
+  }
 }

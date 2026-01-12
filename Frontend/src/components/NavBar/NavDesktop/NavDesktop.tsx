@@ -15,7 +15,7 @@ const NavDesktop = () => {
     { label: t('howItWorks'), path: '/how-it-works' },
     { label: t('studentsWorks'), path: '/students-works' },
     { label: t('about'), path: '/about' },
-    { label: t('contact'), path: '/contact' },
+    
   ];
 
   return (
