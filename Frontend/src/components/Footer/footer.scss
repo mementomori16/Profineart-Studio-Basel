@@ -1,81 +1,91 @@
-// src/components/Footer/footer.scss
 @use "sass:color";
 @import '../../global.scss';
 
 .footer {
-  width: 100%;
-  background-color: $color-secondary; // #333333
-  padding: $space-xl $space-lg;
-  color: $color-surface; // #ffffff
+    width: 100%;
+    background-color: rgb(41, 41, 41);
+    padding: $space-xl $space-lg;
+    color: $color-navbar-title;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 
-  .footer-content {
-    max-width: $breakpoint-xl;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: $space-xl;
-    padding-bottom: $space-lg;
-    border-bottom: 1px solid rgba($color-surface, 0.1);
-  }
-
-  .footer-column {
-    .footer-header {
-      color: $color-surface;
-      font-size: $font-size-h5;
-      margin-bottom: $space-md;
-      margin-top: 0;
+    .footer-content {
+        max-width: $breakpoint-xl;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: $space-xl;
+        padding-bottom: $space-lg;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .footer-description, .footer-subtext {
-      color: color.adjust($color-surface, $lightness: -30%);
-      font-size: $font-size-sm;
-      line-height: 1.6;
-    }
-
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      li {
-        margin-bottom: $space-xs;
-        a {
-          color: color.adjust($color-surface, $lightness: -20%);
-          font-size: $font-size-sm;
-          &:hover {
-            color: $color-primary;
-          }
+    .footer-column {
+        .footer-header {
+            color: $color-navbar-title-hover;
+            font-size: $font-size-h5;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            margin-bottom: $space-md;
+            margin-top: 0;
         }
-      }
+
+        .footer-description {
+            color: $color-navbar-title;
+            font-size: $font-size-sm;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                margin-bottom: $space-sm;
+            }
+        }
+
+        // Shared link style
+        .footer-nav-link {
+            color: $color-navbar-title;
+            font-size: 0.9rem;
+            font-weight: $font-weight-semibold;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            display: inline-block;
+
+            &:hover {
+                color: $color-navbar-title-hover;
+            }
+
+            &.about-link {
+                margin-top: $space-sm;
+            }
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: $space-sm;
+            margin-bottom: $space-xs;
+            
+            .footer-icon {
+                color: $color-navbar-title;
+                font-size: 1.1rem;
+            }
+        }
     }
 
-    .footer-contact-item {
-      display: flex;
-      align-items: center;
-      gap: $space-sm;
-      margin-bottom: $space-xs;
-      
-      .footer-icon {
-        color: $color-primary;
-      }
-
-      a {
-        color: $color-surface;
-        font-size: $font-size-sm;
-        &:hover { text-decoration: underline; }
-      }
+    .footer-bottom {
+        max-width: $breakpoint-xl;
+        margin: $space-md auto 0;
+        p {
+            color: color.adjust($color-navbar-title, $lightness: -20%);
+            font-size: $font-size-xs;
+            margin: 0;
+        }
+        .footer-bottom-link {
+            color: inherit;
+            text-decoration: none;
+            &:hover { color: $color-navbar-title-hover; }
+        }
     }
-  }
-
-  .footer-bottom {
-    max-width: $breakpoint-xl;
-    margin: $space-md auto 0;
-    p {
-      color: color.adjust($color-surface, $lightness: -40%);
-      font-size: $font-size-xs;
-      margin: 0;
-    }
-    .footer-link {
-      color: inherit;
-      &:hover { color: $color-surface; }
-    }
-  }
 }

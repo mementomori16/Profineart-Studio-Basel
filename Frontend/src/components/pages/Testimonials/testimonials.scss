@@ -1,52 +1,97 @@
-// src/components/pages/Testimonials/testimonials.scss
+@use "sass:color";
 @use '../../../global.scss' as global;
 
-.cardPageContainer {
-    width: 100%;
-    max-width: global.$breakpoint-xxl;
-    margin: 0 auto;
-    padding: global.$space-lg global.$space-xl;
-
+.testimonial-page {
     .cardContentWrapper {
-        background-color: rgba(255, 255, 255, 0.4);
-        border-radius: global.$border-radius-lg;
+        background-color: rgba(255, 255, 255, 0.4); 
+        border-radius: global.$border-radius-lg; 
         padding: global.$space-xl;
+        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+        box-shadow: global.$shadow-sm;
+    }
 
-        .pageTitle {
-            font-size: global.$font-size-h3;
-            font-weight: global.$font-weight-bold;
-            color: global.$color-text-dark2;
-            text-align: center;
-            margin-bottom: global.$space-xl;
+    .pageTitle {
+        color: global.$color-text-dark2 !important;
+        font-size: global.$font-size-h3;
+        text-align: center;
+        margin-bottom: global.$space-xxl;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .testimonial-grid {
+        display: grid;
+        // CHANGED TO 2 COLUMNS: Balanced 2x2 layout
+        grid-template-columns: 1fr 1fr; 
+        gap: global.$space-xl;
+
+        @media (max-width: global.$breakpoint-lg) {
+            grid-template-columns: 1fr; // Single column for tablets/mobile
         }
+    }
 
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: global.$space-lg;
+    .testimonial-item {
+        background-color: rgba(255, 255, 255, 0.7); 
+        padding: global.$space-xl;
+        border-radius: global.$border-radius-md;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: global.$shadow-md;
+        display: flex;
+        flex-direction: column;
 
-            @media (max-width: global.$breakpoint-lg) {
-                grid-template-columns: 1fr;
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: global.$space-md;
+
+            .stars {
+                color: #d4af37; 
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .source-link {
+                font-size: global.$font-size-xxs;
+                color: global.$color-text-light;
+                text-decoration: underline;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                &:hover {
+                    color: global.$color-cta-primary-warm;
+                }
             }
         }
 
-        .testimonial-item {
-            background-color: global.$color-card;
-            padding: global.$space-lg;
-            border-radius: global.$border-radius-md;
-            box-shadow: global.$shadow-sm;
+        .quote {
+            color: global.$color-text-dark4 !important; // Strong black text
+            line-height: 1.8;
+            font-size: global.$font-size-base;
+            margin-bottom: global.$space-xl;
+            font-weight: global.$font-weight-normal;
+        }
 
-            .quote {
-                color: global.$color-text-dark4;
-                line-height: 1.7;
-                font-style: italic;
+        .author-info {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: global.$space-md;
+            padding-top: global.$space-md;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+            .dash {
+                width: 35px;
+                height: 1px;
+                background-color: global.$color-cta-primary-warm;
             }
 
             .author {
-                color: global.$color-text-dark3;
-                font-size: global.$font-size-base;
-                font-weight: global.$font-weight-semibold;
-                margin-top: global.$space-md;
+                margin: 0;
+                color: global.$color-text-dark2;
+                font-size: global.$font-size-sm;
+                font-weight: global.$font-weight-bold;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
             }
         }
     }

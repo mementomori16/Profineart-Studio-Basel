@@ -15,6 +15,7 @@ import Basket from "../components/pages/Cart/Basket/Basket";
 import TermsOfUse from "../components/pages/TermsOfUse/TermsOfUse";
 import HowItWorks from "../components/pages/HowitWorks/Pricing";
 import StudentsWorks from "../components/pages/StudentsWorks/StudentsWorks";
+import Testimonials from "../components/pages/Testimonials/Testimonials";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
             { path: "students-works", element: <StudentsWorks /> },
             { path: "legalinfo", element: <LegalInfo /> },
             { path: "terms-of-use", element: <TermsOfUse /> },
+            { path: "testimonials", element: <Testimonials /> },
          
 
             // ---------------------------------------------------------

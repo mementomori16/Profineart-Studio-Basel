@@ -128,14 +128,18 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     }
 
     .mobile-link {
-      color: $color-text-title;
+      // SYNCED TYPOGRAPHY FROM DESKTOP
+      color: $color-navbar-title;
+      font-family: $font-family-base;
+      font-size: 0.9rem; 
+      font-weight: $font-weight-semibold;
       text-decoration: none;
-      font-size: $font-size-sm;
-      font-weight: $font-weight-bold;
-      padding: 0.5rem 0;
       position: relative;
+      padding: 0.5rem 0;
       transition: color 0.3s ease-in-out;
       text-align: left;
+      letter-spacing: 0.02rem;
+      white-space: nowrap;
 
       &::after {
         content: '';
@@ -144,19 +148,20 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
         left: 0;
         width: 0;
         height: 2px;
-        background-color: $color-button-blue-2;
+        background-color: $color-navbar-title-hover;
         transition: width 0.3s ease-in-out;
       }
 
       &:hover {
-        color: $color-button-blue-2;
+        color: $color-navbar-title-hover;
         &::after {
           width: 100%;
         }
       }
 
       &.active {
-        color: $color-button-blue-2;
+        color: $color-navbar-title-hover;
+        font-weight: $font-weight-bold;
         &::after {
           width: 100%;
         }

@@ -10,11 +10,11 @@ const NavDesktop = () => {
   const { cart } = useCart();
 
   const routes = [
-    { label: t('home'), path: '/' },
-    { label: t('courses'), path: '/courses' },
-    { label: t('howItWorks'), path: '/how-it-works' },
-    { label: t('studentsWorks'), path: '/students-works' },
-    { label: t('about'), path: '/about' },
+    { label: t('home.home'), path: '/' },
+    { label: t('home.courses'), path: '/courses' },
+    { label: t('home.howItWorks'), path: '/how-it-works' },
+    { label: t('home.studentsWorks'), path: '/students-works' },
+    { label: t('home.about'), path: '/about' },
     
   ];
 

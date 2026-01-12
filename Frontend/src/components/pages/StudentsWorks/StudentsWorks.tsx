@@ -4,7 +4,6 @@ import { studentGalleryData } from '../../../../../Backend/data/products';
 import ViewGallery from '../View Gallery/ViewGallery';
 import './studentsWorks.scss';
 
-// --- HELPER COMPONENT FOR SILENT LOADING ---
 const StudentWorkImage: React.FC<{ url: string, alt: string, onClick: () => void }> = ({ url, alt, onClick }) => {
     const [loaded, setLoaded] = useState(false);
 
@@ -48,30 +47,22 @@ const StudentsWorks: React.FC = () => {
                     <h1 className="pageTitle">{t('studentsWorksPage.title')}</h1>
                 </div>
 
-                <div className="cardContentLayout">
-                    <div className="column-left">
-                        <div className="main-info-frame">
-                            <p className="intro-text">{t('studentsWorksPage.intro')}</p>
-                            
-                            <div className="student-photos-grid">
-                                {studentGalleryData.map((img, index) => (
-                                    <div key={index} className="photo-item">
-                                        <StudentWorkImage 
-                                            url={img.lowResUrl} 
-                                            alt={img.caption || 'Student Work'} 
-                                            onClick={() => openGallery(index)}
-                                        />
-                                        {img.caption && <p className="imageCaption">{img.caption}</p>}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="column-right">
-                        <div className="sidebar-info-frame">
-                            <h3>{t('studentsWorksPage.sidebarTitle')}</h3>
-                            <p>{t('studentsWorksPage.sidebarText')}</p>
+                {/* Removed the column-left/right split completely */}
+                <div className="cardContentLayout full-width-layout">
+                    <div className="main-info-frame">
+                        <p className="intro-text">{t('studentsWorksPage.intro')}</p>
+                        
+                        <div className="student-photos-grid">
+                            {studentGalleryData.map((img, index) => (
+                                <div key={index} className="photo-item">
+                                    <StudentWorkImage 
+                                        url={img.lowResUrl} 
+                                        alt={img.caption || 'Student Work'} 
+                                        onClick={() => openGallery(index)}
+                                    />
+                                    {img.caption && <p className="imageCaption">{img.caption}</p>}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

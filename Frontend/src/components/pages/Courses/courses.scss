@@ -1,5 +1,6 @@
 @use "sass:color";
 @use '../../../global.scss' as global;
+@import '../Card/CardPage/CardPage.scss'; 
 
 .courses-section {
     width: 100%;
@@ -9,34 +10,36 @@
     .cardContentWrapper {
         display: flex;
         flex-direction: column;
-        
-        padding: global.$space-xl global.$space-xxl;
+        // Reduced top padding to move title higher up (like About page)
+        padding: global.$space-sm global.$space-xxl global.$space-xxl; 
 
         @media (max-width: global.$breakpoint-md) {
-            padding: global.$space-lg;
+            padding: global.$space-sm global.$space-lg global.$space-lg;
         }
 
-        h1.pageTitle {
-            font-weight: global.$font-weight-bold;
-            color: global.$color-text-dark2; 
-            text-align: center;
-            margin-top: global.$space-sm;
-            margin-bottom: global.$space-xl;
-            font-size: calc(#{global.$font-size-h4} * 1.5); 
-            line-height: 1.2;
+        .cardHeader {
+            width: 100%;
+            text-align: left;
+            margin-bottom: global.$space-lg; // Space between Title and Underline
 
-            @media (max-width: global.$breakpoint-sm) {
+            .pageTitle {
+                color: global.$color-text-dark2 !important;
                 font-size: global.$font-size-h3;
+                font-weight: global.$font-weight-bold;
+                margin: 0; 
+                line-height: 1.2;
             }
         }
     }
 
-    // --- FROM HERE DOWN: Only styling the internal gallery items ---
-    
     .gallery {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: global.$space-xl;
+        
+        // --- UNDERLINE: Matches About page divider ---
+        border-top: 1px solid global.$color-border-subtle;
+        padding-top: global.$space-lg; 
 
         @media (max-width: global.$breakpoint-lg) {
             grid-template-columns: repeat(2, 1fr);
@@ -52,14 +55,17 @@
     .serviceItem {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: center; // Kept centered for title/image
+        text-align: center; // Kept centered for title
         padding: global.$space-lg;
-        border-radius: global.$border-radius-md;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
-        box-shadow: global.$shadow-sm;
-        background-color: rgb(245, 245, 245); // This is the color of the small individual cards
         position: relative;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+        
+        // --- FRAME STYLE: Matching About page frames ---
+        background-color: rgba(255, 255, 255, 0.4); 
+        border-radius: global.$border-radius-lg; 
+        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+        box-shadow: global.$shadow-sm;
 
         &:hover {
             transform: translateY(-5px);
@@ -85,7 +91,7 @@
         .image-wrapper {
             position: relative;
             width: 100%;
-            height: 240px;
+            height: 240px; // Restored original height
             border-radius: global.$border-radius-sm;
             overflow: hidden;
             margin-bottom: global.$space-md;
@@ -116,13 +122,14 @@
             flex-grow: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; // Frame is centered in card, but content starts left
 
             .subtitle {
                 font-size: global.$font-size-sm;
                 color: global.$color-text-dark2;
                 line-height: 1.4;
                 margin: 0;
+                text-align: left; // NOT CENTRALIZED
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 line-clamp: 3;

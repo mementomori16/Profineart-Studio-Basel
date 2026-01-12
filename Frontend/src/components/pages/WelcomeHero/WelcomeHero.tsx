@@ -80,10 +80,10 @@ const WelcomeHero: React.FC = () => {
 
             <div className="hero-content">
                 <header className="info-frame">
-                    <h1 className="service-title">{t('welcomeHero.serviceTitle')}</h1>
-                    <p className="brand-signature">{t('welcomeHero.companyName')}</p>
+                    <h1 className="service-title">{t('home.welcomeHero.serviceTitle')}</h1>
+                    <p className="brand-signature">{t('home.welcomeHero.companyName')}</p>
                     <button className="hero-btn-pill" onClick={handleScroll}>
-                        {t('welcomeHero.ctaButton')}
+                        {t('home.welcomeHero.ctaButton')}
                     </button>
                 </header>
             </div>

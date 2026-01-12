@@ -1,18 +1,16 @@
-@import '../../../global.scss'; 
+@import '../../../global.scss';
 
 .welcome-hero-art {
     position: relative;
     width: 100%;
-    // FIXED: Use the JS variable for real height, fallback to 100vh
     height: 100vh;
-    height: calc(var(--vh, 1vh) * 100); 
+    height: calc(var(--vh, 1vh) * 100);
     min-height: 100vh;
     max-height: 100vh;
-    
     display: flex;
     align-items: center;
     overflow: hidden;
-    background-color: #000; 
+    background-color: #000;
 
     .art-background {
         position: absolute;
@@ -24,14 +22,14 @@
             display: none;
 
             &.desktop-img {
-                // Using 1024px to catch iPad Pro and Nest Hubs correctly
-                @media (min-width: 1024px) { 
-                    display: block; 
+                @media (min-width: 1024px) {
+                    display: block;
                 }
             }
+
             &.mobile-img {
-                @media (max-width: 1023px) { 
-                    display: block; 
+                @media (max-width: 1023px) {
+                    display: block;
                 }
             }
         }
@@ -87,31 +85,32 @@
 
         @media (max-width: 1023px) {
             padding: 0 1.5rem;
-            margin-top: 5vh; // Adjusted to balance with your design
+            margin-top: 5vh;
         }
 
         .info-frame {
             max-width: 40rem;
             text-align: left;
-            @media (max-width: 1023px) { 
-                text-align: center; 
-                margin: 0 auto; 
+
+            @media (max-width: 1023px) {
+                text-align: left;
+                margin: 0;
             }
         }
 
         .service-title {
             color: #fff;
-            font-size: 1.5rem; 
-            line-height: 1.8; 
+            font-size: 1.5rem;
+            line-height: 1.8;
             font-weight: 500;
             margin-bottom: 1.5rem;
             text-shadow: 0 2px 15px rgba(0,0,0,1);
         }
 
         .brand-signature {
-            color: #b6325a; 
-            font-size: 1.15rem; 
-            letter-spacing: 0.4rem; 
+            color: #b6325a;
+            font-size: 1.15rem;
+            letter-spacing: 0.4rem;
             text-transform: uppercase;
             font-weight: 900;
             margin-bottom: 3.5rem;
@@ -121,7 +120,7 @@
 
         .hero-btn-pill {
             padding: 1rem 4rem;
-            background: $color-cta-primary-warm; 
+            background: $color-cta-primary-warm;
             color: #fff;
             border: none;
             border-radius: 50px;
@@ -135,6 +134,12 @@
                 transform: scale(1.05);
                 filter: brightness(1.1);
             }
+
+            @media (max-width: 1023px) {
+                display: block;
+                margin: 0 auto;
+                width: fit-content;
+            }
         }
     }
 
@@ -146,14 +151,12 @@
         border: none;
         cursor: pointer;
         z-index: 25;
-
-        // 🔥 THE LINE THAT MOVES THE ARROW ON DESKTOP
-        bottom: 18vh; 
+        bottom: 18vh;
 
         @media (max-width: 480px) {
-            bottom: 12vh; 
+            bottom: 12vh;
         }
-        
+
         .arrow-down {
             display: block;
             width: 1.5rem;

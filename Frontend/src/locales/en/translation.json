@@ -1,16 +1,17 @@
 {
-  "home": "Home",
-  "howItWorks": "Pricing & Format",
-  "courses": "Course Booking",
-  "about": "About",
-  "studentsWorks": "Students Gallery",
-  "contact": "Contact",
-  "cv": "CV",
-
-  "welcomeHero": {
-    "serviceTitle": "Professional Fine Art & Contemporary painting courses in your private environment",
-    "companyName": "Profineart Studio Basel",
-    "ctaButton": "Course Booking"
+ "home": {
+    "home": "Home",
+    "howItWorks": "Pricing & Format",
+    "courses": "Course Booking",
+    "about": "About",
+    "studentsWorks": "Students Gallery",
+    "contact": "Contact",
+    "cv": "CV",
+    "welcomeHero": {
+      "serviceTitle": "Professional Fine Art & Contemporary painting courses in your private environment",
+      "companyName": "Profineart Studio Basel",
+      "ctaButton": "Course Booking"
+    }
   },
 
   "homePage": {
@@ -25,21 +26,17 @@
     "mobileTitle": "A Dedicated Mobile Education",
     "mobileText": "ProFineArt Studio Basel operates as a mobile educational project rather than a physical school. There is no public studio or atelier for students to visit. This structure is designed to provide high-level fine art education within the student’s own environment. Ilya Medvedev travels directly to the student's private home or personal studio space to conduct every session. This ensures that the learning process is integrated into the student’s personal creative setting.",
     "backgroundTitle": "Academic and Professional Background",
-    "backgroundText": "The curriculum is built upon a foundation of significant academic achievement and international experience. Ilya Medvedev holds a Bachelor of Education in Fine Arts (B.Ed.FA) and an Art Teaching Certification from the Hamidrasha Faculty of the Arts, as well as Master of Fine Arts studies from the Bezalel Academy of Arts and Design. With a career as a freelance artist spanning over 15 years, Ilya Medvedev brings a wealth of museum-level experience to the teaching process. This includes seven years of intensive study in Byzantine Icon Painting in Greece and Jerusalem, providing a rare technical depth in ancient media such as Egg Tempera.",
+    "backgroundText": "The curriculum is built upon a foundation of significant academic achievement and international experience. Ilya Medvedev holds a Bachelor of Education in Fine Arts (B.Ed.FA) and an Art Teaching Certification from the Hamidrasha Faculty of the Arts, as well as Master of Fine Arts studies from the Bezalel Academy of Arts and Design. With a career as a freelance artist spanning over 15 years, Ilya Medvedev brings a wealth of museum-level experience to the teaching process. This includes seven years of intensive study in Byzantine Icon Painting in Greece and Jerusalem, providing a rare technical depth in ancient media such as Byzantine Iconography and Egg Tempera.",
     "methodologyTitle": "Individual Courses and Methodology",
     "methodologyText": "The education provided focuses on mastering the visual language of fine art across several disciplines. The Byzantine Iconography course explores the sacred techniques of the old masters, focusing on historical accuracy and the mastery of light. The Oil Painting and Aquarelle programs emphasize the chemistry of materials, archival integrity, and the transition from classical underpainting to modern textures. In Academic Drawing, the focus is on developing a freehand 'eye-brain-hand' connection without the use of stencils or projectors. Other specialized courses include Mixed Media, Contemporary Painting, and Stone Painting, each designed to help the student navigate the complexities of form, color, and conceptual expression.",
     "artFactsLink": "View Ilya Medvedev Profile on ArtFacts"
 },
 
 "studentsWorksPage": {
-    "title": "Student Gallery & Progress",
-    "intro": "A glimpse into the creative journey of my students. These works reflect the mastery of technique and personal expression developed during our private sessions within their own homes.",
-    "disclaimer": "All works shown were created by students of various levels under the mentorship of Ilya Medvedev.",
-    "categories": {
-        "iconography": "Byzantine Iconography",
-        "drawing": "Academic Drawing",
-        "painting": "Oil & Aquarelle"
-    }
+    "title": "Students' Works Gallery",
+    "intro": "A selection of fine art pieces created by students during their private mentorship sessions.",
+    "sidebarTitle": "Creative Progress",
+    "sidebarText": "Each piece represents a milestone in the student's journey, from technical exercises to finished masterpieces."
 },
 
   "carousel": {
@@ -258,29 +255,26 @@
 
 
 
-  "testimonials": {
-    "title": "Client Testimonials",
-    "subtitle": "Discover the real impact of Profineart Lessons, straight from our partners.",
-    "readMoreButton": "Read More",
-    "ariaLabels": {
-      "previousTestimonial": "Previous testimonial",
-      "nextTestimonial": "Next testimonial",
-      "goToSlide": "Go to slide {{slideNumber}}",
-      "closeModal": "Close modal"
-    },
-    "1": {
-      "quote": "",
-      "clientName": "Samantha",
-      "clientTitle": "",
-      "clientCompany": "My class with Ilya was great. Ilya was friendly, very knowledgeable, encouraging, and completely adaptable to my needs and goals. It was fun planning long-term projects with him and discussing styles and art history. If you're looking for a teacher who is experienced, knowledgeable, and easygoing, I highly recommend Ilya!"
-    },
-    "2": {
-      "quote": "",
-      "clientName": "",
-      "clientTitle": "",
-      "clientCompany": ""
-    }
+"testimonials": {
+  "mainTitle": "Reviews",
+  "1": {
+    "author": "Samantha Levitt",
+    "source": "via Apprentus",
+    "text": "My course with Ilya was great. Ilya was friendly, very knowledgeable, encouraging and totally adaptable to my needs and goals. It was fun to plan long-term projects with him and discuss styles and art history. If you are looking for a teacher who is both experienced, knowledgeable and relaxed, I highly recommend Ilya!"
   },
+"2": {
+    "author": "Alona Rechson",
+    "text": "I met Ilya through the world of visual arts. First and foremost, he’s an incredible artist, a fascinating and controversial figure, and truly one of the funniest people I’ve ever known! He was also my tattoo artist; he helped me break into the industry, mentored me, and gave me the courage to get started. Today, I am the proud owner of my own tattoo business ❤️"
+  },
+  "3": {
+    "author": "Devorah Schwartz-Arad",
+    "text": "Lessons with you were an enriching experience, combining rigorous step-by-step learning without compromising on quality, while maintaining a sense of perfection and correct methodology. We started from the basics—preparing the canvas, measuring and understanding proportions, and acrylic underpainting—leading up to the highlight: oil painting. I am currently working on portraits of my family members from photos. You have definitely given me a solid foundation for my work, and I hope the results you see do not disappoint you."
+  },
+  "4": {
+    "author": "Dikla Arad",
+    "text": "I arrived about two years ago with almost zero experience and many fears. I quickly realized I was in the right hands. You are a patient, attentive, and kind teacher, with a rare ability to explain complex principles simply and clearly without pressure. You knew exactly when to guide, when to correct, and when to let me experiment. I especially appreciated your insistence that I do everything myself—particularly the difficult corrections—so that in the end, the painting is entirely 'mine,' giving me a huge sense of pride. This was an empowering experience both artistically and personally. I previously studied with different teachers, but your teaching was honest, enriching, and filled with true faith in art. You ensured we knew other artists and always brought examples from the masters to support your instructions. Thank you for the journey and the belief in me."
+  }
+},
   
   "similarProducts": {
     "exploreOtherCourses": "Explore Other Courses"

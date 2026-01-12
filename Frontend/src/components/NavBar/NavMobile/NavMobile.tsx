@@ -3,30 +3,24 @@ import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 import { useTranslation } from 'react-i18next';
-import { FaShoppingBasket } from 'react-icons/fa'; // <-- Added basket icon
+import { FaShoppingBasket } from 'react-icons/fa';
+import { useCart } from '../../../context/CartContext/CartContext';
 import './navMobile.scss';
 import logo from '../../../assets/images/icons/Group 177.svg';
-import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
-import { useCart } from '../../../context/CartContext/CartContext'; // <-- your cart context
-
-interface Route {
-  label: string;
-  path: string;
-}
-
-const routes: Route[] = [
-  { label: 'home', path: '/' },
-  { label: 'courses', path: '/courses' },
-  { label: 'about', path: '/about' },
-  
-];
 
 const NavMobile = () => {
   const [isOpen, setOpen] = useState(false);
   const { t } = useTranslation('translation');
-  const { cart } = useCart(); // <-- get cart
+  const { cart } = useCart();
 
-  const toggleMenu = () => setOpen(!isOpen);
+  const routes = [
+    { label: t('home.home'), path: '/' },
+    { label: t('home.courses'), path: '/courses' },
+    { label: t('home.howItWorks'), path: '/how-it-works' },
+    { label: t('home.studentsWorks'), path: '/students-works' },
+    { label: t('home.about'), path: '/about' },
+  ];
+
   const closeMenu = () => setOpen(false);
 
   useEffect(() => {
@@ -40,19 +34,17 @@ const NavMobile = () => {
   return (
     <header className="header-mobile">
       <nav className="navbarmobile">
-        <Link to="/" className="mobile-logo" aria-label="Homepage">
-          <img src={logo} alt="Ilya Medvedev Logo" className="mobile-logo-img" />
+        <Link to="/" className="mobile-logo" onClick={closeMenu}>
+          <img src={logo} alt="Logo" className="mobile-logo-img" />
         </Link>
 
         <div className="mobile-right">
-          {/* Shopping basket */}
-          <Link to="/basket" className="basket-icon">
+          <Link to="/basket" className="basket-icon" onClick={closeMenu}>
             <FaShoppingBasket size={24} />
             {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
           </Link>
 
-          {/* Hamburger menu */}
-          <div className="mobile-hamburger" onClick={toggleMenu}>
+          <div className="mobile-hamburger">
             <Hamburger toggled={isOpen} toggle={setOpen} size={24} />
           </div>
         </div>
@@ -67,14 +59,10 @@ const NavMobile = () => {
               end={route.path === '/'}
               onClick={closeMenu}
             >
-              {t(route.label)}
+              {route.label}
             </NavLink>
           </li>
         ))}
-
-        <li className="mobile-item language-item">
-          <LanguageSwitcher onCloseMenu={closeMenu} />
-        </li>
       </ul>
     </header>
   );
