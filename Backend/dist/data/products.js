@@ -45,8 +45,8 @@ export const courses = [
         },
         thumbnails: [
             {
-                lowResUrl: "",
-                highResUrl: '',
+                lowResUrl: "https://i.ibb.co/RTQnmM4p/detai-120kb.jpg",
+                highResUrl: 'https://i.ibb.co/zwGVjMt/detai-500kl.jpg',
             },
         ],
         detailsImages: [
@@ -216,7 +216,7 @@ export const courses = [
         image: {
             lowResUrl: 'https://i.ibb.co/23DHF3XH/Mcdonalds-2010-Oil-on-canvas-145-x-191-cm-Ilya-Medvedev-ph01-26-100kb.jpg',
             highResUrl: 'https://i.ibb.co/0Vz0cz5M/Mcdonalds-2010-Oil-on-canvas-145-x-191-cm-Ilya-Medvedev-ph01-26-500kb.jpg',
-            caption: 'McDonalds Meal. Oil on Canvas. Artist: Ilya Medvedev',
+            caption: 'Lunch at McDonalds. Oil on Canvas. Artist: Ilya Medvedev',
         },
         thumbnails: [
             {
@@ -226,19 +226,14 @@ export const courses = [
         ],
         detailsImages: [
             {
-                lowResUrl: 'https://i.ibb.co/Kzmt87FR/photoshoped01-11-2024-01-26-120kb.jpg',
-                highResUrl: 'https://i.ibb.co/DHBnzXCZ/IMG-2652-SMALL500kb.jpg',
-                caption: 'The Gym. Oil on Canvas. Artist: Ilya Medvedev',
+                lowResUrl: 'https://i.ibb.co/JRt7kvSD/The-Gym-detail-ph-26-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/pvzHHXrh/The-Gym-detail-ph-26-500kb.jpg',
+                caption: 'Deatail from the painting:The Gym. Oil on Canvas. Artist: Ilya Medvedev',
             },
             {
-                lowResUrl: 'https://i.ibb.co/fdzchc21/Copy-of-marble-sculpture-of-sleeping-Hermaphroditus-ph12-25-120-kb.jpg',
-                highResUrl: 'https://i.ibb.co/F4Kywvbs/Copy-of-marble-sculpture-of-sleeping-Hermaphroditus-ph12-25-500-kb.jpg',
-                caption: 'Sleeping Hermaphroditus. Acrylic on Ancient Roman Marble. Artist: Ilya Medvedev',
-            },
-            {
-                lowResUrl: 'https://i.ibb.co/bMf7Gvz5/IMG-4615-ph12-25-120kb.jpg',
-                highResUrl: 'https://i.ibb.co/Q3Dh6DBz/IMG-4615-ph12-25-500kb.jpg',
-                caption: 'Angel of God. Tempera on Dead Sea Stone. Artist: Ilya Medvedev',
+                lowResUrl: 'https://i.ibb.co/DDfyPrww/Cold-World-2011-ph2026-120kb.jpg',
+                highResUrl: 'https://i.ibb.co/MDrcp96D/Cold-World-2011-ph2026-500kb.jpg',
+                caption: 'Cold World. Oil on Canvas. Artist: Ilya Medvedev',
             },
         ],
         medium: 'Course',
@@ -370,11 +365,6 @@ export const artistProfile = [
         highResUrl: 'https://i.ibb.co/8nkdprgS/IMG-4588ph500kb.jpg', // Placeholder: Use your "Working" photo high-res
         caption: 'Ilya Medvedev during the artistic process'
     },
-    {
-        lowResUrl: 'https://i.ibb.co/Z6F6yVtz/PXL-20251101-MPph01-26-120kb.jpg', // Placeholder: Use your "Next to artwork" low-res
-        highResUrl: 'https://i.ibb.co/Z6qQKGXs/Ilya-Medvedev-next-to-his-painting-ph25.jpg', // Placeholder: Use your "Next to artwork" high-res
-        caption: 'Student during artistic work process'
-    }
 ];
 export const studentGalleryData = [
     {
@@ -401,6 +391,11 @@ export const studentGalleryData = [
         lowResUrl: "https://i.ibb.co/8DwZBf25/DSC-1914-120kb.jpg",
         highResUrl: "https://i.ibb.co/pBnkM4Yj/DSC-1914-500kb.jpg",
         caption: "Ballet Dancer. Oil on Canvas"
+    },
+    {
+        lowResUrl: "https://i.ibb.co/mWMK6W7/DSC-1938-120kb.jpg",
+        highResUrl: "https://i.ibb.co/ynw5wxnY/DSC-1938-500kb.jpg",
+        caption: "Acrylic painting process"
     },
     {
         lowResUrl: "https://i.ibb.co/DPjc9TSp/severine-icon-painting-process120kb.jpg",

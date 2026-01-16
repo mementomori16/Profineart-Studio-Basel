@@ -1,0 +1,90 @@
+@use "../../../global.scss" as *;
+
+.text-component-section {
+    padding: $space-xxxxl 0;
+}
+
+.text-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.text-header {
+    margin-bottom: $space-xxl;
+}
+
+.text-main-title {
+    font-size: $font-size-homepage-section-title;
+    font-weight: $font-weight-light;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    margin: 0;
+    color: $color-text-white;
+    line-height: 1.1;
+}
+
+.text-subtitle {
+    font-size: $font-size-h3;
+    font-weight: $font-weight-normal;
+    color: $color-text-light;
+    margin-top: $space-sm;
+}
+
+.text-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-xl $space-xxl;
+    align-items: start;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.text-grid-item {
+    p {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: rgb(235, 232, 232);
+        font-weight: 300;
+        margin: 0;
+    }
+
+    &.primary {
+        grid-column: 1 / -1;
+        margin-bottom: $space-md;
+        p {
+            font-size: 1.4rem;
+            color: $color-text-white;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: $space-xl;
+        }
+    }
+
+    .item-title {
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        color: $color-text-light;
+        margin-bottom: $space-md;
+        font-weight: $font-weight-semibold;
+    }
+}
+
+.standards-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md; // Adds space between the background, specialization, and communication blocks
+
+    p {
+        font-size: 1.1rem;
+        
+        strong {
+            display: block; // Makes labels like "Background:" sit on their own line for maximum readability
+            color: $color-text-white;
+            font-weight: $font-weight-semibold;
+            margin-bottom: $space-xxs;
+        }
+    }
+}

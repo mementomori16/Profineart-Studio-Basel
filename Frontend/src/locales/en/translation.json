@@ -1,7 +1,7 @@
 {
  "home": {
     "home": "Home",
-    "howItWorks": "Pricing & Format",
+    "howItWorks": "Price & Format",
     "courses": "Course Booking",
     "about": "About",
     "studentsWorks": "Students Gallery",
@@ -18,7 +18,23 @@
    "aboutTeaserTitle": "Professional Art Education in Basel",
     "aboutTeaserDescription": "",
     "learnMoreButton": "Click For More"
+    
   },
+
+
+ "textComponent": {
+"title": "The Mentorship",
+  "subtitle": "Mastery of Fine Art",
+  "experience": "A private educational project providing specialized mentorship that combines historical tradition with contemporary artistic standards. This mobile project brings professional training directly to your personal studio to ensure learning is integrated into your own creative setting.",
+  "curriculum": "Focus on mastering the visual language of art through the chemistry of materials, historical accuracy, and the transition from classical underpainting to modern textures. The training covers the complexities of form and conceptual expression.",
+  "labelBackground": "Background",
+  "textBackground": "Built on significant academic achievement and a wealth of museum-level experience.",
+  "labelSpecialization": "Specialization",
+  "textSpecialization": "Rare technical depth in ancient media, such as Byzantine Iconography, alongside contemporary painting.",
+  "labelCommunication": "Communication",
+  "textCommunication": "All instruction and communication are conducted in English."
+},
+
 
   "aboutPage": {
     "title": "ProFineArt Studio Basel: Contemporary Fine Art Pedagogy",
@@ -47,7 +63,7 @@
   },
 
   "coursesPage": {
-    "title": "Fine Art Painting Courses",
+    "title": "Profineart Courses",
     "viewButton": "Learn & Book",
     "popular": "Popular"
   },
@@ -244,7 +260,7 @@
   "806": {
   "title": "Contemporary Painting Course",
   "briefDescription": "Master the fusion of Old Master discipline and contemporary vision. Learn to create high-level art that balances technical perfection with raw, conceptual power.",
-  "badge": "Ultracontemporery & Academic",
+  "badge": "Ultracontemporery",
   "description": "<h3>The Program Focus</h3><p>Does contemporary art require skill, or is it just ideas? This course proves that the strongest modern artists are masters of tradition. We explore painting as a visceral act of gesture and drama, moving far beyond mechanical copying or simple illustration.</p><h2>Questions You Will Answer</h2><h5>The Reality of Style</h5><p>What defines the line between Hyperrealism and Magical Realism? Why does modern painting value 'unfinished' edges and visible drips alongside extreme precision?</p><h5>Market and Meaning</h5><p>How do you distinguish 'High Art' from Kitsch? Is your work a commercial product or a museum-level masterpiece?</p><h5>The Power of Tradition</h5><p>How do we use history as a toolkit rather than a cage? Why is the mastery of the human form still the ultimate weapon of the contemporary painter?</p>",
 
   "detailsSection": {

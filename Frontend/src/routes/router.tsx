@@ -16,6 +16,10 @@ import TermsOfUse from "../components/pages/TermsOfUse/TermsOfUse";
 import HowItWorks from "../components/pages/HowitWorks/Pricing";
 import StudentsWorks from "../components/pages/StudentsWorks/StudentsWorks";
 import Testimonials from "../components/pages/Testimonials/Testimonials";
+import VideoPage from "../components/pages/VideoPage/VideoPage";
+import StudentArtwork from "../components/pages/ArtworkByStudent/StudentArtwork";
+import Reviews from "../components/pages/Reviews/Reviews";
+
 
 const router = createBrowserRouter([
     {
@@ -34,6 +38,9 @@ const router = createBrowserRouter([
             { path: "legalinfo", element: <LegalInfo /> },
             { path: "terms-of-use", element: <TermsOfUse /> },
             { path: "testimonials", element: <Testimonials /> },
+            { path: "video-page", element: <VideoPage /> },
+            { path: "student-artwork", element: <StudentArtwork /> },
+            { path: "reviews", element: <Reviews /> },
          
 
             // ---------------------------------------------------------

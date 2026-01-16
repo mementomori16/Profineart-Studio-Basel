@@ -1,0 +1,102 @@
+@use '../../global.scss' as global;
+
+// 1. THE MASTER CONTAINER
+.studio-video-master {
+  position: relative;
+  width: 90%;            
+  max-width: 900px;      
+  margin: 40px auto;     
+  
+  aspect-ratio: 16 / 9; 
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+
+  @media (max-width: global.$breakpoint-sm) {
+    width: 100%;        
+    margin: 30px 0;      
+    border-radius: 0;   
+    max-width: none;
+    height: auto; 
+  }
+}
+
+// 2. LOADING SCREEN
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease;
+  
+  &.hidden { 
+    opacity: 0; 
+    pointer-events: none; 
+  }
+}
+
+.modern-loader {
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+// 3. THE VIDEO BOX (NO ZOOM)
+.video-inner-container {
+  position: relative; 
+  width: 100%;
+  height: 100%; // Fill the aspect-ratio container
+  overflow: hidden;
+  z-index: 10;
+
+  .video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; // REMOVED 115% ZOOM
+    height: 100%; // REMOVED 115% ZOOM
+    border: none;
+    
+    /* This prevents users from clicking the video 
+       to see YouTube titles or "Watch on YouTube" links.
+    */
+    pointer-events: none; 
+    transform: none; // REMOVED centering transform
+  }
+}
+
+// 4. THE SOUND BUTTON
+.small-sound-pill {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 30;
+  background: global.$color-cta-primary-warm; 
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @media (max-width: global.$breakpoint-sm) {
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 7px;
+  }
+}

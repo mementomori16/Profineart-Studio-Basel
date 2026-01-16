@@ -4,6 +4,148 @@
 @mixin caption-style {
     .imageCaption {
         font-size: global.$font-size-xs !important;
+        // ORIGINAL DARK COLOR
+        color: rgba(255, 255, 255, 0.5) !important; 
+        margin-top: global.$space-sm;
+        text-align: center;
+    }
+}
+
+.infoContainer-text-column {
+    width: 100%;
+
+    .infodate {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: global.$font-weight-bold;
+        margin-bottom: global.$space-md;
+    }
+
+    // THE CLEAN FRAME LOGIC
+    .content-frame {
+        background-color: rgba(255, 255, 255, 0.04);
+        border-radius: global.$border-radius-lg;
+        padding: global.$space-lg;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: global.$space-xl;
+
+        // BROWSER/DESKTOP ONLY: Join the two frames together
+        @media (min-width: 1024px) {
+            &.main-description {
+                margin-bottom: 0;
+                border-bottom: none;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        .detailsTitle {
+            color: rgba(255, 255, 255, 0.95) !important;
+            font-size: global.$font-size-h4;
+            font-weight: global.$font-weight-semibold;
+            margin-top: 0;
+        }
+    }
+
+    // Join the top of the second frame to the first
+    .desktop-full-text-view {
+        @media (min-width: 1024px) {
+            .content-frame {
+                border-top: none;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+    }
+
+    .description, .detailsText {
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.85) !important; 
+
+        p { color: rgba(255, 255, 255, 0.85) !important; }
+
+        h2, h3, h4 { 
+            color: rgba(255, 255, 255, 0.9) !important; 
+            font-size: global.$font-size-md; 
+            font-weight: global.$font-weight-bold;
+        }
+    }
+
+    .mobile-staggered-view {
+        @media (min-width: 1024px) { display: none; }
+    }
+    
+    .desktop-full-text-view {
+        display: none;
+        @media (min-width: 1024px) { display: block; }
+    }
+    
+    .mobile-only-section {
+        @media (min-width: 1024px) { display: none; }
+    }
+}
+
+// VISUAL COLUMN (Right side on Desktop)
+.infoContainer-visual-column {
+    @media (max-width: 1023px) { display: none; }
+    display: flex;
+    flex-direction: column;
+    gap: global.$space-md;
+}
+
+.detailImageWrapper {
+    display: block;
+    width: 100%;
+    margin-bottom: global.$space-xl;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: global.$border-radius-md;
+
+    .detailImage {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.3s ease;
+        &.loaded { opacity: 1; }
+        &:hover { transform: scale(1.02); }
+        &.is-portrait { aspect-ratio: 3 / 4; }
+        &.is-landscape { aspect-ratio: 3 / 2; }
+    }
+    @include caption-style;
+}
+
+.booking-action-container {
+    display: flex;
+    flex-direction: column;
+    gap: global.$space-md;
+    align-items: center;
+    margin-bottom: global.$space-xxl;
+
+    .btn-add-to-cart, .btn-book-now {
+        width: 100%;
+        max-width: 16rem;
+        padding: global.$space-md;
+        border-radius: global.$border-radius-xl !important;
+        font-weight: global.$font-weight-bold;
+        color: white !important;
+    }
+    .btn-book-now { background-color: global.$color-cta-primary-warm; border:none;}
+    .btn-add-to-cart { 
+        background-color: rgba(255,255,255,0.1); 
+        border: 1px solid rgba(255,255,255,0.2); 
+    }
+}
+
+/*
+@use '../../../../global.scss' as global;
+@use "sass:color";
+
+@mixin caption-style {
+    .imageCaption {
+        font-size: global.$font-size-xs !important;
         color: global.$color-text-light !important;
         margin-top: global.$space-sm;
         text-align: center;
@@ -183,3 +325,4 @@
     }
     @include caption-style;
 }
+*/

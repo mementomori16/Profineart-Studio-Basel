@@ -1,5 +1,154 @@
 @use "sass:color";
 @use '../../../global.scss' as global;
+
+.courses-page-root {
+    width: 100%;
+    // Subtle gradient to add depth: slightly lighter in the center (#222) to dark edges (#171)
+    background: radial-gradient(circle at center, #222222 0%, #171717 100%);
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+.courses-content-grid {
+    max-width: global.$breakpoint-xl;
+    margin: 0 auto;
+    padding: global.$space-xxxxl global.$space-xxl;
+
+    @media (max-width: global.$breakpoint-md) {
+        padding: global.$space-xxl global.$space-lg;
+    }
+}
+
+.courses-header {
+    margin-bottom: global.$space-xxxxl;
+    text-align: center; // Centered text as requested
+    
+    // RESTORED: Full-width underline from the previous solution
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1); 
+    padding-bottom: global.$space-xl;
+
+    .courses-title {
+        // High-end script matching Reviews component
+        color: #ffffff !important;
+        font-size: global.$font-size-h2; 
+        font-weight: 300; 
+        text-transform: uppercase;
+        letter-spacing: 0.5rem; 
+        margin: 0;
+        line-height: 1.2;
+    }
+}
+
+.courses-gallery {
+    display: grid;
+    // Locked to 2 cards per row on large screens
+    grid-template-columns: repeat(2, 1fr); 
+    gap: global.$space-xxxl;
+
+    @media (max-width: global.$breakpoint-sm) {
+        grid-template-columns: 1fr;
+        gap: global.$space-lg;
+    }
+}
+
+.course-card {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: global.$border-radius-sm;
+    padding: global.$space-xl;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        
+        .course-image { transform: scale(1.05); }
+    }
+
+    .course-badge {
+        position: absolute;
+        top: global.$space-lg;
+        left: global.$space-lg;
+        background-color: #811c1c;
+        color: #fff;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        z-index: 2;
+        font-weight: 700;
+        letter-spacing: 0.08rem;
+    }
+
+    .course-image-wrapper {
+        width: 100%;
+        height: 320px; // Ample height for the 2-column layout
+        overflow: hidden;
+        border-radius: 2px;
+        margin-bottom: global.$space-lg;
+        background-color: #000;
+
+        .course-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: transform 0.8s ease, opacity 0.4s ease;
+        }
+    }
+
+    &:hover .course-image {
+        opacity: 1;
+    }
+
+    .course-card-title {
+        color: #ffffff;
+        font-size: 1.5rem;
+        margin: 0 0 global.$space-md;
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 0.05rem;
+    }
+
+    .course-description-frame {
+        background-color: rgba(0, 0, 0, 0.2); 
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        padding: global.$space-md;
+        margin-bottom: global.$space-xl;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+
+        .course-text {
+            color: #b0b0b0; 
+            font-size: global.$font-size-base;
+            line-height: 1.7;
+            font-weight: 300;
+            margin: 0;
+            text-align: left;
+        }
+    }
+
+    .course-view-btn {
+        @extend .btn-cta-primary; 
+        width: 100%;
+        font-size: 0.9rem;
+        padding: global.$space-md;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+    }
+}
+
+
+/**
+@use "sass:color";
+@use '../../../global.scss' as global;
 @import '../Card/CardPage/CardPage.scss'; 
 
 .courses-section {
@@ -147,5 +296,4 @@
         }
     }
 }
-
-
+*/

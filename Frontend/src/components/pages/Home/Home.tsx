@@ -1,15 +1,29 @@
-// src/pages/Home/Home.tsx
-import React from 'react';
-import Courses from '../Courses/Courses';
+import React, { useEffect } from 'react';
+import './home.scss'; 
 import WelcomeHero from '../WelcomeHero/WelcomeHero';
-import Testimonials from '../Testimonials/Testimonials';
+import VideoPage from '../VideoPage/VideoPage';
+import Reviews from '../Reviews/Reviews';
+import Text from '../Text/Text';
+import BaslerServiceMap from '../BaselServiceMap/BaselServiceMap';
 
 const Home: React.FC = () => {
+    useEffect(() => {
+        // When the Home page loads, make the body dark
+        document.body.style.backgroundColor = '#171717';
+
+        // When leaving the Home page, reset it to the global color
+        return () => {
+            document.body.style.backgroundColor = ''; 
+        };
+    }, []);
+
     return (
         <div className="homepage-wrapper">
             <WelcomeHero />
-            <Courses />
-            <Testimonials />
+            <Text />
+            <VideoPage />
+            <Reviews />
+            <BaslerServiceMap />
         </div>
     );
 };

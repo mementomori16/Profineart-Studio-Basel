@@ -6,6 +6,88 @@
     padding: global.$space-xs global.$space-lg global.$space-lg global.$space-lg; 
     align-items: center;
     overflow-x: hidden; 
+    background-color: #171717; 
+
+    @media (max-width: global.$breakpoint-sm) {
+        padding: 0 global.$space-xs global.$space-xs global.$space-xs; 
+    }
+
+    .cardContentWrapper {
+        background-color: transparent; 
+        width: 100%;
+        max-width: global.$breakpoint-xxl;
+        overflow: hidden;
+
+        .cardHeader {
+            width: 100%;
+            padding: global.$space-md 0 global.$space-lg 0; 
+            text-align: center;
+            border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+
+            .pageTitle {
+                margin: 0;
+                font-size: global.$font-size-h3;
+                font-weight: global.$font-weight-light;
+                color: #ffffff !important; 
+                text-transform: uppercase;
+                letter-spacing: 0.2rem;
+
+                @media (max-width: global.$breakpoint-sm) {
+                    font-size: global.$font-size-h4;
+                    padding: 0 global.$space-xs;
+                }
+            }
+        }
+
+        .cardContentLayout {
+            display: flex;
+            flex-direction: column;
+            padding: global.$space-xl 0;
+            gap: global.$space-xl;
+
+            @media (max-width: global.$breakpoint-sm) {
+                padding: global.$space-md global.$space-xs; 
+                gap: global.$space-md;
+            }
+
+            @media (min-width: global.$breakpoint-lg) {
+                flex-direction: row;
+                gap: global.$space-xxl; 
+            }
+
+            .column-left {
+                width: 100%;
+                order: 2;
+                @media (min-width: global.$breakpoint-lg) {
+                    width: 65%;
+                    order: 1;
+                }
+            }
+
+            .column-right {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: global.$space-md;
+                order: 1;
+                @media (min-width: global.$breakpoint-lg) {
+                    width: 35%;
+                    order: 2;
+                }
+            }
+        }
+    }
+}
+
+/*
+@use '../../../../global.scss' as global;
+
+.cardPageContainer {
+    display: flex;
+    flex-direction: column;
+    padding: global.$space-xs global.$space-lg global.$space-lg global.$space-lg; 
+    align-items: center;
+    overflow-x: hidden; 
 
     @media (max-width: global.$breakpoint-sm) {
         padding: 0 global.$space-xs global.$space-xs global.$space-xs; 
@@ -106,3 +188,4 @@
         }
     }
 }
+*/

@@ -1,89 +1,16 @@
-@use '../../../global.scss' as global;
-@use "sass:color";
+// src/pages/Home/Home.scss
 
-.homepage-container {
-    background-color: global.$color-background;
-    padding-bottom: global.$space-xxxxl;
+.homepage-wrapper {
+    // This targets the body only when it's inside or adjacent to the home wrapper
+    // But since Home.tsx is a route, it's cleaner to target the class itself:
+    background-color: #171717; 
+    width: 100%;
+    display: flow-root; // Prevents margin collapsing (fixes the extra line/gap issue)
+}
 
-    .home-section {
-        margin-bottom: global.$space-xxxxl;
-        
-        @media (max-width: global.$breakpoint-md) {
-            margin-bottom: global.$space-xxl;
-        }
-    }
-
-    // Reusing the "Section Title" style from your courses/terms logic
-    .section-title {
-        font-size: global.$font-size-h2;
-        color: global.$color-navbar-title;
-        text-align: center;
-        margin-bottom: global.$space-xl;
-        letter-spacing: 0.03em;
-        
-        @media (max-width: global.$breakpoint-sm) {
-            font-size: global.$font-size-h3;
-        }
-    }
-
-    // Reusing the "Content Frame" style from InfoContainer
-    .content-frame {
-        background-color: rgba(255, 255, 255, 0.4); 
-        border-radius: global.$border-radius-lg;
-        padding: global.$space-lg;
-        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-        box-shadow: global.$shadow-sm;
-        transition: transform 0.3s ease;
-
-        &:hover {
-            transform: translateY(-3px);
-            box-shadow: global.$shadow-md;
-        }
-
-        .description p {
-            color: global.$color-text-dark4;
-            line-height: 1.7;
-            font-size: global.$font-size-base;
-        }
-    }
-
-    // Testimonials Grid layout mirroring your Courses gallery logic
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: global.$space-lg;
-
-        @media (max-width: global.$breakpoint-lg) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        @media (max-width: global.$breakpoint-sm) {
-            grid-template-columns: 1fr;
-        }
-
-        .testimonial-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            
-            .testimonial-text {
-                font-style: italic;
-                margin-bottom: global.$space-md;
-                color: global.$color-text-dark2;
-            }
-
-            .testimonial-author {
-                margin: 0;
-                color: global.$color-cta-primary-warm;
-                font-weight: global.$font-weight-bold;
-            }
-        }
-    }
-
-    .contact-section {
-        .content-frame {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-    }
+// This forces the body background to match while on this page
+:global(body) {
+    background-color: #171717 !important;
+    margin: 0;
+    padding: 0;
 }

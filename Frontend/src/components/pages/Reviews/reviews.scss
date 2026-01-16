@@ -1,0 +1,107 @@
+@use "../../../global.scss" as *;
+
+.reviews-section {
+    padding: $space-xxxxl 0;
+    background-color: #171717; 
+    
+    @media (max-width: $breakpoint-md) {
+        padding: $space-xxl 0;
+    }
+}
+
+.section-header {
+    margin-bottom: $space-xxxxl;
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+    padding-bottom: $space-md;
+
+    .reviews-main-title {
+        @include services-heading;
+        color: #fff;
+        text-align: left;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+        font-weight: 300;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-h3;
+            letter-spacing: 0.2rem;
+        }
+    }
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xxxl;
+    
+    @media (max-width: $breakpoint-sm) {
+        gap: $space-xl;
+    }
+}
+
+.review-item {
+    display: grid;
+    // Desktop: Uses a flexible rem-based column for the author
+    grid-template-columns: 15.625rem 1fr; 
+    gap: $space-xl;
+    padding-bottom: $space-xxl;
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.05);
+
+    // Responsive: Switch to 100% width on tablets and mobile
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 100%; 
+        gap: $space-sm;
+        padding-bottom: $space-lg;
+    }
+}
+
+.author-group {
+    .review-author {
+        color: #fff;
+        font-size: 1rem; // Equal to $font-size-base
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: 0.0625rem;
+    }
+
+    .review-stars {
+        color: #fff;
+        font-size: 0.75rem;
+        margin-top: $space-xxs;
+        letter-spacing: 0.125rem;
+        opacity: 0.8;
+    }
+}
+
+.source-info {
+    margin-top: $space-xxs;
+    
+    .source-text, .source-link {
+        font-size: $font-size-xxs;
+        color: $color-text-light;
+        text-transform: uppercase;
+        letter-spacing: 0.0625rem;
+        text-decoration: none;
+    }
+
+    .source-link:hover {
+        color: #fff;
+    }
+}
+
+.review-content {
+    .review-text {
+        color: #dcdcdc;
+        font-size: 1.0625rem;
+        line-height: 1.8;
+        margin: 0;
+        font-weight: 300;
+        white-space: pre-line;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+    }
+}

@@ -7,73 +7,54 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 0;
+    margin-bottom: global.$space-xxl;
     
     .imageContainer {
-        max-width: 100%;
+        width: 100%;
+        height: auto; // Remove fixed 350px
         position: relative;
-        height: 350px; 
-        width: 100%;  
-        border-radius: 4px; 
         overflow: hidden; 
-        background: transparent; // 🔥 Force transparent to remove "frame"
+        background: transparent; 
         
         .image {
             width: 100%;
-            height: 100%;
-            object-fit: contain; 
-            border-radius: 2px;
-            transition: opacity 0.4s ease-in-out; // Smooth entry
-            opacity: 0; // 🔥 Hidden by default
+            height: auto; // Natural height
+            object-fit: contain; // NEVER cut top or bottom
+            border-radius: global.$border-radius-md;
+            transition: opacity 0.4s ease-in-out;
+            opacity: 0;
             cursor: pointer;
 
             &.loaded {
-                opacity: 1; // 🔥 Only shows when fully ready
+                opacity: 1;
             }
         }
     }
 
-    // ... Keep your thumbnails and caption code exactly as they were ...
     .thumbnails {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin-top: 0.5rem;
-        padding: 0 1rem;
+        margin-top: global.$space-md;
+        padding: 0;
         width: 100%;
-        overflow-x: auto;
-
+        
         .thumbnailContainer {
-            width: 40px; 
-            height: 40px;
+            width: 45px; 
+            height: 45px;
             overflow: hidden;
-            border-radius: 5px;
-            margin: 0 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            border-radius: 4px;
+            margin: 0 4px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-        }
+        .thumbnail { width: 100%; height: 100%; object-fit: cover; }
     }
 
     .imageCaption {
-        font-family: global.$font-family-base; 
         font-size: global.$font-size-xs;
-        color: global.$color-text-light;
+        color: rgba(255, 255, 255, 0.5);
         margin-top: global.$space-sm;
         text-align: center;
-        line-height: 1.4;
-        max-width: 20rem;
-        margin-left: auto;
-        margin-right: auto;
     }
-
-    @media (max-width: 768px) { .imageContainer { height: 250px; } }
-    @media (max-width: 480px) { .imageContainer { height: 180px; } }
 }

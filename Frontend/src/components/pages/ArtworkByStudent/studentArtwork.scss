@@ -1,0 +1,107 @@
+@use "sass:color";
+@use "../../../global.scss" as global; 
+
+.artwork-carousel-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: global.$space-xl auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .carousel-main {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: transparent; 
+        
+        // Using your global rounded corners and shadow
+        border-radius: global.$border-radius-lg; 
+        border: none; 
+        box-shadow: global.$shadow-md; 
+
+        .img-container {
+            width: 100%;
+            height: 100%;
+            
+            .artwork-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; 
+                display: block;
+                transition: filter 0.5s ease-in-out, opacity 0.5s ease;
+
+                &.low-res {
+                    filter: blur(8px); // Slightly stronger blur for the 120kb version
+                }
+
+                &.hd-loaded {
+                    filter: blur(0);
+                }
+            }
+        }
+
+        // Title aligned Left, Bright White, Mixed Case
+        .artwork-caption {
+            position: absolute;
+            bottom: global.$space-lg;
+            left: global.$space-lg; 
+            margin: 0;
+            padding-right: global.$space-xl; // Prevent text hitting right arrow
+            font-size: global.$font-size-md;
+            color: global.$color-text-white; 
+            font-weight: global.$font-weight-bold;
+            letter-spacing: 0.02em;
+            text-transform: none; // Allows capital and small letters
+            text-align: left;
+            z-index: 5;
+            // High-contrast shadow for readability
+            text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.9), 0px 0px 4px rgba(0, 0, 0, 0.5);
+            pointer-events: none; 
+        }
+    }
+
+    .nav-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none; // No transparent rounds
+        border: none;
+        cursor: pointer;
+        padding: global.$space-lg;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+        .arrow-icon {
+            display: block;
+            width: 24px;
+            height: 24px;
+            // Thickened to 3px using your global border color
+            border-top: 3px solid global.$color-border-subtle;
+            border-left: 3px solid global.$color-border-subtle;
+            filter: drop-shadow(0px 0px 6px rgba(0,0,0,0.7));
+        }
+
+        &.prev {
+            left: global.$space-sm;
+            .arrow-icon { transform: rotate(-45deg); }
+        }
+
+        &.next {
+            right: global.$space-sm;
+            .arrow-icon { transform: rotate(135deg); }
+        }
+    }
+}
