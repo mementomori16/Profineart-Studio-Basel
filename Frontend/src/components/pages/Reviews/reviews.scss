@@ -2,7 +2,7 @@
 
 .reviews-section {
     padding: $space-xxxxl 0;
-    background-color: #171717; 
+    background-color: #171717; // Kept as specific section color
     
     @media (max-width: $breakpoint-md) {
         padding: $space-xxl 0;
@@ -16,12 +16,12 @@
 
     .reviews-main-title {
         @include services-heading;
-        color: #fff;
+        color: $color-text-white; // Replaced #fff
         text-align: left;
         margin: 0;
         text-transform: uppercase;
         letter-spacing: 0.4rem;
-        font-weight: 300;
+        font-weight: $font-weight-light; // Replaced 300
 
         @media (max-width: $breakpoint-sm) {
             font-size: $font-size-h3;
@@ -42,13 +42,11 @@
 
 .review-item {
     display: grid;
-    // Desktop: Uses a flexible rem-based column for the author
     grid-template-columns: 15.625rem 1fr; 
     gap: $space-xl;
     padding-bottom: $space-xxl;
     border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.05);
 
-    // Responsive: Switch to 100% width on tablets and mobile
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 100%; 
         gap: $space-sm;
@@ -58,15 +56,15 @@
 
 .author-group {
     .review-author {
-        color: #fff;
-        font-size: 1rem; // Equal to $font-size-base
-        font-weight: 700;
+        color: $color-text-white; // Replaced #fff
+        font-size: $font-size-base; // Unified with variable
+        font-weight: $font-weight-bold; // Replaced 700
         margin: 0;
         letter-spacing: 0.0625rem;
     }
 
     .review-stars {
-        color: #fff;
+        color: $color-text-white; // Replaced #fff
         font-size: 0.75rem;
         margin-top: $space-xxs;
         letter-spacing: 0.125rem;
@@ -86,21 +84,21 @@
     }
 
     .source-link:hover {
-        color: #fff;
+        color: $color-text-white; // Replaced #fff
     }
 }
 
 .review-content {
     .review-text {
-        color: #dcdcdc;
+        color: rgba(255, 255, 255, 0.85); // Replaced #dcdcdc for global consistency
         font-size: 1.0625rem;
         line-height: 1.8;
         margin: 0;
-        font-weight: 300;
+        font-weight: $font-weight-light; // Replaced 300
         white-space: pre-line;
 
         @media (max-width: $breakpoint-sm) {
-            font-size: 1rem;
+            font-size: $font-size-base;
             line-height: 1.6;
         }
     }

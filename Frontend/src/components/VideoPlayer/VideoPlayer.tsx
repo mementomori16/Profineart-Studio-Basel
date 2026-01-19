@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './videoPlayer.scss';
 
-// Declare YouTube global for TypeScript
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: () => void;
@@ -11,12 +10,11 @@ declare global {
 
 const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
   const [isMuted, setIsMuted] = useState(true);
-  const [isReady, setIsReady] = useState(false);
+  const [isFullyLoaded, setIsFullyLoaded] = useState(false); 
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. Load YouTube SDK
     if (!window.YT) {
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
@@ -24,8 +22,7 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
       firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
     }
 
-    // 2. Initialize Player
-    window.onYouTubeIframeAPIReady = () => {
+    const initPlayer = () => {
       playerRef.current = new window.YT.Player(`Youtubeer-${videoId}`, {
         videoId: videoId,
         playerVars: {
@@ -41,11 +38,14 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
         events: {
           onReady: (event: any) => {
             event.target.mute();
-            setIsReady(true);
+            event.target.setVolume(50); // Pre-set volume to 50%
+            event.target.playVideo();
           },
           onStateChange: (event: any) => {
-            // Buffer logic for "looping" 3 seconds early
             if (event.data === window.YT.PlayerState.PLAYING) {
+              setTimeout(() => {
+                setIsFullyLoaded(true);
+              }, 3000); 
               startLoopCheck();
             }
           }
@@ -53,25 +53,30 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
       });
     };
 
-    // 3. Early Restart Logic (3 seconds before end)
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = initPlayer;
+    }
+
     let interval: NodeJS.Timeout;
     const startLoopCheck = () => {
       if (interval) clearInterval(interval);
       interval = setInterval(() => {
-        if (playerRef.current && playerRef.current.getCurrentTime) {
+        if (playerRef.current?.getCurrentTime) {
           const currentTime = playerRef.current.getCurrentTime();
           const duration = playerRef.current.getDuration();
-          if (duration > 0 && currentTime >= duration - 3) {
+          if (duration > 0 && currentTime >= (duration - 3)) {
             playerRef.current.seekTo(0);
+            playerRef.current.playVideo();
           }
         }
-      }, 500);
+      }, 100);
     };
 
-    // 4. Intersection Observer (Pause/Play)
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (playerRef.current && playerRef.current.playVideo) {
+        if (playerRef.current?.playVideo) {
           entry.isIntersecting ? playerRef.current.playVideo() : playerRef.current.pauseVideo();
         }
       },
@@ -86,21 +91,25 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
     };
   }, [videoId]);
 
-  // Sync Mute
+  // Sync Mute AND Volume
   useEffect(() => {
-    if (playerRef.current && playerRef.current.mute) {
-      isMuted ? playerRef.current.mute() : playerRef.current.unMute();
+    if (playerRef.current && typeof playerRef.current.mute === 'function') {
+      if (isMuted) {
+        playerRef.current.mute();
+      } else {
+        playerRef.current.unMute();
+        playerRef.current.setVolume(50); // Ensure it stays at 50% when unmuted
+      }
     }
   }, [isMuted]);
 
   return (
-    <div id="studio-player-anchor" ref={containerRef} className="studio-video-master">
-      <div className={`video-placeholder ${isReady ? 'hidden' : ''}`}>
-        <div className="modern-loader">PROFINEART STUDIO</div>
+    <div ref={containerRef} className="studio-video-master">
+      <div className={`video-placeholder ${isFullyLoaded ? 'hidden' : ''}`}>
+        <div className="modern-loader">PROFINEART STUDIO BASEL</div>
       </div>
 
       <div className="video-inner-container">
-        {/* The API replaces this div with an iframe */}
         <div id={`Youtubeer-${videoId}`} className="video-iframe" />
       </div>
 

@@ -6,6 +6,7 @@ import { LessonPackage, Product, Testimonial, ProductImage } from '../types/Prod
 export const courses: Product[] = [
   {
     id: 800,
+    category: 'Painting',
     badge: 'has_badge',
     image: {
       lowResUrl: 'https://i.ibb.co/DH18FBpL/100kbphotoshoped-more-bright-1.jpg',
@@ -31,11 +32,7 @@ export const courses: Product[] = [
         highResUrl: 'https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
         caption: 'Presentation of Christ at the Temple. Egg Tempera on Primed Wood Panel. Artist: Ilya Medvedev',
       },
-      {
-        lowResUrl: 'https://i.ibb.co/6R2BLYQ8/IMG-4588ph120kb.jpg',
-        highResUrl: 'https://i.ibb.co/8nkdprgS/IMG-4588ph500kb.jpg',
-        caption: 'Virgin Mary at Annunsiation. Egg Tempera on Primed Wood Panel. Artist: Ilya Medvedev',
-      },
+     
     ],
 
     medium: 'Course',
@@ -45,6 +42,7 @@ export const courses: Product[] = [
 
   {
     id: 801,
+    category: 'Painting',
     badge: 'has_badge',
     image: {
       lowResUrl: 'https://i.ibb.co/FbRvJv6d/Vanitas-ph12-2025120kb.jpg',
@@ -84,6 +82,7 @@ export const courses: Product[] = [
 
   {
     id: 802,
+    category: 'Mixed',
     badge: 'has_badge',
     image: {
       lowResUrl: 'https://i.ibb.co/tP1wnd89/photoshoped2025final120kb.jpg',
@@ -122,6 +121,7 @@ export const courses: Product[] = [
   },
   {
     id: 803,
+    category: 'Painting',
     badge: 'has_badge',
     image: {
       lowResUrl: 'https://i.ibb.co/qYMcNV5T/No-borders500kb.jpg',
@@ -161,6 +161,7 @@ export const courses: Product[] = [
 
   {
     id: 804,
+    category: 'Drawing',
     badge: 'has_badge',
     image: {
       lowResUrl: 'https://i.ibb.co/21vqpXcQ/IMG-32273-120kb.jpg',
@@ -200,6 +201,7 @@ export const courses: Product[] = [
 
    {
     id: 805,
+    category: 'Painting',
     badge: 'has_badge',
     image: {
       lowResUrl: 'https://i.ibb.co/4352JQH/Copy-of-marble-sculpture-of-Lely-Venus-2-c-BCE-on-a-piece-of-anchient-Roman-marble-found-in-Caesar.jpg',
@@ -239,6 +241,7 @@ export const courses: Product[] = [
 
    {
     id: 806,
+    category: 'Painting',
     badge: 'has_badge',
     image: {
       lowResUrl: 'https://i.ibb.co/23DHF3XH/Mcdonalds-2010-Oil-on-canvas-145-x-191-cm-Ilya-Medvedev-ph01-26-100kb.jpg',

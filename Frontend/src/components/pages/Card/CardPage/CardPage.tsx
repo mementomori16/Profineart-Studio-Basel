@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react'; // Added useEffect
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CardContainer from '../CardContainer/CardContainer'; 
@@ -14,7 +14,7 @@ const CardPage: React.FC = () => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     
-    // Sync body background to dark for this page
+    // SYNC BACKGROUND WITH HOME/COURSES
     useEffect(() => {
         document.body.style.backgroundColor = '#171717';
         return () => { document.body.style.backgroundColor = ''; };

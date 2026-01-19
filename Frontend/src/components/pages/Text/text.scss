@@ -43,10 +43,11 @@
 
 .text-grid-item {
     p {
-        font-size: 1.15rem;
+        // Using global typography variables for consistency
+        font-size: $font-size-instruction; // Replaced 1.15rem
         line-height: 1.7;
-        color: rgb(235, 232, 232);
-        font-weight: 300;
+        color: rgba(255, 255, 255, 0.85); // Matches infoContainer text transparency
+        font-weight: $font-weight-light;
         margin: 0;
     }
 
@@ -75,13 +76,15 @@
 .standards-list {
     display: flex;
     flex-direction: column;
-    gap: $space-md; // Adds space between the background, specialization, and communication blocks
+    gap: $space-md;
 
     p {
-        font-size: 1.1rem;
+        // Applying the shared description logic for line-height and color
+        @include info-container-description;
+        font-size: $font-size-instruction; 
         
         strong {
-            display: block; // Makes labels like "Background:" sit on their own line for maximum readability
+            display: block; 
             color: $color-text-white;
             font-weight: $font-weight-semibold;
             margin-bottom: $space-xxs;

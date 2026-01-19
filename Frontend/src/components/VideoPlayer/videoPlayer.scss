@@ -6,36 +6,44 @@
   width: 90%;            
   max-width: 900px;      
   margin: 40px auto;     
-  
   aspect-ratio: 16 / 9; 
   background: #000;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: hidden; 
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+
+  // INVISIBLE SHIELD: Sits over the video to block hover/clicks 
+  // that would normally reveal YouTube's title/UI.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 25; 
+    background: transparent;
+  }
 
   @media (max-width: global.$breakpoint-sm) {
     width: 100%;        
     margin: 30px 0;      
     border-radius: 0;   
     max-width: none;
-    height: auto; 
   }
 }
 
-// 2. LOADING SCREEN
+// 2. LOADING SCREEN / CLOAK
 .video-placeholder {
   position: absolute;
   inset: 0;
   background: #000;
-  z-index: 20;
+  z-index: 100; // Above everything until 3s buffer ends
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 1s ease;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
   
   &.hidden { 
     opacity: 0; 
-    pointer-events: none; 
   }
 }
 
@@ -44,30 +52,30 @@
   font-size: 10px;
   letter-spacing: 5px;
   text-transform: uppercase;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
-// 3. THE VIDEO BOX (NO ZOOM)
+// 3. THE VIDEO BOX (CROP LOGIC)
 .video-inner-container {
-  position: relative; 
+  position: absolute; 
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%; // Fill the aspect-ratio container
-  overflow: hidden;
+  height: 100%;
   z-index: 10;
+  overflow: hidden;
 
   .video-iframe {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; // REMOVED 115% ZOOM
-    height: 100%; // REMOVED 115% ZOOM
+    // 106% zoom pushes the tiny edges of icons off-screen
+    // without making the video feel too "zoomed in".
+    top: 50%;
+    left: 50%;
+    width: 106%; 
+    height: 106%; 
+    transform: translate(-50%, -50%);
     border: none;
-    
-    /* This prevents users from clicking the video 
-       to see YouTube titles or "Watch on YouTube" links.
-    */
     pointer-events: none; 
-    transform: none; // REMOVED centering transform
   }
 }
 
@@ -76,7 +84,7 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
-  z-index: 30;
+  z-index: 110; // Must be higher than the cloak and shield
   background: global.$color-cta-primary-warm; 
   color: #fff;
   border: none;
@@ -87,7 +95,11 @@
   cursor: pointer;
   text-transform: uppercase;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s;
+
+  &:hover {
+    background-color: global.$color-cta-primary-hover;
+  }
 
   &:active {
     transform: scale(0.95);
@@ -96,7 +108,6 @@
   @media (max-width: global.$breakpoint-sm) {
     bottom: 10px;
     right: 10px;
-    padding: 5px 10px;
-    font-size: 7px;
+    padding: 6px 12px;
   }
 }

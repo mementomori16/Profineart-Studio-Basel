@@ -4,7 +4,8 @@ import WelcomeHero from '../WelcomeHero/WelcomeHero';
 import VideoPage from '../VideoPage/VideoPage';
 import Reviews from '../Reviews/Reviews';
 import Text from '../Text/Text';
-import BaslerServiceMap from '../BaselServiceMap/BaselServiceMap';
+import TextReview from '../TextReview/TextReview';
+import Founder from '../Founder/Founder';
 
 const Home: React.FC = () => {
     useEffect(() => {
@@ -22,8 +23,10 @@ const Home: React.FC = () => {
             <WelcomeHero />
             <Text />
             <VideoPage />
+            <Founder />
+            <TextReview />
             <Reviews />
-            <BaslerServiceMap />
+            
         </div>
     );
 };

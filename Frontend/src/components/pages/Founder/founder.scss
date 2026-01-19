@@ -1,0 +1,89 @@
+@use "../../../global.scss" as *;
+
+.founder-section {
+    padding: $space-xxxxl 0;
+}
+
+.founder-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: $space-xxxl;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: $space-xl;
+    }
+}
+
+.founder-image-container {
+    .founder-image {
+        width: 100%;
+        height: auto;
+        border-radius: $border-radius-sm;
+        filter: grayscale(20%);
+        box-shadow: $shadow-lg;
+    }
+}
+
+.founder-name {
+    @include info-container-details-title;
+    font-size: $font-size-h2;
+    margin-bottom: $space-xxs;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+.founder-title {
+    font-size: $font-size-h4;
+    color: $color-text-light;
+    font-weight: $font-weight-light;
+    margin-bottom: $space-xl;
+}
+
+.founder-bio {
+    margin-bottom: $space-xl;
+    
+    .primary-text {
+        font-size: 1.25rem;
+        color: $color-text-white;
+        line-height: 1.6;
+        margin-bottom: $space-md;
+    }
+
+    .secondary-text {
+        @include info-container-description;
+        font-size: $font-size-instruction;
+    }
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-lg;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: $space-xl;
+
+    .grid-item {
+        &.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .item-label {
+            font-size: $font-size-xs;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            color: $color-text-light;
+            margin-bottom: $space-xs;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: $font-size-sm;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+}

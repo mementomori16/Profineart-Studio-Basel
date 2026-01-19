@@ -89,6 +89,14 @@ Bash
 npx cypress run
 This command will execute all tests in the cypress/e2e folder using the Electron browser by default and generate videos and screenshots of any failures.
 
+
+
+How to deploy Functions
+1. Navigate	cd functions	Moves into your backend directory.
+2. Install	npm install	Ensures any new libraries in products.ts are ready.
+3. Build	npm run build	Crucial: Converts your .ts files into .js in the lib folder.
+4. Deploy	firebase deploy --only functions	Uploads the compiled code to Firebase.
+
 How to deploy on firebase: 
 1. npm run build
 2. firebase deploy --only hosting

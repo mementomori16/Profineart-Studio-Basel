@@ -35,6 +35,12 @@
   "textCommunication": "All instruction and communication are conducted in English."
 },
 
+"textReview": {
+    "quote": "I quickly realized I was in the right hands—a patient, attentive, and kind teacher with a rare ability to explain complex principles simply and clearly without pressure.",
+    "author": "Dr. Dikla Arad",
+    "role": "Board Eligible Veterinary Ophthalmologist"
+  },
+
 
   "aboutPage": {
     "title": "ProFineArt Studio Basel: Contemporary Fine Art Pedagogy",
@@ -62,11 +68,15 @@
     "learnMoreButton": "Explore Fine Art Courses"
   },
 
-  "coursesPage": {
+ "coursesPage": {
     "title": "Profineart Courses",
+    "intro": "Master the visual language of fine art. Select a discipline below to view the full curriculum and secure your private sessions.",
     "viewButton": "Learn & Book",
-    "popular": "Popular"
-  },
+    "filterAll": "All",
+    "filterDrawing": "Drawing Courses",
+    "filterPainting": "Painting Courses",
+    "filterMixed": "Mixed Media" 
+},
 
   "cardPage": {
     "productNotFound": "Product not found",
@@ -269,7 +279,9 @@
   }
 },
 
-
+"courses": {
+  "standardDurationText": "<h3>Course Duration and Individual Pace</h3><p>The full curriculum is structured as a comprehensive path of 40 double sessions or 80 academic hours, which includes the student's essential self-work. However, as these are private individual sessions, the total time required to master the material is flexible; it adapts entirely to your personal progress, artistic background, and the time you dedicate to practice. There are no rigid deadlines and no grades; the focus is exclusively on your individual mastery of the craft and the quality of your artistic development.</p>"
+},
 
 "testimonials": {
   "mainTitle": "Reviews",
@@ -283,11 +295,11 @@
     "text": "I met Ilya through the world of visual arts. First and foremost, he’s an incredible artist, a fascinating and controversial figure, and truly one of the funniest people I’ve ever known! He was also my tattoo artist; he helped me break into the industry, mentored me, and gave me the courage to get started. Today, I am the proud owner of my own tattoo business ❤️"
   },
   "3": {
-    "author": "Devorah Schwartz-Arad",
+    "author": "Dr.Devorah Schwartz-Arad",
     "text": "Lessons with you were an enriching experience, combining rigorous step-by-step learning without compromising on quality, while maintaining a sense of perfection and correct methodology. We started from the basics—preparing the canvas, measuring and understanding proportions, and acrylic underpainting—leading up to the highlight: oil painting. I am currently working on portraits of my family members from photos. You have definitely given me a solid foundation for my work, and I hope the results you see do not disappoint you."
   },
   "4": {
-    "author": "Dikla Arad",
+    "author": "Dr.Dikla Arad",
     "text": "I arrived about two years ago with almost zero experience and many fears. I quickly realized I was in the right hands. You are a patient, attentive, and kind teacher, with a rare ability to explain complex principles simply and clearly without pressure. You knew exactly when to guide, when to correct, and when to let me experiment. I especially appreciated your insistence that I do everything myself—particularly the difficult corrections—so that in the end, the painting is entirely 'mine,' giving me a huge sense of pride. This was an empowering experience both artistically and personally. I previously studied with different teachers, but your teaching was honest, enriching, and filled with true faith in art. You ensured we knew other artists and always brought examples from the masters to support your instructions. Thank you for the journey and the belief in me."
   }
 },

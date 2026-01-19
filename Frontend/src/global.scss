@@ -177,6 +177,43 @@ $border-radius-xl: 1.2rem;
     font-size: $font-size-h2;
 }
 
+// 🚀 INFOCONTAINER SPECIFIC TYPOGRAPHY MIXINS
+@mixin info-container-date {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: $font-weight-bold;
+    margin-bottom: $space-md;
+    font-family: $font-family-base;
+}
+
+@mixin info-container-description {
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-family: $font-family-base;
+
+    p {
+        color: rgba(255, 255, 255, 0.85) !important;
+        margin-bottom: $space-md;
+        font-size: 1rem;
+    }
+
+    h2, h3, h4 { 
+        color: rgba(255, 255, 255, 0.9) !important; 
+        font-size: $font-size-md; 
+        font-weight: $font-weight-bold;
+        margin-top: $space-lg;
+    }
+}
+
+@mixin info-container-details-title {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: $font-size-h4;
+    font-weight: $font-weight-semibold;
+    margin-top: 0;
+    margin-bottom: $space-sm;
+    font-family: $font-family-base;
+}
+
+
 // 8. GLOBAL STYLES (Base Elements and Utility Classes)
 // ----------------------------------------------------
 * { box-sizing: border-box; }

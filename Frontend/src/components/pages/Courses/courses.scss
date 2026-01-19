@@ -1,9 +1,9 @@
 @use "sass:color";
 @use '../../../global.scss' as global;
 
+/* --- PAGE ROOT & LAYOUT --- */
 .courses-page-root {
     width: 100%;
-    // Subtle gradient to add depth: slightly lighter in the center (#222) to dark edges (#171)
     background: radial-gradient(circle at center, #222222 0%, #171717 100%);
     min-height: 100vh;
     color: #ffffff;
@@ -12,38 +12,104 @@
 .courses-content-grid {
     max-width: global.$breakpoint-xl;
     margin: 0 auto;
-    padding: global.$space-xxxxl global.$space-xxl;
+    padding: global.$space-xl global.$space-xxl;
 
-    @media (max-width: global.$breakpoint-md) {
-        padding: global.$space-xxl global.$space-lg;
+    @media (max-width: global.$breakpoint-sm) {
+        padding: global.$space-md global.$space-sm;
     }
 }
 
+/* --- TOP HEADER --- */
 .courses-header {
-    margin-bottom: global.$space-xxxxl;
-    text-align: center; // Centered text as requested
-    
-    // RESTORED: Full-width underline from the previous solution
-    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1); 
-    padding-bottom: global.$space-xl;
+    width: 100%;
+    padding: global.$space-md 0 global.$space-lg 0; 
+    text-align: center;
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+    margin-bottom: global.$space-xxxl;
 
     .courses-title {
-        // High-end script matching Reviews component
-        color: #ffffff !important;
-        font-size: global.$font-size-h2; 
-        font-weight: 300; 
-        text-transform: uppercase;
-        letter-spacing: 0.5rem; 
         margin: 0;
-        line-height: 1.2;
+        font-size: global.$font-size-h3;
+        font-weight: global.$font-weight-light;
+        color: #ffffff !important; 
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
     }
 }
 
+/* --- INTRO & FILTER NAVIGATION --- */
+.courses-intro {
+    max-width: 850px;
+    margin: 0 auto global.$space-xxxxl;
+    text-align: center;
+
+    .intro-text-primary {
+        // Styled to match your Text component's primary paragraph
+        font-size: 1.4rem;
+        line-height: 1.6;
+        color: #ffffff;
+        font-weight: 300;
+        margin-bottom: global.$space-xxl;
+        padding-bottom: 0;
+        border-bottom: none; // Removed the line as requested
+
+        @media (max-width: global.$breakpoint-sm) {
+            font-size: 1.1rem;
+            margin-bottom: global.$space-xl;
+        }
+    }
+
+    .filter-navigation {
+        display: flex;
+        justify-content: center;
+        gap: global.$space-md;
+        flex-wrap: wrap;
+
+        .filter-nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #bcbcbc;
+            padding: 0.8rem 2.2rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem; // Premium spacing
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &:hover {
+                color: #ffffff;
+                border-color: rgba(255, 255, 255, 0.5);
+                background-color: rgba(255, 255, 255, 0.03);
+            }
+
+            // Active state for clicked buttons
+            &.active {
+                color: #ffffff;
+                border-color: #ffffff;
+                background-color: rgba(255, 255, 255, 0.1);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+            }
+
+            @media (max-width: global.$breakpoint-sm) {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.65rem;
+                flex: 1 1 40%; // Grid layout for mobile buttons
+            }
+        }
+    }
+}
+
+/* --- GALLERY GRID --- */
 .courses-gallery {
     display: grid;
-    // Locked to 2 cards per row on large screens
-    grid-template-columns: repeat(2, 1fr); 
-    gap: global.$space-xxxl;
+    grid-template-columns: repeat(2, 1fr);
+    gap: global.$space-xxl;
+
+    // Smooth transition when cards appear/disappear during filtering
+    article {
+        animation: cardAppear 0.5s ease forwards;
+    }
 
     @media (max-width: global.$breakpoint-sm) {
         grid-template-columns: 1fr;
@@ -51,6 +117,18 @@
     }
 }
 
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- COURSE CARD --- */
 .course-card {
     background-color: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -61,73 +139,69 @@
     position: relative;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
+    @media (max-width: global.$breakpoint-sm) {
+        padding: global.$space-md;
+    }
+
     &:hover {
         background-color: rgba(255, 255, 255, 0.05);
         border-color: rgba(255, 255, 255, 0.15);
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        
-        .course-image { transform: scale(1.05); }
-    }
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 
-    .course-badge {
-        position: absolute;
-        top: global.$space-lg;
-        left: global.$space-lg;
-        background-color: #811c1c;
-        color: #fff;
-        padding: 0.25rem 0.6rem;
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        z-index: 2;
-        font-weight: 700;
-        letter-spacing: 0.08rem;
+        .course-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-image {
+            transform: scale(1.05);
+        }
     }
 
     .course-image-wrapper {
         width: 100%;
-        height: 320px; // Ample height for the 2-column layout
+        height: 320px; 
         overflow: hidden;
         border-radius: 2px;
         margin-bottom: global.$space-lg;
         background-color: #000;
+
+        @media (max-width: global.$breakpoint-sm) {
+            height: 250px; 
+        }
 
         .course-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0.9;
-            transition: transform 0.8s ease, opacity 0.4s ease;
+            transition: transform 0.8s ease;
         }
-    }
-
-    &:hover .course-image {
-        opacity: 1;
     }
 
     .course-card-title {
         color: #ffffff;
         font-size: 1.5rem;
-        margin: 0 0 global.$space-md;
+        margin: 0 0 global.$space-sm;
         font-weight: 500;
-        text-align: center;
-        letter-spacing: 0.05rem;
+        text-align: left;
     }
 
     .course-description-frame {
-        background-color: rgba(0, 0, 0, 0.2); 
+        background-color: rgba(0, 0, 0, 0.25); 
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-radius: 4px;
         padding: global.$space-md;
-        margin-bottom: global.$space-xl;
+        margin-bottom: global.$space-lg;
         flex-grow: 1;
         display: flex;
         align-items: center;
 
         .course-text {
-            color: #b0b0b0; 
-            font-size: global.$font-size-base;
-            line-height: 1.7;
+            color: #bcbcbc; 
+            font-size: 1rem;
+            line-height: 1.6;
             font-weight: 300;
             margin: 0;
             text-align: left;
@@ -137,14 +211,36 @@
     .course-view-btn {
         @extend .btn-cta-primary; 
         width: 100%;
-        font-size: 0.9rem;
         padding: global.$space-md;
         text-transform: uppercase;
         font-weight: 700;
+        cursor: pointer;
+    }
+
+    .course-badge {
+        position: absolute;
+        top: global.$space-xl;
+        left: global.$space-xl;
+        background-color: rgba(129, 28, 28, 0.8);
+        backdrop-filter: blur(4px);
+        color: #fff;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        z-index: 10;
+        font-weight: 700;
         letter-spacing: 0.1rem;
+        
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+
+        @media (max-width: global.$breakpoint-sm) {
+            top: global.$space-md;
+            left: global.$space-md;
+        }
     }
 }
-
 
 /**
 @use "sass:color";

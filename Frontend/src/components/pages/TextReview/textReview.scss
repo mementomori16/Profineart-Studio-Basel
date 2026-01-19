@@ -1,0 +1,59 @@
+@use "../../../global.scss" as *;
+
+.text-review-centered {
+    padding: $space-xxl 0;
+    background-color: transparent;
+
+    .review-wrapper {
+        max-width: 800px; 
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .review-quote {
+        font-size: 1.4rem; 
+        color: $color-text-white;
+        font-weight: $font-weight-light; // Replaced 300
+        line-height: 1.6;
+        margin-bottom: $space-md;
+        font-style: normal;
+        
+        @media (max-width: $breakpoint-md) {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.review-attribution {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: $space-sm;
+    
+    .name {
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        color: $color-text-white;
+        font-weight: $font-weight-semibold;
+    }
+
+    .divider {
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: $font-weight-light; // Replaced 300
+    }
+
+    .role {
+        font-size: $font-size-xs;
+        color: $color-text-light;
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+        flex-direction: column;
+        gap: $space-xxs;
+        
+        .divider { display: none; }
+    }
+}

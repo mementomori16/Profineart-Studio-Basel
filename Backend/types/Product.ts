@@ -68,6 +68,7 @@ export interface Product {
     briefDescription: any;
     title: string | undefined;
     id: number;
+    category: 'Drawing' | 'Painting' | 'Mixed';
     date?: string;
     medium?: string;
     image: ProductImage;
