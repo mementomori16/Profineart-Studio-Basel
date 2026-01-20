@@ -34,12 +34,29 @@
   "labelCommunication": "Communication",
   "textCommunication": "All instruction and communication are conducted in English."
 },
+"founder": {
+    "role": "Founder & Instructor",
+    "bio": "Artist and educator with an MFA from Bezalel Academy. Creator of the academy's methodology and digital platform, with a practice spanning 1,000+ professional works."
+  },
 
 "textReview": {
     "quote": "I quickly realized I was in the right hands—a patient, attentive, and kind teacher with a rare ability to explain complex principles simply and clearly without pressure.",
     "author": "Dr. Dikla Arad",
     "role": "Board Eligible Veterinary Ophthalmologist"
   },
+
+ "founder": {
+    "name": "Ilya Medvedev",
+    "role": "Founder",
+    "bio": "A contemporary fine artist and certified educator with a professional practice spanning over 1,000 works. Experience includes international gallery exhibitions, art fair collaborations, and restoration projects. Founder of the original fine art academy in 2011, from which ProFineArt Studio Basel was born.",
+    "academicLabel": "Academic",
+    "academicValue": "B.Ed.FA & MFA studies (Bezalel Academy)",
+    "expertiseLabel": "Expertise",
+    "expertiseValue": "Byzantine Iconography, material chemistry, and high-precision freehand technique",
+    "careerLabel": "Career Practice",
+    "careerValue": "Extensive history as a school founder and studio lead in Berlin, Tel Aviv, and Basel. Professional commissions include portraiture, landscape, illustration, and specialized tattoo design."
+  },
+
 
 
   "aboutPage": {

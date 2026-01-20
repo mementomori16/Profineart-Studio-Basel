@@ -5,7 +5,7 @@ import VideoPage from '../VideoPage/VideoPage';
 import Reviews from '../Reviews/Reviews';
 import Text from '../Text/Text';
 import TextReview from '../TextReview/TextReview';
-import Founder from '../Founder/Founder';
+import AuthorityBar from '../Authoritybar/AuthorityBar';
 
 const Home: React.FC = () => {
     useEffect(() => {
@@ -23,7 +23,6 @@ const Home: React.FC = () => {
             <WelcomeHero />
             <Text />
             <VideoPage />
-            <Founder />
             <TextReview />
             <Reviews />
             

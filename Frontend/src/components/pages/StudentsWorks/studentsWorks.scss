@@ -1,84 +1,136 @@
-@use "sass:color";
-@use '../../../global.scss' as global;
-@import '../Card/CardPage/CardPage.scss'; 
+@use "../../../global.scss" as *;
 
-.students-works-page {
-    // Kill the grid/flex split from About component
-    .cardContentLayout.full-width-layout {
-        display: block !important; 
-        width: 100% !important;
-        max-width: 100% !important;
+.students-gallery-root {
+    // Force the dark smooth background to be full page
+    background-color: $color-text-dark3; 
+    min-height: 100vh;
+    width: 100%;
+    color: $color-text-white;
+    padding: $space-xxxxl 0;
+    font-family: $font-family-base;
+
+    .container {
+        max-width: $breakpoint-xxl;
+        margin: 0 auto;
+        padding: 0 $space-xl;
+    }
+}
+
+// HERO SECTION: General Progress Text Left, Image Right
+.featured-hero {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: $space-xxxxl;
+    align-items: center;
+    margin-bottom: $space-xxxxl;
+
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
     }
 
-    .pageTitle {
-        color: global.$color-text-dark2 !important;
-        font-size: global.$font-size-h3;
-        font-weight: global.$font-weight-bold;
-        margin-bottom: global.$space-lg;
-    }
+    .hero-text {
+        .label {
+            color: $color-cta-primary-warm;
+            text-transform: uppercase;
+            font-weight: $font-weight-bold;
+            font-size: $font-size-xs;
+            letter-spacing: 2px;
+        }
 
-    .main-info-frame {
-        background-color: rgba(255, 255, 255, 0.4); 
-        border-radius: global.$border-radius-lg; 
-        padding: global.$space-lg;
-        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-        box-shadow: global.$shadow-sm;
-        width: 100%; // Ensure it fills the whole horizontal space
+        h2 {
+            color: $color-text-white;
+            font-size: $font-size-h2;
+            margin: $space-sm 0;
+        }
 
-        .intro-text {
-            color: global.$color-text-dark4;
-            font-size: global.$font-size-md;
+        .progress-essay {
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.8;
-            margin-bottom: global.$space-xl;
-            font-weight: global.$font-weight-medium;
+            font-size: $font-size-md;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: $space-lg;
         }
     }
 
-    .student-photos-grid {
-        display: grid;
-        // This will now use the full width of the screen
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: global.$space-xl;
-        margin-top: global.$space-md;
+    .hero-image-container {
+        text-align: right;
 
-        .photo-item {
-            .image-zoom-trigger {
-                cursor: pointer;
-                border-radius: global.$border-radius-md;
-                overflow: hidden;
-                box-shadow: global.$shadow-md;
-                background: #fdfdfd;
-                
-                // UNIFORM BOXES
-                aspect-ratio: 1 / 1; // Square looks very clean for a full-width grid
-                display: flex;
-                align-items: center;
-                justify-content: center;
+        .premium-frame {
+            width: 100%;
+            border-radius: 2px;
+            box-shadow: $shadow-xl;
+            filter: contrast(1.05) brightness(0.9);
+            margin-bottom: $space-md;
+        }
 
-                .student-img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover; 
-                    display: block;
-                    opacity: 0;
-                    transition: opacity 0.8s ease-in-out, transform 0.5s ease;
-                    filter: contrast(1.02) saturate(1.05); 
-
-                    &.loaded { opacity: 1; }
-                }
-
-                &:hover .student-img.loaded {
-                    transform: scale(1.05);
-                }
+        .artwork-caption {
+            text-align: right;
+            .art-title {
+                display: block;
+                font-size: $font-size-sm;
+                color: $color-text-white;
+                text-transform: uppercase;
+                letter-spacing: 1px;
             }
-
-            .imageCaption {
-                font-size: global.$font-size-xs !important;
-                color: global.$color-text-light !important;
-                margin-top: global.$space-sm;
-                text-align: center;
-                line-height: 1.4;
+            .student-info {
+                display: block;
+                font-size: $font-size-xs;
+                color: $color-text-light;
+                font-style: italic;
             }
         }
+    }
+}
+
+// CALCULATOR (Evolve System)
+.timeline-calculator {
+    margin: $space-xxxxl 0;
+    background-color: $color-text-dark4; // Deep black card
+    padding: $space-xxxl;
+    border-radius: $border-radius-md;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    input[type="range"] {
+        width: 100%;
+        max-width: 400px;
+        accent-color: $color-cta-primary-warm;
+    }
+
+    .hours-display {
+        font-size: $font-size-h2;
+        color: $color-cta-primary-warm;
+        margin: $space-md 0;
+    }
+
+    .results-wrap {
+        display: flex;
+        justify-content: center;
+        gap: $space-xxxxl;
+        
+        .res-item {
+            span { color: $color-text-light; font-size: $font-size-xxs; text-transform: uppercase; }
+            strong { display: block; font-size: $font-size-h3; color: white; }
+        }
+    }
+}
+
+// BOTTOM SECTION: Professional Curriculum Focus
+.curriculum-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xl;
+    padding-top: $space-xxxxl;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .pillar-item {
+        text-align: center;
+        .pillar-icon { 
+            color: $color-text-light; 
+            margin-bottom: $space-md;
+            font-size: 1.5rem;
+        }
+        h5 { color: white; font-size: $font-size-sm; text-transform: uppercase; }
+        p { color: $color-text-light; font-size: $font-size-xs; line-height: 1.5; }
     }
 }

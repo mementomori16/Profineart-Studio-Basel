@@ -6,6 +6,8 @@ interface Artwork {
     url: string;      
     highRes: string;  
     title: string;
+    coursePhase: string; // The "Evolve" style curriculum link
+    description: string;
 }
 
 const artworks: Artwork[] = [
@@ -13,19 +15,25 @@ const artworks: Artwork[] = [
         id: 1, 
         url: 'https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg', 
         highRes: 'https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg',
-        title: 'Oil Landskape Process' 
+        title: 'Oil Landscape Process',
+        coursePhase: 'Oil Painting | Phase 4: En Plein Air',
+        description: 'Mastering atmospheric perspective and rapid color blocking under natural light.'
     },
     { 
         id: 3, 
         url: 'https://i.ibb.co/4wzFDgzz/DSC-8392-120kb.jpg', 
         highRes: 'https://i.ibb.co/d4r83Ly9/DSC-8392-500kb.jpg',
-        title: 'Roman Sculpture Oil Study' 
+        title: 'Roman Sculpture Oil Study',
+        coursePhase: 'Oil Painting | Phase 2: Underpainting',
+        description: 'Using charcoal and multi-layer glazing to establish structural volume.'
     },
     { 
         id: 4, 
         url: 'https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg', 
         highRes: 'https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg',
-        title: 'Sea Thematic. Acrylic on Canvas work process' 
+        title: 'Commando Divers Series',
+        coursePhase: 'Academic Drawing | Phase 3: Anatomy',
+        description: 'Advanced freehand study of muscular tension without the use of projectors.'
     },
 ];
 
@@ -36,12 +44,9 @@ export default function StudentArtwork() {
 
     useEffect(() => {
         const current = artworks[index];
-        
-        // Set low-res immediately
         setDisplayUrl(current.url);
         setIsHD(false);
 
-        // Background load the HD version
         const img = new Image();
         img.src = current.highRes;
         img.onload = () => {
@@ -54,29 +59,27 @@ export default function StudentArtwork() {
     const handleNext = () => setIndex(i => (i === artworks.length - 1 ? 0 : i + 1));
 
     return (
-        <div className="artwork-carousel-wrapper">
-            <div className="carousel-main">
-                <button className="nav-arrow prev" onClick={handlePrev} aria-label="Previous">
-                    <span className="arrow-icon"></span>
-                </button>
+        <div className="artwork-carousel-isolated">
+            <div className="carousel-main-track">
+                <button className="nav-arrow prev" onClick={handlePrev} aria-label="Previous"></button>
 
-                <div className="img-container">
+                <div className="artwork-display-frame">
                     <img 
                         src={displayUrl} 
                         alt={artworks[index].title} 
-                        className={`artwork-img ${isHD ? 'hd-loaded' : 'low-res'}`} 
+                        className={`carousel-img-bomba ${isHD ? 'is-hd' : 'is-loading'}`} 
                     />
                 </div>
 
-                {/* Bright white, left-aligned title */}
-                <p className="artwork-caption">{artworks[index].title}</p>
+                <button className="nav-arrow next" onClick={handleNext} aria-label="Next"></button>
+            </div>
 
-                <button className="nav-arrow next" onClick={handleNext} aria-label="Next">
-                    <span className="arrow-icon"></span>
-                </button>
+            <div className="artwork-meta-section">
+                <span className="course-badge">{artworks[index].coursePhase}</span>
+                <h4 className="work-title">{artworks[index].title}</h4>
+                <p className="work-logic">{artworks[index].description}</p>
             </div>
         </div>
     );
 }
-
 

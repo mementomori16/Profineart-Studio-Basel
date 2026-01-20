@@ -1,89 +1,113 @@
 @use "../../../global.scss" as *;
 
-.founder-section {
+.founder-editorial-section {
     padding: $space-xxxxl 0;
+    background-color: transparent; // Let the Home wrapper's #171717 show through
 }
 
-.founder-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: $space-xxxl;
-    align-items: start;
-    max-width: 1100px;
+.editorial-layout {
+    max-width: 1100px; // Matches your Text.tsx
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: $space-xxxxl;
+    align-items: start;
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
-        gap: $space-xl;
     }
 }
 
-.founder-image-container {
-    .founder-image {
-        width: 100%;
-        height: auto;
-        border-radius: $border-radius-sm;
-        filter: grayscale(20%);
-        box-shadow: $shadow-lg;
-    }
-}
-
-.founder-name {
-    @include info-container-details-title;
-    font-size: $font-size-h2;
-    margin-bottom: $space-xxs;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-}
-
-.founder-title {
-    font-size: $font-size-h4;
-    color: $color-text-light;
-    font-weight: $font-weight-light;
+.editorial-header {
     margin-bottom: $space-xl;
-}
 
-.founder-bio {
-    margin-bottom: $space-xl;
-    
-    .primary-text {
-        font-size: 1.25rem;
+    .editorial-title {
+        @include services-heading; // Matches your Reviews title style
         color: $color-text-white;
-        line-height: 1.6;
+        text-transform: uppercase;
+        letter-spacing: 0.3rem;
+        font-weight: $font-weight-light;
+        margin: 0;
+    }
+
+    .editorial-divider {
+        width: 60px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        margin-top: $space-sm;
+    }
+}
+
+.editorial-bio {
+    p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: $font-weight-light;
         margin-bottom: $space-md;
     }
 
-    .secondary-text {
-        @include info-container-description;
-        font-size: $font-size-instruction;
+    .founder-signature {
+        display: block;
+        font-size: $font-size-sm;
+        color: $color-text-light;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        margin-bottom: $space-xxl;
     }
 }
 
-.founder-grid {
+.editorial-credentials {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $space-lg;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: $space-xl;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: $space-xl;
 
-    .grid-item {
-        &.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .item-label {
-            font-size: $font-size-xs;
+    .cred-item {
+        h4 {
+            font-size: $font-size-xxs;
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
             color: $color-text-light;
             margin-bottom: $space-xs;
+            letter-spacing: 0.1rem;
+        }
+        p {
+            font-size: $font-size-sm;
+            color: $color-text-white;
+            line-height: 1.4;
+        }
+    }
+}
+
+.editorial-visual {
+    .image-frame {
+        position: relative;
+        overflow: hidden;
+        border-radius: $border-radius-sm;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        margin-bottom: $space-lg;
+
+        .studio-img {
+            width: 100%;
+            display: block;
+            // Darken it slightly to fit the #171717 theme
+            filter: grayscale(0.2) brightness(0.7) contrast(1.1);
         }
 
-        p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: $font-size-sm;
-            line-height: 1.5;
-            margin: 0;
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(23, 23, 23, 0.8));
         }
+    }
+
+    .career-snippet {
+        font-size: $font-size-xs;
+        color: $color-text-light;
+        line-height: 1.6;
+        font-style: italic;
+        padding-left: $space-sm;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
     }
 }

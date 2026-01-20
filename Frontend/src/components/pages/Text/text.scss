@@ -1,16 +1,12 @@
 @use "../../../global.scss" as *;
 
 .text-component-section {
-    padding: $space-xxxxl 0;
+    padding: $space-xxxxl 0 $space-xxl; 
 }
 
 .text-layout {
     max-width: 1100px;
     margin: 0 auto;
-}
-
-.text-header {
-    margin-bottom: $space-xxl;
 }
 
 .text-main-title {
@@ -20,21 +16,24 @@
     text-transform: uppercase;
     margin: 0;
     color: $color-text-white;
-    line-height: 1.1;
 }
 
 .text-subtitle {
     font-size: $font-size-h3;
-    font-weight: $font-weight-normal;
     color: $color-text-light;
     margin-top: $space-sm;
+    margin-bottom: $space-xxl;
 }
 
 .text-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr); 
     gap: $space-xl $space-xxl;
     align-items: start;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: 1fr 1fr;
+    }
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
@@ -43,12 +42,20 @@
 
 .text-grid-item {
     p {
-        // Using global typography variables for consistency
-        font-size: $font-size-instruction; // Replaced 1.15rem
+        font-size: $font-size-instruction;
         line-height: 1.7;
-        color: rgba(255, 255, 255, 0.85); // Matches infoContainer text transparency
+        color: rgba(255, 255, 255, 0.85);
         font-weight: $font-weight-light;
         margin: 0;
+    }
+
+    .item-title {
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        color: $color-text-light;
+        margin-bottom: $space-md;
+        font-weight: $font-weight-semibold;
     }
 
     &.primary {
@@ -62,15 +69,6 @@
             padding-bottom: $space-xl;
         }
     }
-
-    .item-title {
-        font-size: $font-size-sm;
-        text-transform: uppercase;
-        letter-spacing: 0.15rem;
-        color: $color-text-light;
-        margin-bottom: $space-md;
-        font-weight: $font-weight-semibold;
-    }
 }
 
 .standards-list {
@@ -79,15 +77,39 @@
     gap: $space-md;
 
     p {
-        // Applying the shared description logic for line-height and color
-        @include info-container-description;
         font-size: $font-size-instruction; 
         
         strong {
             display: block; 
             color: $color-text-white;
             font-weight: $font-weight-semibold;
-            margin-bottom: $space-xxs;
+            margin-bottom: 4px;
         }
+    }
+}
+
+.founder-clean-link {
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+
+    strong {
+        color: $color-text-white !important;
+        font-weight: $font-weight-semibold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .arrow-symbol {
+            font-size: 1rem;
+            font-weight: $font-weight-light;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+    }
+
+    &:hover .arrow-symbol {
+        opacity: 1;
+        transform: translateX(4px);
     }
 }
