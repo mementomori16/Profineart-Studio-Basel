@@ -29,10 +29,10 @@ export interface SlotSelection {
 
 // Interface for the slot data returned by the backend (Source of Truth for Slot Structure)
 export interface AvailableSlot {
-    time: string; // e.g., "09:00"
-    packageId: string; // e.g., "standard"
-    durationMinutes: number; // e.g., 60 (CONSISTENT)
-    price: number; // The price for this slot/package
+    time: string; 
+    packageId: string; 
+    durationMinutes: number; 
+    price: number; 
     isAvailable: boolean; // Whether this specific time slot is available (CONSISTENT)
 }
 
