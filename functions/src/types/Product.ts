@@ -22,7 +22,7 @@ export interface SlotSelection {
     selectedTime: string;
     packageId: string;
     lessons: number;
-    durationMinutes: number;
+    durationMinutes: number; 
     price: number;
     address: string;
 }
@@ -59,7 +59,7 @@ export interface Testimonial {
 export interface ProductImage {
     lowResUrl: string;
     highResUrl: string;
-    altText?: string;
+    altText?: string; 
     caption?: string;
     thumbnails?: ProductImage[];
 }
@@ -68,6 +68,7 @@ export interface Product {
     briefDescription: any;
     title: string | undefined;
     id: number;
+    category: 'Drawing' | 'Painting' | 'Mixed';
     date?: string;
     medium?: string;
     image: ProductImage;

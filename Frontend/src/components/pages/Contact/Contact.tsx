@@ -13,7 +13,7 @@ interface ImageData {
 
 init('gl7rH7PGkTVyGkUCB');
 
-const CITY_VIEW_EXTERNAL_URL = 'https://i.ibb.co/qYQHYzBF/eryk-piotr-munk-B6ngl-YOw-Qy-U-unsplash.jpg';
+const CITY_VIEW_EXTERNAL_URL = 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/qYQHYzBF/eryk-piotr-munk-B6ngl-YOw-Qy-U-unsplash.jpg';
 
 // --- HELPER COMPONENT FOR SILENT LOADING ---
 const ContactImage: React.FC<{ url: string, alt: string }> = ({ url, alt }) => {

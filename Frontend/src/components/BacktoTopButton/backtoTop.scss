@@ -1,46 +1,63 @@
+// src/components/backtoTop.scss
 @import '../../global.scss';
 
-.back-to-top {
+.back-to-top-minimal {
   position: fixed;
-  bottom: 80px;
-  right: 20px;
-  background-color: rgba(255, 255, 255, 0.08); // light transparent background
-  color: rgba(50, 50, 50, 0.7); // more visible arrow (soft dark)
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-size: 1.5rem; // larger arrow for better visibility
-  transition:
-    opacity 0.3s ease,
-    background-color 0.3s ease,
-    transform 0.2s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
+  // Using your spacing variables for consistent margins
+  bottom: $space-xxl; 
+  right: $space-lg;
   z-index: 1000;
+  cursor: pointer;
+  
+  // Transition logic
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out, transform 0.3s ease;
 
   &.visible {
     opacity: 1;
+    pointer-events: auto;
   }
 
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
-    color: rgba(30, 30, 30, 0.8); // slightly darker on hover
-  }
-
-  &.clicked {
+  .arrow-icon {
+    // 1.5rem matches your original requested scale
+    font-size: 1.5rem; 
+    font-weight: $font-weight-bold;
     
-    color: $color-text-white;
-    border-color: transparent;
-    transform: scale(1.05);
+    // Soft gray via white opacity - perfect for dark backgrounds
+    color: rgba($color-text-white, 0.4); 
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    
+    // Ensure no unwanted box/circle
+    background: none;
+    border: none;
+  }
+
+  // Purely functional hover - no color change to avoid noise
+  &:hover .arrow-icon {
+    color: rgba($color-text-white, 0.4);
+  }
+
+  // Visual feedback on click using rem-based scaling
+  &.clicked {
+    transform: scale(0.9);
+    .arrow-icon {
+      color: rgba($color-text-white, 0.7);
+    }
+  }
+
+  // Mobile adjustment using your breakpoint variable
+  @media (max-width: $breakpoint-sm) {
+    bottom: $space-xl;
+    right: $space-md;
+    
+    .arrow-icon {
+      font-size: 1.25rem; // Slightly smaller for mobile
+    }
   }
 }
-
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './StudentArtwork.scss';
+import './studentsGalleryHome.scss';
 
 interface Artwork {
     id: number;
@@ -13,24 +13,32 @@ interface Artwork {
 const artworks: Artwork[] = [
     { 
         id: 1, 
-        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg', 
-        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg',
+        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/c9CthBy/Dikla-nude-study-2019-120kb.jpg', 
+        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/2Hz4zRg/Dikla-nude-study-2019-500kb.jpg',
         title: 'Oil Landscape Process',
         coursePhase: 'Oil Painting | Phase 4: En Plein Air',
         description: 'Mastering atmospheric perspective and rapid color blocking under natural light.'
     },
     { 
         id: 3, 
-        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/4wzFDgzz/DSC-8392-120kb.jpg', 
-        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/d4r83Ly9/DSC-8392-500kb.jpg',
+        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/gbncPwCY/Dikla-Roman-Head-2019-120kb.jpg', 
+        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/Kxr1MgQd/Dikla-head-500kb.jpg',
         title: 'Roman Sculpture Oil Study',
         coursePhase: 'Oil Painting | Phase 2: Underpainting',
         description: 'Using charcoal and multi-layer glazing to establish structural volume.'
     },
     { 
         id: 4, 
-        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg', 
-        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg',
+        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/dJG2dZNY/Dubi-22024-07-05-120kb.jpg', 
+        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/Jj4q7VKd/Dubi-2020-500kb.jpg',
+        title: 'Commando Divers Series',
+        coursePhase: 'Academic Drawing | Phase 3: Anatomy',
+        description: 'Advanced freehand study of muscular tension without the use of projectors.'
+    },
+    { 
+        id: 5, 
+        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/dJG2dZNY/Dubi-22024-07-05-120kb.jpg', 
+        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/Vc91fTHN/DSC-0377-500kb.jpg',
         title: 'Commando Divers Series',
         coursePhase: 'Academic Drawing | Phase 3: Anatomy',
         description: 'Advanced freehand study of muscular tension without the use of projectors.'
@@ -82,4 +90,3 @@ export default function StudentArtwork() {
         </div>
     );
 }
-

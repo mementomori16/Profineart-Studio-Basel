@@ -5,7 +5,8 @@ import VideoPage from '../VideoPage/VideoPage';
 import Reviews from '../Reviews/Reviews';
 import Text from '../Text/Text';
 import TextReview from '../TextReview/TextReview';
-import AuthorityBar from '../Authoritybar/AuthorityBar';
+import BaslerServiceArea from '../BaselServiceMap/BaselServiceMap';
+import IconsHowItWorks from '../IconsHowItWorks/IconsHowItWorks';
 
 const Home: React.FC = () => {
     useEffect(() => {
@@ -23,8 +24,10 @@ const Home: React.FC = () => {
             <WelcomeHero />
             <Text />
             <VideoPage />
+            <IconsHowItWorks />
             <TextReview />
             <Reviews />
+            <BaslerServiceArea />
             
         </div>
     );

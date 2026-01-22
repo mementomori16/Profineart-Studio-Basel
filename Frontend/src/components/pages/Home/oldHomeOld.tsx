@@ -26,7 +26,7 @@ const Home: React.FC = () => {
           <h2 className="about-teaser-title">{t('homePage.aboutTeaserTitle')}</h2>
           <div className="about-teaser-content">
             <img
-              src="https://i.ibb.co/0tfzD7K/received-341071728732999.png"
+              src="https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0tfzD7K/received-341071728732999.png"
               alt="Ilya Medvedev - Founder of Hieroglyph Code"
               className="about-teaser-image"
             />

@@ -4,14 +4,14 @@ import './welcomeHero.scss';
 
 const HERO_IMAGES = {
     desktop: {
-        small: "https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg",
-        medium: "https://i.ibb.co/HTJqgrn5/No-borders120kb.jpg",
-        large: "https://i.ibb.co/CgLGfjx/No-borders500kb.jpg"
+        small: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg",
+        medium: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/HTJqgrn5/No-borders120kb.jpg",
+        large: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/CgLGfjx/No-borders500kb.jpg"
     },
     mobile: {
-        small: "https://i.ibb.co/tjTJ8wv/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-50kb.jpg",
-        medium: "https://i.ibb.co/C5nyCr4D/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-Ilya-Medvedev120kb.jpg",
-        large: "https://i.ibb.co/ZzzzjMHT/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-500kb.jpg"
+        small: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/KTHTRtm/detai-50kl.jpg",
+        medium: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/RTQnmM4p/detai-120kb.jpg",
+        large: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/zwGVjMt/detai-500kl.jpg"
     }
 };
 

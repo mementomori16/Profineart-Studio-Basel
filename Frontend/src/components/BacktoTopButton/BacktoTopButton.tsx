@@ -6,7 +6,8 @@ const BackToTop: React.FC = () => {
     const [isClicked, setIsClicked] = useState(false);
 
     const toggleVisibility = () => {
-        if (window.pageYOffset > 300) {
+        // Appears only after scrolling 2 full screen heights
+        if (window.pageYOffset > window.innerHeight * 2) {
             setIsVisible(true);
         } else {
             setIsVisible(false);
@@ -15,27 +16,26 @@ const BackToTop: React.FC = () => {
 
     const scrollToTop = () => {
         setIsClicked(true);
-        setTimeout(() => setIsClicked(false), 400); // remove click effect after animation
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
+        setTimeout(() => setIsClicked(false), 300);
     };
 
     useEffect(() => {
         window.addEventListener('scroll', toggleVisibility);
-        return () => {
-            window.removeEventListener('scroll', toggleVisibility);
-        };
+        return () => window.removeEventListener('scroll', toggleVisibility);
     }, []);
 
     return (
         <div
-            className={`back-to-top ${isVisible ? 'visible' : ''} ${isClicked ? 'clicked' : ''}`}
+            className={`back-to-top-minimal ${isVisible ? 'visible' : ''} ${isClicked ? 'clicked' : ''}`}
             onClick={scrollToTop}
-            aria-label="Back to Top"
+            role="button"
+            aria-label="Scroll to top"
         >
-            ↑
+            <span className="arrow-icon">↑</span>
         </div>
     );
 };

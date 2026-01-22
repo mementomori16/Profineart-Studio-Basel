@@ -8,7 +8,7 @@
     "contact": "Contact",
     "cv": "CV",
     "welcomeHero": {
-      "serviceTitle": "Professional Fine Art & Contemporary painting courses in your private environment",
+      "serviceTitle": "Professional Fine Art & Contemporary painting courses in your private environment in Basel and Basel Area",
       "companyName": "Profineart Studio Basel",
       "ctaButton": "Course Booking"
     }
@@ -30,7 +30,7 @@
   "labelBackground": "Background",
   "textBackground": "Built on significant academic achievement and a wealth of museum-level experience.",
   "labelSpecialization": "Specialization",
-  "textSpecialization": "Rare technical depth in ancient media, such as Byzantine Iconography, alongside contemporary painting.",
+  "textSpecialization": "Rare technical depth in ancient media, such as Byzantine Iconography, alongside contemporary figurative painting.",
   "labelCommunication": "Communication",
   "textCommunication": "All instruction and communication are conducted in English."
 },
@@ -44,20 +44,6 @@
     "author": "Dr. Dikla Arad",
     "role": "Board Eligible Veterinary Ophthalmologist"
   },
-
- "founder": {
-    "name": "Ilya Medvedev",
-    "role": "Founder",
-    "bio": "A contemporary fine artist and certified educator with a professional practice spanning over 1,000 works. Experience includes international gallery exhibitions, art fair collaborations, and restoration projects. Founder of the original fine art academy in 2011, from which ProFineArt Studio Basel was born.",
-    "academicLabel": "Academic",
-    "academicValue": "B.Ed.FA & MFA studies (Bezalel Academy)",
-    "expertiseLabel": "Expertise",
-    "expertiseValue": "Byzantine Iconography, material chemistry, and high-precision freehand technique",
-    "careerLabel": "Career Practice",
-    "careerValue": "Extensive history as a school founder and studio lead in Berlin, Tel Aviv, and Basel. Professional commissions include portraiture, landscape, illustration, and specialized tattoo design."
-  },
-
-
 
   "aboutPage": {
     "title": "ProFineArt Studio Basel: Contemporary Fine Art Pedagogy",
@@ -350,6 +336,72 @@
     "refundTitle": "Package Refunds",
     "refundText": "While single trial lessons are final, multi-lesson packages offer flexibility. If for any reason the full package cannot be completed, a refund for any remaining unused units is available upon request."
 },
+
+
+"studentsGallery": {
+    "hero": {
+      "label": "The Academic Process",
+      "title": "The Result: Professional Command",
+      "description": "The works in this gallery are the outcome of a rigorous transition. They represent the moment where technical struggle disappears and professional authority begins. By eliminating \"blind spots\" and refining the physical mechanics of painting, the student moves beyond mere imitation. What remains is a high-level mastery of light, form, and medium—turning complex theory into effortless, high-fidelity execution.",
+      "slides": [
+        {
+          "id": 1,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/wrN5n3xP/DSC-8287-low.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/wrN5n3xP/DSC-8287-500kb.jpg",
+          "title": "Commando Divers",
+          "info": "Shay R., Born 1965"
+        },
+        {
+          "id": 2,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/c9CthBy/Dikla-nude-study-2019-120kb.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/c9CthBy/Dikla-nude-study-2019-120kb.jpg",
+          "title": "Anatomical Study",
+          "info": "Academic Drawing"
+        },
+        {
+          "id": 3,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
+          "title": "Mastery of Light",
+          "info": "Oil on Linen"
+        },
+        {
+          "id": 4,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
+          "title": "The Golden Ratio",
+          "info": "Technical Composition"
+        }
+      ]
+    },
+    "calculator": {
+      "title": "Commitment to Mastery",
+      "subtitle": "Determine your pace through the 320-hour professional curriculum.",
+      "foundations": "Foundations",
+      "graduation": "Full Graduation",
+      "hoursPerWeek": "Hours / Week"
+    },
+    "mentorship": {
+      "label": "The Mentorship Method",
+      "title": "Direct Observation",
+      "para1": "True mastery relies on more than just theory; it requires the real-time refinement of the working process. Beyond the masterclass, the core of the study process lies in the direct observation of a student’s work.",
+      "para2": "This allows for the immediate correction of subtle, overlooked errors—the \"blind spots\" that often stall progress for years. By resolving these technical hurdles in the moment, the learning process is simplified, moving the student rapidly from fundamental coordination to highly sophisticated, professional techniques."
+    },
+    "pillars": {
+      "one": {
+        "title": "Ancient Technique",
+        "description": "Mastery of Egg Tempera and 24k Gold Gilding."
+      },
+      "two": {
+        "title": "Material Science",
+        "description": "In-depth study of linen weights and pigment chemistry."
+      },
+      "three": {
+        "title": "Anatomical Logic",
+        "description": "Freehand drawing without mechanical assistance."
+      }
+    }
+    },
 
 
   "contactPage": {

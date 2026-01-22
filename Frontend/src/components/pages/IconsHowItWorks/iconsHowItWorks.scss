@@ -1,0 +1,93 @@
+@use "../../../global.scss" as *;
+
+.how-it-works-section {
+    padding: $space-lg 0;
+    text-align: center;
+
+    .section-header {
+        margin-bottom: $space-xxl;
+        .how-main-title {
+            @include services-heading;
+            color: $color-text-white;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+        }
+    }
+}
+
+.how-flow-container {
+    display: flex;
+    justify-content: space-between; // Uses full width
+    align-items: flex-start;
+    gap: $space-xs;
+
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        align-items: center;
+        gap: $space-xl;
+    }
+}
+
+.flow-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 280px;
+
+    .step-icon-box {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        color: #ffffff; // Icons are now pure white
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: $space-lg;
+
+        .step-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 26px;
+            height: 26px;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .step-title {
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        margin-bottom: $space-xs;
+    }
+
+    .step-desc {
+        color: #ffffff; // High brightness
+        font-size: 1.05rem; 
+        line-height: 1.5;
+        font-weight: $font-weight-light;
+        opacity: 0.95; // Almost 100% visible
+    }
+}
+
+.flow-arrow {
+    padding-top: 2.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 2rem;
+    
+    @media (max-width: $breakpoint-md) {
+        display: none; // Hide arrows on mobile to save space
+    }
+}

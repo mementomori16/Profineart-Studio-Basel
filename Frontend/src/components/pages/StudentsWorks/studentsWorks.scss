@@ -1,22 +1,23 @@
 @use "../../../global.scss" as *;
 
 .students-gallery-root {
-    // Force the dark smooth background to be full page
     background-color: $color-text-dark3; 
     min-height: 100vh;
     width: 100%;
     color: $color-text-white;
     padding: $space-xxxxl 0;
-    font-family: $font-family-base;
 
-    .container {
-        max-width: $breakpoint-xxl;
-        margin: 0 auto;
-        padding: 0 $space-xl;
+    .label {
+        color: $color-cta-primary-warm;
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-xs;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: $space-sm;
     }
 }
 
-// HERO SECTION: General Progress Text Left, Image Right
 .featured-hero {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -24,113 +25,125 @@
     align-items: center;
     margin-bottom: $space-xxxxl;
 
-    @media (max-width: $breakpoint-md) {
-        grid-template-columns: 1fr;
-    }
+    @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
 
     .hero-text {
-        .label {
-            color: $color-cta-primary-warm;
-            text-transform: uppercase;
-            font-weight: $font-weight-bold;
-            font-size: $font-size-xs;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            color: $color-text-white;
-            font-size: $font-size-h2;
-            margin: $space-sm 0;
-        }
-
+        h2 { color: $color-text-white; font-size: $font-size-h2; margin-bottom: $space-md; }
         .progress-essay {
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.8;
-            font-size: $font-size-md;
-            border-left: 1px solid rgba(255,255,255,0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
             padding-left: $space-lg;
         }
     }
 
-    .hero-image-container {
-        text-align: right;
-
-        .premium-frame {
+    .hero-carousel-container {
+        .carousel-wrapper {
+            position: relative;
             width: 100%;
-            border-radius: 2px;
+            aspect-ratio: 4 / 3; // Fixed container size
+            overflow: hidden;
+            background-color: $color-text-dark4;
+            border-radius: $border-radius-sm;
             box-shadow: $shadow-xl;
-            filter: contrast(1.05) brightness(0.9);
-            margin-bottom: $space-md;
+
+            .progressive-container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .bg-blur-layer {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    filter: blur(30px) brightness(0.4);
+                    opacity: 0.6;
+                    z-index: 1;
+                }
+
+                .premium-frame {
+                    position: relative;
+                    z-index: 2;
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain; // Full painting visible
+                    transition: opacity 0.5s ease;
+                    
+                    &.loading { opacity: 0.4; }
+                    &.loaded { opacity: 1; }
+                }
+            }
+
+            .nav-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                color: $color-text-white;
+                border: none;
+                font-size: 2.5rem;
+                cursor: pointer;
+                opacity: 0.5;
+                transition: opacity 0.3s;
+                z-index: 10;
+                &:hover { opacity: 1; }
+                &.prev { left: $space-sm; }
+                &.next { right: $space-sm; }
+            }
         }
 
-        .artwork-caption {
-            text-align: right;
+        .hero-artwork-titles {
+            margin-top: $space-md;
             .art-title {
                 display: block;
+                font-weight: $font-weight-bold;
                 font-size: $font-size-sm;
-                color: $color-text-white;
                 text-transform: uppercase;
-                letter-spacing: 1px;
+                color: $color-text-white;
             }
             .student-info {
-                display: block;
-                font-size: $font-size-xs;
                 color: $color-text-light;
+                font-size: $font-size-xs;
                 font-style: italic;
             }
         }
     }
 }
 
-// CALCULATOR (Evolve System)
+// REST OF STYLES (Calculator, Mentorship, Pillars) 
+// Remain consistent with previous layout logic using your global.scss
 .timeline-calculator {
     margin: $space-xxxxl 0;
-    background-color: $color-text-dark4; // Deep black card
+    background-color: $color-text-dark4;
     padding: $space-xxxl;
     border-radius: $border-radius-md;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-
-    input[type="range"] {
-        width: 100%;
-        max-width: 400px;
-        accent-color: $color-cta-primary-warm;
-    }
-
-    .hours-display {
-        font-size: $font-size-h2;
-        color: $color-cta-primary-warm;
-        margin: $space-md 0;
-    }
-
-    .results-wrap {
-        display: flex;
-        justify-content: center;
-        gap: $space-xxxxl;
-        
-        .res-item {
-            span { color: $color-text-light; font-size: $font-size-xxs; text-transform: uppercase; }
-            strong { display: block; font-size: $font-size-h3; color: white; }
-        }
-    }
+    input[type="range"] { width: 100%; max-width: 400px; accent-color: $color-cta-primary-warm; }
+    .hours-display { font-size: $font-size-h2; color: $color-cta-primary-warm; margin: $space-md 0; }
+    .results-wrap { display: flex; justify-content: center; gap: $space-xxxxl; }
 }
 
-// BOTTOM SECTION: Professional Curriculum Focus
+.carousel-section-wrap {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: $space-xxxxl;
+    align-items: center;
+    margin: $space-xxxxxl 0;
+    @media (max-width: $breakpoint-lg) { grid-template-columns: 1fr; }
+}
+
 .curriculum-pillars {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: $space-xl;
     padding-top: $space-xxxxl;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-    .pillar-item {
-        text-align: center;
-        .pillar-icon { 
-            color: $color-text-light; 
-            margin-bottom: $space-md;
-            font-size: 1.5rem;
-        }
-        h5 { color: white; font-size: $font-size-sm; text-transform: uppercase; }
-        p { color: $color-text-light; font-size: $font-size-xs; line-height: 1.5; }
-    }
+    @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+    .pillar-item { text-align: center; h5 { color: $color-text-white; } p { color: $color-text-light; } }
 }

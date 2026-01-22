@@ -4,16 +4,14 @@
 .studio-video-master {
   position: relative;
   width: 90%;            
-  max-width: 900px;      
-  margin: 40px auto;     
+  max-width: 56.25rem; // 900px / 16
+  margin: global.$space-xl auto;     
   aspect-ratio: 16 / 9; 
   background: #000;
-  border-radius: 4px;
+  border-radius: global.$border-radius-sm;
   overflow: hidden; 
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: global.$shadow-lg;
 
-  // INVISIBLE SHIELD: Sits over the video to block hover/clicks 
-  // that would normally reveal YouTube's title/UI.
   &::before {
     content: "";
     position: absolute;
@@ -24,18 +22,18 @@
 
   @media (max-width: global.$breakpoint-sm) {
     width: 100%;        
-    margin: 30px 0;      
+    margin: global.$space-lg 0;      
     border-radius: 0;   
     max-width: none;
   }
 }
 
-// 2. LOADING SCREEN / CLOAK
+// 2. LOADING SCREEN
 .video-placeholder {
   position: absolute;
   inset: 0;
   background: #000;
-  z-index: 100; // Above everything until 3s buffer ends
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,15 +45,37 @@
   }
 }
 
-.modern-loader {
-  color: #fff;
-  font-size: 10px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  opacity: 0.5;
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: global.$space-md;
 }
 
-// 3. THE VIDEO BOX (CROP LOGIC)
+// THE NEW SPINNER
+.video-spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.125rem solid rgba(global.$color-text-white, 0.1);
+  border-top-color: rgba(global.$color-text-white, 0.6);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.modern-loader {
+  color: global.$color-text-white;
+  font-size: 0.625rem; // 10px
+  letter-spacing: 0.3125rem; // 5px
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-weight: global.$font-weight-medium;
+}
+
+// 3. THE VIDEO BOX
 .video-inner-container {
   position: absolute; 
   top: 0;
@@ -67,8 +87,6 @@
 
   .video-iframe {
     position: absolute;
-    // 106% zoom pushes the tiny edges of icons off-screen
-    // without making the video feel too "zoomed in".
     top: 50%;
     left: 50%;
     width: 106%; 
@@ -82,19 +100,19 @@
 // 4. THE SOUND BUTTON
 .small-sound-pill {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  z-index: 110; // Must be higher than the cloak and shield
+  bottom: global.$space-md;
+  right: global.$space-md;
+  z-index: 110;
   background: global.$color-cta-primary-warm; 
-  color: #fff;
+  color: global.$color-text-white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-size: 9px;
-  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: global.$border-radius-xl;
+  font-size: 0.5625rem; // 9px
+  font-weight: global.$font-weight-bold;
   cursor: pointer;
   text-transform: uppercase;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: global.$shadow-md;
   transition: transform 0.2s ease, background-color 0.2s;
 
   &:hover {
@@ -106,8 +124,8 @@
   }
 
   @media (max-width: global.$breakpoint-sm) {
-    bottom: 10px;
-    right: 10px;
-    padding: 6px 12px;
+    bottom: global.$space-sm;
+    right: global.$space-sm;
+    padding: 0.375rem 0.75rem;
   }
 }

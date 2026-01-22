@@ -37,7 +37,7 @@ const Founder: React.FC = () => {
                     <div className="editorial-visual">
                         <div className="image-frame">
                             <img 
-                                src="https://i.ibb.co/NnY8mcHR/20210815-155250120kb.jpg" 
+                                src="https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/NnY8mcHR/20210815-155250120kb.jpg" 
                                 alt="Studio Practice" 
                                 className="studio-img"
                             />

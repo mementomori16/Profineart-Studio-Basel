@@ -1,0 +1,88 @@
+@use '../../../global.scss' as global;
+
+.artwork-carousel-isolated {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    .carousel-main-track {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+    }
+
+    .artwork-display-frame {
+        flex: 1;
+        aspect-ratio: 4/3;
+        background: #000;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.6s ease;
+            filter: contrast(1.05) brightness(0.9);
+            &.is-loading { opacity: 0.3; }
+            &.is-hd { opacity: 1; }
+        }
+    }
+
+    .artwork-meta-section {
+        margin-top: 30px;
+        padding-left: 10px;
+        border-left: 2px solid #811c1c;
+
+        .course-badge {
+            color: #811c1c;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .work-title {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .work-logic {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 600px;
+        }
+    }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        transition: 0.3s;
+        &:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #fff;
+            border-right: 2px solid #fff;
+            top: 50%;
+            left: 50%;
+        }
+        &.prev::after { transform: translate(-30%, -50%) rotate(-135deg); }
+        &.next::after { transform: translate(-70%, -50%) rotate(45deg); }
+    }
+}
