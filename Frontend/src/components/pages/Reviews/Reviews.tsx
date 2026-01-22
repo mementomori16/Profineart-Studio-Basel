@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './Reviews.scss';
+import './reviews.scss';
 
 const Reviews: React.FC = () => {
     const { t } = useTranslation();
