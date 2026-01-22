@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './TextReview.scss';
+import './textReview.scss';
 
 const TextReview: React.FC = () => {
     const { t } = useTranslation();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './BaselServiceMap.scss'; // Use a dedicated name for this component
+import './baselServiceMap.scss'; // Use a dedicated name for this component
 
 const BaselServiceArea: React.FC = () => {
     const { t } = useTranslation();

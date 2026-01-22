@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaList, FaRegCreditCard, FaRegComments, FaPalette } from 'react-icons/fa';
-import './IconsHowItWorks.scss';
+import './iconsHowItWorks.scss';
 
 const IconsHowItWorks: React.FC = () => {
     return (
