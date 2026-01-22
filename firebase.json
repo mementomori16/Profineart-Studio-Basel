@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "profineart-studio-basel",
     "public": "Frontend/dist",
     "ignore": [
       "firebase.json",
