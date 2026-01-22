@@ -29,8 +29,6 @@ jobs:
       - name: Install Functions Dependencies
         run: npm ci
         working-directory: ./functions
-        env:
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
