@@ -14,7 +14,10 @@ dotenv.config();
 const STRIPE_API_VERSION = "2025-12-15.clover" as any;
 
 // Initialize Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+// We added a fallback string "" so the build doesn't crash if the key is missing during analysis
+const stripeSecret = (process.env.STRIPE_SECRET_KEY as string) || "dummy_key_for_build_purposes";
+
+const stripe = new Stripe(stripeSecret, {
   apiVersion: STRIPE_API_VERSION,
 });
 
