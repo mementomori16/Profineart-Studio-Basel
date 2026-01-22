@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './StudentArtwork.scss';
+import './studentArtwork.scss';
 
 interface Artwork {
     id: number;
