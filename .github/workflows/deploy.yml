@@ -47,3 +47,5 @@ jobs:
       # Uses your secret token and targets your specific project ID
       - name: Deploy to Firebase
         run: firebase deploy --token "${{ secrets.FIREBASE_TOKEN }}" --only hosting,functions --project profineart-studio-basel
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
