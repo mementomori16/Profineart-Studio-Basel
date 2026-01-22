@@ -1,5 +1,3 @@
-# .github/workflows/deploy.yml
-
 name: Deploy to Firebase
 on:
   push:
@@ -10,41 +8,33 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Pull the code from your GitHub repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js environment
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-          # Tells Node where to find the lockfile for caching
           cache-dependency-path: Frontend/package-lock.json
 
-      # 3. Install Frontend dependencies
       - name: Install Frontend Dependencies
         run: npm ci
         working-directory: ./Frontend
 
-      # 4. Build the Frontend (Vite)
       - name: Build Frontend
         run: npm run build
         working-directory: ./Frontend
 
-      # 5. Install Functions (Backend) dependencies
-      # This fixes the "Cannot find module 'stripe/express'" errors
       - name: Install Functions Dependencies
         run: npm ci
         working-directory: ./functions
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
 
-      # 6. Install the Firebase CLI tool
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      # 7. Deploy everything to Firebase
-      # Uses your secret token and targets your specific project ID
       - name: Deploy to Firebase
         run: firebase deploy --token "${{ secrets.FIREBASE_TOKEN }}" --only hosting,functions --project profineart-studio-basel
         env:
