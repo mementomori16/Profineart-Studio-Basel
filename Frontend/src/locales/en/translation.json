@@ -102,25 +102,17 @@
     "lesson": "Lesson",
     "bestValue": "BEST VALUE",
     "unknown": "Unknown",
-    "remove": "Remove"
+    "remove": "Remove",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "successTitle": "Booking Successful",
+    "successMsg": "Thank you! Your payment was successful.",
+    "emailNote": "A confirmation email has been sent."
   },
 
-  "successPage": {
-    "title": {
-      "success": "Booking Successful",
-      "error": "Booking Error"
-    },
-    "message": {
-      "confirmation": "Thank you! Your payment was successful.",
-      "emailSent": "A confirmation email has been sent to you and the studio."
-    },
-    "detailsTitle": "Booking Details",
-    "error": {
-      "missingSession": "Session ID is missing.",
-      "fulfillmentFailed": "Fulfillment failed.",
-      "networkError": "Network error occurred."
-    }
-  },
+  
 
   "checkout": {
     "bookNowButton": "Book Now",
