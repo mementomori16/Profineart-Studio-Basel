@@ -14,7 +14,6 @@ dotenv.config();
 const STRIPE_API_VERSION = "2025-12-15.clover" as any;
 
 // Initialize Stripe
-// We added a fallback string "" so the build doesn't crash if the key is missing during analysis
 const stripeSecret = (process.env.STRIPE_SECRET_KEY as string) || "dummy_key_for_build_purposes";
 
 const stripe = new Stripe(stripeSecret, {
@@ -87,12 +86,15 @@ app.post("/api/validate-address", async (req: Request, res: Response) => {
 
 app.post("/api/create-checkout-session", async (req: Request, res: Response) => {
   try {
+    // Check for packageId and email which are required for the session
     if (!req.body.packageId || !req.body.email) {
-      return res.status(400).json({success: false, message: "Missing info."});
+      return res.status(400).json({success: false, message: "Missing packageId or email."});
     }
+    // Pass the entire body to ensure phone and dateOfBirth are included
     const session = await createStripeCheckoutSession(req.body, stripe);
     return res.json({checkoutUrl: session.url});
   } catch (error) {
+    console.error("Checkout Session Error:", getErrorMessage(error));
     return res.status(500).json({success: false, message: "Stripe error."});
   }
 });
@@ -105,18 +107,21 @@ app.post("/api/order/fulfill", async (req: Request, res: Response) => {
     }
 
     const fulfillmentResult = await fulfillOrder(sessionId, stripe);
+    
+    // We return 'result' here. Ensure SuccessPage.tsx is looking for 'result'!
     return res.json({success: true, result: fulfillmentResult});
   } catch (error) {
+    console.error("Fulfillment API Error:", getErrorMessage(error));
     return res.status(500).json({success: false, message: "Fulfillment failed."});
   }
 });
 
 // --- EXPORT FOR FIREBASE WITH SAFETY LIMITS ---
 export const api = onRequest({
-  region: "europe-west1", // Keep data close to Basel
-  memory: "256MiB",       // Smallest memory footprint = lowest cost
-  maxInstances: 10,       // HARD CAP: Never run more than 10 copies of this code
-  concurrency: 80,        // Each instance can handle 80 people at once
+  region: "europe-west1", 
+  memory: "256MiB",      
+  maxInstances: 10,      
+  concurrency: 80,         
   
 secrets: [
     "STRIPE_SECRET_KEY", 

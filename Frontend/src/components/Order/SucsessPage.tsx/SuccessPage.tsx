@@ -1,22 +1,22 @@
-// src/pages/SuccessPage/SuccessPage.tsx
+// src/pages/SuccessPage/SuccessPage.tsx - FULL VERSION WITH LOGIC FIX
 
-import React, { useEffect, useState, useRef } from 'react'; // 🔥 ADDED useRef
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import './sucsessPage.scss'; // Assuming you have a style file
+import './sucsessPage.scss';
 
 // Define the expected structure of the fulfilled order data
 interface OrderFulfillmentResult {
     success: boolean;
     message: string;
-    bookingDetails?: {
+    // Note: Changed from bookingDetails to 'result' to match your backend's return key
+    result?: {
         name: string;
         email: string;
         date: string;
         time: string;
         package: string;
-        // 🔥 ADDED phone and message to the expected return type
         phone: string; 
         message: string;
     };
@@ -29,9 +29,9 @@ const SuccessPage: React.FC = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [orderData, setOrderData] = useState<OrderFulfillmentResult['bookingDetails'] | null>(null);
+    const [orderData, setOrderData] = useState<OrderFulfillmentResult['result'] | null>(null);
     
-    // 🔥 NEW: Ref to track if fulfillment has been called (fixes React Strict Mode double-call)
+    // Track if fulfillment has been called (fixes React Strict Mode double-call)
     const isFulfilledRef = useRef(false);
 
     useEffect(() => {
@@ -44,25 +44,26 @@ const SuccessPage: React.FC = () => {
             return;
         }
         
-        // 🔥 CRITICAL IDEMPOTENCY FIX: Only proceed if the session ID is present AND we haven't fulfilled yet
+        // IDEMPOTENCY FIX: Only proceed if we haven't fulfilled yet
         if (isFulfilledRef.current) {
-            return; // Skip execution if already called
+            return; 
         }
 
-        isFulfilledRef.current = true; // Set lock immediately
+        isFulfilledRef.current = true; 
 
         const fulfillOrder = async () => {
             try {
-                // Call the new backend endpoint to fulfill the order
+                // Call the backend endpoint to fulfill the order
                 const response = await axios.post<OrderFulfillmentResult>('/api/order/fulfill', { sessionId });
 
-                if (response.data.success && response.data.bookingDetails) {
-                    setOrderData(response.data.bookingDetails);
-                    // Cleanup: Clear local storage keys upon successful booking
+                // CRITICAL FIX: Checking for 'result' instead of 'bookingDetails'
+                if (response.data.success && response.data.result) {
+                    setOrderData(response.data.result);
+                    
+                    // Cleanup local storage upon successful booking
                     localStorage.removeItem('bookingSlotSelection');
                     localStorage.removeItem('bookingCustomerDetails');
                 } else {
-                    // Handle server-side failure messages
                     setError(response.data.message || t('successPage.error.fulfillmentFailed'));
                 }
             } catch (err) {
@@ -112,7 +113,6 @@ const SuccessPage: React.FC = () => {
                         <li><strong>{t('common.email')}:</strong> {orderData.email}</li>
                         <li><strong>{t('common.service')}:</strong> {orderData.package}</li>
                         <li><strong>{t('common.date')}:</strong> {orderData.date} @ {orderData.time}</li>
-                        {/* You can optionally show phone/message here if you want: */}
                         <li><strong>{t('common.phone')}:</strong> {orderData.phone}</li> 
                         <li><strong>{t('common.message')}:</strong> {orderData.message}</li>
                     </ul>

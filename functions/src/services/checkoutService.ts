@@ -1,20 +1,7 @@
-import Stripe from "stripe";
-import {PRODUCT_PACKAGES} from "../data/products.js";
-import {LessonPackage} from "../types/Product.js";
-import {sendConfirmationEmail, sendOwnerNotification} from "./emailService.js";
-
-// --- Interfaces ---
-
-interface CheckoutData {
-    selectedDate: string; 
-    selectedTime: string; 
-    packageId: string;
-    name: string;
-    email: string;
-    phone: string;
-    message: string;
-    birthdate: string;
-}
+import Stripe from 'stripe';
+import { PRODUCT_PACKAGES } from '../data/products.js';
+import { LessonPackage } from '../types/Product.js'; 
+import { sendConfirmationEmail, sendOwnerNotification } from './emailService.js';
 
 export interface FulfillmentDetails {
     name: string;
@@ -24,129 +11,97 @@ export interface FulfillmentDetails {
     package: string;
     phone: string;
     message: string;
-    birthdate: string;
+    birthdate: string; 
 }
 
-// --- Service Functions ---
+export async function createStripeCheckoutSession(data: any, stripe: Stripe): Promise<Stripe.Checkout.Session> {
+    const selectedPackage = PRODUCT_PACKAGES.find(pkg => pkg.id === data.packageId) as LessonPackage | undefined;
+    
+    if (!selectedPackage) {
+        throw new Error(`Invalid packageId: ${data.packageId}`);
+    }
 
-/**
- * Creates a Stripe Checkout Session for the selected product package.
- */
-export async function createStripeCheckoutSession(data: CheckoutData, stripe: Stripe): Promise<Stripe.Checkout.Session> {
-  const selectedPackage = PRODUCT_PACKAGES.find((pkg) => pkg.id === data.packageId) as LessonPackage | undefined;
+    const priceInCentimes = Math.round(selectedPackage.price * 100); 
 
-  if (!selectedPackage) {
-    throw new Error(`Invalid packageId: ${data.packageId}`);
-  }
+    // Syncing metadata keys with what your Frontend 'ContactDetails' actually sends
+    const metadata = {
+        packageId: selectedPackage.id,
+        lessons: selectedPackage.lessons?.toString() || "1",
+        duration: (selectedPackage.durationMinutes?.toString() || "60") + ' min',
+        selectedDate: data.selectedDate,
+        selectedTime: data.selectedTime,
+        customerName: data.name,
+        customerEmail: data.email,
+        customerPhone: data.phone,
+        customerMessage: data.message || "",
+        customerBirthdate: data.dateOfBirth || data.birthdate || "N/A", 
+    };
 
-  const priceInCentimes = Math.round(selectedPackage.price * 100);
+    const clientBaseUrl = process.env.CLIENT_URL;
 
-  const metadata = {
-    packageId: selectedPackage.id,
-    lessons: selectedPackage.lessons.toString(),
-    duration: selectedPackage.durationMinutes.toString() + " min",
-    selectedDate: data.selectedDate,
-    selectedTime: data.selectedTime,
-    customerName: data.name,
-    customerEmail: data.email,
-    customerPhone: data.phone,
-    customerMessage: data.message,
-    customerBirthdate: data.birthdate,
-  };
-
-  // 🔥 CHANGE: Added fallback to prevent the "CLIENT_URL not set" crash
-  const clientBaseUrl = process.env.CLIENT_URL || "https://profineart.ch";
-
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: [
-        {
-          price_data: {
-            currency: "chf",
-            tax_behavior: "inclusive",
-            product_data: {
-              name: selectedPackage.name,
-              description: selectedPackage.description,
-              metadata: {packageId: selectedPackage.id},
+    return await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+            price_data: {
+                currency: 'chf',
+                product_data: {
+                    name: selectedPackage.name, 
+                    description: selectedPackage.description,
+                },
+                unit_amount: priceInCentimes,
             },
-            unit_amount: priceInCentimes,
-          },
-          quantity: 1,
+            quantity: 1,
+        }],
+        customer_email: data.email,
+        // ✅ CRITICAL: This enables the phone number field inside the Stripe UI
+        phone_number_collection: {
+            enabled: true,
         },
-      ],
-      customer_email: data.email || undefined,
-      mode: "payment",
-      success_url: `${clientBaseUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${clientBaseUrl}/order/cancel`,
-      metadata: metadata,
+        mode: 'payment',
+        success_url: `${clientBaseUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${clientBaseUrl}/order/cancel`, 
+        metadata: metadata,
     });
-
-    return session;
-  } catch (error) {
-    console.error("Stripe Session Creation Error:", error);
-    // Rethrow the actual error message for better debugging in logs
-    throw error;
-  }
 }
 
-/**
- * Confirms payment via Stripe and performs fulfillment actions.
- */
 export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<FulfillmentDetails> {
-  try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     const metadata = session.metadata;
 
     if (!metadata || !session.payment_intent) {
-      throw new Error("No metadata or payment intent found on Stripe session.");
+        throw new Error('No metadata found on session.');
     }
 
-    if (session.payment_status !== "paid") {
-      throw new Error(`Payment status is ${session.payment_status}. Order not fulfilled.`);
+    if (session.payment_status !== 'paid') {
+        throw new Error('Order not paid.');
     }
 
-    const paymentIntent = await stripe.paymentIntents.retrieve(
-            session.payment_intent as string
-    );
-
-    if (paymentIntent.metadata?.fulfilled === "true") {
-      console.log(`[FULFILLMENT CHECK] Session ${sessionId} already fulfilled. Skipping.`);
-      return {
-        name: metadata.customerName || "N/A",
-        email: metadata.customerEmail || "N/A",
-        date: metadata.selectedDate || "N/A",
-        time: metadata.selectedTime || "N/A",
-        package: `${metadata.lessons} Lessons (${metadata.duration})` || "N/A",
-        phone: metadata.customerPhone || "N/A",
-        message: metadata.customerMessage || "No special message.",
-        birthdate: metadata.customerBirthdate || "N/A",
-      };
-    }
-
+    // Idempotency check using PaymentIntent metadata
+    const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent as string);
+    
     const details: FulfillmentDetails = {
-      name: metadata.customerName || "N/A",
-      email: metadata.customerEmail || "N/A",
-      date: metadata.selectedDate || "N/A",
-      time: metadata.selectedTime || "N/A",
-      package: `${metadata.lessons} Lessons (${metadata.duration})` || "N/A",
-      phone: metadata.customerPhone || "N/A",
-      message: metadata.customerMessage || "No special message.",
-      birthdate: metadata.customerBirthdate || "N/A",
+        name: metadata.customerName || 'N/A',
+        email: metadata.customerEmail || 'N/A',
+        date: metadata.selectedDate || 'N/A',
+        time: metadata.selectedTime || 'N/A',
+        package: `${metadata.lessons} Lessons (${metadata.duration})`,
+        phone: metadata.customerPhone || 'N/A', 
+        message: metadata.customerMessage || 'No message.',
+        birthdate: metadata.customerBirthdate || 'N/A',
     };
 
-    // Fulfillment Actions
-    await sendConfirmationEmail(details);
-    await sendOwnerNotification(details);
+    if (paymentIntent.metadata?.fulfilled === 'true') {
+        return details;
+    }
 
+    // Trigger Emails
+    await sendConfirmationEmail(details); 
+    await sendOwnerNotification(details);
+    
+    // Mark as processed
     await stripe.paymentIntents.update(session.payment_intent as string, {
-      metadata: {fulfilled: "true"},
+        metadata: { fulfilled: 'true' }
     });
 
-    console.log(`[FULFILLMENT SUCCESS] Booking confirmed for ${details.name}.`);
     return details;
-  } catch (error) {
-    console.error("Fulfillment Error:", error);
-    throw new Error("Failed to verify payment or retrieve order details.");
-  }
 }
