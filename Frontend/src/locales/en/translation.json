@@ -105,6 +105,23 @@
     "remove": "Remove"
   },
 
+  "successPage": {
+    "title": {
+      "success": "Booking Successful",
+      "error": "Booking Error"
+    },
+    "message": {
+      "confirmation": "Thank you! Your payment was successful.",
+      "emailSent": "A confirmation email has been sent to you and the studio."
+    },
+    "detailsTitle": "Booking Details",
+    "error": {
+      "missingSession": "Session ID is missing.",
+      "fulfillmentFailed": "Fulfillment failed.",
+      "networkError": "Network error occurred."
+    }
+  },
+
   "checkout": {
     "bookNowButton": "Book Now",
     "addToCartButton": "Add to Basket",
@@ -514,6 +531,7 @@
       "text": "This agreement is governed by the laws of Switzerland. The place of jurisdiction is Basel."
     }
   },
+  
    
 "footer": {
   "brandName": "Profineart Studio Basel",

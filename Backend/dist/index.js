@@ -1,30 +1,33 @@
-import * as dotenv from 'dotenv';
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import { onRequest } from 'firebase-functions/v2/https'; // 1. Added Firebase Import
-import { getAvailableSlots } from './services/availabilityService.js';
-import { createStripeCheckoutSession, fulfillOrder } from './services/checkoutService.js';
-import { validateAddress } from './services/geocodingService.js';
-import Stripe from 'stripe';
+import * as dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import { onRequest } from "firebase-functions/v2/https"; // Firebase V2 Trigger
+import { getAvailableSlots } from "./services/availabilityService.js";
+import { createStripeCheckoutSession, fulfillOrder } from "./services/checkoutService.js";
+import { validateAddress } from "./services/geocodingService.js";
+import Stripe from "stripe";
 dotenv.config();
-const STRIPE_API_VERSION = '2024-04-10';
+// Fix for Type Error 2322 (Stripe Version Mismatch)
+const STRIPE_API_VERSION = "2025-12-15.clover";
 // Initialize Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+// We added a fallback string "" so the build doesn't crash if the key is missing during analysis
+const stripeSecret = process.env.STRIPE_SECRET_KEY || "dummy_key_for_build_purposes";
+const stripe = new Stripe(stripeSecret, {
     apiVersion: STRIPE_API_VERSION,
 });
 const app = express();
 // --- Security Middleware Stack ---
 app.use(helmet());
-// 2. Updated CORS to include your real domain and Firebase defaults
+// CORS: Updated to allow your live production domain
 app.use(cors({
     origin: [
-        process.env.CLIENT_URL || 'http://localhost:5173',
-        'https://profineart.ch',
+        process.env.CLIENT_URL || "http://localhost:5173",
+        "https://profineart.ch",
         /\.web\.app$/,
-        /\.firebaseapp\.com$/
+        /\.firebaseapp\.com$/,
     ],
-    methods: ['GET', 'POST'],
+    methods: ["GET", "POST"],
     credentials: true,
 }));
 app.use(express.json());
@@ -35,64 +38,75 @@ function getErrorMessage(error) {
     return String(error);
 }
 // --- Routes ---
-app.get('/', (req, res) => {
-    res.json({ message: 'Server is running via Firebase Cloud Functions.' });
+app.get("/", (req, res) => {
+    res.json({ message: "Server is running via Firebase Functions." });
 });
-app.get('/api/schedule/slots', async (req, res) => {
+app.get("/api/schedule/slots", async (req, res) => {
     try {
         const { productId, date, duration } = req.query;
-        if (!productId || typeof productId !== 'string' || !date || typeof date !== 'string' || !duration) {
-            return res.status(400).json({ success: false, message: 'Missing parameters.' });
+        if (!productId || typeof productId !== "string" || !date || typeof date !== "string" || !duration) {
+            return res.status(400).json({ success: false, message: "Missing parameters" });
         }
         const durationMinutes = parseInt(duration, 10);
         const slots = await getAvailableSlots(productId, date, durationMinutes);
-        res.json({ success: true, slots });
+        return res.json({ success: true, slots });
     }
     catch (error) {
-        res.status(500).json({ success: false, message: 'Failed to fetch slots.' });
+        console.error("API Error:", getErrorMessage(error));
+        return res.status(500).json({ success: false, message: "Server error fetching slots." });
     }
 });
-app.post('/api/validate-address', async (req, res) => {
+app.post("/api/validate-address", async (req, res) => {
     try {
         const { address } = req.body;
-        if (!address)
-            return res.status(400).json({ success: false, message: 'Address required.' });
+        if (!address) {
+            return res.status(400).json({ success: false, message: "Address required." });
+        }
         const validationResult = await validateAddress(address);
-        res.status(validationResult.isValid ? 200 : 422).json({ success: validationResult.isValid, message: validationResult.message });
+        return res.status(validationResult.isValid ? 200 : 422).json({
+            success: validationResult.isValid,
+            message: validationResult.message,
+        });
     }
     catch (error) {
-        res.status(500).json({ success: false, message: 'Address validation error.' });
+        return res.status(500).json({ success: false, message: "Address validation failed." });
     }
 });
-app.post('/api/create-checkout-session', async (req, res) => {
+app.post("/api/create-checkout-session", async (req, res) => {
     try {
         if (!req.body.packageId || !req.body.email) {
-            return res.status(400).json({ success: false, message: 'Missing info.' });
+            return res.status(400).json({ success: false, message: "Missing info." });
         }
         const session = await createStripeCheckoutSession(req.body, stripe);
-        res.json({ checkoutUrl: session.url });
+        return res.json({ checkoutUrl: session.url });
     }
     catch (error) {
-        res.status(500).json({ success: false, message: 'Stripe session error.' });
+        return res.status(500).json({ success: false, message: "Stripe error." });
     }
 });
-app.post('/api/order/fulfill', async (req, res) => {
+app.post("/api/order/fulfill", async (req, res) => {
     try {
         const { sessionId } = req.body;
-        if (!sessionId)
-            return res.status(400).json({ success: false, message: 'Missing session ID.' });
+        if (!sessionId) {
+            return res.status(400).json({ success: false, message: "Invalid session ID." });
+        }
         const fulfillmentResult = await fulfillOrder(sessionId, stripe);
-        res.json({ success: true, bookingDetails: fulfillmentResult });
+        return res.json({ success: true, result: fulfillmentResult });
     }
     catch (error) {
-        res.status(500).json({ success: false, message: 'Fulfillment failed.' });
+        return res.status(500).json({ success: false, message: "Fulfillment failed." });
     }
 });
-// --- FIREBASE DEPLOYMENT EXPORT ---
-// We remove app.listen and replace it with this:
+// --- EXPORT FOR FIREBASE WITH SAFETY LIMITS ---
 export const api = onRequest({
-    region: 'europe-west1',
-    memory: '256MiB',
-    maxInstances: 10, // Safety Cap
-    concurrency: 80
+    region: "europe-west1", // Keep data close to Basel
+    memory: "256MiB", // Smallest memory footprint = lowest cost
+    maxInstances: 10, // HARD CAP: Never run more than 10 copies of this code
+    concurrency: 80, // Each instance can handle 80 people at once
+    secrets: [
+        "STRIPE_SECRET_KEY",
+        "EMAIL_SERVICE_USER",
+        "EMAIL_SERVICE_PASS",
+        "OPENCAGE_API_KEY"
+    ]
 }, app);

@@ -1,16 +1,12 @@
-// src/pages/SuccessPage/SuccessPage.tsx - FULL VERSION WITH LOGIC FIX
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import './sucsessPage.scss';
 
-// Define the expected structure of the fulfilled order data
+// This matches the FulfillmentDetails interface from your backend
 interface OrderFulfillmentResult {
     success: boolean;
-    message: string;
-    // Note: Changed from bookingDetails to 'result' to match your backend's return key
     result?: {
         name: string;
         email: string;
@@ -19,7 +15,9 @@ interface OrderFulfillmentResult {
         package: string;
         phone: string; 
         message: string;
+        birthdate: string;
     };
+    message?: string;
 }
 
 const SuccessPage: React.FC = () => {
@@ -31,99 +29,119 @@ const SuccessPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [orderData, setOrderData] = useState<OrderFulfillmentResult['result'] | null>(null);
     
-    // Track if fulfillment has been called (fixes React Strict Mode double-call)
+    // Ref to prevent double-execution in React Strict Mode
     const isFulfilledRef = useRef(false);
 
     useEffect(() => {
         const query = new URLSearchParams(location.search);
         const sessionId = query.get('session_id');
 
+        // 1. Check for Session ID
         if (!sessionId) {
-            setError(t('successPage.error.missingSession'));
+            setError(t('successPage.error.missingSession', 'Session ID is missing.'));
             setIsLoading(false);
             return;
         }
         
-        // IDEMPOTENCY FIX: Only proceed if we haven't fulfilled yet
-        if (isFulfilledRef.current) {
-            return; 
-        }
-
+        // 2. Prevent double calls
+        if (isFulfilledRef.current) return;
         isFulfilledRef.current = true; 
 
         const fulfillOrder = async () => {
             try {
-                // Call the backend endpoint to fulfill the order
+                // Call backend to verify payment and trigger emails
                 const response = await axios.post<OrderFulfillmentResult>('/api/order/fulfill', { sessionId });
 
-                // CRITICAL FIX: Checking for 'result' instead of 'bookingDetails'
                 if (response.data.success && response.data.result) {
                     setOrderData(response.data.result);
                     
-                    // Cleanup local storage upon successful booking
+                    // Cleanup local storage
                     localStorage.removeItem('bookingSlotSelection');
                     localStorage.removeItem('bookingCustomerDetails');
                 } else {
-                    setError(response.data.message || t('successPage.error.fulfillmentFailed'));
+                    setError(response.data.message || t('successPage.error.fulfillmentFailed', 'Fulfillment failed.'));
                 }
             } catch (err) {
-                console.error("Order fulfillment API error:", err);
-                setError(t('successPage.error.networkError'));
+                console.error("Fulfillment error:", err);
+                setError(t('successPage.error.networkError', 'A network error occurred. Please check your email.'));
             } finally {
                 setIsLoading(false);
             }
         };
 
         fulfillOrder();
-    }, [location.search, t, navigate]);
+    }, [location.search, t]);
 
+    // --- Loading State ---
     if (isLoading) {
         return (
             <div className="success-page container">
-                <p>{t('common.processing')}...</p>
+                <div className="loading-spinner">
+                    <p>{t('common.processing', 'Processing your booking...')}</p>
+                </div>
             </div>
         );
     }
 
+    // --- Error State ---
     if (error) {
         return (
             <div className="success-page container error-state">
-                <h2>{t('successPage.title.error')}</h2>
+                <h2>{t('successPage.title.error', 'Something went wrong')}</h2>
                 <p>{error}</p>
                 <button className="btn-primary" onClick={() => navigate('/')}>
-                    {t('common.backToHome')}
+                    {t('common.backToHome', 'Back to Home')}
                 </button>
             </div>
         );
     }
     
-    // Successful Confirmation View
+    // --- Success State ---
     return (
         <div className="success-page container success-state">
-            <h2 className="success-title">🎉 {t('successPage.title.success')} 🎉</h2>
+            <h2 className="success-title">
+                🎉 {t('successPage.title.success', 'Booking Successful')} 🎉
+            </h2>
+            
             <p className="success-message">
-                {t('successPage.message.confirmation')}
+                {t('successPage.message.confirmation', 'Thank you! Your payment was successful and your booking is confirmed.')}
             </p>
 
             {orderData && (
                 <div className="confirmation-details">
-                    <h3>{t('successPage.detailsTitle')}</h3>
-                    <ul>
-                        <li><strong>{t('common.name')}:</strong> {orderData.name}</li>
-                        <li><strong>{t('common.email')}:</strong> {orderData.email}</li>
-                        <li><strong>{t('common.service')}:</strong> {orderData.package}</li>
-                        <li><strong>{t('common.date')}:</strong> {orderData.date} @ {orderData.time}</li>
-                        <li><strong>{t('common.phone')}:</strong> {orderData.phone}</li> 
-                        <li><strong>{t('common.message')}:</strong> {orderData.message}</li>
+                    <h3>{t('successPage.detailsTitle', 'Booking Details')}</h3>
+                    <ul className="details-list">
+                        <li>
+                            <strong>{t('common.name', 'Name')}:</strong> {orderData.name}
+                        </li>
+                        <li>
+                            <strong>{t('common.email', 'Email')}:</strong> {orderData.email}
+                        </li>
+                        <li>
+                            <strong>{t('common.service', 'Service')}:</strong> {orderData.package}
+                        </li>
+                        <li>
+                            <strong>{t('common.date', 'Date')}:</strong> {orderData.date} @ {orderData.time}
+                        </li>
+                        <li>
+                            <strong>{t('common.phone', 'Phone')}:</strong> {orderData.phone}
+                        </li> 
+                        <li>
+                            <strong>{t('common.message', 'Message')}:</strong> {orderData.message}
+                        </li>
                     </ul>
                 </div>
             )}
 
-            <p className="email-note">{t('successPage.message.emailSent')}</p>
+            <p className="email-note">
+                {t('successPage.message.emailSent', 'A confirmation email has been sent to your inbox.')}
+            </p>
             
-            <button className="btn-primary" onClick={() => navigate('/')}>
-                {t('common.backToHome')}
-            </button>
+            <div className="actions">
+                <button className="btn-primary" onClick={() => navigate('/')}>
+                    {t('common.backToHome', 'Back to Home')}
+                </button>
+            </div>
         </div>
     );
 };

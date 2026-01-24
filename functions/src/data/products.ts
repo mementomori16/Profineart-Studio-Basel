@@ -353,7 +353,7 @@ export const PRODUCT_PACKAGES: LessonPackage[] = [
     description: 'Single session of 45 minutes.',
     lessons: 1,
     durationMinutes: 45,
-    price: 1, 
+    price: 0.5, 
     label: '1 Session (45 min) - 58 CHF',
     sessionType: '1 Session',
   },

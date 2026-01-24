@@ -37,6 +37,7 @@ const router = createBrowserRouter([
             { path: "terms-of-use", element: <TermsOfUse /> },
             { path: "video-page", element: <VideoPage /> },
             { path: "student-artwork", element: <StudentArtwork /> },
+            { path: "success-page", element: <SuccessPage /> },
             
 
          
