@@ -3,7 +3,7 @@
 
 .footer {
     width: 100%;
-    background-color: rgb(41, 41, 41);
+    background-color: $color-navbar; // rgb(32, 32, 32) from your global.scss
     padding: $space-xl $space-lg;
     color: $color-navbar-title;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -12,10 +12,20 @@
         max-width: $breakpoint-xl;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        // Equal 4-column layout for alignment
+        grid-template-columns: repeat(4, 1fr);
         gap: $space-xl;
         padding-bottom: $space-lg;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        align-items: start;
+
+        @media (max-width: $breakpoint-lg) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            grid-template-columns: 1fr;
+        }
     }
 
     .footer-column {
@@ -26,24 +36,26 @@
             letter-spacing: 0.05rem;
             margin-bottom: $space-md;
             margin-top: 0;
+            // Forces all headers to occupy the same vertical space
+            min-height: 1.5rem; 
+            display: flex;
+            align-items: center;
         }
 
         .footer-description {
             color: $color-navbar-title;
             font-size: $font-size-sm;
             line-height: 1.6;
+            margin: 0;
         }
 
         .footer-links {
             list-style: none;
             padding: 0;
             margin: 0;
-            li {
-                margin-bottom: $space-sm;
-            }
+            li { margin-bottom: $space-sm; }
         }
 
-        // Shared link style
         .footer-nav-link {
             color: $color-navbar-title;
             font-size: 0.9rem;
@@ -52,13 +64,8 @@
             transition: color 0.3s ease-in-out;
             display: inline-block;
 
-            &:hover {
-                color: $color-navbar-title-hover;
-            }
-
-            &.about-link {
-                margin-top: $space-sm;
-            }
+            &:hover { color: $color-navbar-title-hover; }
+            &.about-link { margin-top: $space-sm; }
         }
 
         .footer-contact-item {
@@ -66,10 +73,33 @@
             align-items: center;
             gap: $space-sm;
             margin-bottom: $space-xs;
-            
-            .footer-icon {
+            .footer-icon { font-size: 1.1rem; }
+        }
+
+        // Trust & Payments Styling
+        .footer-stripe-info {
+            display: flex;
+            align-items: center;
+            gap: $space-xs;
+            font-size: $font-size-xs;
+            margin-bottom: $space-sm;
+            opacity: 0.7;
+            .footer-icon-lock { font-size: 0.75rem; }
+        }
+
+        .footer-payment-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            .payment-badge {
+                font-size: 9px;
+                font-weight: $font-weight-bold;
+                padding: 2px 5px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 3px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
                 color: $color-navbar-title;
-                font-size: 1.1rem;
+                text-transform: uppercase;
             }
         }
     }
@@ -77,15 +107,44 @@
     .footer-bottom {
         max-width: $breakpoint-xl;
         margin: $space-md auto 0;
-        p {
-            color: color.adjust($color-navbar-title, $lightness: -20%);
+        
+        .footer-bottom-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: $space-md;
+
+            @media (max-width: $breakpoint-sm) {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        // Specific section to avoid the Back-to-Top arrow
+        .footer-legal-section {
+            padding-right: 60px; 
+            
+            @media (max-width: $breakpoint-sm) {
+                padding-right: 0;
+            }
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: $space-sm;
+            align-items: center;
+        }
+
+        p, .footer-bottom-link, .footer-separator {
+            color: color.adjust($color-navbar-title, $lightness: -25%);
             font-size: $font-size-xs;
             margin: 0;
+            white-space: nowrap; // Keeps links on one line
         }
-        .footer-bottom-link {
-            color: inherit;
-            text-decoration: none;
-            &:hover { color: $color-navbar-title-hover; }
+
+        .footer-bottom-link:hover { 
+            color: $color-navbar-title-hover; 
         }
     }
 }

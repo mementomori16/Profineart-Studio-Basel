@@ -9,15 +9,16 @@ export const courses: Product[] = [
     category: 'Painting',
     badge: 'has_badge',
     image: {
-      lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DH18FBpL/100kbphotoshoped-more-bright-1.jpg',
-      highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
+   lowResUrl: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/mVYD615H/IMG-4570120kb.jpg",
+
+        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/mVYD615H/IMG-4570120kb.jpg',
       caption: 'Jesus Christ Pontocrator. Egg Tempera and 24 Karat Gold on Primed Wood Panel. Artist: Ilya Medvedev',
     },
 
     thumbnails: [
       {
-        lowResUrl: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/mVYD615H/IMG-4570120kb.jpg",
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/mVYD615H/IMG-4570120kb.jpg',
+              lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DH18FBpL/100kbphotoshoped-more-bright-1.jpg',
+      highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
       },
     ],
 
@@ -60,11 +61,11 @@ export const courses: Product[] = [
     detailsImages: [
       {
         lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/236P0Kzm/Detail1-photoshoped-12-2025120kb.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/ZzzzjMHT/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-500kb.jpg',
+        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032381/stright_jar26-120kb_vdvpwr.jpg',
         caption: 'Two Nudes. Oil on canvas. Artist: Ilya Medvedev',
       },
       {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/mrgBT7rW/good100kb.jpg',
+        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032381/stright_jar26-120kb_vdvpwr.jpg',
         highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/pB2pdQ1R/good500kb.jpg',
         caption: 'Tereza. Oil on canvas. Artist: Ilya Medvedev',
       },
@@ -147,11 +148,7 @@ export const courses: Product[] = [
         highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/SXRTQy2v/NO-BORDERS-Pregnant-Celine-in-Caesaria-Watercolors-on-cotton-paper-2025-500kb.jpg',
         caption: 'Pregnant nude.Aquarelle on Cotton Paper .Artist: Ilya Medvedev',
       },
-      {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/XkYHBt74/IMG-7751photoshoped-2-2025-120kb.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/xKTYVb1t/IMG-7751photoshoped-2-2025-500kb.jpg',
-        caption: 'Nude with two Skulls. Aquarelle on Cotton Paper. Artist: Ilya Medvedev',
-      },
+      
     ],
 
     medium: 'Course',
@@ -356,7 +353,7 @@ export const PRODUCT_PACKAGES: LessonPackage[] = [
     description: 'Single session of 45 minutes.',
     lessons: 1,
     durationMinutes: 45,
-    price: 58, // Price from label
+    price: 1, // Price from label
     label: '1 Session (45 min) - 58 CHF',
     sessionType: '1 Session',
   },

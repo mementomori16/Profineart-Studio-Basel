@@ -1,0 +1,59 @@
+@use "sass:color";
+@use "../../global.scss" as global;
+
+.stripe-trust-seal {
+    margin-top: global.$space-md;
+    padding: global.$space-md;
+    // Updated to a subtle light-gray background with dark border
+    background-color: rgba(0, 0, 0, 0.03); 
+    border: 1px solid global.$color-border-subtle-2;
+    border-radius: global.$border-radius-md;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+
+    .trust-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: global.$space-xs;
+        color: global.$color-text-dark2; // Updated to dark
+        font-size: global.$font-size-xs;
+        margin-bottom: global.$space-sm;
+
+        .trust-icon {
+            color: global.$color-green-price; // Safety green
+            font-size: 0.8rem;
+        }
+    }
+
+    .payment-methods-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: global.$space-sm;
+
+        .method {
+            font-size: 9px;
+            font-weight: global.$font-weight-bold;
+            color: global.$color-text-dark3; // Updated to dark
+            background: rgba(0, 0, 0, 0.05); // Darker tint
+            padding: 2px 6px;
+            border: 1px solid global.$color-border-subtle-2;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+    }
+
+    .security-note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-size: 10px;
+        color: global.$color-text-light; // Updated to medium gray
+
+        .shield-icon { font-size: 0.7rem; }
+    }
+}

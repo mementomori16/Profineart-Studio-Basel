@@ -42,7 +42,7 @@
         margin-bottom: global.$space-md;
 
         @media (min-width: global.$breakpoint-sm) {
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 2fr 1fr; // Restored your specific ratio
         }
 
         &.grid-3 {
@@ -85,7 +85,8 @@
         }
     }
 
-.booking-summary {
+    /* --- Booking Summary & Clickable Product Info --- */
+    .booking-summary {
         padding: global.$space-lg global.$space-xl;
         background-color: global.$color-surface;
         border-radius: global.$border-radius-md;
@@ -104,22 +105,26 @@
             margin-bottom: global.$space-md;
         }
 
-        /* ➡️ NEW: Product Info Container */
         .summary-product-info {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: global.$space-md;
             margin-bottom: global.$space-lg;
-            padding-bottom: global.$space-md;
+            padding: global.$space-sm; // Added padding for better hover hit area
             border-bottom: 1px solid global.$color-border-subtle;
-           // ➡️ FIX: Add cursor pointer for clickability
-           cursor: pointer; 
-           transition: opacity 0.2s; 
+            
+            // --- Navigation interaction ---
+            cursor: pointer; 
+            transition: all 0.2s ease-in-out;
+            border-radius: global.$border-radius-sm;
 
-           &:hover {
-            opacity: 0.9;
-           }
-
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.03); // Subtle highlight
+                .course-title {
+                    color: global.$color-primary !important;
+                    text-decoration: underline;
+                }
+            }
 
             .product-image-container {
                 flex-shrink: 0;
@@ -127,36 +132,38 @@
                 height: 75px;
                 overflow: hidden;
                 border-radius: global.$border-radius-sm;
+                background: #eee;
             }
 
             .product-image {
                 width: 100%;
                 height: 100%;
-                object-fit: contain; 
+                object-fit: cover; 
             }
 
             .product-details {
                 flex-grow: 1;
+                min-width: 0; 
             }
         }
         
-        /* --- Course Title Styling --- */
-        .course-title { // Renamed from .booking-course-title for consistency
+        .course-title {
+            display: block !important;
             font-size: global.$font-size-h5;
-            color: global.$color-text-dark;
+            color: #000000 !important; // Ensure high contrast
             font-weight: global.$font-weight-bold;
-            margin: 0 0 global.$space-xxs 0; /* Adjusted margin */
+            margin-bottom: global.$space-xxs;
+            overflow: visible;
+            transition: color 0.2s;
         }
         
-        /* ➡️ NEW: Brief Description Styling */
         .brief-description {
+            display: block;
             font-size: global.$font-size-sm;
             color: global.$color-text-dark3;
-            margin-top: 0;
-            margin-bottom: 0;
+            margin: 0;
         }
         
-        /* --- Details Section (Date, Package, Price) --- */
         .summary-details {
             padding-top: global.$space-sm;
         }
@@ -188,7 +195,7 @@
         }
     }
 
-    /* --- DatePicker & Input Group Styling --- */
+    /* --- DatePicker Styling --- */
     .date-picker-wrapper {
         .input-group {
             display: flex;
@@ -210,52 +217,25 @@
 
     .react-datepicker-wrapper { flex-grow: 1; }
 
-    .react-datepicker {
-        border: 1px solid global.$color-border-subtle;
-        border-radius: global.$border-radius-sm;
-        box-shadow: global.$shadow-md;
-        font-family: global.$font-family-base;
-    }
-
-    .react-datepicker__header {
-        background-color: global.$color-background-hover;
-        border-bottom-color: global.$color-border-subtle;
-    }
-
-    .react-datepicker__day--selected,
-    .react-datepicker__day--keyboard-selected {
-        background-color: global.$color-primary !important;
-        color: global.$color-text-white !important;
-    }
-
-    .react-datepicker__year-select {
-        padding: global.$space-xs;
-        border-radius: global.$border-radius-sm;
-        border: 1px solid global.$color-border-subtle;
-    }
-
-    /* --- Error and Buttons --- */
+    /* --- Validation and Status --- */
     .alert-warning {
         padding: global.$space-md;
         border-radius: global.$border-radius-sm;
-        background-color: color.adjust(global.$color-warning, $alpha: -0.8);
+        background-color: rgba(255, 193, 7, 0.1);
         color: global.$color-warning;
         border: 1px solid global.$color-warning;
-        margin-bottom: global.$space-md;
+        margin: 0 global.$space-xl global.$space-md global.$space-xl;
         display: flex;
         align-items: center;
         gap: global.$space-sm;
         font-weight: global.$font-weight-semibold;
 
-        margin-left: global.$space-xl;
-        margin-right: global.$space-xl;
-
         @media (max-width: global.$breakpoint-sm) {
-            margin-left: global.$space-lg;
-            margin-right: global.$space-lg;
+            margin: 0 global.$space-lg global.$space-md global.$space-lg;
         }
     }
 
+    /* --- Navigation Buttons --- */
     .d-flex.justify-content-between {
         margin-top: global.$space-lg;
 
@@ -265,16 +245,13 @@
             border: 1px solid global.$color-border-subtle;
             padding: global.$space-sm global.$space-lg;
             border-radius: global.$border-radius-md;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
             cursor: pointer;
 
             &:hover:not(:disabled) {
                 background-color: global.$color-alt-background-2;
             }
-            &:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-            }
+            &:disabled { opacity: 0.5; cursor: not-allowed; }
         }
 
         .btn-primary-custom {
@@ -283,22 +260,18 @@
             border: none;
             font-weight: global.$font-weight-semibold;
             cursor: pointer;
-            transition: background-color 0.2s, box-shadow 0.2s;
-
+            transition: all 0.2s;
             background-color: global.$color-button-blue;
             color: global.$color-text-white;
-            border: 1px solid global.$color-button-blue;
 
             &:hover:not(:disabled) {
                 background-color: global.$color-button-blue-2;
-                border-color: global.$color-button-blue-2;
                 box-shadow: global.$shadow-md;
             }
             &:disabled {
                 background-color: global.$color-border-subtle-2;
                 color: global.$color-text-light;
                 cursor: not-allowed;
-                box-shadow: none;
             }
         }
     }
@@ -307,12 +280,12 @@
         padding-left: 0;
         display: flex;
         align-items: center;
+        margin-bottom: global.$space-lg;
 
         .form-check-input {
             margin-right: global.$space-sm;
             transform: scale(1.2);
             cursor: pointer;
-            float: none;
         }
         .form-check-label {
             cursor: pointer;
@@ -321,9 +294,7 @@
             a {
                 color: global.$color-primary;
                 text-decoration: underline;
-                &:hover {
-                    text-decoration: none;
-                }
+                &:hover { text-decoration: none; }
             }
         }
     }

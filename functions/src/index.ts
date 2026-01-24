@@ -117,6 +117,7 @@ export const api = onRequest({
   memory: "256MiB",       // Smallest memory footprint = lowest cost
   maxInstances: 10,       // HARD CAP: Never run more than 10 copies of this code
   concurrency: 80,        // Each instance can handle 80 people at once
+  
 secrets: [
     "STRIPE_SECRET_KEY", 
     "EMAIL_SERVICE_USER", 

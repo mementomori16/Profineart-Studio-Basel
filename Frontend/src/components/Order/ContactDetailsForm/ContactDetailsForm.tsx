@@ -4,17 +4,16 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaCalendarAlt, FaExclamationCircle } from 'react-icons/fa';
 import { format, parseISO } from 'date-fns';
-import { useNavigate } from 'react-router-dom'; // ⬅️ IMPORTED: For navigation
 
 import { Product, SlotSelection, CustomerDetails, LessonPackage } from '../../../../../Backend/types/Product';
 import { PRODUCT_PACKAGES } from '../../../../../Backend/data/products';
+import StripeTrustSeal from '../../StripeTrustSeal/StripeTrustSeal'; 
 import './contactDetailsForm.scss';
 
-// Updated type definition for CustomerDetails to include new address fields
-type ExtendedCustomerDetails = CustomerDetails & {
+export type ExtendedCustomerDetails = CustomerDetails & {
     streetAndNumber: string;
     apartmentAndFloor: string;
-    index: string; // Postal Code
+    index: string; 
     city: string;
     country: string;
 };
@@ -29,6 +28,7 @@ interface ContactDetailsFormProps {
     slotSelection: SlotSelection;
     initialDetails: ExtendedCustomerDetails;
     onBackStep: () => void;
+    onTitleClick: () => void; 
     onSubmit: (details: FullCustomerDetails) => Promise<void>;
     isLoading: boolean;
 }
@@ -38,11 +38,11 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     slotSelection,
     initialDetails,
     onBackStep,
+    onTitleClick, 
     onSubmit,
     isLoading,
 }) => {
     const { t } = useTranslation();
-    const navigate = useNavigate(); // ⬅️ Initialized useNavigate
 
     const [details, setDetails] = useState<ExtendedCustomerDetails>({
         ...initialDetails,
@@ -55,7 +55,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
 
     const [dateOfBirth, setDateOfBirth] = useState<Date | null>(null);
     const [termsAgreed, setTermsAgreed] = useState(false);
-
     const [validationError, setValidationError] = useState<string | null>(null);
 
     const getPackageLabel = (packageId: string): string => {
@@ -69,29 +68,20 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
         setDetails({ ...details, [e.target.name]: e.target.value });
     };
 
-    // ⬅️ ADDED: Handler to navigate to the product card page
-    const handleProductClick = () => {
-        navigate(`/card/${product.id}`); 
-    };
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
         if (!details.name || !details.email || !details.streetAndNumber || !details.index || !details.city || !details.country) {
-            setValidationError(t('validation.requiredFields') || 'Name, Email, and all main Address fields are required.');
+            setValidationError(t('validation.requiredFields') || 'Required fields missing.');
             return;
         }
-
         if (!dateOfBirth) {
-            setValidationError(t('validation.dobRequired') || 'Date of Birth is required.');
+            setValidationError(t('validation.dobRequired') || 'Date of Birth required.');
             return;
         }
-
         if (!termsAgreed) {
-            setValidationError(t('validation.termsRequired') || 'You must agree to the Terms of Use.');
+            setValidationError(t('validation.termsRequired') || 'Agreement required.');
             return;
         }
-
         setValidationError(null);
 
         const fullDetails: FullCustomerDetails = {
@@ -99,18 +89,15 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
             dateOfBirth: dateOfBirth.toISOString().split('T')[0],
             termsAgreed: termsAgreed,
         };
-
         onSubmit(fullDetails);
     };
 
     const formattedPrice = `${slotSelection.price} ${t('common.currency')}`;
-
     const minDateLimit = new Date('1935-01-01');
     const maxDateLimit = new Date();
 
     return (
         <div className="contact-details-form">
-
             <h3 className="h4 mb-3">{t('checkout.step2Title')}</h3>
 
             {validationError && (
@@ -120,11 +107,8 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
             <div className="booking-summary">
                 <h3 className="h5">{t('checkout.bookingSummary')}</h3>
                 
-                {/* ⬅️ ATTACHED CLICK HANDLER HERE */}
-                <div 
-                    className="summary-product-info" 
-                    onClick={handleProductClick} 
-                >
+                {/* ✅ Clickable Product Area */}
+                <div className="summary-product-info" onClick={onTitleClick}>
                     <div className="product-image-container">
                         <img 
                             src={product.image?.lowResUrl || ''} 
@@ -139,7 +123,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                         )}
                     </div>
                 </div>
-                {/* ⬅️ END NEW PRODUCT INFO CONTAINER */}
 
                 <div className="summary-details">
                     <div className="justify-content-between">
@@ -152,7 +135,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                         <span>{t('checkout.summaryPackage')}:</span>
                         <span>{getPackageLabel(slotSelection.packageId)}</span>
                     </div>
-                    {/* Only one line before total price */}
                     <div className="justify-content-between fw-bold">
                         <span>{t('checkout.totalPrice')}:</span>
                         <span>{formattedPrice}</span>
@@ -162,38 +144,19 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
 
             <form onSubmit={handleSubmit}>
                 <h4 className="h5">{t('checkout.personalDetails')}</h4>
-
                 <div className="form-group-grid-address">
                     <div className="form-field">
                         <label>{t('form.name')} <span className="text-danger">*</span></label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={details.name}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="text" name="name" value={details.name} onChange={handleChange} required />
                     </div>
                     <div className="form-field">
                         <label>{t('form.email')} <span className="text-danger">*</span></label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={details.email}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="email" name="email" value={details.email} onChange={handleChange} required />
                     </div>
                     <div className="form-field">
                         <label>{t('form.phone')}</label>
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={details.phone}
-                            onChange={handleChange}
-                        />
+                        <input type="tel" name="phone" value={details.phone} onChange={handleChange} />
                     </div>
-
                     <div className="form-field date-picker-wrapper">
                         <label>{t('form.dateOfBirth')} <span className="text-danger">*</span></label>
                         <div className="input-group">
@@ -203,10 +166,8 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                                 dateFormat="dd/MM/yyyy"
                                 showYearDropdown
                                 scrollableYearDropdown
-                                yearDropdownItemNumber={100}
                                 minDate={minDateLimit}
                                 maxDate={maxDateLimit}
-                                placeholderText={t('form.dobPlaceholder') || 'DD/MM/YYYY'}
                                 className="form-control"
                                 required
                             />
@@ -216,121 +177,58 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                 </div>
 
                 <h4 className="h5">{t('checkout.addressDetails')}</h4>
-
                 <div className="form-group-grid-address">
                     <div className="form-field">
                         <label>{t('form.streetAndNumber')} <span className="text-danger">*</span></label>
-                        <input
-                            type="text"
-                            name="streetAndNumber"
-                            value={details.streetAndNumber}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="text" name="streetAndNumber" value={details.streetAndNumber} onChange={handleChange} required />
                     </div>
                     <div className="form-field">
                         <label>{t('form.apartmentAndFloor')}</label>
-                        <input
-                            type="text"
-                            name="apartmentAndFloor"
-                            value={details.apartmentAndFloor}
-                            onChange={handleChange}
-                        />
+                        <input type="text" name="apartmentAndFloor" value={details.apartmentAndFloor} onChange={handleChange} />
                     </div>
                 </div>
 
                 <div className="form-group-grid-address grid-3">
                     <div className="form-field">
                         <label>{t('form.index')} <span className="text-danger">*</span></label>
-                        <input
-                            type="text"
-                            name="index"
-                            value={details.index}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="text" name="index" value={details.index} onChange={handleChange} required />
                     </div>
                     <div className="form-field">
                         <label>{t('form.city')} <span className="text-danger">*</span></label>
-                        <input
-                            type="text"
-                            name="city"
-                            value={details.city}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="text" name="city" value={details.city} onChange={handleChange} required />
                     </div>
                     <div className="form-field">
                         <label>{t('form.country')} <span className="text-danger">*</span></label>
-                        <input
-                            type="text"
-                            name="country"
-                            value={details.country}
-                            onChange={handleChange}
-                            required
-                        />
+                        <input type="text" name="country" value={details.country} onChange={handleChange} required />
                     </div>
                 </div>
 
                 <div className="form-field">
                     <label>{t('form.message')}</label>
-                    <textarea
-                        name="message"
-                        value={details.message}
-                        onChange={handleChange}
-                        rows={3}
-                    />
+                    <textarea name="message" value={details.message} onChange={handleChange} rows={3} />
                 </div>
 
-               
-
-<div className="form-check mb-4">
-    <input
-        type="checkbox"
-        id="termsAgreed"
-        className="form-check-input"
-        checked={termsAgreed}
-        onChange={(e) => setTermsAgreed(e.target.checked)}
-        required
-        disabled={isLoading}
-    />
-    <label className="form-check-label" htmlFor="termsAgreed">
-        {/* Updated href to match your router path "/terms-of-use" */}
-        {t('form.iAgreeTo')}{' '}
-        <a 
-            href="/terms-of-use" 
-            target="_blank" 
-            rel="noopener noreferrer"
-        >
-            {t('form.termsOfUse')}
-        </a> 
-        <span className="text-danger"></span>
-    </label>
-</div>
+                <div className="form-check mb-4">
+                    <input type="checkbox" id="termsAgreed" className="form-check-input" checked={termsAgreed} onChange={(e) => setTermsAgreed(e.target.checked)} required />
+                    <label className="form-check-label" htmlFor="termsAgreed">
+                        {t('form.iAgreeTo')} <a href="/terms-of-use" target="_blank">{t('form.termsOfUse')}</a>
+                    </label>
+                </div>
 
                 <div className="d-flex justify-content-between">
-                    <button
-                        type="button"
-                        onClick={onBackStep}
-                        className="btn-secondary"
-                        disabled={isLoading}
-                    >
-                        &larr; {t('checkout.backToSchedule')}
-                    </button>
-
-                    <button
-                        type="submit"
-                        className="btn-primary-custom"
-                        disabled={isLoading || !termsAgreed}
-                    >
+                    <button type="button" onClick={onBackStep} className="btn-secondary">&larr; {t('checkout.backToSchedule')}</button>
+                    <button type="submit" className="btn-primary-custom" disabled={isLoading || !termsAgreed}>
                         {isLoading ? t('common.processing') : t('checkout.confirmAndPay')}
                     </button>
                 </div>
+                <StripeTrustSeal />
             </form>
         </div>
     );
 };
 
 export default ContactDetailsForm;
+
+
 
 
