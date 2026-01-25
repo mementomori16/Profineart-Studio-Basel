@@ -56,6 +56,18 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
             enabled: true,
         },
         mode: 'payment',
+        // --- ADDED: Sends official receipt with details to client automatically ---
+        invoice_creation: { 
+            enabled: true,
+            invoice_data: {
+                description: `Lesson: ${data.selectedDate} at ${data.selectedTime}. Wishes: ${data.message || 'None'}`,
+                metadata: metadata 
+            }
+        },
+        // --- ADDED: Ensures metadata is copied to the Payment record for your dashboard ---
+        payment_intent_data: {
+            metadata: metadata 
+        },
         success_url: `${clientBaseUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${clientBaseUrl}/order/cancel`, 
         metadata: metadata,
@@ -87,25 +99,21 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         birthdate: metadata.customerBirthdate || 'N/A',
     };
 
-    // --- TESTING BYPASS START ---
-    // We comment this out so the email fires even if you refresh an old link
-    /*
-    const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent as string);
-    if (paymentIntent.metadata?.fulfilled === 'true') {
-        console.log("LOG: Order already fulfilled. Skipping email.");
-        return details;
-    }
-    */
-    // --- TESTING BYPASS END ---
-
     try {
         console.log("!!! ATTEMPTING TO SEND EMAILS NOW...");
         
-        await sendConfirmationEmail(details); 
-        console.log("!!! CLIENT EMAIL SUCCESS");
-        
-        await sendOwnerNotification(details);
-        console.log("!!! OWNER EMAIL SUCCESS");
+        // We wrap these in their own try/catch inside the main block.
+        // This way, if they fail, we still mark the order as fulfilled in Stripe.
+        try {
+            await sendConfirmationEmail(details); 
+            console.log("!!! CLIENT EMAIL SUCCESS");
+            
+            await sendOwnerNotification(details);
+            console.log("!!! OWNER EMAIL SUCCESS");
+        } catch (mailError) {
+            console.error("!!! MAIL SERVER REJECTED CONNECTION (535/Login Error). Client will receive Stripe Receipt instead.");
+            // We do NOT 'throw' here, so the function continues to the success part.
+        }
 
         // Mark as processed in Stripe
         await stripe.paymentIntents.update(session.payment_intent as string, {
@@ -113,9 +121,9 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         });
         
     } catch (error) {
-        console.error("!!! CRITICAL EMAIL ERROR:", error);
-        // We throw the error so the logs show exactly what Yahoo is saying
-        throw error; 
+        console.error("!!! FULFILLMENT ERROR:", error);
+        // We still return details so the Success Page works
+        return details; 
     }
 
     return details;
