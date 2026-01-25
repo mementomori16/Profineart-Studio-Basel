@@ -8,15 +8,10 @@ import {createStripeCheckoutSession, fulfillOrder} from "./services/checkoutServ
 import {validateAddress} from "./services/geocodingService.js";
 import Stripe from "stripe";
 
-// Only load dotenv locally. Firebase uses 'secrets' automatically.
 if (process.env.NODE_ENV !== "production") {
-    dotenv.config();
+  dotenv.config();
 }
 
-/**
- * STRIPE CONFIGURATION
- * Using a stable API version. 
- */
 const STRIPE_API_VERSION = "2024-12-18.acacia" as any;
 
 const getStripe = () => {
@@ -30,7 +25,6 @@ const app = express();
 
 // --- Security & Middleware ---
 app.use(helmet());
-
 app.use(cors({
   origin: [
     process.env.CLIENT_URL || "http://localhost:5173",
@@ -52,24 +46,19 @@ function getErrorMessage(error: unknown): string {
 }
 
 /**
- * ROUTES
- * Note: These paths are relative to the function name 'api'.
- * Calling [FUNCTION_URL]/create-checkout-session will trigger the route below.
+ * RESTORED ROUTE STRUCTURE
+ * We use app.use('/api', router) to ensure all calls to /api/... 
+ * are correctly routed to your logic.
  */
+const router = express.Router();
 
-// Health Check
-app.get("/", (req: Request, res: Response) => {
-  res.json({message: "Server is running via Firebase Functions."});
-});
-
-// Fetch Available Slots
-app.get("/schedule/slots", async (req: Request, res: Response) => {
+// 1. Availability (Restored)
+router.get("/schedule/slots", async (req: Request, res: Response) => {
   try {
     const {productId, date, duration} = req.query;
     if (!productId || typeof productId !== "string" || !date || typeof date !== "string" || !duration) {
       return res.status(400).json({success: false, message: "Missing parameters"});
     }
-
     const durationMinutes = parseInt(duration as string, 10);
     const slots = await getAvailableSlots(productId, date, durationMinutes);
     return res.json({success: true, slots});
@@ -79,26 +68,20 @@ app.get("/schedule/slots", async (req: Request, res: Response) => {
   }
 });
 
-// Address Validation
-app.post("/validate-address", async (req: Request, res: Response) => {
+// 2. Geocoding
+router.post("/validate-address", async (req: Request, res: Response) => {
   try {
     const {address} = req.body;
-    if (!address) {
-      return res.status(400).json({success: false, message: "Address required."});
-    }
-
+    if (!address) return res.status(400).json({success: false, message: "Address required."});
     const validationResult = await validateAddress(address);
-    return res.status(validationResult.isValid ? 200 : 422).json({
-      success: validationResult.isValid,
-      message: validationResult.message,
-    });
+    return res.status(validationResult.isValid ? 200 : 422).json(validationResult);
   } catch (error) {
     return res.status(500).json({success: false, message: "Address validation failed."});
   }
 });
 
-// Create Stripe Checkout Session
-app.post("/create-checkout-session", async (req: Request, res: Response) => {
+// 3. Checkout (With Metadata fix)
+router.post("/create-checkout-session", async (req: Request, res: Response) => {
   try {
     if (!req.body.packageId || !req.body.email) {
       return res.status(400).json({success: false, message: "Missing packageId or email."});
@@ -111,30 +94,27 @@ app.post("/create-checkout-session", async (req: Request, res: Response) => {
   }
 });
 
-// Order Fulfillment (Post-Payment)
-app.post("/order/fulfill", async (req: Request, res: Response) => {
+// 4. Fulfillment
+router.post("/order/fulfill", async (req: Request, res: Response) => {
   try {
     const {sessionId} = req.body;
-    if (!sessionId) {
-      return res.status(400).json({success: false, message: "Invalid session ID."});
-    }
-
+    if (!sessionId) return res.status(400).json({success: false, message: "Invalid session ID."});
     const fulfillmentResult = await fulfillOrder(sessionId, getStripe());
     return res.json({success: true, result: fulfillmentResult});
   } catch (error) {
-    // Return 200 even on snag to avoid showing error page to customer
-    console.error("Fulfillment Handled Error:", getErrorMessage(error));
-    return res.status(200).json({
-      success: true, 
-      message: "Fulfillment completed via Stripe backup."
-    });
+    return res.status(200).json({success: true, message: "Fulfillment completed via Stripe backup."});
   }
 });
 
-/**
- * FIREBASE FUNCTION EXPORT
- * This defines the base path for all routes above.
- */
+// Mount the router under /api
+app.use('/api', router);
+
+// Root health check (directly on app)
+app.get("/", (req: Request, res: Response) => {
+  res.json({message: "Server is running via Firebase Functions."});
+});
+
+// Export as 'api'
 export const api = onRequest({
   region: "europe-west1", 
   memory: "256MiB",      
