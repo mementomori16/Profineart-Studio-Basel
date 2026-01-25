@@ -8,12 +8,15 @@ import {createStripeCheckoutSession, fulfillOrder} from "./services/checkoutServ
 import {validateAddress} from "./services/geocodingService.js";
 import Stripe from "stripe";
 
-// Load dotenv only for local development
+// Only load dotenv locally. Firebase uses 'secrets' automatically.
 if (process.env.NODE_ENV !== "production") {
-  dotenv.config();
+    dotenv.config();
 }
 
-// Stable Stripe API version (Acacia)
+/**
+ * STRIPE CONFIGURATION
+ * Using a stable API version. 
+ */
 const STRIPE_API_VERSION = "2024-12-18.acacia" as any;
 
 const getStripe = () => {
@@ -25,6 +28,7 @@ const getStripe = () => {
 
 const app = express();
 
+// --- Security & Middleware ---
 app.use(helmet());
 
 app.use(cors({
@@ -41,18 +45,25 @@ app.use(cors({
 
 app.use(express.json());
 
+// Helper for clean error logging
 function getErrorMessage(error: unknown): string {
   if (error instanceof Error) return error.message;
   return String(error);
 }
 
-// --- Routes ---
+/**
+ * ROUTES
+ * Note: These paths are relative to the function name 'api'.
+ * Calling [FUNCTION_URL]/create-checkout-session will trigger the route below.
+ */
 
+// Health Check
 app.get("/", (req: Request, res: Response) => {
   res.json({message: "Server is running via Firebase Functions."});
 });
 
-app.get("/api/schedule/slots", async (req: Request, res: Response) => {
+// Fetch Available Slots
+app.get("/schedule/slots", async (req: Request, res: Response) => {
   try {
     const {productId, date, duration} = req.query;
     if (!productId || typeof productId !== "string" || !date || typeof date !== "string" || !duration) {
@@ -68,7 +79,8 @@ app.get("/api/schedule/slots", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/api/validate-address", async (req: Request, res: Response) => {
+// Address Validation
+app.post("/validate-address", async (req: Request, res: Response) => {
   try {
     const {address} = req.body;
     if (!address) {
@@ -85,7 +97,8 @@ app.post("/api/validate-address", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/api/create-checkout-session", async (req: Request, res: Response) => {
+// Create Stripe Checkout Session
+app.post("/create-checkout-session", async (req: Request, res: Response) => {
   try {
     if (!req.body.packageId || !req.body.email) {
       return res.status(400).json({success: false, message: "Missing packageId or email."});
@@ -98,7 +111,8 @@ app.post("/api/create-checkout-session", async (req: Request, res: Response) => 
   }
 });
 
-app.post("/api/order/fulfill", async (req: Request, res: Response) => {
+// Order Fulfillment (Post-Payment)
+app.post("/order/fulfill", async (req: Request, res: Response) => {
   try {
     const {sessionId} = req.body;
     if (!sessionId) {
@@ -108,6 +122,7 @@ app.post("/api/order/fulfill", async (req: Request, res: Response) => {
     const fulfillmentResult = await fulfillOrder(sessionId, getStripe());
     return res.json({success: true, result: fulfillmentResult});
   } catch (error) {
+    // Return 200 even on snag to avoid showing error page to customer
     console.error("Fulfillment Handled Error:", getErrorMessage(error));
     return res.status(200).json({
       success: true, 
@@ -116,6 +131,10 @@ app.post("/api/order/fulfill", async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * FIREBASE FUNCTION EXPORT
+ * This defines the base path for all routes above.
+ */
 export const api = onRequest({
   region: "europe-west1", 
   memory: "256MiB",      

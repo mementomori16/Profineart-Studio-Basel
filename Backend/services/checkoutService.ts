@@ -1,7 +1,12 @@
 import Stripe from 'stripe';
 import { PRODUCT_PACKAGES } from '../data/products.js';
 import { LessonPackage } from '../types/Product.js'; 
-import { sendConfirmationEmail, sendOwnerNotification } from './emailService.js';
+
+// Helper function to ensure metadata strings don't exceed Stripe's 500-character limit
+const limit = (str: any, max: number = 490): string => {
+    const text = String(str || "");
+    return text.length > max ? text.substring(0, max) + "..." : text;
+};
 
 export interface FulfillmentDetails {
     name: string;
@@ -23,20 +28,21 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 
     const priceInCentimes = Math.round(selectedPackage.price * 100); 
 
+    // Metadata is critical for your records, but Stripe enforces strict character limits.
     const metadata = {
         packageId: selectedPackage.id,
         lessons: selectedPackage.lessons?.toString() || "1",
         duration: (selectedPackage.durationMinutes?.toString() || "60") + ' min',
         selectedDate: data.selectedDate,
         selectedTime: data.selectedTime,
-        customerName: data.name,
-        customerEmail: data.email,
-        customerPhone: data.phone,
-        customerMessage: data.message || "",
-        customerBirthdate: data.dateOfBirth || data.birthdate || "N/A", 
+        customerName: limit(data.name),
+        customerEmail: limit(data.email),
+        customerPhone: limit(data.phone),
+        customerMessage: limit(data.message || "No specific wishes provided."),
+        customerBirthdate: limit(data.dateOfBirth || data.birthdate || "N/A"), 
     };
 
-    const clientBaseUrl = process.env.CLIENT_URL;
+    const clientBaseUrl = process.env.CLIENT_URL || "https://profineart.ch";
 
     return await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
@@ -45,7 +51,7 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
                 currency: 'chf',
                 product_data: {
                     name: selectedPackage.name, 
-                    description: selectedPackage.description,
+                    description: limit(`Lesson for ${data.name} on ${data.selectedDate} at ${data.selectedTime}`, 450),
                 },
                 unit_amount: priceInCentimes,
             },
@@ -56,16 +62,15 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
             enabled: true,
         },
         mode: 'payment',
-        // --- ADDED: Sends official receipt with details to client automatically ---
         invoice_creation: { 
             enabled: true,
             invoice_data: {
-                description: `Lesson: ${data.selectedDate} at ${data.selectedTime}. Wishes: ${data.message || 'None'}`,
+                description: limit(`Art Lesson on ${data.selectedDate}. Notes: ${data.message || 'None'}`, 450),
                 metadata: metadata 
             }
         },
-        // --- ADDED: Ensures metadata is copied to the Payment record for your dashboard ---
         payment_intent_data: {
+            description: limit(`Lesson Booking: ${data.name} (${data.selectedDate})`, 450),
             metadata: metadata 
         },
         success_url: `${clientBaseUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -100,29 +105,15 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
     };
 
     try {
-        console.log("!!! ATTEMPTING TO SEND EMAILS NOW...");
+        console.log("!!! DATA SECURED IN STRIPE METADATA.");
         
-        // We wrap these in their own try/catch inside the main block.
-        // This way, if they fail, we still mark the order as fulfilled in Stripe.
-        try {
-            await sendConfirmationEmail(details); 
-            console.log("!!! CLIENT EMAIL SUCCESS");
-            
-            await sendOwnerNotification(details);
-            console.log("!!! OWNER EMAIL SUCCESS");
-        } catch (mailError) {
-            console.error("!!! MAIL SERVER REJECTED CONNECTION (535/Login Error). Client will receive Stripe Receipt instead.");
-            // We do NOT 'throw' here, so the function continues to the success part.
-        }
-
-        // Mark as processed in Stripe
+        // Mark as processed in Stripe so you know you've seen it
         await stripe.paymentIntents.update(session.payment_intent as string, {
             metadata: { fulfilled: 'true' }
         });
         
     } catch (error) {
-        console.error("!!! FULFILLMENT ERROR:", error);
-        // We still return details so the Success Page works
+        console.error("!!! LOGGING ERROR:", error);
         return details; 
     }
 
