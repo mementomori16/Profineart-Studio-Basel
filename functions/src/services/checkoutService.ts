@@ -2,6 +2,12 @@ import Stripe from 'stripe';
 import { PRODUCT_PACKAGES } from '../data/products.js';
 import { LessonPackage } from '../types/Product.js'; 
 
+// Helper function to ensure metadata strings don't exceed Stripe's 500-character limit
+const limit = (str: any, max: number = 490): string => {
+    const text = String(str || "");
+    return text.length > max ? text.substring(0, max) + "..." : text;
+};
+
 export interface FulfillmentDetails {
     name: string;
     email: string;
@@ -22,21 +28,21 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 
     const priceInCentimes = Math.round(selectedPackage.price * 100); 
 
-    // This object saves your critical data into the Stripe Dashboard
+    // Metadata is critical for your records, but Stripe enforces strict character limits.
     const metadata = {
         packageId: selectedPackage.id,
         lessons: selectedPackage.lessons?.toString() || "1",
         duration: (selectedPackage.durationMinutes?.toString() || "60") + ' min',
         selectedDate: data.selectedDate,
         selectedTime: data.selectedTime,
-        customerName: data.name,
-        customerEmail: data.email,
-        customerPhone: data.phone,
-        customerMessage: data.message || "No specific wishes.",
-        customerBirthdate: data.dateOfBirth || data.birthdate || "N/A", 
+        customerName: limit(data.name),
+        customerEmail: limit(data.email),
+        customerPhone: limit(data.phone),
+        customerMessage: limit(data.message || "No specific wishes provided."),
+        customerBirthdate: limit(data.dateOfBirth || data.birthdate || "N/A"), 
     };
 
-    const clientBaseUrl = process.env.CLIENT_URL;
+    const clientBaseUrl = process.env.CLIENT_URL || "https://profineart.ch";
 
     return await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
@@ -45,7 +51,7 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
                 currency: 'chf',
                 product_data: {
                     name: selectedPackage.name, 
-                    description: `Lesson for ${data.name} on ${data.selectedDate} at ${data.selectedTime}`,
+                    description: limit(`Lesson for ${data.name} on ${data.selectedDate} at ${data.selectedTime}`, 450),
                 },
                 unit_amount: priceInCentimes,
             },
@@ -56,17 +62,15 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
             enabled: true,
         },
         mode: 'payment',
-        // --- CLIENT RECEIPT SYSTEM ---
         invoice_creation: { 
             enabled: true,
             invoice_data: {
-                description: `CONFIRMED: Art Lesson on ${data.selectedDate} at ${data.selectedTime}. Notes: ${data.message || 'None'}`,
+                description: limit(`Art Lesson on ${data.selectedDate}. Notes: ${data.message || 'None'}`, 450),
                 metadata: metadata 
             }
         },
-        // --- OWNER DATA PROTECTION ---
         payment_intent_data: {
-            description: `Booking: ${data.name} - ${data.selectedDate}`,
+            description: limit(`Lesson Booking: ${data.name} (${data.selectedDate})`, 450),
             metadata: metadata 
         },
         success_url: `${clientBaseUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -76,11 +80,17 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 }
 
 export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<FulfillmentDetails> {
+    console.log("LOG: Starting fulfillment for session:", sessionId);
+    
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     const metadata = session.metadata;
 
     if (!metadata || !session.payment_intent) {
         throw new Error('No metadata found on session.');
+    }
+
+    if (session.payment_status !== 'paid') {
+        throw new Error('Order not paid.');
     }
 
     const details: FulfillmentDetails = {
@@ -95,20 +105,15 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
     };
 
     try {
-        console.log("!!! BYPASSING LOCAL EMAIL SERVICE TO PREVENT 535 ERROR.");
-        // We comment these out because Infomaniak/Yahoo are blocking the connection.
-        // Stripe now sends the receipt via 'invoice_creation'.
-        /*
-        await sendConfirmationEmail(details); 
-        await sendOwnerNotification(details);
-        */
-
+        console.log("!!! DATA SECURED IN STRIPE METADATA.");
+        
+        // Mark as processed in Stripe so you know you've seen it
         await stripe.paymentIntents.update(session.payment_intent as string, {
             metadata: { fulfilled: 'true' }
         });
         
     } catch (error) {
-        console.error("!!! FULFILLMENT ERROR:", error);
+        console.error("!!! LOGGING ERROR:", error);
         return details; 
     }
 

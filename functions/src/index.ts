@@ -8,13 +8,16 @@ import {createStripeCheckoutSession, fulfillOrder} from "./services/checkoutServ
 import {validateAddress} from "./services/geocodingService.js";
 import Stripe from "stripe";
 
-dotenv.config();
+// Load dotenv only for local development
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
-// Fix for Type Error 2322 (Stripe Version Mismatch)
-const STRIPE_API_VERSION = "2025-12-15.clover" as any;
+// Stable Stripe API version (Acacia)
+const STRIPE_API_VERSION = "2024-12-18.acacia" as any;
 
 const getStripe = () => {
-  const stripeSecret = process.env.STRIPE_SECRET_KEY || "dummy_key";
+  const stripeSecret = process.env.STRIPE_SECRET_KEY || "";
   return new Stripe(stripeSecret, {
     apiVersion: STRIPE_API_VERSION,
   });
@@ -22,13 +25,13 @@ const getStripe = () => {
 
 const app = express();
 
-// --- Security Middleware Stack ---
 app.use(helmet());
 
 app.use(cors({
   origin: [
     process.env.CLIENT_URL || "http://localhost:5173",
     "https://profineart.ch",
+    "https://www.profineart.ch",
     /\.web\.app$/,
     /\.firebaseapp\.com$/,
   ],
@@ -102,16 +105,9 @@ app.post("/api/order/fulfill", async (req: Request, res: Response) => {
       return res.status(400).json({success: false, message: "Invalid session ID."});
     }
 
-    // This calls the fixed fulfillOrder in checkoutService.ts
     const fulfillmentResult = await fulfillOrder(sessionId, getStripe());
-    
     return res.json({success: true, result: fulfillmentResult});
   } catch (error) {
-    // --- THE CRITICAL FIX ---
-    // Instead of failing and returning 500 (which shows the error page),
-    // we return a 200 SUCCESS here. 
-    // If the code reaches this catch, it means the payment was good but the 
-    // local logging/emailing hit a snag. We let the user see "Success" anyway.
     console.error("Fulfillment Handled Error:", getErrorMessage(error));
     return res.status(200).json({
       success: true, 

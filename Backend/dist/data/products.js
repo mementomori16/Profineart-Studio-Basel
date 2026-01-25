@@ -311,7 +311,7 @@ export const PRODUCT_PACKAGES = [
         description: 'Single session of 45 minutes.',
         lessons: 1,
         durationMinutes: 45,
-        price: 1, // Price from label
+        price: 0.5, // Price from label
         label: '1 Session (45 min) - 58 CHF',
         sessionType: '1 Session',
     },

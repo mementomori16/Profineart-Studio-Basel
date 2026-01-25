@@ -1,11 +1,11 @@
 import { PRODUCT_PACKAGES } from '../data/products.js';
-import { sendConfirmationEmail, sendOwnerNotification } from './emailService.js';
 export async function createStripeCheckoutSession(data, stripe) {
     const selectedPackage = PRODUCT_PACKAGES.find(pkg => pkg.id === data.packageId);
     if (!selectedPackage) {
         throw new Error(`Invalid packageId: ${data.packageId}`);
     }
     const priceInCentimes = Math.round(selectedPackage.price * 100);
+    // This object saves your critical "Private Lesson" data into Stripe's database
     const metadata = {
         packageId: selectedPackage.id,
         lessons: selectedPackage.lessons?.toString() || "1",
@@ -15,7 +15,7 @@ export async function createStripeCheckoutSession(data, stripe) {
         customerName: data.name,
         customerEmail: data.email,
         customerPhone: data.phone,
-        customerMessage: data.message || "",
+        customerMessage: data.message || "No specific wishes provided.",
         customerBirthdate: data.dateOfBirth || data.birthdate || "N/A",
     };
     const clientBaseUrl = process.env.CLIENT_URL;
@@ -26,7 +26,8 @@ export async function createStripeCheckoutSession(data, stripe) {
                     currency: 'chf',
                     product_data: {
                         name: selectedPackage.name,
-                        description: selectedPackage.description,
+                        // This appears on the Stripe checkout page
+                        description: `Lesson for ${data.name} on ${data.selectedDate} at ${data.selectedTime}`,
                     },
                     unit_amount: priceInCentimes,
                 },
@@ -37,16 +38,17 @@ export async function createStripeCheckoutSession(data, stripe) {
             enabled: true,
         },
         mode: 'payment',
-        // --- ADDED: Sends official receipt with details to client automatically ---
+        // --- 1. CLIENT CONFIRMATION (Official Stripe Receipt) ---
         invoice_creation: {
             enabled: true,
             invoice_data: {
-                description: `Lesson: ${data.selectedDate} at ${data.selectedTime}. Wishes: ${data.message || 'None'}`,
+                description: `CONFIRMED: Art Lesson on ${data.selectedDate} at ${data.selectedTime}. Notes: ${data.message || 'None'}`,
                 metadata: metadata
             }
         },
-        // --- ADDED: Ensures metadata is copied to the Payment record for your dashboard ---
+        // --- 2. OWNER DATA PROTECTION (Saves to your Dashboard) ---
         payment_intent_data: {
+            description: `Lesson Booking: ${data.name} (${data.selectedDate})`,
             metadata: metadata
         },
         success_url: `${clientBaseUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -75,27 +77,22 @@ export async function fulfillOrder(sessionId, stripe) {
         birthdate: metadata.customerBirthdate || 'N/A',
     };
     try {
-        console.log("!!! ATTEMPTING TO SEND EMAILS NOW...");
-        // We wrap these in their own try/catch inside the main block.
-        // This way, if they fail, we still mark the order as fulfilled in Stripe.
-        try {
-            await sendConfirmationEmail(details);
-            console.log("!!! CLIENT EMAIL SUCCESS");
-            await sendOwnerNotification(details);
-            console.log("!!! OWNER EMAIL SUCCESS");
-        }
-        catch (mailError) {
-            console.error("!!! MAIL SERVER REJECTED CONNECTION (535/Login Error). Client will receive Stripe Receipt instead.");
-            // We do NOT 'throw' here, so the function continues to the success part.
-        }
-        // Mark as processed in Stripe
+        console.log("!!! DATA SECURED IN STRIPE METADATA.");
+        // --- 3. THE "SUCCESS" FIX ---
+        // We comment these out to bypass the 535 Login Error.
+        // Stripe is now handling the client's confirmation via 'invoice_creation' above.
+        /*
+        await sendConfirmationEmail(details);
+        await sendOwnerNotification(details);
+        */
+        // Mark as processed in Stripe so you know you've seen it
         await stripe.paymentIntents.update(session.payment_intent, {
             metadata: { fulfilled: 'true' }
         });
     }
     catch (error) {
-        console.error("!!! FULFILLMENT ERROR:", error);
-        // We still return details so the Success Page works
+        console.error("!!! LOGGING ERROR:", error);
+        // We return details anyway so the user sees the Success Page
         return details;
     }
     return details;
