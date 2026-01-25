@@ -23,7 +23,6 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 
     const priceInCentimes = Math.round(selectedPackage.price * 100); 
 
-    // Syncing metadata keys with what your Frontend 'ContactDetails' actually sends
     const metadata = {
         packageId: selectedPackage.id,
         lessons: selectedPackage.lessons?.toString() || "1",
@@ -53,7 +52,6 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
             quantity: 1,
         }],
         customer_email: data.email,
-        // ✅ CRITICAL: This enables the phone number field inside the Stripe UI
         phone_number_collection: {
             enabled: true,
         },
@@ -65,6 +63,8 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 }
 
 export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<FulfillmentDetails> {
+    console.log("LOG: Starting fulfillment for session:", sessionId);
+    
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     const metadata = session.metadata;
 
@@ -76,9 +76,6 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         throw new Error('Order not paid.');
     }
 
-    // Idempotency check using PaymentIntent metadata
-    const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent as string);
-    
     const details: FulfillmentDetails = {
         name: metadata.customerName || 'N/A',
         email: metadata.customerEmail || 'N/A',
@@ -90,18 +87,36 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         birthdate: metadata.customerBirthdate || 'N/A',
     };
 
+    // --- TESTING BYPASS START ---
+    // We comment this out so the email fires even if you refresh an old link
+    /*
+    const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent as string);
     if (paymentIntent.metadata?.fulfilled === 'true') {
+        console.log("LOG: Order already fulfilled. Skipping email.");
         return details;
     }
+    */
+    // --- TESTING BYPASS END ---
 
-    // Trigger Emails
-    await sendConfirmationEmail(details); 
-    await sendOwnerNotification(details);
-    
-    // Mark as processed
-    await stripe.paymentIntents.update(session.payment_intent as string, {
-        metadata: { fulfilled: 'true' }
-    });
+    try {
+        console.log("!!! ATTEMPTING TO SEND EMAILS NOW...");
+        
+        await sendConfirmationEmail(details); 
+        console.log("!!! CLIENT EMAIL SUCCESS");
+        
+        await sendOwnerNotification(details);
+        console.log("!!! OWNER EMAIL SUCCESS");
+
+        // Mark as processed in Stripe
+        await stripe.paymentIntents.update(session.payment_intent as string, {
+            metadata: { fulfilled: 'true' }
+        });
+        
+    } catch (error) {
+        console.error("!!! CRITICAL EMAIL ERROR:", error);
+        // We throw the error so the logs show exactly what Yahoo is saying
+        throw error; 
+    }
 
     return details;
 }

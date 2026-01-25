@@ -13,12 +13,13 @@ dotenv.config();
 // Fix for Type Error 2322 (Stripe Version Mismatch)
 const STRIPE_API_VERSION = "2025-12-15.clover" as any;
 
-// Initialize Stripe
-const stripeSecret = (process.env.STRIPE_SECRET_KEY as string) || "dummy_key_for_build_purposes";
-
-const stripe = new Stripe(stripeSecret, {
-  apiVersion: STRIPE_API_VERSION,
-});
+// Initialize Stripe - Using a lazy-init approach to ensure secrets are loaded
+const getStripe = () => {
+  const stripeSecret = process.env.STRIPE_SECRET_KEY || "dummy_key";
+  return new Stripe(stripeSecret, {
+    apiVersion: STRIPE_API_VERSION,
+  });
+};
 
 const app = express();
 
@@ -86,12 +87,10 @@ app.post("/api/validate-address", async (req: Request, res: Response) => {
 
 app.post("/api/create-checkout-session", async (req: Request, res: Response) => {
   try {
-    // Check for packageId and email which are required for the session
     if (!req.body.packageId || !req.body.email) {
       return res.status(400).json({success: false, message: "Missing packageId or email."});
     }
-    // Pass the entire body to ensure phone and dateOfBirth are included
-    const session = await createStripeCheckoutSession(req.body, stripe);
+    const session = await createStripeCheckoutSession(req.body, getStripe());
     return res.json({checkoutUrl: session.url});
   } catch (error) {
     console.error("Checkout Session Error:", getErrorMessage(error));
@@ -106,9 +105,8 @@ app.post("/api/order/fulfill", async (req: Request, res: Response) => {
       return res.status(400).json({success: false, message: "Invalid session ID."});
     }
 
-    const fulfillmentResult = await fulfillOrder(sessionId, stripe);
+    const fulfillmentResult = await fulfillOrder(sessionId, getStripe());
     
-    // We return 'result' here. Ensure SuccessPage.tsx is looking for 'result'!
     return res.json({success: true, result: fulfillmentResult});
   } catch (error) {
     console.error("Fulfillment API Error:", getErrorMessage(error));
@@ -122,8 +120,8 @@ export const api = onRequest({
   memory: "256MiB",      
   maxInstances: 10,      
   concurrency: 80,         
-  
-secrets: [
+  // ADDED ALL EMAIL VARS HERE
+  secrets: [
     "STRIPE_SECRET_KEY", 
     "EMAIL_SERVICE_USER", 
     "EMAIL_SERVICE_PASS", 
