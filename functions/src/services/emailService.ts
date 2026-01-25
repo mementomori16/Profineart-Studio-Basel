@@ -4,8 +4,8 @@ import { FulfillmentDetails } from './checkoutService.js';
 // 1. Create a transporter using Infomaniak settings
 const transporter = nodemailer.createTransport({
     host: 'mail.infomaniak.com',
-    port: 465, // Infomaniak prefers SSL on 465
-    secure: true, 
+    port: 587,
+    secure: false, // false for 587
     auth: {
         user: process.env.EMAIL_SERVICE_USER, // Your full Infomaniak email
         pass: process.env.EMAIL_SERVICE_PASS, // Your NEW App Password
