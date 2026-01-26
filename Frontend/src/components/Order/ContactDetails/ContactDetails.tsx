@@ -1,22 +1,16 @@
-// src/components/Order/ContactDetails/ContactDetails.tsx - FIXED NAVIGATION VERSION
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
-// 1. Import the form component and types
 import ContactDetailsForm, { FullCustomerDetails } from '../ContactDetailsForm/ContactDetailsForm';
-
-// 2. Import the base types
 import { Product, SlotSelection } from '../../../../../Backend/types/Product';
 
-// Interface definition: Added onTitleClick to bridge the navigation
 interface ContactDetailsProps {
     product: Product;
     slotSelection: SlotSelection;
     initialDetails: FullCustomerDetails; 
     onBackStep: () => void;
-    onTitleClick: () => void; // ✅ Step 1: Accept the prop in the interface
+    onTitleClick: () => void; 
 }
 
 const ContactDetails: React.FC<ContactDetailsProps> = ({
@@ -24,7 +18,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
     slotSelection,
     initialDetails,
     onBackStep,
-    onTitleClick, // ✅ Step 2: Destructure the prop
+    onTitleClick,
 }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +30,9 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
         setIsLoading(true);
         setPaymentError(null);
         
+        // ✅ NEW: Combine your custom address fields into one string for Stripe
+        const formattedAddress = `${fullDetails.streetAndNumber}${fullDetails.apartmentAndFloor ? ', ' + fullDetails.apartmentAndFloor : ''}, ${fullDetails.index} ${fullDetails.city}, ${fullDetails.country}`;
+
         const checkoutData = {
             price: slotSelection.price,
             packageId: slotSelection.packageId,
@@ -46,6 +43,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
             phone: fullDetails.phone,
             message: fullDetails.message,
             dateOfBirth: fullDetails.dateOfBirth,
+            address: formattedAddress, // ✅ Sending the address now!
         };
 
         try {
@@ -79,7 +77,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
                 slotSelection={slotSelection}
                 initialDetails={initialDetails}
                 onBackStep={onBackStep}
-                onTitleClick={onTitleClick} // ✅ Step 3: Pass it to the Form
+                onTitleClick={onTitleClick}
                 onSubmit={handleSubmitOrder} 
                 isLoading={isLoading}
             />

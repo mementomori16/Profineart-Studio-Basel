@@ -16,8 +16,8 @@ export interface FulfillmentDetails {
     package: string;
     phone: string;
     message: string;
-    birthdate: string; 
-    address: string; // Added field
+    birthdate: string;
+    address: string; 
 }
 
 export async function createStripeCheckoutSession(data: any, stripe: Stripe): Promise<Stripe.Checkout.Session> {
@@ -40,6 +40,8 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
         customerPhone: limit(data.phone),
         customerMessage: limit(data.message || "No specific wishes provided."),
         customerBirthdate: limit(data.dateOfBirth || data.birthdate || "N/A"), 
+        // ✅ NEW: Capture the address passed from your ContactDetails.tsx
+        customerAddress: limit(data.address || "N/A"), 
     };
 
     const clientBaseUrl = process.env.CLIENT_URL || "https://profineart.ch";
@@ -47,16 +49,17 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
     return await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         
-        // --- ADDRESS COLLECTION FIXES ---
-        billing_address_collection: 'required', // Forces the user to type their address
-        customer_creation: 'always',            // Links the address to a Customer for the Invoice PDF
-        
+        // ✅ IMPORTANT: Keep customer_creation: 'always' so the address 
+        // attaches to the official PDF Invoice
+        customer_creation: 'always', 
+
         line_items: [{
             price_data: {
                 currency: 'chf',
                 product_data: {
                     name: selectedPackage.name, 
-                    description: limit(`Lesson for ${data.name} on ${data.selectedDate} at ${data.selectedTime}`, 450),
+                    // ✅ Updated: Show address in item description for the receipt
+                    description: limit(`Art Lesson for ${data.name}. Address: ${data.address}`, 450),
                 },
                 unit_amount: priceInCentimes,
             },
@@ -70,7 +73,8 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
         invoice_creation: { 
             enabled: true,
             invoice_data: {
-                description: limit(`Art Lesson on ${data.selectedDate}. Notes: ${data.message || 'None'}`, 450),
+                // ✅ Updated: This makes the address appear on the official PDF bill
+                description: limit(`Art Lesson Confirmation. Billing Address: ${data.address}`, 450),
                 metadata: metadata 
             }
         },
@@ -87,11 +91,7 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<FulfillmentDetails> {
     console.log("LOG: Starting fulfillment for session:", sessionId);
     
-    // We expand 'customer' to get the full address data that was just saved
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
-        expand: ['customer', 'payment_intent']
-    });
-
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
     const metadata = session.metadata;
 
     if (!metadata || !session.payment_intent) {
@@ -102,11 +102,8 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         throw new Error('Order not paid.');
     }
 
-    // Extract address from customer details or the newly created customer object
-    const addr = session.customer_details?.address;
-    const addressString = addr 
-        ? `${addr.line1}${addr.line2 ? ', ' + addr.line2 : ''}, ${addr.postal_code} ${addr.city}, ${addr.country}`
-        : 'No address provided';
+    // ✅ NEW: Use the address we saved in metadata (since user typed it on your site)
+    const addressString = metadata.customerAddress || 'No address provided';
 
     const details: FulfillmentDetails = {
         name: metadata.customerName || 'N/A',
@@ -117,17 +114,16 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         phone: session.customer_details?.phone || metadata.customerPhone || 'N/A', 
         message: metadata.customerMessage || 'No message.',
         birthdate: metadata.customerBirthdate || 'N/A',
-        address: addressString, // Now returning the address to the frontend
+        address: addressString, 
     };
 
     try {
         console.log("!!! DATA SECURED IN STRIPE METADATA.");
         
-        // Save the address to the PaymentIntent as well for your dashboard view
         await stripe.paymentIntents.update(session.payment_intent as string, {
             metadata: { 
                 fulfilled: 'true',
-                customerAddress: limit(addressString, 450)
+                customerAddress: limit(addressString, 450) 
             }
         });
         
