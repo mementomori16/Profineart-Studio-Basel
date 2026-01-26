@@ -30,7 +30,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
         setIsLoading(true);
         setPaymentError(null);
         
-        // ✅ NEW: Combine your custom address fields into one string for Stripe
+        // ✅ STEP 1: Combine the separate fields from your form into one string
         const formattedAddress = `${fullDetails.streetAndNumber}${fullDetails.apartmentAndFloor ? ', ' + fullDetails.apartmentAndFloor : ''}, ${fullDetails.index} ${fullDetails.city}, ${fullDetails.country}`;
 
         const checkoutData = {
@@ -43,7 +43,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
             phone: fullDetails.phone,
             message: fullDetails.message,
             dateOfBirth: fullDetails.dateOfBirth,
-            address: formattedAddress, // ✅ Sending the address now!
+            address: formattedAddress, // ✅ STEP 2: Send the address string to the API
         };
 
         try {

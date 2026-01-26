@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import './sucsessPage.scss';
 
-// Updated to match the backend FulfillmentDetails
+// This interface now matches the data structure coming from our updated fulfillOrder
 interface OrderFulfillmentResult {
     success: boolean;
     result?: {
@@ -16,7 +16,7 @@ interface OrderFulfillmentResult {
         phone: string; 
         message: string;
         birthdate: string;
-        address: string; // 1. Added address here
+        address: string; // ✅ Correctly typed for the UI
     };
     message?: string;
 }
@@ -36,22 +36,26 @@ const SuccessPage: React.FC = () => {
         const query = new URLSearchParams(location.search);
         const sessionId = query.get('session_id');
 
+        // If no session ID is found, we can't fetch data from Stripe
         if (!sessionId) {
             setError(t('successPage.error.missingSession', 'Session ID is missing.'));
             setIsLoading(false);
             return;
         }
         
+        // Prevent double-fulfillment in React Strict Mode
         if (isFulfilledRef.current) return;
         isFulfilledRef.current = true; 
 
         const fulfillOrder = async () => {
             try {
+                // This calls the Backend/stripe.ts fulfillOrder function
                 const response = await axios.post<OrderFulfillmentResult>('/api/order/fulfill', { sessionId });
 
                 if (response.data.success && response.data.result) {
                     setOrderData(response.data.result);
                     
+                    // Clear local storage after successful booking
                     localStorage.removeItem('bookingSlotSelection');
                     localStorage.removeItem('bookingCustomerDetails');
                 } else {
@@ -68,6 +72,7 @@ const SuccessPage: React.FC = () => {
         fulfillOrder();
     }, [location.search, t]);
 
+    // 1. Loading State
     if (isLoading) {
         return (
             <div className="success-page container">
@@ -78,6 +83,7 @@ const SuccessPage: React.FC = () => {
         );
     }
 
+    // 2. Error State
     if (error) {
         return (
             <div className="success-page container error-state">
@@ -90,6 +96,7 @@ const SuccessPage: React.FC = () => {
         );
     }
     
+    // 3. Final Success UI
     return (
         <div className="success-page container success-state">
             <h2 className="success-title">
@@ -110,10 +117,12 @@ const SuccessPage: React.FC = () => {
                         <li>
                             <strong>{t('common.email', 'Email')}:</strong> {orderData.email}
                         </li>
-                        {/* 2. Added Address to the display list */}
+                        
+                        {/* ✅ The repaired Address field */}
                         <li>
                             <strong>{t('common.address', 'Billing Address')}:</strong> {orderData.address}
                         </li>
+                        
                         <li>
                             <strong>{t('common.service', 'Service')}:</strong> {orderData.package}
                         </li>
