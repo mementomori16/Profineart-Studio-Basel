@@ -2,6 +2,12 @@ import Stripe from 'stripe';
 import { PRODUCT_PACKAGES } from '../data/products.js';
 import { LessonPackage } from '../types/Product.js'; 
 
+// Helper function to ensure metadata strings don't exceed Stripe's 500-character limit
+const limit = (str: any, max: number = 490): string => {
+    const text = String(str || "");
+    return text.length > max ? text.substring(0, max) + "..." : text;
+};
+
 export interface FulfillmentDetails {
     name: string;
     email: string;
@@ -10,7 +16,8 @@ export interface FulfillmentDetails {
     package: string;
     phone: string;
     message: string;
-    birthdate: string; 
+    birthdate: string;
+    address: string; // Added address field
 }
 
 export async function createStripeCheckoutSession(data: any, stripe: Stripe): Promise<Stripe.Checkout.Session> {
@@ -22,31 +29,32 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 
     const priceInCentimes = Math.round(selectedPackage.price * 100); 
 
-    // This object saves your critical "Private Lesson" data into Stripe's database
     const metadata = {
         packageId: selectedPackage.id,
         lessons: selectedPackage.lessons?.toString() || "1",
         duration: (selectedPackage.durationMinutes?.toString() || "60") + ' min',
         selectedDate: data.selectedDate,
         selectedTime: data.selectedTime,
-        customerName: data.name,
-        customerEmail: data.email,
-        customerPhone: data.phone,
-        customerMessage: data.message || "No specific wishes provided.",
-        customerBirthdate: data.dateOfBirth || data.birthdate || "N/A", 
+        customerName: limit(data.name),
+        customerEmail: limit(data.email),
+        customerPhone: limit(data.phone),
+        customerMessage: limit(data.message || "No specific wishes provided."),
+        customerBirthdate: limit(data.dateOfBirth || data.birthdate || "N/A"), 
     };
 
-    const clientBaseUrl = process.env.CLIENT_URL;
+    const clientBaseUrl = process.env.CLIENT_URL || "https://profineart.ch";
 
     return await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
+        // --- FIX: This forces Stripe to collect the address for the Invoice ---
+        billing_address_collection: 'required', 
+        
         line_items: [{
             price_data: {
                 currency: 'chf',
                 product_data: {
                     name: selectedPackage.name, 
-                    // This appears on the Stripe checkout page
-                    description: `Lesson for ${data.name} on ${data.selectedDate} at ${data.selectedTime}`,
+                    description: limit(`Lesson for ${data.name} on ${data.selectedDate} at ${data.selectedTime}`, 450),
                 },
                 unit_amount: priceInCentimes,
             },
@@ -57,17 +65,15 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
             enabled: true,
         },
         mode: 'payment',
-        // --- 1. CLIENT CONFIRMATION (Official Stripe Receipt) ---
         invoice_creation: { 
             enabled: true,
             invoice_data: {
-                description: `CONFIRMED: Art Lesson on ${data.selectedDate} at ${data.selectedTime}. Notes: ${data.message || 'None'}`,
+                description: limit(`Art Lesson on ${data.selectedDate}. Notes: ${data.message || 'None'}`, 450),
                 metadata: metadata 
             }
         },
-        // --- 2. OWNER DATA PROTECTION (Saves to your Dashboard) ---
         payment_intent_data: {
-            description: `Lesson Booking: ${data.name} (${data.selectedDate})`,
+            description: limit(`Lesson Booking: ${data.name} (${data.selectedDate})`, 450),
             metadata: metadata 
         },
         success_url: `${clientBaseUrl}/order/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -90,36 +96,36 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         throw new Error('Order not paid.');
     }
 
+    // --- EXTRACT ADDRESS FROM SESSION ---
+    const addr = session.customer_details?.address;
+    const addressString = addr 
+        ? `${addr.line1}${addr.line2 ? ', ' + addr.line2 : ''}, ${addr.postal_code} ${addr.city}, ${addr.country}`
+        : 'No address provided';
+
     const details: FulfillmentDetails = {
         name: metadata.customerName || 'N/A',
         email: metadata.customerEmail || 'N/A',
         date: metadata.selectedDate || 'N/A',
         time: metadata.selectedTime || 'N/A',
         package: `${metadata.lessons} Lessons (${metadata.duration})`,
-        phone: metadata.customerPhone || 'N/A', 
+        phone: session.customer_details?.phone || metadata.customerPhone || 'N/A', 
         message: metadata.customerMessage || 'No message.',
         birthdate: metadata.customerBirthdate || 'N/A',
+        address: addressString, // Now populated in your return object
     };
 
     try {
         console.log("!!! DATA SECURED IN STRIPE METADATA.");
         
-        // --- 3. THE "SUCCESS" FIX ---
-        // We comment these out to bypass the 535 Login Error.
-        // Stripe is now handling the client's confirmation via 'invoice_creation' above.
-        /*
-        await sendConfirmationEmail(details); 
-        await sendOwnerNotification(details);
-        */
-
-        // Mark as processed in Stripe so you know you've seen it
         await stripe.paymentIntents.update(session.payment_intent as string, {
-            metadata: { fulfilled: 'true' }
+            metadata: { 
+                fulfilled: 'true',
+                customerAddress: limit(addressString, 450) // Also save address to the payment record
+            }
         });
         
     } catch (error) {
         console.error("!!! LOGGING ERROR:", error);
-        // We return details anyway so the user sees the Success Page
         return details; 
     }
 

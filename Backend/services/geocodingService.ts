@@ -6,13 +6,6 @@ import { getDistance } from 'geolib'; // You'll need to install 'geolib'
 
 dotenv.config();
 
-const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY;
-const BASEL_LAT = parseFloat(process.env.BASEL_LAT || '47.5582761'); 
-const BASEL_LON = parseFloat(process.env.BASEL_LON || '7.5878411'); 
-// Use the client's provided 20 km (using the .env's 27km as the limit)
-const MAX_DISTANCE_KM = parseFloat(process.env.MAX_DISTANCE_KM || '27'); 
-const BASEL_COORDS = { latitude: BASEL_LAT, longitude: BASEL_LON };
-
 /**
  * Calculates the distance between two coordinates using the Haversine formula (via geolib).
  * @param lat1 Latitude of first point
@@ -36,6 +29,15 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 export async function validateAddress(
     address: string
 ): Promise<{ isValid: boolean; message: string }> {
+
+    // --- MOVED INSIDE TO ENSURE FIREBASE SECRETS ARE LOADED ---
+    const OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY;
+    const BASEL_LAT = parseFloat(process.env.BASEL_LAT || '47.5582761'); 
+    const BASEL_LON = parseFloat(process.env.BASEL_LON || '7.5878411'); 
+    // Use the client's provided 20 km (using the .env's 27km as the limit)
+    const MAX_DISTANCE_KM = parseFloat(process.env.MAX_DISTANCE_KM || '27'); 
+    const BASEL_COORDS = { latitude: BASEL_LAT, longitude: BASEL_LON };
+
     if (!OPENCAGE_API_KEY) {
         return {
             isValid: false,

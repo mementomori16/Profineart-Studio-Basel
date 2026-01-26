@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import './sucsessPage.scss';
 
-// This matches the FulfillmentDetails interface from your backend
+// Updated to match the backend FulfillmentDetails
 interface OrderFulfillmentResult {
     success: boolean;
     result?: {
@@ -16,6 +16,7 @@ interface OrderFulfillmentResult {
         phone: string; 
         message: string;
         birthdate: string;
+        address: string; // 1. Added address here
     };
     message?: string;
 }
@@ -29,33 +30,28 @@ const SuccessPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [orderData, setOrderData] = useState<OrderFulfillmentResult['result'] | null>(null);
     
-    // Ref to prevent double-execution in React Strict Mode
     const isFulfilledRef = useRef(false);
 
     useEffect(() => {
         const query = new URLSearchParams(location.search);
         const sessionId = query.get('session_id');
 
-        // 1. Check for Session ID
         if (!sessionId) {
             setError(t('successPage.error.missingSession', 'Session ID is missing.'));
             setIsLoading(false);
             return;
         }
         
-        // 2. Prevent double calls
         if (isFulfilledRef.current) return;
         isFulfilledRef.current = true; 
 
         const fulfillOrder = async () => {
             try {
-                // Call backend to verify payment and trigger emails
                 const response = await axios.post<OrderFulfillmentResult>('/api/order/fulfill', { sessionId });
 
                 if (response.data.success && response.data.result) {
                     setOrderData(response.data.result);
                     
-                    // Cleanup local storage
                     localStorage.removeItem('bookingSlotSelection');
                     localStorage.removeItem('bookingCustomerDetails');
                 } else {
@@ -72,7 +68,6 @@ const SuccessPage: React.FC = () => {
         fulfillOrder();
     }, [location.search, t]);
 
-    // --- Loading State ---
     if (isLoading) {
         return (
             <div className="success-page container">
@@ -83,7 +78,6 @@ const SuccessPage: React.FC = () => {
         );
     }
 
-    // --- Error State ---
     if (error) {
         return (
             <div className="success-page container error-state">
@@ -96,7 +90,6 @@ const SuccessPage: React.FC = () => {
         );
     }
     
-    // --- Success State ---
     return (
         <div className="success-page container success-state">
             <h2 className="success-title">
@@ -116,6 +109,10 @@ const SuccessPage: React.FC = () => {
                         </li>
                         <li>
                             <strong>{t('common.email', 'Email')}:</strong> {orderData.email}
+                        </li>
+                        {/* 2. Added Address to the display list */}
+                        <li>
+                            <strong>{t('common.address', 'Billing Address')}:</strong> {orderData.address}
                         </li>
                         <li>
                             <strong>{t('common.service', 'Service')}:</strong> {orderData.package}
