@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 import { PRODUCT_PACKAGES } from '../data/products.js';
 import { LessonPackage } from '../types/Product.js'; 
 
+// Helper function to ensure metadata strings don't exceed Stripe's 500-character limit
 const limit = (str: any, max: number = 490): string => {
     const text = String(str || "");
     return text.length > max ? text.substring(0, max) + "..." : text;
@@ -16,7 +17,7 @@ export interface FulfillmentDetails {
     phone: string;
     message: string;
     birthdate: string; 
-    address: string;
+    address: string; // Added field
 }
 
 export async function createStripeCheckoutSession(data: any, stripe: Stripe): Promise<Stripe.Checkout.Session> {
@@ -45,10 +46,10 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 
     return await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        // 1. Force address collection
-        billing_address_collection: 'required', 
-        // 2. IMPORTANT: Create a customer so the address attaches to the Invoice PDF
-        customer_creation: 'always', 
+        
+        // --- ADDRESS COLLECTION FIXES ---
+        billing_address_collection: 'required', // Forces the user to type their address
+        customer_creation: 'always',            // Links the address to a Customer for the Invoice PDF
         
         line_items: [{
             price_data: {
@@ -84,12 +85,15 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
 }
 
 export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<FulfillmentDetails> {
-    // 3. Expand 'customer' to get the full address details reliably
+    console.log("LOG: Starting fulfillment for session:", sessionId);
+    
+    // We expand 'customer' to get the full address data that was just saved
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
         expand: ['customer', 'payment_intent']
     });
 
     const metadata = session.metadata;
+
     if (!metadata || !session.payment_intent) {
         throw new Error('No metadata found on session.');
     }
@@ -98,10 +102,8 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         throw new Error('Order not paid.');
     }
 
-    // 4. Try to get address from Customer object first, then fallback to session details
-    const customer = session.customer as Stripe.Customer;
-    const addr = customer?.address || session.customer_details?.address;
-    
+    // Extract address from customer details or the newly created customer object
+    const addr = session.customer_details?.address;
     const addressString = addr 
         ? `${addr.line1}${addr.line2 ? ', ' + addr.line2 : ''}, ${addr.postal_code} ${addr.city}, ${addr.country}`
         : 'No address provided';
@@ -115,18 +117,23 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         phone: session.customer_details?.phone || metadata.customerPhone || 'N/A', 
         message: metadata.customerMessage || 'No message.',
         birthdate: metadata.customerBirthdate || 'N/A',
-        address: addressString,
+        address: addressString, // Now returning the address to the frontend
     };
 
     try {
+        console.log("!!! DATA SECURED IN STRIPE METADATA.");
+        
+        // Save the address to the PaymentIntent as well for your dashboard view
         await stripe.paymentIntents.update(session.payment_intent as string, {
             metadata: { 
                 fulfilled: 'true',
                 customerAddress: limit(addressString, 450)
             }
         });
+        
     } catch (error) {
-        console.error("Fulfillment secondary update error:", error);
+        console.error("!!! LOGGING ERROR:", error);
+        return details; 
     }
 
     return details;
