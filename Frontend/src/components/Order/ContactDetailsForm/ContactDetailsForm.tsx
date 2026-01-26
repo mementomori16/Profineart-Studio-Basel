@@ -94,14 +94,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
 
     const formattedPrice = `${slotSelection.price} ${t('common.currency')}`;
     const minDateLimit = new Date('1935-01-01');
-
-    // ⚡ Restrict DOB so under 9 years old cannot be selected
-    const today = new Date();
-    const maxDateLimit = new Date(
-        today.getFullYear() - 9,
-        today.getMonth(),
-        today.getDate()
-    );
+    const maxDateLimit = new Date();
 
     return (
         <div className="contact-details-form">
@@ -235,7 +228,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
 };
 
 export default ContactDetailsForm;
-
 
 
 

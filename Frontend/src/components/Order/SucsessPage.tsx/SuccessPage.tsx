@@ -1,151 +1,121 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { parseISO, format } from 'date-fns';
-import './sucsessPage.scss';
+import { useTranslation } from 'react-i18next';
+import { FaCheckCircle, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaEnvelope, FaUser } from 'react-icons/fa';
 
-// Matches backend Order Fulfillment Result
-interface OrderFulfillmentResult {
-    success: boolean;
-    result?: {
-        name: string;
-        email: string;
-        date: string;
-        time: string;
-        package: string;
-        phone?: string;
-        message?: string;
-        birthdate: string;
-    };
-    message?: string;
+import './successPage.scss';
+
+interface BookingDetails {
+    name: string;
+    email: string;
+    date: string;
+    time: string;
+    packageName: string;
+    phone: string;
+    address: string; 
+    message: string;
 }
 
 const SuccessPage: React.FC = () => {
     const { t } = useTranslation();
-    const location = useLocation();
-    const navigate = useNavigate();
-
-    const [isLoading, setIsLoading] = useState(true);
+    const [searchParams] = useSearchParams();
+    const sessionId = searchParams.get('session_id');
+    
+    const [loading, setLoading] = useState(true);
+    const [details, setDetails] = useState<BookingDetails | null>(null);
     const [error, setError] = useState<string | null>(null);
-    const [orderData, setOrderData] = useState<OrderFulfillmentResult['result'] | null>(null);
-
-    // Prevent double execution in React Strict Mode
-    const isFulfilledRef = useRef(false);
+    const hasFetched = useRef(false);
 
     useEffect(() => {
-        const query = new URLSearchParams(location.search);
-        const sessionId = query.get('session_id');
+        if (!sessionId || hasFetched.current) return;
+        hasFetched.current = true;
 
-        if (!sessionId) {
-            setError(t('successPage.error.missingSession', 'Session ID is missing.'));
-            setIsLoading(false);
-            return;
-        }
-
-        if (isFulfilledRef.current) return;
-        isFulfilledRef.current = true;
-
-        const fulfillOrder = async () => {
+        const fetchDetails = async () => {
             try {
-                const response = await axios.post<OrderFulfillmentResult>('/api/order/fulfill', { sessionId });
-
-                if (response.data.success && response.data.result) {
-                    setOrderData(response.data.result);
-
-                    // Clear local storage after successful fulfillment
-                    localStorage.removeItem('bookingSlotSelection');
-                    localStorage.removeItem('bookingCustomerDetails');
-                } else {
-                    setError(response.data.message || t('successPage.error.fulfillmentFailed', 'Fulfillment failed.'));
-                }
-            } catch (err) {
-                console.error("Fulfillment error:", err);
-                setError(t('successPage.error.networkError', 'A network error occurred. Please check your email.'));
+                const response = await axios.get(`/api/order-success?session_id=${sessionId}`);
+                setDetails(response.data.details);
+            } catch (err: any) {
+                setError(t('checkout.errorFetchingDetails'));
             } finally {
-                setIsLoading(false);
+                setLoading(false);
             }
         };
+        fetchDetails();
+    }, [sessionId, t]);
 
-        fulfillOrder();
-    }, [location.search, t]);
+    if (loading) return <div className="success-page-loading">{t('common.loading')}...</div>;
 
-    // --- Loading State ---
-    if (isLoading) {
+    if (error || !details) {
         return (
-            <div className="success-page container">
-                <div className="loading-spinner">
-                    <p>{t('common.processing', 'Processing your booking...')}</p>
-                </div>
+            <div className="success-page-error">
+                <h1>{t('common.error')}</h1>
+                <p>{error || t('checkout.sessionNotFound')}</p>
+                <Link to="/" className="btn-primary-custom">{t('common.backToHome')}</Link>
             </div>
         );
     }
 
-    // --- Error State ---
-    if (error) {
-        return (
-            <div className="success-page container error-state">
-                <h2>{t('successPage.title.error', 'Something went wrong')}</h2>
-                <p>{error}</p>
-                <button className="btn-primary" onClick={() => navigate('/')}>
-                    {t('common.backToHome', 'Back to Home')}
-                </button>
-            </div>
-        );
-    }
-
-    // --- Success State ---
     return (
-        <div className="success-page container success-state">
-            <h2 className="success-title">
-                🎉 {t('successPage.title.success', 'Booking Successful')} 🎉
-            </h2>
-
-            <p className="success-message">
-                {t('successPage.message.confirmation', 'Thank you! Your payment was successful and your booking is confirmed.')}
-            </p>
-
-            {orderData && (
-                <div className="confirmation-details">
-                    <h3>{t('successPage.detailsTitle', 'Booking Details')}</h3>
-                    <ul className="details-list">
-                        <li>
-                            <strong>{t('common.name', 'Name')}:</strong> {orderData.name}
-                        </li>
-                        <li>
-                            <strong>{t('common.email', 'Email')}:</strong> {orderData.email}
-                        </li>
-                        <li>
-                            <strong>{t('common.service', 'Service')}:</strong> {orderData.package}
-                        </li>
-                        <li>
-                            <strong>{t('common.date', 'Date')}:</strong> {format(parseISO(orderData.date), 'dd/MM/yyyy')} @ {orderData.time}
-                        </li>
-                        {orderData.phone && (
-                            <li>
-                                <strong>{t('common.phone', 'Phone')}:</strong> {orderData.phone}
-                            </li>
-                        )}
-                        {orderData.message && (
-                            <li>
-                                <strong>{t('common.message', 'Message')}:</strong> {orderData.message}
-                            </li>
-                        )}
-                        <li>
-                            <strong>{t('common.dateOfBirth', 'Date of Birth')}:</strong> {orderData.birthdate}
-                        </li>
-                    </ul>
+        <div className="success-page container">
+            <div className="success-card">
+                <div className="success-header">
+                    <FaCheckCircle className="success-icon" />
+                    <h1>{t('checkout.paymentSuccessful')}</h1>
+                    <p>{t('checkout.confirmationSent')} {details.email}</p>
                 </div>
-            )}
 
-            <p className="email-note">
-                {t('successPage.message.emailSent', 'A confirmation email has been sent to your inbox.')}
-            </p>
+                <div className="details-grid">
+                    <div className="detail-item">
+                        <FaUser />
+                        <div>
+                            <label>{t('form.name')}</label>
+                            <span>{details.name}</span>
+                        </div>
+                    </div>
 
-            <div className="actions">
-                <button className="btn-primary" onClick={() => navigate('/')}>
-                    {t('common.backToHome', 'Back to Home')}
-                </button>
+                    <div className="detail-item">
+                        <FaEnvelope />
+                        <div>
+                            <label>{t('form.email')}</label>
+                            <span>{details.email}</span>
+                        </div>
+                    </div>
+
+                    <div className="detail-item">
+                        <FaCalendarAlt />
+                        <div>
+                            <label>{t('checkout.summaryDate')}</label>
+                            <span>{details.date}</span>
+                        </div>
+                    </div>
+
+                    <div className="detail-item">
+                        <FaClock />
+                        <div>
+                            <label>{t('checkout.summaryTime')}</label>
+                            <span>{details.time}</span>
+                        </div>
+                    </div>
+
+                    <div className="detail-item full-width">
+                        <FaMapMarkerAlt />
+                        <div>
+                            <label>{t('checkout.addressDetails')}</label>
+                            <span>{details.address}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="success-footer">
+                    <p>{t('checkout.thankYouMessage')}</p>
+                    <div className="actions">
+                        <Link to="/" className="btn-secondary">{t('common.backToHome')}</Link>
+                        <button onClick={() => window.print()} className="btn-primary-custom">
+                            {t('checkout.printReceipt')}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );

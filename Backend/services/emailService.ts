@@ -1,96 +1,135 @@
 import nodemailer from 'nodemailer';
 import { FulfillmentDetails } from './checkoutService.js';
 
-// 1. Create a transporter using Infomaniak settings
 const transporter = nodemailer.createTransport({
     host: 'mail.infomaniak.com',
     port: 587,
-    secure: false, // false for 587
+    secure: false, // Use STARTTLS
     auth: {
-        user: process.env.EMAIL_SERVICE_USER, // Your full Infomaniak email
-        pass: process.env.EMAIL_SERVICE_PASS, // Your NEW App Password
+        user: process.env.EMAIL_SERVICE_USER, 
+        pass: process.env.EMAIL_SERVICE_PASS, 
     },
 });
 
-/**
- * Sends a booking confirmation email to the client.
- */
+
 export async function sendConfirmationEmail(details: FulfillmentDetails): Promise<void> {
     const mailOptions = {
-        // The 'from' must match your Infomaniak user
         from: `"Professional Fine Art Studio" <${process.env.EMAIL_SERVICE_USER}>`,
         to: details.email,
-        subject: `🎨 Booking Confirmed: ${details.package}`,
-        
-        text: `Hello ${details.name},\n\nThank you for your booking! Here are the details:\n\nService: ${details.package}\nDate: ${details.date} @ ${details.time}\n\nWe look forward to seeing you.`,
-
+        subject: `🎨 Booking Confirmed: ${details.packageName}`,
+        text: `Hello ${details.name},\n\nThank you for your booking! Your payment was successful.\n\nDetails:\nService: ${details.packageName}\nDate: ${details.date}\nTime: ${details.time}\nAddress: ${details.address}\n\nWe look forward to seeing you at the studio!`,
         html: `
-            <div style="font-family: Arial, sans-serif; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;">
-                <h2 style="color: #333333; text-align: center;">Booking Confirmation 🎉</h2>
-                <p>Hello <strong>${details.name}</strong>,</p>
-                <p>Thank you for booking with us! Your payment was successful, and your session is confirmed.</p>
-                
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 20px;">
-                    <h3 style="color: #6bb3f1; margin-top: 0;">Your Booking Details</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><strong>Service:</strong> ${details.package}</li>
-                        <li><strong>Date:</strong> ${details.date}</li>
-                        <li><strong>Time:</strong> ${details.time}</li>
-                        <li><strong>Email:</strong> ${details.email}</li>
-                    </ul>
+            <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+                <div style="background-color: #2c3e50; color: #ffffff; padding: 20px; text-align: center;">
+                    <h1 style="margin: 0; font-size: 24px;">Booking Confirmed!</h1>
                 </div>
-                
-                <p style="margin-top: 20px;">We look forward to seeing you at the studio!</p>
-                <p>Best regards,<br><strong>The Art Studio Team</strong></p>
+                <div style="padding: 30px; color: #333;">
+                    <p>Hello <strong>${details.name}</strong>,</p>
+                    <p>Thank you for choosing our studio. Your payment has been processed successfully, and your art session is officially scheduled.</p>
+                    
+                    <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 20px 0;">
+                        <h3 style="margin-top: 0; color: #2c3e50;">Reservation Summary</h3>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 5px 0; color: #7f8c8d;"><strong>Service:</strong></td>
+                                <td style="padding: 5px 0;">${details.packageName}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 0; color: #7f8c8d;"><strong>Date:</strong></td>
+                                <td style="padding: 5px 0;">${details.date}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 0; color: #7f8c8d;"><strong>Time:</strong></td>
+                                <td style="padding: 5px 0;">${details.time}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px 0; color: #7f8c8d;"><strong>Location:</strong></td>
+                                <td style="padding: 5px 0;">${details.address}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <p>If you have any questions or need to reschedule, please reply to this email or contact us directly.</p>
+                    <p style="margin-top: 30px;">Best regards,<br><strong>Professional Fine Art Studio</strong></p>
+                </div>
+                <div style="background-color: #f1f1f1; color: #95a5a6; padding: 15px; text-align: center; font-size: 12px;">
+                    <p style="margin: 0;">&copy; 2026 Professional Fine Art Studio. All rights reserved.</p>
+                </div>
             </div>
         `,
     };
 
     try {
         const info = await transporter.sendMail(mailOptions);
-        console.log(`[INFOMANIAK SUCCESS] Client email sent. ID: ${info.messageId}`);
+        console.log(`[INFOMANIAK SUCCESS] Client confirmation sent: ${info.messageId}`);
     } catch (error) {
-        console.error(`[INFOMANIAK ERROR] Failed to send client email:`, error);
-        throw error; // Re-throw so the Fulfillment log captures it
+        console.error(`[INFOMANIAK ERROR] Failed to send client confirmation:`, error);
+        throw error; // Throw so fulfillOrder knows the notification failed
     }
 }
 
-/**
- * Sends a notification email to the studio owner.
- */
 export async function sendOwnerNotification(details: FulfillmentDetails): Promise<void> {
     const ownerEmail = process.env.EMAIL_SERVICE_USER;
 
     const mailOptions = {
-        from: `"Studio System" <${process.env.EMAIL_SERVICE_USER}>`,
+        from: `"Studio Booking System" <${process.env.EMAIL_SERVICE_USER}>`,
         to: ownerEmail,
-        subject: `🔔 NEW BOOKING: ${details.package} on ${details.date}`,
-        
+        subject: `🔔 NEW BOOKING: ${details.name} - ${details.date}`,
         html: `
-            <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-                <h2 style="color: #4CAF50;">New Booking Alert! 🔔</h2>
-                <div style="background: #f0fff0; padding: 15px; border-radius: 5px; margin-top: 20px;">
-                    <h3 style="color: #4CAF50; margin-top: 0;">Client & Booking Details</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li><strong>Service:</strong> ${details.package}</li>
-                        <li><strong>Date:</strong> ${details.date}</li>
-                        <li><strong>Time:</strong> ${details.time}</li>
-                        <li><strong>Client Name:</strong> ${details.name}</li>
-                        <li><strong>Client Email:</strong> ${details.email}</li>
-                        <li><strong>Client Phone:</strong> ${details.phone}</li>
-                    </ul>
-                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
-                    <p><strong>Client Message:</strong></p>
-                    <p style="white-space: pre-wrap; margin-left: 10px; font-style: italic;">${details.message}</p>
+            <div style="font-family: Arial, sans-serif; color: #333;">
+                <h2 style="color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">New Order Received</h2>
+                <p>You have a new booking. Here are the full details provided by the customer:</p>
+                
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="text-align: left; padding: 10px; border: 1px solid #ddd;">Field</th>
+                        <th style="text-align: left; padding: 10px; border: 1px solid #ddd;">Customer Information</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Name</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${details.name}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Email</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${details.email}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Phone</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${details.phone}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Birthdate</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${details.birthdate}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Address</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${details.address}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Package Booked</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${details.packageName}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Scheduled For</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${details.date} at ${details.time}</td>
+                    </tr>
+                </table>
+
+                <div style="background-color: #fff9c4; padding: 15px; border-radius: 5px; border: 1px solid #fbc02d;">
+                    <h4 style="margin-top: 0;">Customer Message:</h4>
+                    <p style="margin-bottom: 0;">${details.message}</p>
                 </div>
+                
+                <p style="margin-top: 20px; font-size: 12px; color: #95a5a6;">This is an automated notification from your website's Stripe integration.</p>
             </div>
         `,
     };
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log(`[INFOMANIAK SUCCESS] Owner notification sent.`);
+        console.log(`[INFOMANIAK SUCCESS] Owner notification sent for: ${details.name}`);
     } catch (error) {
         console.error(`[INFOMANIAK ERROR] Failed to send owner notification:`, error);
+        
     }
 }
