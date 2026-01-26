@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { FaCheckCircle, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaEnvelope, FaUser } from 'react-icons/fa';
+import { FaCheckCircle, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaEnvelope, FaUser, FaBoxOpen } from 'react-icons/fa';
 
 import './successPage.scss';
 
@@ -66,6 +66,15 @@ const SuccessPage: React.FC = () => {
                 </div>
 
                 <div className="details-grid">
+                    {/* Added Service Title back to the top of the grid */}
+                    <div className="detail-item full-width">
+                        <FaBoxOpen />
+                        <div>
+                            <label>{t('checkout.summaryPackage')}</label>
+                            <span>{details.packageName}</span>
+                        </div>
+                    </div>
+
                     <div className="detail-item">
                         <FaUser />
                         <div>

@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-
-// 1. Import the form component and types
 import ContactDetailsForm, { FullCustomerDetails } from '../ContactDetailsForm/ContactDetailsForm';
-
-// 2. Import the base types from your specific Product.ts
 import { Product, SlotSelection } from '../../../../../Backend/types/Product';
 
 interface ContactDetailsProps {
@@ -33,7 +29,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
         setIsLoading(true);
         setPaymentError(null);
         
-        // Combine address fields to match the 'address' string in your SlotSelection interface
+        // ASSEMBLY: Glue the 5 individual fields into one string for Stripe Metadata
         const combinedAddress = [
             fullDetails.streetAndNumber,
             fullDetails.apartmentAndFloor,
@@ -42,17 +38,15 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
         ].filter(part => part && part.trim() !== "").join(', ');
 
         const checkoutData = {
-            // Data from SlotSelection
             productId: product.id.toString(),
-            price: slotSelection.price,
             packageId: slotSelection.packageId,
             selectedDate: slotSelection.selectedDate,
             selectedTime: slotSelection.selectedTime,
+            price: slotSelection.price,
             lessons: slotSelection.lessons,
             durationMinutes: slotSelection.durationMinutes,
-            address: combinedAddress, // <--- Correctly mapped to your SlotSelection.address
-            
-            // Data from ContactDetailsForm
+            // This is the key the backend is looking for
+            address: combinedAddress, 
             name: fullDetails.name,
             email: fullDetails.email,
             phone: fullDetails.phone,
@@ -64,15 +58,11 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
             const response = await axios.post<{ checkoutUrl: string }>('/api/create-checkout-session', checkoutData);
             const { checkoutUrl } = response.data;
             
-            if (!checkoutUrl) {
-                throw new Error("Backend did not return a Stripe checkout URL.");
+            if (checkoutUrl) {
+                window.location.href = checkoutUrl;
             }
-
-            window.location.href = checkoutUrl;
-
         } catch (error: any) {
             const errorMessage = error.response?.data?.message || error.message || t('checkout.unknownPaymentError');
-            console.error('Checkout Session Failed:', errorMessage);
             setPaymentError(errorMessage);
             setIsLoading(false); 
         } 

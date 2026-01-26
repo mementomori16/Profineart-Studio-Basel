@@ -3,8 +3,7 @@ import { PRODUCT_PACKAGES } from '../data/products.js';
 import { LessonPackage } from '../types/Product.js'; 
 
 /**
- * Helper to ensure metadata strings stay within Stripe's character limits.
- * Stripe metadata values have a limit of 500 characters.
+ * Helper to ensure metadata strings stay within Stripe's character limits (500 chars).
  */
 const limit = (str: any, max: number = 490): string => {
     const text = String(str || "");
@@ -37,12 +36,11 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
         throw new Error(`Invalid packageId: ${data.packageId}`);
     }
 
-    // Stripe requires the price in the smallest currency unit (e.g., centimes for CHF)
+    // Stripe requires the price in the smallest currency unit (centimes for CHF)
     const unitAmount = Math.round(selectedPackage.price * 100);
 
     /**
-     * Metadata object to be passed through the Stripe flow.
-     * This allows us to recover full booking details even if our database fails.
+     * Metadata object: This is the "safe" where we store all your form data.
      */
     const metadata = {
         productId: data.productId,
@@ -54,8 +52,9 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
         customerName: limit(data.name),
         customerEmail: limit(data.email),
         customerPhone: limit(data.phone),
-        customerAddress: limit(data.address || "N/A"), // Combined address from ContactDetails.tsx
-        customerMessage: limit(data.message || "No specific wishes provided."),
+        // This 'address' comes from the combined string in ContactDetails.tsx
+        customerAddress: limit(data.address || "N/A"), 
+        customerMessage: limit(data.message || "No message provided."),
         customerBirthdate: limit(data.dateOfBirth || "N/A"), 
     };
 
@@ -68,7 +67,7 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
                 currency: 'chf',
                 product_data: {
                     name: selectedPackage.name, 
-                    description: limit(`${selectedPackage.lessons} sessions for ${data.name}`, 450),
+                    description: `${selectedPackage.lessons} Sessions x ${selectedPackage.durationMinutes} min`,
                 },
                 unit_amount: unitAmount,
             },
@@ -76,7 +75,12 @@ export async function createStripeCheckoutSession(data: any, stripe: Stripe): Pr
         }],
         customer_email: data.email,
         mode: 'payment',
-        // We attach metadata at the session level AND the payment intent level
+        
+        // --- NATIVE STRIPE COLLECTIONS ---
+        phone_number_collection: { enabled: true },
+        billing_address_collection: 'required', 
+
+        // Attach metadata to both the Session and the PaymentIntent
         metadata: metadata,
         payment_intent_data: { 
             metadata: metadata 
@@ -99,34 +103,58 @@ export async function fulfillOrder(sessionId: string, stripe: Stripe): Promise<F
         throw new Error('No metadata found in Stripe session. Cannot fulfill order.');
     }
 
-    // Verify the payment was actually successful before proceeding
+    // Verify payment status
     if (session.payment_status !== 'paid') {
         throw new Error(`Order fulfillment failed: Session status is ${session.payment_status}`);
     }
 
-    // Map the Stripe metadata back to our internal FulfillmentDetails interface
+    /**
+     * Data Retrieval Logic:
+     * We prioritize Stripe's verified data, then fall back to our metadata.
+     */
+    
+    // 1. Get Phone
+    const finalPhone = metadata.customerPhone || session.customer_details?.phone || 'N/A';
+
+    // 2. Get Address
+    let finalAddress = metadata.customerAddress || 'N/A';
+    const nativeAddr = session.customer_details?.address;
+    if (nativeAddr?.line1) {
+        finalAddress = [
+            nativeAddr.line1,
+            nativeAddr.line2,
+            `${nativeAddr.postal_code} ${nativeAddr.city}`,
+            nativeAddr.country
+        ].filter(Boolean).join(', ');
+    }
+
+    // 3. Construct the details object
     const details: FulfillmentDetails = {
         name: metadata.customerName || 'N/A',
         email: metadata.customerEmail || 'N/A',
         date: metadata.selectedDate || 'N/A',
         time: metadata.selectedTime || 'N/A',
-        packageName: `${metadata.lessons} Lessons (${metadata.duration})`,
-        phone: metadata.customerPhone || 'N/A', 
-        address: metadata.customerAddress || 'N/A',
+        // This is the specific label that will appear on the Success Page
+        packageName: `Private Lesson: ${metadata.lessons} Sessions`,
+        phone: finalPhone, 
+        address: finalAddress,
         message: metadata.customerMessage || 'No message provided.',
         birthdate: metadata.customerBirthdate || 'N/A',
     };
 
     try {
-        // Optional: Update the PaymentIntent to mark it as fulfilled in the Stripe Dashboard
+        // Mark as fulfilled in the Stripe Dashboard
         if (session.payment_intent) {
             await stripe.paymentIntents.update(session.payment_intent as string, {
-                metadata: { ...metadata, fulfilled: 'true', fulfillment_date: new Date().toISOString() }
+                metadata: { 
+                    ...metadata, 
+                    fulfilled: 'true', 
+                    fulfillment_date: new Date().toISOString() 
+                }
             });
         }
-        console.log("LOG: Fulfillment details successfully compiled for client:", details.name);
+        console.log("LOG: Fulfillment details successfully compiled for:", details.name);
     } catch (error) {
-        // We catch the error but return the details anyway so the email/success page still works
         console.error("LOG: Non-critical error updating payment intent metadata:", error);
     }
 
