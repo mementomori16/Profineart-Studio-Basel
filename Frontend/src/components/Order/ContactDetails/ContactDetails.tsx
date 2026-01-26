@@ -2,87 +2,124 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
-import ContactDetailsForm, { FullCustomerDetails } from '../ContactDetailsForm/ContactDetailsForm';
+import ContactDetailsForm, {
+  FullCustomerDetails,
+} from '../ContactDetailsForm/ContactDetailsForm';
 import { Product, SlotSelection } from '../../../../../Backend/types/Product';
 
 interface ContactDetailsProps {
-    product: Product;
-    slotSelection: SlotSelection;
-    initialDetails: FullCustomerDetails; 
-    onBackStep: () => void;
-    onTitleClick: () => void; 
+  product: Product;
+  slotSelection: SlotSelection;
+  initialDetails: FullCustomerDetails;
+  onBackStep: () => void;
+  onTitleClick: () => void;
 }
 
+const MIN_AGE = 9;
+const MAX_AGE = 85;
+
+const calculateAge = (dateOfBirth: string): number => {
+  const dob = new Date(dateOfBirth);
+  const today = new Date();
+
+  let age = today.getFullYear() - dob.getFullYear();
+  const monthDiff = today.getMonth() - dob.getMonth();
+
+  if (
+    monthDiff < 0 ||
+    (monthDiff === 0 && today.getDate() < dob.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+};
+
 const ContactDetails: React.FC<ContactDetailsProps> = ({
-    product,
-    slotSelection,
-    initialDetails,
-    onBackStep,
-    onTitleClick,
+  product,
+  slotSelection,
+  initialDetails,
+  onBackStep,
+  onTitleClick,
 }) => {
-    const { t } = useTranslation();
-    const [isLoading, setIsLoading] = useState(false);
-    const [paymentError, setPaymentError] = useState<string | null>(null);
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
 
-    const handleSubmitOrder = async (fullDetails: FullCustomerDetails) => {
-        if (isLoading) return;
+  const handleSubmitOrder = async (fullDetails: FullCustomerDetails) => {
+    if (isLoading) return;
 
-        setIsLoading(true);
-        setPaymentError(null);
-        
-        // ✅ STEP 1: Combine the separate fields from your form into one string
-        const formattedAddress = `${fullDetails.streetAndNumber}${fullDetails.apartmentAndFloor ? ', ' + fullDetails.apartmentAndFloor : ''}, ${fullDetails.index} ${fullDetails.city}, ${fullDetails.country}`;
+    setPaymentError(null);
 
-        const checkoutData = {
-            price: slotSelection.price,
-            packageId: slotSelection.packageId,
-            selectedDate: slotSelection.selectedDate,
-            selectedTime: slotSelection.selectedTime,
-            name: fullDetails.name,
-            email: fullDetails.email,
-            phone: fullDetails.phone,
-            message: fullDetails.message,
-            dateOfBirth: fullDetails.dateOfBirth,
-            address: formattedAddress, // ✅ STEP 2: Send the address string to the API
-        };
+    // ✅ AGE VALIDATION (CRITICAL)
+    const age = calculateAge(fullDetails.dateOfBirth);
 
-        try {
-            const response = await axios.post<{ checkoutUrl: string }>('/api/create-checkout-session', checkoutData);
-            const { checkoutUrl } = response.data;
-            
-            if (!checkoutUrl) {
-                throw new Error("Backend did not return a Stripe checkout URL.");
-            }
+    if (age < MIN_AGE || age > MAX_AGE) {
+      setPaymentError(
+        t(
+          'validation.ageRestriction',
+          'Unfortunately, this service is only available for people between 9 and 85 years old.'
+        )
+      );
+      return; // ⛔ STOP HERE — NO STRIPE CALL
+    }
 
-            window.location.href = checkoutUrl;
+    setIsLoading(true);
 
-        } catch (error: any) {
-            const errorMessage = error.response?.data?.message || error.message || t('checkout.unknownPaymentError');
-            console.error('Checkout Session Failed:', errorMessage);
-            setPaymentError(errorMessage);
-            setIsLoading(false); 
-        } 
+    const checkoutData = {
+      price: slotSelection.price,
+      packageId: slotSelection.packageId,
+      selectedDate: slotSelection.selectedDate,
+      selectedTime: slotSelection.selectedTime,
+      name: fullDetails.name,
+      email: fullDetails.email,
+      phone: fullDetails.phone,
+      message: fullDetails.message,
+      dateOfBirth: fullDetails.dateOfBirth, // stored internally only
     };
 
-    return (
-        <div className="contact-details-payment-wrapper">
-             {paymentError && (
-                <div className="alert alert-danger mb-3">
-                    {t('common.error')}: {paymentError}
-                </div>
-            )}
-            
-            <ContactDetailsForm
-                product={product}
-                slotSelection={slotSelection}
-                initialDetails={initialDetails}
-                onBackStep={onBackStep}
-                onTitleClick={onTitleClick}
-                onSubmit={handleSubmitOrder} 
-                isLoading={isLoading}
-            />
+    try {
+      const response = await axios.post<{ checkoutUrl: string }>(
+        '/api/create-checkout-session',
+        checkoutData
+      );
+
+      if (!response.data.checkoutUrl) {
+        throw new Error('Checkout URL missing');
+      }
+
+      window.location.href = response.data.checkoutUrl;
+    } catch (error: any) {
+      const msg =
+        error.response?.data?.message ||
+        error.message ||
+        t('checkout.unknownPaymentError');
+
+      console.error('Checkout error:', msg);
+      setPaymentError(msg);
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="contact-details-payment-wrapper">
+      {paymentError && (
+        <div className="alert alert-danger mb-3">
+          {t('common.error')}: {paymentError}
         </div>
-    );
+      )}
+
+      <ContactDetailsForm
+        product={product}
+        slotSelection={slotSelection}
+        initialDetails={initialDetails}
+        onBackStep={onBackStep}
+        onTitleClick={onTitleClick}
+        onSubmit={handleSubmitOrder}
+        isLoading={isLoading}
+      />
+    </div>
+  );
 };
 
 export default ContactDetails;

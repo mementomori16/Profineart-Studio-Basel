@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { parseISO, format } from 'date-fns';
 import './sucsessPage.scss';
 
-// This interface now matches the data structure coming from our updated fulfillOrder
+// Matches backend Order Fulfillment Result
 interface OrderFulfillmentResult {
     success: boolean;
     result?: {
@@ -13,10 +14,9 @@ interface OrderFulfillmentResult {
         date: string;
         time: string;
         package: string;
-        phone: string; 
-        message: string;
+        phone?: string;
+        message?: string;
         birthdate: string;
-        address: string; // ✅ Correctly typed for the UI
     };
     message?: string;
 }
@@ -29,33 +29,31 @@ const SuccessPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [orderData, setOrderData] = useState<OrderFulfillmentResult['result'] | null>(null);
-    
+
+    // Prevent double execution in React Strict Mode
     const isFulfilledRef = useRef(false);
 
     useEffect(() => {
         const query = new URLSearchParams(location.search);
         const sessionId = query.get('session_id');
 
-        // If no session ID is found, we can't fetch data from Stripe
         if (!sessionId) {
             setError(t('successPage.error.missingSession', 'Session ID is missing.'));
             setIsLoading(false);
             return;
         }
-        
-        // Prevent double-fulfillment in React Strict Mode
+
         if (isFulfilledRef.current) return;
-        isFulfilledRef.current = true; 
+        isFulfilledRef.current = true;
 
         const fulfillOrder = async () => {
             try {
-                // This calls the Backend/stripe.ts fulfillOrder function
                 const response = await axios.post<OrderFulfillmentResult>('/api/order/fulfill', { sessionId });
 
                 if (response.data.success && response.data.result) {
                     setOrderData(response.data.result);
-                    
-                    // Clear local storage after successful booking
+
+                    // Clear local storage after successful fulfillment
                     localStorage.removeItem('bookingSlotSelection');
                     localStorage.removeItem('bookingCustomerDetails');
                 } else {
@@ -72,7 +70,7 @@ const SuccessPage: React.FC = () => {
         fulfillOrder();
     }, [location.search, t]);
 
-    // 1. Loading State
+    // --- Loading State ---
     if (isLoading) {
         return (
             <div className="success-page container">
@@ -83,7 +81,7 @@ const SuccessPage: React.FC = () => {
         );
     }
 
-    // 2. Error State
+    // --- Error State ---
     if (error) {
         return (
             <div className="success-page container error-state">
@@ -95,14 +93,14 @@ const SuccessPage: React.FC = () => {
             </div>
         );
     }
-    
-    // 3. Final Success UI
+
+    // --- Success State ---
     return (
         <div className="success-page container success-state">
             <h2 className="success-title">
                 🎉 {t('successPage.title.success', 'Booking Successful')} 🎉
             </h2>
-            
+
             <p className="success-message">
                 {t('successPage.message.confirmation', 'Thank you! Your payment was successful and your booking is confirmed.')}
             </p>
@@ -117,23 +115,24 @@ const SuccessPage: React.FC = () => {
                         <li>
                             <strong>{t('common.email', 'Email')}:</strong> {orderData.email}
                         </li>
-                        
-                        {/* ✅ The repaired Address field */}
-                        <li>
-                            <strong>{t('common.address', 'Billing Address')}:</strong> {orderData.address}
-                        </li>
-                        
                         <li>
                             <strong>{t('common.service', 'Service')}:</strong> {orderData.package}
                         </li>
                         <li>
-                            <strong>{t('common.date', 'Date')}:</strong> {orderData.date} @ {orderData.time}
+                            <strong>{t('common.date', 'Date')}:</strong> {format(parseISO(orderData.date), 'dd/MM/yyyy')} @ {orderData.time}
                         </li>
+                        {orderData.phone && (
+                            <li>
+                                <strong>{t('common.phone', 'Phone')}:</strong> {orderData.phone}
+                            </li>
+                        )}
+                        {orderData.message && (
+                            <li>
+                                <strong>{t('common.message', 'Message')}:</strong> {orderData.message}
+                            </li>
+                        )}
                         <li>
-                            <strong>{t('common.phone', 'Phone')}:</strong> {orderData.phone}
-                        </li> 
-                        <li>
-                            <strong>{t('common.message', 'Message')}:</strong> {orderData.message}
+                            <strong>{t('common.dateOfBirth', 'Date of Birth')}:</strong> {orderData.birthdate}
                         </li>
                     </ul>
                 </div>
@@ -142,7 +141,7 @@ const SuccessPage: React.FC = () => {
             <p className="email-note">
                 {t('successPage.message.emailSent', 'A confirmation email has been sent to your inbox.')}
             </p>
-            
+
             <div className="actions">
                 <button className="btn-primary" onClick={() => navigate('/')}>
                     {t('common.backToHome', 'Back to Home')}
