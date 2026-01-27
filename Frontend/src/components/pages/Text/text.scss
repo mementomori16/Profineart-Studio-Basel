@@ -1,115 +1,139 @@
 @use "../../../global.scss" as *;
 
+// Set variable locally if not already in global
+$color-cta-primary-warm: #5C253B; 
+
 .text-component-section {
-    padding: $space-xxxxl 0 $space-xxl; 
-}
+    padding: $space-xxxxl 0;
+    width: 100%;
 
-.text-layout {
-    max-width: 1100px;
-    margin: 0 auto;
-}
+    .text-header {
+        margin-bottom: $space-xl;
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        padding-bottom: $space-sm;
 
-.text-main-title {
-    font-size: $font-size-homepage-section-title;
-    font-weight: $font-weight-light;
-    letter-spacing: 0.3rem;
-    text-transform: uppercase;
-    margin: 0;
-    color: $color-text-white;
-}
+        .text-main-title {
+            @include services-heading;
+            color: $color-text-white;
+            text-align: left;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;
+            font-weight: $font-weight-light;
 
-.text-subtitle {
-    font-size: $font-size-h3;
-    color: $color-text-light;
-    margin-top: $space-sm;
-    margin-bottom: $space-xxl;
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-h3;
+                letter-spacing: 0.2rem;
+            }
+        }
+
+        .text-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: $space-xs;
+            font-weight: $font-weight-light;
+        }
+    }
 }
 
 .text-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: $space-xl $space-xxl;
-    align-items: start;
-
-    @media (max-width: $breakpoint-lg) {
-        grid-template-columns: 1fr 1fr;
-    }
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xxl; // Increased gap for breathing room
+    margin-top: $space-xl;
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
+        gap: $space-xl;
     }
 }
 
 .text-grid-item {
-    p {
-        font-size: $font-size-instruction;
-        line-height: 1.7;
-        color: rgba(255, 255, 255, 0.85);
-        font-weight: $font-weight-light;
-        margin: 0;
-    }
-
-    .item-title {
-        font-size: $font-size-sm;
-        text-transform: uppercase;
-        letter-spacing: 0.15rem;
-        color: $color-text-light;
-        margin-bottom: $space-md;
-        font-weight: $font-weight-semibold;
-    }
-
     &.primary {
         grid-column: 1 / -1;
         margin-bottom: $space-md;
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.05);
+        padding-bottom: $space-xl;
+
         p {
             font-size: 1.4rem;
-            color: $color-text-white;
             line-height: 1.6;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: $space-xl;
+            color: $color-text-white;
+            font-weight: $font-weight-light;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.15rem;
+            }
         }
+    }
+
+    .item-title {
+        color: $color-text-white;
+        font-size: 1.1rem; // Scaled up from small to a proper heading
+        font-weight: $font-weight-semibold;
+        margin-bottom: $space-md;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+    }
+
+    // This controls the readability of the sub-content
+    .item-body-text {
+        color: rgba(255, 255, 255, 0.85); // Brighter than before, but not 100% white
+        font-size: 1rem;
+        line-height: 1.7;
+        font-weight: 300;
+        margin: 0;
     }
 }
 
 .standards-list {
     display: flex;
     flex-direction: column;
-    gap: $space-md;
+    gap: $space-lg;
 
-    p {
-        font-size: $font-size-instruction; 
-        
-        strong {
-            display: block; 
-            color: $color-text-white;
-            font-weight: $font-weight-semibold;
-            margin-bottom: 4px;
-        }
+    .label-accent {
+        display: block;
+        color: #ffffff;
+        font-size: 0.85rem; // Slightly larger for readability
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        margin-bottom: 0.2rem;
     }
 }
 
 .founder-clean-link {
     text-decoration: none;
-    display: block;
-    margin-bottom: 4px;
-
+    display: inline; // Changed to inline so text can wrap around it properly
+    
     strong {
-        color: $color-text-white !important;
-        font-weight: $font-weight-semibold;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        color: $color-cta-primary-warm !important; 
+        font-size: 1.1rem;
+        font-weight: $font-weight-bold;
+        white-space: nowrap; // Keeps name and arrow on one line
 
         .arrow-symbol {
-            font-size: 1rem;
-            font-weight: $font-weight-light;
-            opacity: 0.5;
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            display: inline-block;
+            // THIS IS THE FIX:
+            margin-left: 0.4rem;  // Space between name and arrow
+            margin-right: 0.8rem; // SPACE BETWEEN ARROW AND BIO TEXT
+            transition: transform 0.3s ease;
+            vertical-align: middle;
         }
     }
 
     &:hover .arrow-symbol {
-        opacity: 1;
-        transform: translateX(4px);
+        transform: translateX(5px);
+    }
+
+
+.item-body-text {
+    // Ensure the bio text has room to breathe
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+    &:hover .arrow-symbol {
+        transform: translateX(5px);
     }
 }

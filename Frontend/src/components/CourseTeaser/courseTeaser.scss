@@ -1,0 +1,131 @@
+@use "../../global.scss" as *;
+
+.course-teaser-section {
+    padding: $space-xxxxl 0;
+    width: 100%;
+
+    .teaser-header {
+        margin-bottom: $space-xxl;
+        // This creates the "Signature Look" matching Service Area and Text
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        padding-bottom: $space-sm;
+        
+        .teaser-title {
+            @include services-heading; // Inherit base font
+            color: $color-text-white;
+            text-align: left;           // Forced left to match others
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;     // Increased to match your brand standard
+            margin-bottom: 0;           // Border is now the divider
+            font-weight: $font-weight-light;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-h3;
+                letter-spacing: 0.2rem;
+            }
+        }
+    }
+}
+
+.teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xl;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: 1fr; 
+    }
+}
+
+.teaser-card {
+    text-decoration: none;
+    transition: transform 0.4s ease;
+
+    &:hover {
+        transform: translateY(-0.625rem);
+        
+        .teaser-image-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .teaser-overlay {
+            opacity: 1;
+        }
+    }
+
+    .teaser-image-wrapper {
+        position: relative;
+        height: 15.625rem; // Converted from 250px
+        overflow: hidden;
+        border-radius: 0.125rem;
+        background: $color-text-dark4;
+        margin-bottom: $space-md;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 0.6s ease;
+        }
+
+        .teaser-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+
+            span {
+                color: #fff;
+                border: 0.0625rem solid #fff;
+                padding: 0.5rem 1.5rem;
+                text-transform: uppercase;
+                font-size: 0.7rem;
+                letter-spacing: 0.1rem;
+            }
+        }
+    }
+
+    .teaser-info {
+        h3 {
+            color: $color-text-white;
+            font-size: 1.1rem;
+            font-weight: $font-weight-medium;
+            margin-bottom: $space-xs;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-weight: $font-weight-light;
+        }
+    }
+}
+
+.teaser-footer {
+    margin-top: $space-xxl;
+    text-align: center;
+
+    .view-all-link {
+        color: $color-text-white;
+        text-decoration: none;
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        font-weight: $font-weight-semibold;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            gap: 1.25rem;
+            color: $color-cta-primary-warm;
+        }
+    }
+}

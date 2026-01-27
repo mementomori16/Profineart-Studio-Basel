@@ -1,25 +1,41 @@
 @use "../../../global.scss" as *;
 
 .how-it-works-section {
-    padding: $space-lg 0;
-    text-align: center;
+    // REDUCED TOP PADDING: Prevents double-spacing with the video section above
+    // LARGE BOTTOM PADDING: Maintains the signature breathing room below
+    padding: $space-sm 0 $space-xxxxl 0; 
+    width: 100%;
 
     .section-header {
         margin-bottom: $space-xxl;
+        // SIGNATURE LOOK: Matches Basel Service Area and Text Component
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        padding-bottom: $space-sm;
+        text-align: left;
+
         .how-main-title {
             @include services-heading;
             color: $color-text-white;
+            text-align: left;
             text-transform: uppercase;
-            letter-spacing: 0.3rem;
+            letter-spacing: 0.4rem; // Brand consistent tracking
+            font-weight: $font-weight-light;
+            margin-bottom: 0;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-h3;
+                letter-spacing: 0.2rem;
+            }
         }
     }
 }
 
 .how-flow-container {
     display: flex;
-    justify-content: space-between; // Uses full width
+    justify-content: space-between;
     align-items: flex-start;
     gap: $space-xs;
+    padding-top: $space-xl;
 
     @media (max-width: $breakpoint-md) {
         flex-direction: column;
@@ -33,13 +49,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 280px;
+    max-width: 17.5rem; // Equivalent to 280px
 
     .step-icon-box {
         position: relative;
-        width: 80px;
-        height: 80px;
-        color: #ffffff; // Icons are now pure white
+        width: 5rem;
+        height: 5rem;
+        color: $color-text-white;
         background: rgba(255, 255, 255, 0.07);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 50%;
@@ -48,17 +64,21 @@
         justify-content: center;
         margin-bottom: $space-lg;
 
+        .step-icon {
+            font-size: 1.8rem;
+        }
+
         .step-number {
             position: absolute;
             top: 0;
             right: 0;
-            width: 26px;
-            height: 26px;
-            background: #ffffff;
-            color: #000000;
+            width: 1.625rem;
+            height: 1.625rem;
+            background: $color-text-white;
+            color: $color-text-dark4;
             border-radius: 50%;
             font-size: 0.85rem;
-            font-weight: bold;
+            font-weight: $font-weight-bold;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,28 +86,30 @@
     }
 
     .step-title {
-        color: #ffffff;
+        color: $color-text-white;
         font-size: 1.1rem;
-        font-weight: $font-weight-bold;
+        font-weight: $font-weight-semibold;
         text-transform: uppercase;
         margin-bottom: $space-xs;
+        letter-spacing: 0.05rem;
     }
 
     .step-desc {
-        color: #ffffff; // High brightness
-        font-size: 1.05rem; 
+        color: rgba(255, 255, 255, 0.85); // Bright and readable
+        font-size: 1rem; 
         line-height: 1.5;
         font-weight: $font-weight-light;
-        opacity: 0.95; // Almost 100% visible
+        text-align: center;
+        margin: 0;
     }
 }
 
 .flow-arrow {
     padding-top: 2.5rem;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.2); // Subtle visual guide
+    font-size: 1.5rem;
     
     @media (max-width: $breakpoint-md) {
-        display: none; // Hide arrows on mobile to save space
+        display: none;
     }
 }

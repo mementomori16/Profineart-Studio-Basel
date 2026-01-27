@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import './welcomeHero.scss';
 
 const HERO_IMAGES = {
@@ -15,8 +16,14 @@ const HERO_IMAGES = {
     }
 };
 
-const WelcomeHero: React.FC = () => {
+// Define the interface for props
+interface WelcomeHeroProps {
+    onArrowClick?: () => void;
+}
+
+const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
     const [desktopStage, setDesktopStage] = useState<'low' | 'medium' | 'high'>('low');
     const [mobileStage, setMobileStage] = useState<'low' | 'medium' | 'high'>('low');
 
@@ -39,11 +46,6 @@ const WelcomeHero: React.FC = () => {
             mHigh.onload = () => setMobileStage('high');
         };
     }, []);
-
-    const handleScroll = () => {
-        const coursesSection = document.querySelector('.courses-section');
-        coursesSection?.scrollIntoView({ behavior: 'smooth' });
-    };
 
     return (
         <section className="welcome-hero-art">
@@ -82,13 +84,14 @@ const WelcomeHero: React.FC = () => {
                 <header className="info-frame">
                     <h1 className="service-title">{t('home.welcomeHero.serviceTitle')}</h1>
                     <p className="brand-signature">{t('home.welcomeHero.companyName')}</p>
-                    <button className="hero-btn-pill" onClick={handleScroll}>
+                    <button className="hero-btn-pill" onClick={() => navigate('/courses')}>
                         {t('home.welcomeHero.ctaButton')}
                     </button>
                 </header>
             </div>
 
-            <button className="scroll-arrow" onClick={handleScroll} aria-label="Scroll Down">
+            {/* Click event now uses the passed prop */}
+            <button className="scroll-arrow" onClick={onArrowClick} aria-label="Scroll Down">
                 <span className="arrow-down"></span>
             </button>
         </section>

@@ -1,25 +1,30 @@
 @use "../../../global.scss" as *;
 
 .text-review-centered {
-    padding: $space-xxl 0;
+    // Large padding to make it feel like a distinct "moment" on the page
+    padding: $space-xxxxl 0; 
     background-color: transparent;
+    width: 100%;
 
     .review-wrapper {
-        max-width: 800px; 
+        max-width: 50rem; // Using rem for better scaling
         margin: 0 auto;
         text-align: center;
+        padding: 0 $space-lg;
     }
 
     .review-quote {
-        font-size: 1.4rem; 
+        // Slightly larger than the standard body text but lighter weight
+        font-size: 1.5rem; 
         color: $color-text-white;
-        font-weight: $font-weight-light; // Replaced 300
+        font-weight: $font-weight-light; 
         line-height: 1.6;
-        margin-bottom: $space-md;
-        font-style: normal;
+        margin-bottom: $space-lg;
+        font-style: italic; // Quotes often look more "premium" in italics
+        letter-spacing: 0.02rem;
         
         @media (max-width: $breakpoint-md) {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
         }
     }
 }
@@ -28,31 +33,32 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    gap: $space-sm;
+    gap: $space-md;
     
     .name {
         font-size: $font-size-sm;
         text-transform: uppercase;
-        letter-spacing: 0.15rem;
+        letter-spacing: 0.2rem; // Matching your brand's wide tracking
         color: $color-text-white;
         font-weight: $font-weight-semibold;
     }
 
     .divider {
-        color: rgba(255, 255, 255, 0.3);
-        font-weight: $font-weight-light; // Replaced 300
+        color: rgba(255, 255, 255, 0.2); // Very subtle
+        font-weight: $font-weight-light;
     }
 
     .role {
         font-size: $font-size-xs;
-        color: $color-text-light;
+        // Brighter to match your How It Works description brightness
+        color: rgba(255, 255, 255, 0.7); 
         text-transform: uppercase;
-        letter-spacing: 0.05rem;
+        letter-spacing: 0.1rem;
     }
 
     @media (max-width: $breakpoint-sm) {
         flex-direction: column;
-        gap: $space-xxs;
+        gap: $space-xs;
         
         .divider { display: none; }
     }
