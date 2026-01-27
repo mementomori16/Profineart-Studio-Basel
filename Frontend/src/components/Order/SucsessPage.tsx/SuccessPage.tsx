@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { FaCheckCircle, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaEnvelope, FaUser, FaBoxOpen } from 'react-icons/fa';
 
-import './successPage.scss';
+import './sucsessPage.scss';
 
 interface BookingDetails {
     name: string;
