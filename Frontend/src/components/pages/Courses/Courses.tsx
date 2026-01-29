@@ -1,3 +1,107 @@
+import React, { useEffect, useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { courses } from '../../../../../Backend/data/products'; 
+import { FaLayerGroup, FaMapMarkerAlt, FaCalendarCheck, FaUserFriends, FaArrowRight } from 'react-icons/fa'; 
+import './courses.scss';
+
+const Courses: React.FC = () => { 
+    const { t } = useTranslation();
+    const [activeCategory, setActiveCategory] = useState<'all' | 'Drawing' | 'Painting' | 'Mixed'>('all');
+
+    useEffect(() => {
+        document.body.style.backgroundColor = '#171717';
+        return () => { document.body.style.backgroundColor = ''; };
+    }, []);
+
+    const filteredAndSorted = useMemo(() => {
+        const priorityOrder = ["801", "800", "803", "804", "802", "806", "805"];
+        return [...courses]
+            .filter(p => activeCategory === 'all' || p.category === activeCategory || p.category === 'Mixed')
+            .sort((a, b) => {
+                const iA = priorityOrder.indexOf(a.id.toString());
+                const iB = priorityOrder.indexOf(b.id.toString());
+                return (iA === -1 ? 99 : iA) - (iB === -1 ? 99 : iB);
+            });
+    }, [activeCategory]);
+
+    return (
+        <section className="courses-page-root">
+            <div className="container"> 
+                <header className="section-header">
+                    <h2 className="courses-main-title">{t('coursesPage.title')}</h2>
+                    <p className="intro-text-curated">{t('coursesPage.intro')}</p>
+                    
+                    <nav className="filter-navigation">
+                        {['All', 'Drawing', 'Painting', 'Mixed'].map((cat) => (
+                            <button 
+                                key={cat}
+                                className={`filter-nav-btn ${activeCategory === cat ? 'active' : ''}`}
+                                onClick={() => setActiveCategory(cat as any)}
+                            >
+                                {t(`coursesPage.filter${cat}`)}
+                            </button>
+                        ))}
+                    </nav>
+                </header>
+
+                <div className="courses-list-stack">
+                    {filteredAndSorted.map((product) => (
+                        <article key={product.id} className="course-row-card">
+                            <div className="image-side">
+                                <Link to={`/card/${product.id}`}>
+                                    <img 
+                                        src={product.image?.lowResUrl} 
+                                        alt="" 
+                                        className="row-img" 
+                                    />
+                                    {product.badge && (
+                                        <div className="row-badge">
+                                            {t(`products.${product.id}.badge`)}
+                                        </div>
+                                    )}
+                                </Link>
+                            </div>
+
+                            <div className="content-side">
+                                <h2 className="row-title">{t(`products.${product.id}.title`)}</h2>
+                                
+                                <div className="unified-meta-line">
+                                    <div className="meta-item">
+                                        <FaLayerGroup /> <span>Beginners & Advanced</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <FaMapMarkerAlt /> <span>Student Space</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <FaCalendarCheck /> <span>Flexible Date & Time</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <FaUserFriends /> <span>In-Person</span>
+                                    </div>
+                                </div>
+
+                                <p className="row-desc">
+                                    {t(`products.${product.id}.briefDescription`)}
+                                </p>
+
+                                <Link to={`/card/${product.id}`}>
+                                    <button className="pill-button-wow">
+                                        {t('coursesPage.viewButton')} 
+                                        <FaArrowRight className="btn-icon" />
+                                    </button>
+                                </Link>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Courses;
+/** 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -70,77 +174,6 @@ const Courses: React.FC = () => {
                             </div>
                         </article>
                     ))}
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default Courses;
-
-/** 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { courses } from '../../../../../Backend/data/products'; 
-import './courses.scss';
-
-const Courses: React.FC = () => { 
-    const { t } = useTranslation();
-
-    
-    const priorityOrder = ["806", "801", "800", "804", "802", "803", "805"];
-
-    const sortedCourses = [...courses].sort((a, b) => {
-        const indexA = priorityOrder.indexOf(a.id.toString());
-        const indexB = priorityOrder.indexOf(b.id.toString());
-        // If an ID isn't in the list, it goes to the end
-        return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
-    });
-
-    return (
-        <div className="cardPageContainer courses-section">
-            <div className="cardContentWrapper">
-                <div className="cardHeader">
-                    <h1 className="pageTitle">{t('coursesPage.title', 'Art Mastery Courses')}</h1>
-                </div>
-
-                <div className="gallery">
-                    {sortedCourses
-                        .filter(product => product)
-                        .map((product) => (
-                            <div key={product.id} className="serviceItem">
-                                {product.badge && (
-                                    <div className="badge">
-                                        {t(`products.${product.id}.badge`)}
-                                    </div>
-                                )}
-
-                                <Link to={`/card/${product.id}`} className="image-link">
-                                    <div className="image-wrapper">
-                                        <img
-                                            src={product.image?.lowResUrl || '/assets/placeholder-course.jpg'}
-                                            alt={t(`products.${product.id}.title`)}
-                                            className="image"
-                                        />
-                                    </div>
-                                </Link>
-
-                                <h2 className="title">{t(`products.${product.id}.title`)}</h2>
-
-                                <div className="description-frame">
-                                    <p className="subtitle">
-                                        {t(`products.${product.id}.briefDescription`)}
-                                    </p>
-                                </div>
-
-                                <Link to={`/card/${product.id}`} className="button-link">
-                                    <button className="viewButton">
-                                        {t('coursesPage.viewButton', 'Explore Course')}
-                                    </button>
-                                </Link>
-                            </div>
-                        ))}
                 </div>
             </div>
         </div>

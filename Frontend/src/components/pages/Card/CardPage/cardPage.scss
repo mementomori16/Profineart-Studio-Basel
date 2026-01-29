@@ -13,10 +13,8 @@
     }
 
     .cardContentWrapper {
-        background-color: transparent; 
         width: 100%;
         max-width: global.$breakpoint-xxl;
-        overflow: hidden;
 
         .cardHeader {
             width: 100%;
@@ -31,50 +29,71 @@
                 color: #ffffff !important; 
                 text-transform: uppercase;
                 letter-spacing: 0.2rem;
-
-                @media (max-width: global.$breakpoint-sm) {
-                    font-size: global.$font-size-h4;
-                    padding: 0 global.$space-xs;
-                }
             }
         }
 
         .cardContentLayout {
             display: flex;
             flex-direction: column;
-            padding: global.$space-xl 0;
+            padding: global.$space-xl 0 0 0; // Removed bottom padding
             gap: global.$space-xl;
-
-            @media (max-width: global.$breakpoint-sm) {
-                padding: global.$space-md global.$space-xs; 
-                gap: global.$space-md;
-            }
 
             @media (min-width: global.$breakpoint-lg) {
                 flex-direction: row;
                 gap: global.$space-xxl; 
             }
 
-            .column-left {
-                width: 100%;
-                order: 2;
-                @media (min-width: global.$breakpoint-lg) {
-                    width: 65%;
-                    order: 1;
-                }
-            }
+            .column-left { width: 100%; order: 2; @media (min-width: global.$breakpoint-lg) { width: 65%; order: 1; }}
+            .column-right { width: 100%; order: 1; @media (min-width: global.$breakpoint-lg) { width: 35%; order: 2; display: flex; flex-direction: column; gap: global.$space-md; }}
+        }
 
-            .column-right {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: global.$space-md;
-                order: 1;
-                @media (min-width: global.$breakpoint-lg) {
-                    width: 35%;
-                    order: 2;
-                }
+       .backNavigationSection {
+    display: flex;
+    justify-content: flex-start; 
+    padding: 0;
+    margin-top: global.$space-md; // Small gap from the content above
+    border: none; // Line removed
+
+    .backToCourses {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        // Increased visibility: changed from 0.4 to 0.8 opacity
+        color: rgba(255, 255, 255, 0.8); 
+        text-decoration: none;
+        font-size: 0.8rem; // Slightly larger for visibility
+        font-weight: global.$font-weight-semibold;
+        text-transform: lowercase;
+        letter-spacing: 0.05rem;
+        padding: global.$space-sm 0;
+        transition: all 0.3s ease;
+
+        .arrow {
+            font-family: serif;
+            font-size: 1.1rem;
+            line-height: 0;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); // Subtle glow on hover
+            
+            .arrow {
+                transform: translateX(-3px); // Micro-interaction
             }
+        }
+    }
+        }
+    }
+
+    .similarProductsContainer {
+        width: 100%;
+        max-width: global.$breakpoint-xxl;
+        margin-top: 0; // Sits flush with back button line
+        
+        @media (max-width: global.$breakpoint-sm) {
+            width: 100vw;
         }
     }
 }

@@ -43,6 +43,10 @@ const OrderPage: React.FC = () => {
     const customerDetails = getInitialDetails(); 
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [step]);
+
+    useEffect(() => {
         const productIdStr = id || '';
         const productIdNum = parseInt(productIdStr, 10);
         const selectedProduct = courses.find(c => c.id === productIdNum);

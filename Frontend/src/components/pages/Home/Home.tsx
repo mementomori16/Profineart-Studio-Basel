@@ -7,7 +7,7 @@ import Text from '../Text/Text';
 import TextReview from '../TextReview/TextReview';
 import BaslerServiceArea from '../BaselServiceMap/BaselServiceMap';
 import IconsHowItWorks from '../IconsHowItWorks/IconsHowItWorks';
-import CourseTeaser from '../../CourseTeaser/CourseTeaser';
+import CourseTeaser from '../../CoursesTieser/CourseTeaser';
 
 const Home: React.FC = () => {
     // Reference to the Text section

@@ -1,6 +1,6 @@
-// src/layouts/MainLayout.tsx
 import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+// Removed useLocation from imports since we don't need to read it manually anymore
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import NavDesktop from "../components/NavBar/NavDesktop/NavDesktop";
 import NavMobile from "../components/NavBar/NavMobile/NavMobile";
 import Footer from "../components/Footer/Footer";
@@ -10,7 +10,8 @@ import CookieBanner from "../components/Cookies/Cookiebanner";
 
 export default function MainLayout() {
   const [isMobile, setMobile] = useState<boolean>(window.innerWidth < 992);
-  const location = useLocation();
+
+  // 1. REMOVED: const location = useLocation(); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,18 +19,16 @@ export default function MainLayout() {
     };
     window.addEventListener("resize", handleResize);
     handleResize();
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [location.pathname]);
-
   return (
     <div className="app-container">
+      {/* This handles all the scroll logic for you */}
+      <ScrollRestoration />
+
       {isMobile ? <NavMobile /> : <NavDesktop />}
 
       <main className="main-content">

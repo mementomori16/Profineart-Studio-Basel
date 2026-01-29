@@ -1,16 +1,168 @@
-// src/pages/Home/Home.scss
+@use "../../../global.scss" as *;
 
-.homepage-wrapper {
-    // This targets the body only when it's inside or adjacent to the home wrapper
-    // But since Home.tsx is a route, it's cleaner to target the class itself:
-    background-color: #171717; 
+.courses-page-root {
     width: 100%;
-    display: flow-root; // Prevents margin collapsing (fixes the extra line/gap issue)
+    // Removed hard background to inherit #171717 from Home
+    padding: $space-xxxxl 0;
+
+    @media (max-width: $breakpoint-md) {
+        padding: $space-xxl 0;
+    }
+
+    .container {
+        // This keeps the side gaps identical to Reviews/Text
+        max-width: 1200px; 
+        margin: 0 auto;
+        padding: 0 1.5rem;
+
+        @media (min-width: $breakpoint-md) {
+            padding: 0 2rem;
+        }
+    }
+
+    .section-header {
+        // Identical to your Reviews header
+        margin-bottom: $space-xxxxl;
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        padding-bottom: $space-md;
+
+        .courses-main-title {
+            @include services-heading;
+            color: $color-text-white;
+            text-align: left;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;
+            font-weight: $font-weight-light;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-h3;
+                letter-spacing: 0.2rem;
+            }
+        }
+    }
 }
 
-// This forces the body background to match while on this page
-:global(body) {
-    background-color: #171717 !important;
-    margin: 0;
-    padding: 0;
+.courses-list-stack {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xxxxl;
+}
+
+.course-row-card {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: $space-xl;
+    padding-bottom: $space-xxl;
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.05);
+
+    @media (min-width: $breakpoint-md) {
+        // 15.625rem is the exact width from your reviews.scss for the left column
+        grid-template-columns: 20rem 1fr; 
+        gap: $space-xxxl;
+        align-items: start;
+
+        &:nth-child(even) {
+            .image-side { order: 2; }
+            .content-side { order: 1; }
+        }
+    }
+
+    .image-side {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1; // Square or 4/3 works best for art
+        overflow: hidden;
+
+        .row-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .row-badge {
+            position: absolute;
+            top: 0.8rem;
+            left: 0.8rem;
+            background: rgba($color-cta-primary-warm, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 0.3rem 0.7rem;
+            font-size: 0.55rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+    }
+
+    .content-side {
+        // USES WHOLE SPACE - no internal padding
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .row-title {
+            @include services-heading;
+            color: $color-text-white;
+            font-size: 1.6rem;
+            font-weight: $font-weight-light;
+            margin: 0 0 $space-sm 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        .unified-meta-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: $space-md;
+            margin-bottom: $space-lg;
+            
+            .meta-item {
+                font-size: $font-size-xxs;
+                color: $color-text-light;
+                text-transform: uppercase;
+                letter-spacing: 0.0625rem;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                svg { color: $color-cta-primary-warm; font-size: 0.8rem; }
+            }
+        }
+
+        .row-desc {
+            // Matches .review-text exactly
+            color: rgba(255, 255, 255, 0.85); 
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            margin-bottom: $space-xl;
+            font-weight: $font-weight-light;
+            white-space: pre-line;
+            width: 100%; 
+        }
+
+        /* CRISP GHOST BUTTON */
+        .pill-button-wow {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.8); 
+            padding: 0.7rem 2.2rem;
+            border-radius: 100px;
+            font-size: $font-size-xxs;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            cursor: pointer;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: #fff;
+                color: #000;
+                .btn-icon { color: #000; }
+            }
+
+            .btn-icon { color: $color-cta-primary-warm; }
+        }
+    }
 }

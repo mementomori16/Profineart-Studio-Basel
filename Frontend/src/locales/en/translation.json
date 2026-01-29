@@ -87,7 +87,8 @@
     "siteLink": "Site Link:",
     "mediumForPrivateLessonsCheck": "Course",
     "mediumType": "Course",
-    "mediumType_privateLessons": "Individual Sessions"
+    "mediumType_privateLessons": "Individual Sessions",
+    "backToCourses": "back to courses"
   },
 
   "common": {

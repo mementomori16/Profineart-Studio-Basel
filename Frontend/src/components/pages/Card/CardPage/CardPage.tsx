@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react'; // Added useEffect
-import { useParams } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import CardContainer from '../CardContainer/CardContainer'; 
 import InfoContainer from '../InfoContainer/InfoContainer';
@@ -14,7 +14,6 @@ const CardPage: React.FC = () => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     
-    // SYNC BACKGROUND WITH HOME/COURSES
     useEffect(() => {
         document.body.style.backgroundColor = '#171717';
         return () => { document.body.style.backgroundColor = ''; };
@@ -73,6 +72,13 @@ const CardPage: React.FC = () => {
                             onOpenGallery={openDetailsGallery}
                         />
                     </div>
+                </div>
+
+                <div className="backNavigationSection">
+                    <Link to="/courses" className="backToCourses">
+                        <span className="arrow">←</span>
+                        {t('cardPage.backToCourses')}
+                    </Link>
                 </div>
             </div>
 

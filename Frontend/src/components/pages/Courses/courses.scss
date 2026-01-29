@@ -1,7 +1,258 @@
+@use "../../../global.scss" as *;
+
+.courses-page-root {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 0 5rem 0;
+    // FIXED: Using your specific site color and removing gradient
+    background-color: #171717; 
+
+    .container {
+        max-width: 75rem; 
+        margin: 0 auto;
+        padding: 0 1.5rem; 
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 0 1rem;
+        }
+    }
+
+    .section-header {
+        padding: 4rem 0 $space-sm 0; 
+        margin-bottom: $space-xl;
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1); 
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 1.5rem 0 $space-sm 0; // Reduced top padding from 4rem to 1.5rem
+        }
+
+       .courses-main-title {
+    @include services-heading;
+    color: $color-text-white; 
+    text-align: left;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem; 
+    font-weight: $font-weight-light;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    line-height: 1.1;
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: $font-size-h3;     // Same as teaser
+        letter-spacing: 0.1rem;      // Reduced slightly more to fit the line
+        white-space: nowrap;         // FORCES one line
+        overflow: hidden;            // Prevents horizontal scroll if too long
+        text-overflow: clip;         // Ensures it looks clean at the edge
+        display: block;
+        width: 100%;
+    }
+        }
+
+        .intro-text-curated {
+            color: rgba(255, 255, 255, 0.95); 
+            font-size: 1.1rem;
+            text-transform: none; 
+            letter-spacing: 0.05rem;
+            margin-top: 1rem;
+            font-weight: 400;
+            display: block;
+            width: 100%;
+            max-width: 50rem; 
+            white-space: normal; 
+            line-height: 1.5;
+            text-align: left;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+/* NAVIGATION */
+.filter-navigation {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem; 
+    flex-wrap: wrap;
+
+    .filter-nav-btn {
+        background: transparent;
+        border: 0.125rem solid rgba(255, 255, 255, 0.4); 
+        color: rgba(255, 255, 255, 0.9);
+        padding: 0.7rem 1.6rem;
+        border-radius: 6.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s ease;
+
+        &:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        &.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+    }
+}
+
+/* THE CARD STACK */
+.courses-list-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 2rem; 
+
+    @media (max-width: $breakpoint-sm) {
+        gap: 2.5rem;
+    }
+}
+
+.course-row-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: rgba(255, 255, 255, 0.03);
+    border: none !important; 
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 0; 
+    padding-bottom: 0;
+
+    @media (min-width: 62rem) {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+
+        &:nth-child(even) {
+            .image-side { order: 2; }
+            .content-side { order: 1; }
+        }
+    }
+
+    .image-side {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+
+        .row-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .row-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba($color-cta-primary-warm, 0.85); 
+            backdrop-filter: blur(0.625rem);
+            padding: 0.4rem 1rem;
+            font-size: 0.6rem;
+            color: #fff;
+            border-radius: 6.25rem;
+            text-transform: uppercase;
+            z-index: 2;
+
+            @media (max-width: $breakpoint-sm) {
+                top: 0.6rem; 
+                font-size: 0.55rem; 
+                background: rgba($color-cta-primary-warm, 0.7); 
+                padding: 0.3rem 0.8rem;
+            }
+        }
+    }
+
+    .content-side {
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media (max-width: $breakpoint-sm) {
+            padding: 1.5rem 1rem; 
+        }
+
+        @media (min-width: 75rem) { padding: 3rem 4rem; }
+
+        .row-title {
+            @include services-heading;
+            color: #fff;
+            font-weight: 300;
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            text-align: left;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.5rem;
+            }
+        }
+
+        .unified-meta-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem; 
+
+            .meta-item {
+                font-size: 0.65rem; 
+                color: rgba(255, 255, 255, 0.9);
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                
+                svg { 
+                    color: #fff;
+                    font-size: 0.85rem; 
+                    flex-shrink: 0; 
+                }
+            }
+        }
+
+        .row-desc {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem; 
+            width: 100%;
+        }
+
+        .pill-button-wow {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 6.25rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: fit-content;
+
+            @media (max-width: $breakpoint-sm) {
+                width: 100%;
+            }
+
+            .btn-icon { 
+                color: #000;
+            }
+        }
+    }
+}
+
+/**
 @use "sass:color";
 @use '../../../global.scss' as global;
 
-/* --- PAGE ROOT & LAYOUT --- */
 .courses-page-root {
     width: 100%;
     background: radial-gradient(circle at center, #222222 0%, #171717 100%);
@@ -19,7 +270,6 @@
     }
 }
 
-/* --- TOP HEADER --- */
 .courses-header {
     width: 100%;
     padding: global.$space-md 0 global.$space-lg 0; 
@@ -37,7 +287,6 @@
     }
 }
 
-/* --- INTRO & FILTER NAVIGATION --- */
 .courses-intro {
     max-width: 850px;
     margin: 0 auto global.$space-xxxxl;
@@ -100,13 +349,11 @@
     }
 }
 
-/* --- GALLERY GRID --- */
 .courses-gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: global.$space-xxl;
 
-    // Smooth transition when cards appear/disappear during filtering
     article {
         animation: cardAppear 0.5s ease forwards;
     }
@@ -128,7 +375,6 @@
     }
 }
 
-/* --- COURSE CARD --- */
 .course-card {
     background-color: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -238,157 +484,6 @@
         @media (max-width: global.$breakpoint-sm) {
             top: global.$space-md;
             left: global.$space-md;
-        }
-    }
-}
-
-/**
-@use "sass:color";
-@use '../../../global.scss' as global;
-@import '../Card/CardPage/CardPage.scss'; 
-
-.courses-section {
-    width: 100%;
-    max-width: global.$breakpoint-xxl;
-    margin: 0 auto;
-
-    .cardContentWrapper {
-        display: flex;
-        flex-direction: column;
-        // Reduced top padding to move title higher up (like About page)
-        padding: global.$space-sm global.$space-xxl global.$space-xxl; 
-
-        @media (max-width: global.$breakpoint-md) {
-            padding: global.$space-sm global.$space-lg global.$space-lg;
-        }
-
-        .cardHeader {
-            width: 100%;
-            text-align: left;
-            margin-bottom: global.$space-lg; // Space between Title and Underline
-
-            .pageTitle {
-                color: global.$color-text-dark2 !important;
-                font-size: global.$font-size-h3;
-                font-weight: global.$font-weight-bold;
-                margin: 0; 
-                line-height: 1.2;
-            }
-        }
-    }
-
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: global.$space-xl;
-        
-        // --- UNDERLINE: Matches About page divider ---
-        border-top: 1px solid global.$color-border-subtle;
-        padding-top: global.$space-lg; 
-
-        @media (max-width: global.$breakpoint-lg) {
-            grid-template-columns: repeat(2, 1fr);
-            gap: global.$space-lg;
-        }
-
-        @media (max-width: global.$breakpoint-sm) {
-            grid-template-columns: 1fr;
-            gap: global.$space-lg;
-        }
-    }
-
-    .serviceItem {
-        display: flex;
-        flex-direction: column;
-        align-items: center; // Kept centered for title/image
-        text-align: center; // Kept centered for title
-        padding: global.$space-lg;
-        position: relative;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
-        
-        // --- FRAME STYLE: Matching About page frames ---
-        background-color: rgba(255, 255, 255, 0.4); 
-        border-radius: global.$border-radius-lg; 
-        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-        box-shadow: global.$shadow-sm;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: global.$shadow-lg;
-            border: 1px solid rgba(92, 21, 21, 0.3);
-            .image { transform: scale(1.05); }
-        }
-
-        .badge {
-            position: absolute;
-            top: global.$space-sm;
-            left: global.$space-sm;
-            background-color: rgba(129, 28, 28, 0.85); 
-            color: global.$color-text-white;
-            padding: global.$space-xs global.$space-sm;
-            font-size: global.$font-size-xs;
-            font-weight: global.$font-weight-semibold;
-            border-radius: global.$border-radius-sm;
-            z-index: 4;
-            text-transform: uppercase;
-        }
-
-        .image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 240px; // Restored original height
-            border-radius: global.$border-radius-sm;
-            overflow: hidden;
-            margin-bottom: global.$space-md;
-
-            .image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.4s ease-in-out;
-            }
-        }
-
-        .title {
-            margin: 0;
-            font-size: global.$font-size-h4;
-            font-weight: global.$font-weight-bold;
-            margin-bottom: global.$space-md;
-            color: global.$color-text-dark2;
-        }
-
-        .description-frame {
-            background-color: rgba(255, 255, 255, 0.4); 
-            border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-            border-radius: global.$border-radius-sm;
-            padding: global.$space-sm;
-            width: 100%;
-            margin-bottom: global.$space-md;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; // Frame is centered in card, but content starts left
-
-            .subtitle {
-                font-size: global.$font-size-sm;
-                color: global.$color-text-dark2;
-                line-height: 1.4;
-                margin: 0;
-                text-align: left; // NOT CENTRALIZED
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
-
-        .viewButton {
-            @extend .btn-cta-primary; 
-            width: 100%;
-            font-size: global.$font-size-base;
-            font-weight: global.$font-weight-bold;
         }
     }
 }

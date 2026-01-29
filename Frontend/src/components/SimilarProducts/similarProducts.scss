@@ -2,119 +2,128 @@
 
 .similarProducts {
   margin-top: global.$space-xl;
-  padding: global.$space-lg;
+  padding: global.$space-lg 0; // Removed side padding to allow scrollbar to hit edges
   max-width: global.$breakpoint-xxl;
   margin-left: auto;
   margin-right: auto;
-  background-color: global.$color-card;
-  border-radius: global.$border-radius-lg;
-  box-shadow: global.$shadow-lg;
+  background-color: transparent; 
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 
   h2 {
     font-size: global.$font-size-h3;
-    color: global.$color-text-dark2 !important; 
+    color: #ffffff !important;
     text-align: center;
     margin-bottom: global.$space-md;
-    font-weight: global.$font-weight-bold;
+    font-weight: global.$font-weight-light;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
   }
 
   .scrollableGallery {
     display: flex;
-    gap: global.$space-md; 
+    gap: global.$space-sm; // Reduced gap
     overflow-x: auto; 
-    padding: global.$space-sm global.$space-sm global.$space-lg global.$space-sm; // Extra bottom padding for scrollbar visibility
-    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+    padding: 0 global.$space-lg global.$space-md global.$space-lg; // Side padding inside scroll for better start/end
+    -webkit-overflow-scrolling: touch; // Forces momentum scrolling on iOS
+    scroll-snap-type: x proximity; // Improves mobile feel
+    touch-action: pan-x; // Explicitly allow horizontal touch
 
-    // --- RESTORED SHARP SCROLLBAR ---
     &::-webkit-scrollbar {
-      height: 0.5rem; // Slightly thicker for better visibility
+      height: 4px; 
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: global.$color-border-subtle-2; // Sharp defined color
-      border-radius: global.$border-radius-sm;
-      border: 1px solid rgba(0, 0, 0, 0.05); // Adds definition
-      
-      &:hover {
-        background-color: global.$color-text-light; // Darkens on hover
-      }
+      background-color: rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
     }
 
     &::-webkit-scrollbar-track {
-      background: global.$color-alt-background-2; // Contrast background
-      border-radius: global.$border-radius-sm;
-      margin: 0 global.$space-sm;
+      background: rgba(255, 255, 255, 0.05);
+      margin: 0 global.$space-lg;
     }
 
     .similarProductItem {
       position: relative; 
       flex: 0 0 auto; 
-      width: 14rem; 
+      width: 13rem; // Slightly narrower
       display: flex;
       flex-direction: column;
-      background-color: rgba(255, 255, 255, 0.4); 
-      border-radius: global.$border-radius-lg; 
-      padding: global.$space-sm; 
-      border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-      box-shadow: global.$shadow-sm;
-      transition: transform 0.2s ease;
+      background-color: rgba(255, 255, 255, 0.05); 
+      border-radius: global.$border-radius-md; 
+      padding: global.$space-xs; // Tightened padding
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      scroll-snap-align: start;
 
-      &:hover {
-        transform: translateY(-3px);
-      }
+      // Removes extra space at the bottom
+      justify-content: flex-start; 
 
-      // --- Badge Logic from Courses implementation ---
       .badge {
         position: absolute;
-        top: global.$space-xs;
-        left: global.$space-xs;
-        background-color: rgba(129, 28, 28, 0.85); // Dark red from Courses section
-        color: global.$color-text-white;
-        padding: global.$space-xxxs global.$space-xs;
-        font-size: 0.65rem;
-        font-weight: global.$font-weight-semibold;
-        border-radius: global.$border-radius-sm;
+        top: 0.4rem;
+        left: 0.4rem;
+        background-color: global.$color-cta-primary-warm;
+        color: white;
+        padding: 1px 6px;
+        font-size: 0.6rem; // Smaller base size
+        font-weight: global.$font-weight-bold;
+        border-radius: 2px;
         z-index: 4;
         text-transform: uppercase;
-        pointer-events: none;
       }
 
       .imageWrapper {
         width: 100%;
+        aspect-ratio: 16 / 10; // Fixed ratio to prevent height expansion
         overflow: hidden;
-        border-radius: global.$border-radius-md;
-        line-height: 0;
+        border-radius: global.$border-radius-sm;
       }
 
       .image {
         width: 100%;
-        height: 8rem; 
+        height: 100%;
         object-fit: cover;
       }
 
       .title {
-        margin-top: global.$space-sm; 
-        margin-bottom: 0; 
-        font-size: global.$font-size-sm;
-        font-weight: global.$font-weight-bold;
-        color: global.$color-text-dark2; 
+        margin: global.$space-xs 0 0 0; // Minimal margins
+        font-size: 0.85rem;
+        font-weight: global.$font-weight-semibold;
+        color: rgba(255, 255, 255, 0.9);
         text-align: center;
-        line-height: 1.3;
+        line-height: 1.2;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        min-height: 2.6em; // Ensures titles align even if 1 line
+        min-height: auto; // Removed forced min-height to save space
       }
     }
   }
 
   @media (max-width: global.$breakpoint-sm) {
-    padding: global.$space-md;
-    
-    .scrollableGallery .similarProductItem {
-      width: 10.5rem;
-      .image { height: 6.5rem; }
+    margin-top: global.$space-md;
+    padding-bottom: global.$space-sm;
+
+    .scrollableGallery {
+      padding: 0 global.$space-md global.$space-sm global.$space-md;
+      gap: global.$space-xs;
+
+      .similarProductItem {
+        width: 9rem; // More compact for mobile
+        padding: 4px; // Extremely tight padding
+        
+        .badge {
+          font-size: 0.5rem; // Scale down massive badges
+          padding: 1px 4px;
+          top: 0.25rem;
+          left: 0.25rem;
+        }
+
+        .title {
+          font-size: 0.75rem;
+        }
+      }
     }
   }
 }
