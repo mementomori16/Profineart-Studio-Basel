@@ -61,7 +61,7 @@ const BACKEND_URL = '';
 const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, onNextStep, packages }) => {
     const { t } = useTranslation();
 
-    // --- ADDED: Define "Tomorrow" as the earliest possible booking date ---
+    // --- Define "Tomorrow" as the earliest possible booking date ---
     const getTomorrow = () => {
         const date = new Date();
         date.setDate(date.getDate() + 1);
@@ -69,15 +69,12 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         return date;
     };
 
-    // Updated initial state to tomorrow
     const [selectedDate, setSelectedDate] = useState<Date | null>(getTomorrow());
     const [availableSlots, setAvailableSlots] = useState<AvailableSlot[]>([]);
     const [selectedSlot, setSelectedSlot] = useState<AvailableSlot | null>(null);
 
-    // Initialize selectedPackage using the 'packages' prop (CRITICAL: Ensure packages[0] exists)
     const [selectedPackage, setSelectedPackage] = useState<LessonPackage>(packages.length > 0 ? packages[0] : {} as LessonPackage);
 
-    // Address Validation State
     const [address, setAddress] = useState<string>('');
     const [isAddressValidating, setIsAddressValidating] = useState(false);
     const [addressError, setAddressError] = useState<string | null>(null);
@@ -96,7 +93,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     }
 
     // --- Data Transformation for Column Display ---
-    // Grouping the packages by Session Type
     const groupedPackages = packages.reduce((acc, pkg) => {
         const type = pkg.sessionType || 'Other';
         if (!acc[type]) {
@@ -106,7 +102,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         return acc;
     }, {} as Record<string, LessonPackage[]>);
 
-    // Explicitly define the column order
     const columnOrder = ['2 Sessions', '1.5 Sessions', '1 Session'];
     const packageColumns = columnOrder.map(key => ({
         title: key,
@@ -122,7 +117,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         setAvailableSlots([]);
 
         try {
-            // Include durationMinutes in the query string
             const response = await axios.get<{ success: boolean; slots: AvailableSlot[]; message?: string }>(
                 `${BACKEND_URL}/api/schedule/slots?productId=${productId}&date=${dateString}&duration=${durationInMins}`
             );
@@ -136,7 +130,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
         } catch (err) {
             console.error("Availability fetch error:", err);
-
             const axiosError = axios.isAxiosError(err) ? err : null;
             let errorMessage;
             if (axiosError?.response?.status === 400) {
@@ -150,11 +143,8 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         }
     }, [t, productId]);
 
-    // Trigger slot fetch whenever date or package changes
     useEffect(() => {
         if (formattedDate && selectedPackage.durationMinutes) {
-            // Check if the selected date is a holiday or Sunday (client-side check for UX)
-            // The backend check is definitive, but this prevents unnecessary API calls
             const date = DateTime.fromISO(formattedDate, { zone: 'utc' });
             if (date.weekday === 7 || isClientSwissHoliday(formattedDate)) {
                 setAvailableSlots([]);
@@ -168,7 +158,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
 
     // --- HANDLERS ---
-
     const handleNextStep = () => {
         if (!selectedSlot || !addressValidated || !formattedDate) {
             setError(t('error.completeAllSteps') || 'Please select a date, time slot, and validate your address.');
@@ -233,29 +222,15 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     
     const filterAvailableDates = (date: Date) => {
         const dateISO = DateTime.fromJSDate(date).toISODate();
-        
-        // --- UPDATED: Block Today and Past dates ---
         const tomorrow = getTomorrow();
         const isPastOrToday = date < tomorrow;
 
-        // Exclude Sundays (day 0) and Holidays from selection
         if (date.getDay() === 0 || (dateISO && isClientSwissHoliday(dateISO))) {
             return false;
         }
 
         return !isPastOrToday;
     };
-
-    // Group slots by hour for cleaner display
-    const groupedSlots = availableSlots.reduce((acc, slot) => {
-        const hourKey = slot.time.substring(0, 2);
-        if (!acc[hourKey]) {
-            acc[hourKey] = [];
-        }
-        acc[hourKey].push(slot);
-        return acc;
-    }, {} as Record<string, AvailableSlot[]>);
-
 
     return (
         <div className="date-time-selector-container">
@@ -279,7 +254,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                                             checked={selectedPackage.id === pkg.id}
                                             onChange={() => {
                                                 setSelectedPackage(pkg);
-                                                setSelectedSlot(null); // Reset slot selection when package changes
+                                                setSelectedSlot(null); 
                                             }}
                                         />
                                         <div className="package-info-wrapper">
@@ -308,7 +283,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                             selected={selectedDate}
                             onChange={(date: Date | null) => setSelectedDate(date)}
                             dateFormat="dd MMMM yyyy"
-                            // --- UPDATED: Ensure the earliest selectable date is tomorrow ---
                             minDate={getTomorrow()}
                             filterDate={filterAvailableDates}
                             placeholderText={t('checkout.selectDatePlaceholder')}
@@ -327,29 +301,22 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                             </p>
                         ) : availableSlots.length > 0 ? (
                             <div className="time-slots-grid">
-                                {Object.entries(groupedSlots)
-                                    .sort(([hourA], [hourB]) => hourA.localeCompare(hourB))
-                                    .map(([hour, slots]) => (
-                                        <div key={hour} className="time-slot-group">
-                                            <h4>{hour}:00</h4>
-                                            <div className="time-slots-row">
-                                                {slots.map(slot => (
-                                                    <button
-                                                        key={slot.time}
-                                                        type="button"
-                                                        className={`time-slot-button ${selectedSlot?.time === slot.time ? 'selected' : ''}`}
-                                                        onClick={() => setSelectedSlot(slot)}
-                                                        disabled={!slot.isAvailable}
-                                                    >
-                                                        {slot.time}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
+                                {/* Removed the groupedSlots mapping and hour titles here */}
+                                <div className="time-slots-row">
+                                    {availableSlots.map(slot => (
+                                        <button
+                                            key={slot.time}
+                                            type="button"
+                                            className={`time-slot-button ${selectedSlot?.time === slot.time ? 'selected' : ''}`}
+                                            onClick={() => setSelectedSlot(slot)}
+                                            disabled={!slot.isAvailable}
+                                        >
+                                            {slot.time}
+                                        </button>
                                     ))}
+                                </div>
                             </div>
                         ) : (
-                            // Display a specific message if a holiday/Sunday was selected but filtered out.
                             <p className="no-slots-message">{error || t('checkout.noAvailableSlots')}</p>
                         )}
                         {error && <p className="error-message"><FaExclamationCircle /> {error}</p>}
@@ -362,7 +329,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                 <h3><FaMapMarkerAlt /> {t('checkout.enterAddressTitle') || '3. Enter your address'}</h3>
                 
                 <p className="address-instruction-text">
-                    {t('checkout.addressInstruction') || "The teacher can drive to your address if it is within a **25 km radius** of Basel. This includes parts of Basel, Basel-Land, northern Aargau, and the border towns of Germany (Lörrach, Weil am Rhein, Grenzach-Wyhlen) and France (Saint-Louis, Hésingue, and others). Please check your address below."}
+                    {t('checkout.addressInstruction') || "The teacher can drive to your address if it is within a **25 km radius** of Basel."}
                 </p>
 
                 <div className="address-controls">

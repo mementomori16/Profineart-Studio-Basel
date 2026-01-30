@@ -142,7 +142,6 @@
 /* --- 2. Date and Time Selector --- */
 .date-time-group {
     padding-top: $space-lg;
-    border-top: 1px solid $color-border-subtle;
 }
 
 .date-time-controls {
@@ -211,24 +210,11 @@
     overflow-y: auto;
 }
 
-.time-slot-group h4 {
-    font-size: $font-size-sm;
-    color: $color-text-light;
-    margin-top: $space-sm;
-    margin-bottom: $space-xs;
-    padding-top: $space-xs;
-    border-top: 1px dashed $color-border-subtle;
-}
-.time-slot-group:first-child h4 {
-    margin-top: 0;
-    border-top: none;
-    padding-top: 0;
-}
-
 .time-slots-row {
     display: flex;
     flex-wrap: wrap;
-    gap: $space-xs;
+    gap: $space-sm;
+    justify-content: flex-start;
 }
 
 .time-slot-button {
@@ -240,7 +226,9 @@
     cursor: pointer;
     font-size: $font-size-sm;
     transition: background-color 0.1s, border-color 0.1s;
-    outline: none; // REMOVES THE DOUBLE FRAME
+    outline: none; 
+    min-width: 85px;
+    text-align: center;
 }
 
 .time-slot-button:hover:not(:disabled) {
@@ -282,7 +270,6 @@
 /* --- 3. Address Validation --- */
 .address-group {
     padding-top: $space-lg;
-    border-top: 1px solid $color-border-subtle;
 }
 
 .address-instruction-text {
@@ -352,7 +339,6 @@
 .form-actions {
     margin-top: $space-xxl;
     padding-top: $space-lg;
-    border-top: 1px solid $color-border-subtle;
 }
 
 .next-step-button {
