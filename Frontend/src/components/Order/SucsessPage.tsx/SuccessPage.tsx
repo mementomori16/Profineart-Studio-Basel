@@ -2,10 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { FaCheckCircle, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaEnvelope, FaUser, FaBoxOpen } from 'react-icons/fa';
+import { FaCheckCircle, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaEnvelope, FaUser, FaBoxOpen, FaBirthdayCake } from 'react-icons/fa';
 
 import './sucsessPage.scss';
 
+// This matches the FulfillmentDetails interface from your backend
 interface BookingDetails {
     name: string;
     email: string;
@@ -15,6 +16,7 @@ interface BookingDetails {
     phone: string;
     address: string; 
     message: string;
+    birthdate: string;
 }
 
 const SuccessPage: React.FC = () => {
@@ -28,20 +30,18 @@ const SuccessPage: React.FC = () => {
     const hasFetched = useRef(false);
 
     useEffect(() => {
-        // Prevents double-fetching in React Strict Mode
         if (!sessionId || hasFetched.current) return;
         hasFetched.current = true;
 
         const fetchDetails = async () => {
             try {
-                // FIXED: Changed from .get to .post and used the correct route
-                // This matches your index.ts router.post("/order/fulfill", ...)
+                // We use POST to match your Firebase index.ts router
                 const response = await axios.post('/api/order/fulfill', {
                     sessionId: sessionId
                 });
 
-                // FIXED: Your backend returns 'result', so we map it here
-                if (response.data.success) {
+                // Your backend returns { success: true, result: { ... } }
+                if (response.data.success && response.data.result) {
                     setDetails(response.data.result);
                 } else {
                     setError(t('checkout.errorMessage'));
@@ -59,7 +59,6 @@ const SuccessPage: React.FC = () => {
 
     if (loading) return <div className="success-page-loading">{t('common.loading')}...</div>;
 
-    // Error State
     if (error || !details) {
         return (
             <div className="success-page container error-state">
@@ -70,7 +69,6 @@ const SuccessPage: React.FC = () => {
         );
     }
 
-    // Success State - Using the exact keys from your JSON
     return (
         <div className="success-page container success-state">
             <div className="success-card">
@@ -92,6 +90,9 @@ const SuccessPage: React.FC = () => {
                         </div>
                         <div className="detail-item" style={{ marginBottom: '10px' }}>
                             <FaEnvelope /> <strong>{t('common.email')}:</strong> {details.email}
+                        </div>
+                        <div className="detail-item" style={{ marginBottom: '10px' }}>
+                            <FaBirthdayCake /> <strong>{t('common.birthdate') || 'Birthdate'}:</strong> {details.birthdate}
                         </div>
                         <div className="detail-item" style={{ marginBottom: '10px' }}>
                             <FaCalendarAlt /> <strong>{t('checkout.summaryDate')}:</strong> {details.date}

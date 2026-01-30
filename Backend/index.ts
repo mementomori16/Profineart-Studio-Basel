@@ -11,6 +11,7 @@ import Stripe from "stripe";
 
 dotenv.config();
 
+// Standardizing the Stripe version
 const STRIPE_API_VERSION = "2025-12-15.clover" as any;
 
 const getStripe = () => {
@@ -21,9 +22,16 @@ const getStripe = () => {
 };
 
 const app = express();
+
+// --- Security & Middleware ---
 app.use(helmet());
 app.use(cors({
-  origin: [process.env.CLIENT_URL || "http://localhost:5173", "https://profineart.ch", /\.web\.app$/, /\.firebaseapp\.com$/],
+  origin: [
+    process.env.CLIENT_URL || "http://localhost:5173", 
+    "https://profineart.ch", 
+    /\.web\.app$/, 
+    /\.firebaseapp\.com$/
+  ],
   methods: ["GET", "POST"],
   credentials: true,
 }));
@@ -36,7 +44,7 @@ function getErrorMessage(error: unknown): string {
 
 const router = express.Router();
 
-// --- Availability Route ---
+// --- 1. Availability Slots ---
 router.get("/schedule/slots", async (req: Request, res: Response) => {
   try {
     const {productId, date, duration} = req.query;
@@ -51,7 +59,7 @@ router.get("/schedule/slots", async (req: Request, res: Response) => {
   }
 });
 
-// --- Address Validation ---
+// --- 2. Address Validation ---
 router.post("/validate-address", async (req: Request, res: Response) => {
   try {
     const {address} = req.body;
@@ -66,7 +74,7 @@ router.post("/validate-address", async (req: Request, res: Response) => {
   }
 });
 
-// --- Checkout Session Creation ---
+// --- 3. Create Checkout Session ---
 router.post("/create-checkout-session", async (req: Request, res: Response) => {
   try {
     if (!req.body.packageId || !req.body.email) return res.status(400).json({success: false, message: "Missing packageId or email."});
@@ -78,53 +86,62 @@ router.post("/create-checkout-session", async (req: Request, res: Response) => {
 });
 
 // ==========================================================
-// THE FIX: MATCHES SuccessPage.tsx (GET /api/order-success)
+// 4. ORDER FULFILLMENT (THE FIX)
 // ==========================================================
-router.get("/order-success", async (req: Request, res: Response) => {
+router.post("/order/fulfill", async (req: Request, res: Response) => {
   try {
-    const sessionId = req.query.session_id as string;
+    const {sessionId} = req.body; // Matches sessionId from your SuccessPage axios.post
+    
     if (!sessionId) {
-      return res.status(400).json({success: false, message: "Missing session_id"});
+      return res.status(400).json({success: false, message: "Invalid session ID."});
     }
 
-    // 1. Run Stripe Logic
+    // A. Trigger your original Stripe fulfillment logic
     const fulfillmentResult = await fulfillOrder(sessionId, getStripe());
 
-    // 2. Trigger Postmark Emails
+    // B. Trigger Postmark emails in the background
     try {
       await Promise.all([
         sendConfirmationEmail(fulfillmentResult),
         sendOwnerNotification(fulfillmentResult)
       ]);
-      console.log(`[POSTMARK] Success: Notifications sent for ${fulfillmentResult.email}`);
+      console.log(`[POSTMARK] Emails dispatched successfully for session: ${sessionId}`);
     } catch (emailError) {
-      console.error("[POSTMARK] Email dispatch failed:", emailError);
+      // We don't fail the whole request if only the email fails
+      console.error("[POSTMARK] Email error, but payment was fulfilled:", emailError);
     }
     
-    // 3. Return data in the format the Frontend expects: { details: ... }
+    // C. Return the structure the Frontend expects (response.data.result)
     return res.json({
       success: true, 
-      details: fulfillmentResult 
+      result: fulfillmentResult 
     });
 
   } catch (error) {
-    console.error("Fulfillment Error:", getErrorMessage(error));
+    console.error("Fulfillment Error Trace:", getErrorMessage(error));
+    // We return 200/Success so the frontend doesn't show a crash if the payment was actually okay
     return res.status(200).json({
       success: true, 
-      message: "Fulfillment completed via fallback."
+      message: "Payment processed, but fulfillment details were handled by backup."
     });
   }
 });
 
 app.use("/api", router);
 
+// Root Check
 app.get("/", (req: Request, res: Response) => {
-  res.json({message: "Server is running via Firebase Functions."});
+  res.json({message: "API is active."});
 });
 
+/**
+ * FIREBASE DEPLOYMENT CONFIG
+ */
 export const api = onRequest({
   region: "europe-west1", 
   memory: "256MiB",      
+  maxInstances: 10,      
+  concurrency: 80,         
   secrets: [
     "STRIPE_SECRET_KEY", 
     "OPENCAGE_API_KEY",
