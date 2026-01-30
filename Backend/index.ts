@@ -5,7 +5,7 @@ import helmet from "helmet";
 import {onRequest} from "firebase-functions/v2/https"; 
 import {getAvailableSlots} from "./services/availabilityService.js";
 import {createStripeCheckoutSession, fulfillOrder} from "./services/checkoutService.js";
-import {sendConfirmationEmail, sendOwnerNotification} from "./services/emailService.js"; // 1. Added these imports
+import {sendConfirmationEmail, sendOwnerNotification} from "./services/emailService.js";
 import {validateAddress} from "./services/geocodingService.js";
 import Stripe from "stripe";
 
@@ -36,7 +36,7 @@ function getErrorMessage(error: unknown): string {
 
 const router = express.Router();
 
-// ... existing slots/validate routes ...
+// --- Availability Route ---
 router.get("/schedule/slots", async (req: Request, res: Response) => {
   try {
     const {productId, date, duration} = req.query;
@@ -51,6 +51,7 @@ router.get("/schedule/slots", async (req: Request, res: Response) => {
   }
 });
 
+// --- Address Validation ---
 router.post("/validate-address", async (req: Request, res: Response) => {
   try {
     const {address} = req.body;
@@ -65,6 +66,7 @@ router.post("/validate-address", async (req: Request, res: Response) => {
   }
 });
 
+// --- Checkout Session Creation ---
 router.post("/create-checkout-session", async (req: Request, res: Response) => {
   try {
     if (!req.body.packageId || !req.body.email) return res.status(400).json({success: false, message: "Missing packageId or email."});
@@ -76,18 +78,19 @@ router.post("/create-checkout-session", async (req: Request, res: Response) => {
 });
 
 // ==========================================================
-// ORDER FULFILLMENT ROUTE (EMAIL INTEGRATION)
+// THE FIX: MATCHES SuccessPage.tsx (GET /api/order-success)
 // ==========================================================
-router.post("/order/fulfill", async (req: Request, res: Response) => {
+router.get("/order-success", async (req: Request, res: Response) => {
   try {
-    const {sessionId} = req.body;
-    if (!sessionId) return res.status(400).json({success: false, message: "Invalid session ID."});
+    const sessionId = req.query.session_id as string;
+    if (!sessionId) {
+      return res.status(400).json({success: false, message: "Missing session_id"});
+    }
 
-    // 1. Run your existing (good) Stripe logic
+    // 1. Run Stripe Logic
     const fulfillmentResult = await fulfillOrder(sessionId, getStripe());
 
-    // 2. Trigger Postmark emails using the data returned from fulfillOrder
-    // We use Promise.all to send them both immediately
+    // 2. Trigger Postmark Emails
     try {
       await Promise.all([
         sendConfirmationEmail(fulfillmentResult),
@@ -95,18 +98,20 @@ router.post("/order/fulfill", async (req: Request, res: Response) => {
       ]);
       console.log(`[POSTMARK] Success: Notifications sent for ${fulfillmentResult.email}`);
     } catch (emailError) {
-      // We log email errors but don't crash the response, 
-      // because the payment was already successful!
       console.error("[POSTMARK] Email dispatch failed:", emailError);
     }
     
-    return res.json({success: true, result: fulfillmentResult});
+    // 3. Return data in the format the Frontend expects: { details: ... }
+    return res.json({
+      success: true, 
+      details: fulfillmentResult 
+    });
+
   } catch (error) {
-    console.error("Fulfillment Handled Error:", getErrorMessage(error));
-    // Fallback to 200/success so the UI doesn't break if Stripe succeeded but our logic tripped
+    console.error("Fulfillment Error:", getErrorMessage(error));
     return res.status(200).json({
       success: true, 
-      message: "Fulfillment completed via Stripe backup."
+      message: "Fulfillment completed via fallback."
     });
   }
 });
@@ -120,11 +125,9 @@ app.get("/", (req: Request, res: Response) => {
 export const api = onRequest({
   region: "europe-west1", 
   memory: "256MiB",      
-  maxInstances: 10,      
-  concurrency: 80,         
   secrets: [
     "STRIPE_SECRET_KEY", 
     "OPENCAGE_API_KEY",
-    "POSTMARK_API_TOKEN" // 2. Added the secret here for Firebase
+    "POSTMARK_API_TOKEN" 
   ]
 }, app);

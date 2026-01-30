@@ -3,12 +3,11 @@
 .courses-page-root {
     width: 100%;
     min-height: 100vh;
-    padding: 0 0 5rem 0;
-    // FIXED: Using your specific site color and removing gradient
+    padding: 0 0 3rem 0; // Tightened bottom gap
     background-color: #171717; 
 
     .container {
-        max-width: 75rem; 
+        max-width: 90rem; // WIDER: Increased from 75rem
         margin: 0 auto;
         padding: 0 1.5rem; 
 
@@ -18,34 +17,34 @@
     }
 
     .section-header {
-        padding: 4rem 0 $space-sm 0; 
-        margin-bottom: $space-xl;
+        padding: 2.5rem 0 $space-xs 0; // REDUCED: Smaller top gap (was 4rem)
+        margin-bottom: 2rem;           // REDUCED: Closer to the content
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1); 
 
         @media (max-width: $breakpoint-sm) {
-            padding: 1.5rem 0 $space-sm 0; // Reduced top padding from 4rem to 1.5rem
+            padding: 1.5rem 0 $space-xs 0;
         }
 
-       .courses-main-title {
-    @include services-heading;
-    color: $color-text-white; 
-    text-align: left;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.4rem; 
-    font-weight: $font-weight-light;
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    line-height: 1.1;
+        .courses-main-title {
+            @include services-heading;
+            color: $color-text-white; 
+            text-align: left;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem; 
+            font-weight: $font-weight-light;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            line-height: 1.1;
 
-    @media (max-width: $breakpoint-sm) {
-        font-size: $font-size-h3;     // Same as teaser
-        letter-spacing: 0.1rem;      // Reduced slightly more to fit the line
-        white-space: nowrap;         // FORCES one line
-        overflow: hidden;            // Prevents horizontal scroll if too long
-        text-overflow: clip;         // Ensures it looks clean at the edge
-        display: block;
-        width: 100%;
-    }
+            @media (max-width: $breakpoint-sm) {
+                font-size: $font-size-h3;
+                letter-spacing: 0.1rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: clip;
+                display: block;
+                width: 100%;
+            }
         }
 
         .intro-text-curated {
@@ -53,7 +52,7 @@
             font-size: 1.1rem;
             text-transform: none; 
             letter-spacing: 0.05rem;
-            margin-top: 1rem;
+            margin-top: 0.75rem; // Reduced gap
             font-weight: 400;
             display: block;
             width: 100%;
@@ -69,11 +68,11 @@
     }
 }
 
-/* NAVIGATION */
+/* NAVIGATION - All your original button styles preserved */
 .filter-navigation {
     display: flex;
     gap: 0.75rem;
-    margin-top: 2rem; 
+    margin-top: 1.5rem; // Reduced gap
     flex-wrap: wrap;
 
     .filter-nav-btn {
@@ -101,15 +100,15 @@
     }
 }
 
-/* THE CARD STACK */
+/* THE CARD STACK - Tightened Gap */
 .courses-list-stack {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem; // REDUCED: Tightened gap between cards (was 4rem)
     margin-top: 2rem; 
 
     @media (max-width: $breakpoint-sm) {
-        gap: 2.5rem;
+        gap: 1.5rem;
     }
 }
 
@@ -169,7 +168,7 @@
     }
 
     .content-side {
-        padding: 2.5rem;
+        padding: 2.5rem; // Original padding preserved
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -185,7 +184,7 @@
             color: #fff;
             font-weight: 300;
             font-size: 2rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem; // Tightened
             text-align: left;
 
             @media (max-width: $breakpoint-sm) {
@@ -197,7 +196,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1.2rem;
-            margin-bottom: 1.5rem; 
+            margin-bottom: 1rem; // Tightened
 
             .meta-item {
                 font-size: 0.65rem; 
@@ -218,7 +217,7 @@
             color: rgba(255, 255, 255, 0.85);
             font-size: 1rem;
             line-height: 1.6;
-            margin-bottom: 2rem; 
+            margin-bottom: 1.5rem; // Tightened
             width: 100%;
         }
 
@@ -242,9 +241,7 @@
                 width: 100%;
             }
 
-            .btn-icon { 
-                color: #000;
-            }
+            .btn-icon { color: #000; }
         }
     }
 }
