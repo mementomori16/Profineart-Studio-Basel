@@ -120,7 +120,7 @@
 
 .package-price {
     font-size: $font-size-h5;
-    color: $color-success;
+    color: $color-text-dark;
     font-weight: $font-weight-bold;
     margin-top: $space-xs;
 }
@@ -232,7 +232,7 @@
 }
 
 .time-slot-button {
-    background-color: $color-alt-background-2;
+    background-color: $color-primary;
     color: $color-text-dark;
     border: 1px solid $color-border-subtle-2;
     padding: $space-xs calc($space-sm + 2px);
@@ -240,6 +240,7 @@
     cursor: pointer;
     font-size: $font-size-sm;
     transition: background-color 0.1s, border-color 0.1s;
+    outline: none; // REMOVES THE DOUBLE FRAME
 }
 
 .time-slot-button:hover:not(:disabled) {

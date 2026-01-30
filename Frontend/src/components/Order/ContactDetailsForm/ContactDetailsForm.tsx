@@ -93,7 +93,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     };
 
     const formattedPrice = `${slotSelection.price} ${t('common.currency')}`;
-    const minDateLimit = new Date('1935-01-01');
+    const minDateLimit = new Date('1930-01-01');
     const maxDateLimit = new Date();
 
     return (
@@ -107,7 +107,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
             <div className="booking-summary">
                 <h3 className="h5">{t('checkout.bookingSummary')}</h3>
                 
-                {/* ✅ Clickable Product Area */}
                 <div className="summary-product-info" onClick={onTitleClick}>
                     <div className="product-image-container">
                         <img 
@@ -157,6 +156,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                         <label>{t('form.phone')}</label>
                         <input type="tel" name="phone" value={details.phone} onChange={handleChange} />
                     </div>
+
                     <div className="form-field date-picker-wrapper">
                         <label>{t('form.dateOfBirth')} <span className="text-danger">*</span></label>
                         <div className="input-group">
@@ -165,10 +165,13 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                                 onChange={(date: Date | null) => setDateOfBirth(date)}
                                 dateFormat="dd/MM/yyyy"
                                 showYearDropdown
-                                scrollableYearDropdown
+                                showMonthDropdown
+                                dropdownMode="select"
+                                yearDropdownItemNumber={90}
                                 minDate={minDateLimit}
                                 maxDate={maxDateLimit}
                                 className="form-control"
+                                placeholderText="DD/MM/YYYY"
                                 required
                             />
                             <span className="input-group-text"><FaCalendarAlt /></span>
@@ -228,7 +231,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
 };
 
 export default ContactDetailsForm;
-
 
 
 

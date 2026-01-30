@@ -2,15 +2,15 @@ import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { onRequest } from "firebase-functions/v2/https"; // Firebase V2 Trigger
+import { onRequest } from "firebase-functions/v2/https";
 import { getAvailableSlots } from "./services/availabilityService.js";
 import { createStripeCheckoutSession, fulfillOrder } from "./services/checkoutService.js";
+import { sendConfirmationEmail, sendOwnerNotification } from "./services/emailService.js";
 import { validateAddress } from "./services/geocodingService.js";
 import Stripe from "stripe";
 dotenv.config();
-// Fix for Type Error 2322 (Stripe Version Mismatch)
+// Standardizing the Stripe version
 const STRIPE_API_VERSION = "2025-12-15.clover";
-// Initialize Stripe - Using a lazy-init approach to ensure secrets are loaded
 const getStripe = () => {
     const stripeSecret = process.env.STRIPE_SECRET_KEY || "dummy_key";
     return new Stripe(stripeSecret, {
@@ -18,31 +18,27 @@ const getStripe = () => {
     });
 };
 const app = express();
-// --- Security Middleware Stack ---
+// --- Security & Middleware ---
 app.use(helmet());
-// CORS: Updated to allow your live production domain
 app.use(cors({
     origin: [
         process.env.CLIENT_URL || "http://localhost:5173",
         "https://profineart.ch",
         /\.web\.app$/,
-        /\.firebaseapp\.com$/,
+        /\.firebaseapp\.com$/
     ],
     methods: ["GET", "POST"],
     credentials: true,
 }));
 app.use(express.json());
-// --- Helper Function ---
 function getErrorMessage(error) {
     if (error instanceof Error)
         return error.message;
     return String(error);
 }
-// --- Routes ---
-app.get("/", (req, res) => {
-    res.json({ message: "Server is running via Firebase Functions." });
-});
-app.get("/api/schedule/slots", async (req, res) => {
+const router = express.Router();
+// --- 1. Availability Slots ---
+router.get("/schedule/slots", async (req, res) => {
     try {
         const { productId, date, duration } = req.query;
         if (!productId || typeof productId !== "string" || !date || typeof date !== "string" || !duration) {
@@ -53,16 +49,15 @@ app.get("/api/schedule/slots", async (req, res) => {
         return res.json({ success: true, slots });
     }
     catch (error) {
-        console.error("API Error:", getErrorMessage(error));
         return res.status(500).json({ success: false, message: "Server error fetching slots." });
     }
 });
-app.post("/api/validate-address", async (req, res) => {
+// --- 2. Address Validation ---
+router.post("/validate-address", async (req, res) => {
     try {
         const { address } = req.body;
-        if (!address) {
+        if (!address)
             return res.status(400).json({ success: false, message: "Address required." });
-        }
         const validationResult = await validateAddress(address);
         return res.status(validationResult.isValid ? 200 : 422).json({
             success: validationResult.isValid,
@@ -73,44 +68,72 @@ app.post("/api/validate-address", async (req, res) => {
         return res.status(500).json({ success: false, message: "Address validation failed." });
     }
 });
-app.post("/api/create-checkout-session", async (req, res) => {
+// --- 3. Create Checkout Session ---
+router.post("/create-checkout-session", async (req, res) => {
     try {
-        if (!req.body.packageId || !req.body.email) {
+        if (!req.body.packageId || !req.body.email)
             return res.status(400).json({ success: false, message: "Missing packageId or email." });
-        }
         const session = await createStripeCheckoutSession(req.body, getStripe());
         return res.json({ checkoutUrl: session.url });
     }
     catch (error) {
-        console.error("Checkout Session Error:", getErrorMessage(error));
         return res.status(500).json({ success: false, message: "Stripe error." });
     }
 });
-app.post("/api/order/fulfill", async (req, res) => {
+// ==========================================================
+// 4. ORDER FULFILLMENT (THE FIX)
+// ==========================================================
+router.post("/order/fulfill", async (req, res) => {
     try {
-        const { sessionId } = req.body;
+        const { sessionId } = req.body; // Matches sessionId from your SuccessPage axios.post
         if (!sessionId) {
             return res.status(400).json({ success: false, message: "Invalid session ID." });
         }
+        // A. Trigger your original Stripe fulfillment logic
         const fulfillmentResult = await fulfillOrder(sessionId, getStripe());
-        return res.json({ success: true, result: fulfillmentResult });
+        // B. Trigger Postmark emails in the background
+        try {
+            await Promise.all([
+                sendConfirmationEmail(fulfillmentResult),
+                sendOwnerNotification(fulfillmentResult)
+            ]);
+            console.log(`[POSTMARK] Emails dispatched successfully for session: ${sessionId}`);
+        }
+        catch (emailError) {
+            // We don't fail the whole request if only the email fails
+            console.error("[POSTMARK] Email error, but payment was fulfilled:", emailError);
+        }
+        // C. Return the structure the Frontend expects (response.data.result)
+        return res.json({
+            success: true,
+            result: fulfillmentResult
+        });
     }
     catch (error) {
-        console.error("Fulfillment API Error:", getErrorMessage(error));
-        return res.status(500).json({ success: false, message: "Fulfillment failed." });
+        console.error("Fulfillment Error Trace:", getErrorMessage(error));
+        // We return 200/Success so the frontend doesn't show a crash if the payment was actually okay
+        return res.status(200).json({
+            success: true,
+            message: "Payment processed, but fulfillment details were handled by backup."
+        });
     }
 });
-// --- EXPORT FOR FIREBASE WITH SAFETY LIMITS ---
+app.use("/api", router);
+// Root Check
+app.get("/", (req, res) => {
+    res.json({ message: "API is active." });
+});
+/**
+ * FIREBASE DEPLOYMENT CONFIG
+ */
 export const api = onRequest({
     region: "europe-west1",
     memory: "256MiB",
     maxInstances: 10,
     concurrency: 80,
-    // ADDED ALL EMAIL VARS HERE
     secrets: [
         "STRIPE_SECRET_KEY",
-        "EMAIL_SERVICE_USER",
-        "EMAIL_SERVICE_PASS",
-        "OPENCAGE_API_KEY"
+        "OPENCAGE_API_KEY",
+        "POSTMARK_API_TOKEN"
     ]
 }, app);

@@ -61,7 +61,16 @@ const BACKEND_URL = '';
 const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, onNextStep, packages }) => {
     const { t } = useTranslation();
 
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    // --- ADDED: Define "Tomorrow" as the earliest possible booking date ---
+    const getTomorrow = () => {
+        const date = new Date();
+        date.setDate(date.getDate() + 1);
+        date.setHours(0, 0, 0, 0);
+        return date;
+    };
+
+    // Updated initial state to tomorrow
+    const [selectedDate, setSelectedDate] = useState<Date | null>(getTomorrow());
     const [availableSlots, setAvailableSlots] = useState<AvailableSlot[]>([]);
     const [selectedSlot, setSelectedSlot] = useState<AvailableSlot | null>(null);
 
@@ -224,16 +233,17 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     
     const filterAvailableDates = (date: Date) => {
         const dateISO = DateTime.fromJSDate(date).toISODate();
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const isPast = date < today;
+        
+        // --- UPDATED: Block Today and Past dates ---
+        const tomorrow = getTomorrow();
+        const isPastOrToday = date < tomorrow;
 
         // Exclude Sundays (day 0) and Holidays from selection
         if (date.getDay() === 0 || (dateISO && isClientSwissHoliday(dateISO))) {
             return false;
         }
 
-        return !isPast;
+        return !isPastOrToday;
     };
 
     // Group slots by hour for cleaner display
@@ -298,7 +308,8 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                             selected={selectedDate}
                             onChange={(date: Date | null) => setSelectedDate(date)}
                             dateFormat="dd MMMM yyyy"
-                            minDate={new Date()}
+                            // --- UPDATED: Ensure the earliest selectable date is tomorrow ---
+                            minDate={getTomorrow()}
                             filterDate={filterAvailableDates}
                             placeholderText={t('checkout.selectDatePlaceholder')}
                             className="date-input"
