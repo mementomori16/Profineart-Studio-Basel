@@ -6,7 +6,6 @@ import { FaCheckCircle, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaEnvelope, FaUs
 
 import './sucsessPage.scss';
 
-// This matches the FulfillmentDetails interface from your backend
 interface BookingDetails {
     name: string;
     email: string;
@@ -35,12 +34,10 @@ const SuccessPage: React.FC = () => {
 
         const fetchDetails = async () => {
             try {
-                // We use POST to match your Firebase index.ts router
                 const response = await axios.post('/api/order/fulfill', {
                     sessionId: sessionId
                 });
 
-                // Your backend returns { success: true, result: { ... } }
                 if (response.data.success && response.data.result) {
                     setDetails(response.data.result);
                 } else {
@@ -92,7 +89,7 @@ const SuccessPage: React.FC = () => {
                             <FaEnvelope /> <strong>{t('common.email')}:</strong> {details.email}
                         </div>
                         <div className="detail-item" style={{ marginBottom: '10px' }}>
-                            <FaBirthdayCake /> <strong>{t('common.birthdate') || 'Birthdate'}:</strong> {details.birthdate}
+                            <FaBirthdayCake /> <strong>{t('common.birthdate')}:</strong> {details.birthdate}
                         </div>
                         <div className="detail-item" style={{ marginBottom: '10px' }}>
                             <FaCalendarAlt /> <strong>{t('checkout.summaryDate')}:</strong> {details.date}

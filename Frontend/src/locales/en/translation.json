@@ -110,7 +110,8 @@
     "message": "Message",
     "successTitle": "Booking Successful",
     "successMsg": "Thank you! Your payment was successful.",
-    "emailNote": "A confirmation email has been sent."
+    "emailNote": "A confirmation email has been sent.",
+    "birthdate": "Date of Birth"
   },
 
   
@@ -152,7 +153,9 @@
     "addressDetails": "Address Details",
     "addressInstruction": "The teacher can drive to your address if it is within a 25 km radius of Basel City. This includes Basel-Land, northern Aargau, and the border towns of Germany and France. Please check your address below.",
     "toOrder": "Add to Basket",
-    "checkoutButtonText": "Checkout"
+    "checkoutButtonText": "Checkout",
+    "summaryTime": "Scheduled Time",
+    "printReceipt": "Print Receipt"
   },
 
   "schedule": {
