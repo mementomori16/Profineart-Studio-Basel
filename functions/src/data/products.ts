@@ -403,13 +403,22 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const artistProfile: ProductImage[] = [
+
+  {
+    lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855814/Ily120kb_mayj5l.jpg', // Placeholder: Use your "Working" photo low-res
+    highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855744/Ily500kb_yvswlt.jpg', // Placeholder: Use your "Working" photo high-res
+    caption: 'Ilya Medvedev during the artistic process'
+  },
   {
     lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/NnY8mcHR/20210815-155250120kb.jpg', // Placeholder: Use your "Working" photo low-res
     highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/8nkdprgS/IMG-4588ph500kb.jpg', // Placeholder: Use your "Working" photo high-res
     caption: 'Ilya Medvedev during the artistic process'
   },
-  
-   
+  {
+    lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855796/IMG_3422-120kb_bx9vxo.jpg', 
+    highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855726/IMG_3422-500kb_iswlar.jpg',
+    caption: 'Finished work on display'
+  }, 
 ];
 
 

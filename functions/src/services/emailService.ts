@@ -3,59 +3,82 @@ import { FulfillmentDetails } from './checkoutService.js';
 
 /**
  * Initialize Postmark Client.
- * We pull the token from process.env, which is populated by Firebase Secrets.
+ * Pulls the token from process.env (Firebase Secrets).
  */
 const getPostmarkClient = () => {
     return new postmark.ServerClient(process.env.POSTMARK_API_TOKEN || '');
 };
 
 /**
- * Sends a confirmation email to the customer.
+ * Sends a high-end styled confirmation email to the customer.
  */
 export async function sendConfirmationEmail(details: FulfillmentDetails): Promise<void> {
     const client = getPostmarkClient();
+    const logoUrl = "https://res.cloudinary.com/dpayqcrg5/image/upload/w_1000,q_auto:eco,f_jpg/v1769809657/Group_148_1_eozycn.png";
+
     try {
         await client.sendEmail({
-            "From": `"Professional Fine Art Studio" <info@profineart.ch>`,
+            "From": `"Profineart Studio Basel" <info@profineart.ch>`,
             "To": details.email,
             "Subject": `🎨 Booking Confirmed: ${details.packageName}`,
-            "TextBody": `Hello ${details.name},\n\nThank you for your booking! Your payment was successful.\n\nDetails:\nService: ${details.packageName}\nDate: ${details.date}\nTime: ${details.time}\nAddress: ${details.address}\n\nWe look forward to seeing you at the studio!`,
+            "TextBody": `Your payment was successful and the art session is officially secured.\n\nPackage: ${details.packageName}\nDate: ${details.date}\nTime: ${details.time}\n\nThe mentor will contact you shortly to confirm and discuss the session. For inquiries, contact info@profineart.ch.`,
             "HtmlBody": `
-                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
-                    <div style="background-color: #2c3e50; color: #ffffff; padding: 20px; text-align: center;">
-                        <h1 style="margin: 0; font-size: 24px;">Booking Confirmed!</h1>
-                    </div>
-                    <div style="padding: 30px; color: #333;">
-                        <p>Hello <strong>${details.name}</strong>,</p>
-                        <p>Thank you for choosing our studio. Your payment has been processed successfully, and your art session is officially scheduled.</p>
-                        <div style="background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 20px; margin: 20px 0;">
-                            <h3 style="margin-top: 0; color: #2c3e50;">Reservation Summary</h3>
-                            <table style="width: 100%; border-collapse: collapse;">
-                                <tr>
-                                    <td style="padding: 5px 0; color: #7f8c8d;"><strong>Service:</strong></td>
-                                    <td style="padding: 5px 0;">${details.packageName}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 5px 0; color: #7f8c8d;"><strong>Date:</strong></td>
-                                    <td style="padding: 5px 0;">${details.date}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 5px 0; color: #7f8c8d;"><strong>Time:</strong></td>
-                                    <td style="padding: 5px 0;">${details.time}</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 5px 0; color: #7f8c8d;"><strong>Location:</strong></td>
-                                    <td style="padding: 5px 0;">${details.address}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <p>If you have any questions or need to reschedule, please reply to this email or contact us directly.</p>
-                        <p style="margin-top: 30px;">Best regards,<br><strong>Professional Fine Art Studio</strong></p>
-                    </div>
-                    <div style="background-color: #f1f1f1; color: #95a5a6; padding: 15px; text-align: center; font-size: 12px;">
-                        <p style="margin: 0;">&copy; 2026 Professional Fine Art Studio. All rights reserved.</p>
-                    </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { margin: 0; padding: 0; background-color: #171717; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+        .wrapper { background-color: #171717; width: 100%; padding: 60px 0; }
+        .container { max-width: 600px; margin: 0 auto; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; overflow: hidden; }
+        .header { padding: 50px 20px; text-align: center; }
+        .logo { width: 280px; height: auto; max-width: 90%; }
+        .content { padding: 0 50px 50px; color: rgba(255, 255, 255, 0.9); line-height: 1.8; font-size: 16px; }
+        .main-heading { color: #ffffff; font-size: 22px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; text-align: center; margin-bottom: 40px; }
+        .summary-box { border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 30px 0; margin: 30px 0; }
+        .detail-item { margin-bottom: 15px; }
+        .label { color: #ffffff; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 5px; opacity: 0.5; }
+        .value { color: #ffffff; font-size: 16px; font-weight: 300; }
+        .mentor-note { background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 2px; font-style: italic; border-left: 2px solid #ffffff; margin: 30px 0; }
+        .pill-button { display: inline-block; background-color: #ffffff; color: #000000 !important; padding: 18px 45px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-top: 30px; }
+        .footer { padding: 40px; text-align: center; font-size: 11px; color: rgba(255, 255, 255, 0.3); letter-spacing: 1px; text-transform: uppercase; background: rgba(0,0,0,0.2); }
+        .contact-link { color: #ffffff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <img src="${logoUrl}" alt="Profineart Studio Basel" class="logo">
+            </div>
+            <div class="content">
+                <h2 class="main-heading">Booking Confirmed</h2>
+                <p>The payment was successful and the art session is officially secured. This mentorship focuses on mastering the visual language of art through historical tradition and contemporary standards.</p>
+                
+                <div class="summary-box">
+                    <div class="detail-item"><span class="label">Course</span><span class="value">${details.packageName}</span></div>
+                    <div class="detail-item"><span class="label">Scheduled Date</span><span class="value">${details.date}</span></div>
+                    <div class="detail-item"><span class="label">Time</span><span class="value">${details.time}</span></div>
+                    <div class="detail-item"><span class="label">Location</span><span class="value">${details.address}</span></div>
                 </div>
+
+                <div class="mentor-note">
+                    The mentor will contact you shortly to confirm the appointment, discuss the required materials, and talk about the upcoming session to ensure all artistic goals are met.
+                </div>
+
+                <p>If you want to reschedule, cancel, or have any questions, please contact <a href="mailto:info@profineart.ch" class="contact-link">info@profineart.ch</a> or simply reply to this email.</p>
+
+                <div style="text-align: center;">
+                    <a href="https://profineart.ch" class="pill-button">Back to Studio</a>
+                </div>
+            </div>
+            <div class="footer">
+                Profineart Studio Basel<br>
+                Private Mentorship & Contemporary Art Education
+            </div>
+        </div>
+    </div>
+</body>
+</html>
             `,
             "MessageStream": "outbound"
         });
@@ -79,27 +102,20 @@ export async function sendOwnerNotification(details: FulfillmentDetails): Promis
             "To": ownerEmail,
             "Subject": `🔔 NEW BOOKING: ${details.name} - ${details.date}`,
             "HtmlBody": `
-                <div style="font-family: Arial, sans-serif; color: #333;">
-                    <h2 style="color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">New Order Received</h2>
-                    <p>You have a new booking. Here are the full details provided by the customer:</p>
-                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                        <tr style="background-color: #f2f2f2;">
-                            <th style="text-align: left; padding: 10px; border: 1px solid #ddd;">Field</th>
-                            <th style="text-align: left; padding: 10px; border: 1px solid #ddd;">Customer Information</th>
-                        </tr>
-                        <tr><td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Name</strong></td><td style="padding: 10px; border: 1px solid #ddd;">${details.name}</td></tr>
-                        <tr><td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Email</strong></td><td style="padding: 10px; border: 1px solid #ddd;">${details.email}</td></tr>
-                        <tr><td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Phone</strong></td><td style="padding: 10px; border: 1px solid #ddd;">${details.phone}</td></tr>
-                        <tr><td style="padding: 10px; border: 1px solid #ddd;"><strong>Birthdate</strong></td><td style="padding: 10px; border: 1px solid #ddd;">${details.birthdate}</td></tr>
-                        <tr><td style="padding: 10px; border: 1px solid #ddd;"><strong>Client Address</strong></td><td style="padding: 10px; border: 1px solid #ddd;">${details.address}</td></tr>
-                        <tr><td style="padding: 10px; border: 1px solid #ddd;"><strong>Package Booked</strong></td><td style="padding: 10px; border: 1px solid #ddd;">${details.packageName}</td></tr>
-                        <tr><td style="padding: 10px; border: 1px solid #ddd;"><strong>Scheduled For</strong></td><td style="padding: 10px; border: 1px solid #ddd;">${details.date} at ${details.time}</td></tr>
+                <div style="background-color: #171717; color: #ffffff; padding: 40px; font-family: sans-serif;">
+                    <h2 style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; font-weight: 300; letter-spacing: 2px;">NEW ORDER RECEIVED</h2>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; color: #ffffff;">
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Client</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.name}</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Email</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.email}</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Phone</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.phone}</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Birthdate</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.birthdate}</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Address</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.address}</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Package</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.packageName}</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Date/Time</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.date} at ${details.time}</td></tr>
                     </table>
-                    <div style="background-color: #fff9c4; padding: 15px; border-radius: 5px; border: 1px solid #fbc02d;">
-                        <h4 style="margin-top: 0;">Customer Message:</h4>
-                        <p style="margin-bottom: 0;">${details.message}</p>
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 5px;">
+                        <strong>Customer Message:</strong><br>${details.message || 'None'}
                     </div>
-                    <p style="margin-top: 20px; font-size: 12px; color: #95a5a6;">This is an automated notification from your website's Stripe integration.</p>
                 </div>
             `,
             "MessageStream": "outbound"

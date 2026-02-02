@@ -1,14 +1,15 @@
 @use "../../../global.scss" as *;
+@use "sass:color";
 
 .students-gallery-root {
     background-color: $color-text-dark3; 
     min-height: 100vh;
     width: 100%;
-    color: $color-text-white;
+    color: #ffffff; 
     padding: $space-xxxxl 0;
 
     .label {
-        color: $color-cta-primary-warm;
+        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
         text-transform: uppercase;
         font-weight: $font-weight-bold;
         font-size: $font-size-xs;
@@ -16,32 +17,14 @@
         display: block;
         margin-bottom: $space-sm;
     }
-}
-
-.featured-hero {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: $space-xxxxl;
-    align-items: center;
-    margin-bottom: $space-xxxxl;
-
-    @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
-
-    .hero-text {
-        h2 { color: $color-text-white; font-size: $font-size-h2; margin-bottom: $space-md; }
-        .progress-essay {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            padding-left: $space-lg;
-        }
-    }
 
     .hero-carousel-container {
+        width: 100%;
+
         .carousel-wrapper {
             position: relative;
             width: 100%;
-            aspect-ratio: 4 / 3; // Fixed container size
+            aspect-ratio: 4 / 3; 
             overflow: hidden;
             background-color: $color-text-dark4;
             border-radius: $border-radius-sm;
@@ -49,21 +32,16 @@
 
             .progressive-container {
                 position: relative;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                width: 100%; height: 100%;
+                display: flex; align-items: center; justify-content: center;
 
                 .bg-blur-layer {
                     position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
+                    top: 0; left: 0;
+                    width: 100%; height: 100%;
                     object-fit: cover;
-                    filter: blur(30px) brightness(0.4);
-                    opacity: 0.6;
+                    filter: blur(30px) brightness(0.3);
+                    opacity: 0.5;
                     z-index: 1;
                 }
 
@@ -72,11 +50,8 @@
                     z-index: 2;
                     max-width: 100%;
                     max-height: 100%;
-                    object-fit: contain; // Full painting visible
+                    object-fit: contain; 
                     transition: opacity 0.5s ease;
-                    
-                    &.loading { opacity: 0.4; }
-                    &.loaded { opacity: 1; }
                 }
             }
 
@@ -85,16 +60,19 @@
                 top: 50%;
                 transform: translateY(-50%);
                 background: none;
-                color: $color-text-white;
+                color: #ffffff;
                 border: none;
-                font-size: 2.5rem;
+                font-size: 2.5rem; 
+                font-family: Arial, sans-serif;
                 cursor: pointer;
                 opacity: 0.5;
                 transition: opacity 0.3s;
                 z-index: 10;
+                padding: $space-md;
+
                 &:hover { opacity: 1; }
-                &.prev { left: $space-sm; }
-                &.next { right: $space-sm; }
+                &.prev { left: $space-xs; }
+                &.next { right: $space-xs; }
             }
         }
 
@@ -105,28 +83,63 @@
                 font-weight: $font-weight-bold;
                 font-size: $font-size-sm;
                 text-transform: uppercase;
-                color: $color-text-white;
+                color: #ffffff;
             }
             .student-info {
-                color: $color-text-light;
+                color: #ffffff; // Unified color
                 font-size: $font-size-xs;
                 font-style: italic;
+                opacity: 0.8;
             }
         }
     }
 }
 
-// REST OF STYLES (Calculator, Mentorship, Pillars) 
-// Remain consistent with previous layout logic using your global.scss
+.featured-hero {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: $space-xxxxl;
+    align-items: center;
+    margin-bottom: $space-xxxxxl;
+
+    @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+
+    .hero-text {
+        h2 { color: #ffffff; font-size: $font-size-h2; margin-bottom: $space-md; }
+        .progress-essay p {
+            color: #ffffff !important; // Forced pure white
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+    }
+}
+
 .timeline-calculator {
     margin: $space-xxxxl 0;
     background-color: $color-text-dark4;
     padding: $space-xxxl;
     border-radius: $border-radius-md;
     text-align: center;
-    input[type="range"] { width: 100%; max-width: 400px; accent-color: $color-cta-primary-warm; }
-    .hours-display { font-size: $font-size-h2; color: $color-cta-primary-warm; margin: $space-md 0; }
-    .results-wrap { display: flex; justify-content: center; gap: $space-xxxxl; }
+    h3 { color: #ffffff; }
+    p { color: #ffffff; opacity: 0.9; }
+    input[type="range"] { 
+        width: 100%; 
+        max-width: 400px; 
+        accent-color: color.adjust($color-cta-primary-warm, $lightness: 20%); 
+    }
+    .hours-display { 
+        font-size: $font-size-h2; 
+        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
+        margin: $space-md 0; 
+    }
+    .results-wrap { 
+        display: flex; 
+        justify-content: center; 
+        gap: $space-xxxxl; 
+        strong { color: #ffffff; }
+        span { color: #ffffff; opacity: 0.7; }
+    }
 }
 
 .carousel-section-wrap {
@@ -134,16 +147,16 @@
     grid-template-columns: 0.8fr 1.2fr;
     gap: $space-xxxxl;
     align-items: center;
-    margin: $space-xxxxxl 0;
-    @media (max-width: $breakpoint-lg) { grid-template-columns: 1fr; }
-}
+    margin-top: $space-xxxxxl;
 
-.curriculum-pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $space-xl;
-    padding-top: $space-xxxxl;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
-    .pillar-item { text-align: center; h5 { color: $color-text-white; } p { color: $color-text-light; } }
+    @media (max-width: $breakpoint-lg) { grid-template-columns: 1fr; }
+
+    .carousel-sidebar {
+        h3 { color: #ffffff; font-size: $font-size-h2; margin-bottom: $space-md; }
+        .observation-content p {
+            color: #ffffff !important; // Forced pure white
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+    }
 }

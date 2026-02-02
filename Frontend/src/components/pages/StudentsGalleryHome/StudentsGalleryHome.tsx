@@ -27,18 +27,11 @@ const artworks: Artwork[] = [
         coursePhase: 'Oil Painting | Phase 2: Underpainting',
         description: 'Using charcoal and multi-layer glazing to establish structural volume.'
     },
+    
     { 
         id: 4, 
-        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/dJG2dZNY/Dubi-22024-07-05-120kb.jpg', 
-        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/Jj4q7VKd/Dubi-2020-500kb.jpg',
-        title: 'Commando Divers Series',
-        coursePhase: 'Academic Drawing | Phase 3: Anatomy',
-        description: 'Advanced freehand study of muscular tension without the use of projectors.'
-    },
-    { 
-        id: 5, 
-        url: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/dJG2dZNY/Dubi-22024-07-05-120kb.jpg', 
-        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/Vc91fTHN/DSC-0377-500kb.jpg',
+        url: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032396/DSC_8393-120kb_psi0xt.jpg', 
+        highRes: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032519/DSC_8393-500kb_wx5hza.jpg',
         title: 'Commando Divers Series',
         coursePhase: 'Academic Drawing | Phase 3: Anatomy',
         description: 'Advanced freehand study of muscular tension without the use of projectors.'

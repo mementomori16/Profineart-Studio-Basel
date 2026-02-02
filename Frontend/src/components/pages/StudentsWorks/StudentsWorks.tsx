@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import StudentArtwork from '../ArtworkByStudent/StudentArtwork'; 
 import './studentsWorks.scss';
 
-interface ProgressiveImageProps {
-    lowRes: string;
-    highRes: string;
-    alt: string;
-}
-
-const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ lowRes, highRes, alt }) => {
+// --- HELPER: PROGRESSIVE IMAGE ---
+const ProgressiveImage: React.FC<{ lowRes: string; highRes: string; alt: string }> = ({ lowRes, highRes, alt }) => {
     const [currentSrc, setCurrentSrc] = useState(lowRes);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         setCurrentSrc(lowRes);
         setIsLoaded(false);
-
         const img = new Image();
         img.src = highRes;
         img.onload = () => {
@@ -27,10 +20,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ lowRes, highRes, al
 
     return (
         <div className="progressive-container">
-            {/* Background layer to fill empty space with color-matched blur */}
-            <img src={currentSrc} aria-hidden="true" className="bg-blur-layer" />
-            
-            {/* Main Image - Contain ensures the full work is visible */}
+            <img src={currentSrc} aria-hidden="true" className="bg-blur-layer" alt="" />
             <img 
                 src={currentSrc} 
                 alt={alt} 
@@ -40,15 +30,42 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ lowRes, highRes, al
     );
 };
 
+// --- HELPER: REUSABLE CAROUSEL ---
+const GalleryCarousel: React.FC<{ slides: any[] }> = ({ slides }) => {
+    const [index, setIndex] = useState(0);
+
+    const nextSlide = () => setIndex((prev) => (prev + 1) % slides.length);
+    const prevSlide = () => setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+
+    if (!slides || slides.length === 0) return null;
+
+    return (
+        <div className="hero-carousel-container">
+            <div className="carousel-wrapper">
+                <ProgressiveImage 
+                    lowRes={slides[index].lowRes} 
+                    highRes={slides[index].highRes} 
+                    alt={slides[index].title} 
+                />
+                <button className="nav-btn prev" onClick={prevSlide}>&#8249;</button>
+                <button className="nav-btn next" onClick={nextSlide}>&#8250;</button>
+            </div>
+
+            <div className="hero-artwork-titles">
+                <span className="art-title">{slides[index].title}</span>
+                <span className="student-info">{slides[index].info}</span>
+            </div>
+        </div>
+    );
+};
+
+// --- MAIN COMPONENT ---
 const StudentsWorks: React.FC = () => {
     const { t } = useTranslation();
     const [hours, setHours] = useState(10);
-    const [heroIndex, setHeroIndex] = useState(0);
 
-    const slides = t('studentsGallery.hero.slides', { returnObjects: true }) as any[];
-
-    const nextSlide = () => setHeroIndex((prev) => (prev + 1) % slides.length);
-    const prevSlide = () => setHeroIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    const heroSlides = t('studentsGallery.hero.slides', { returnObjects: true }) as any[];
+    const bottomSlides = t('studentsGallery.bottomCarousel.slides', { returnObjects: true }) as any[];
 
     useEffect(() => {
         document.body.style.backgroundColor = '#121212'; 
@@ -59,7 +76,7 @@ const StudentsWorks: React.FC = () => {
         <div className="students-gallery-root">
             <div className="container">
                 
-                {/* HERO SECTION */}
+                {/* TOP SECTION */}
                 <section className="featured-hero">
                     <div className="hero-text">
                         <span className="label">{t('studentsGallery.hero.label')}</span>
@@ -68,24 +85,7 @@ const StudentsWorks: React.FC = () => {
                             <p>{t('studentsGallery.hero.description')}</p>
                         </div>
                     </div>
-
-                    <div className="hero-carousel-container">
-                        <div className="carousel-wrapper">
-                            <ProgressiveImage 
-                                lowRes={slides[heroIndex].lowRes} 
-                                highRes={slides[heroIndex].highRes} 
-                                alt={slides[heroIndex].title} 
-                            />
-                            
-                            <button className="nav-btn prev" onClick={prevSlide}>&#10229;</button>
-                            <button className="nav-btn next" onClick={nextSlide}>&#10230;</button>
-                        </div>
-
-                        <div className="hero-artwork-titles">
-                            <span className="art-title">{slides[heroIndex].title}</span>
-                            <span className="student-info">{slides[heroIndex].info}</span>
-                        </div>
-                    </div>
+                    <GalleryCarousel slides={heroSlides} />
                 </section>
 
                 {/* CALCULATOR */}
@@ -100,17 +100,17 @@ const StudentsWorks: React.FC = () => {
                     <div className="hours-display">{hours} {t('studentsGallery.calculator.hoursPerWeek')}</div>
                     <div className="results-wrap">
                         <div className="res-item">
-                            <span>{t('studentsGallery.calculator.foundations')}</span>
+                            <span>{t('studentsGallery.calculator.foundations')}</span><br/>
                             <strong>{Math.round(80 / hours)} Weeks</strong>
                         </div>
                         <div className="res-item">
-                            <span>{t('studentsGallery.calculator.graduation')}</span>
+                            <span>{t('studentsGallery.calculator.graduation')}</span><br/>
                             <strong>{Math.round(320 / hours)} Weeks</strong>
                         </div>
                     </div>
                 </section>
 
-                {/* MENTORSHIP */}
+                {/* BOTTOM SECTION */}
                 <section className="carousel-section-wrap">
                     <div className="carousel-sidebar">
                         <span className="label">{t('studentsGallery.mentorship.label')}</span>
@@ -121,26 +121,7 @@ const StudentsWorks: React.FC = () => {
                         </div>
                     </div>
                     <div className="carousel-main">
-                        <StudentArtwork />
-                    </div>
-                </section>
-
-                {/* PILLARS */}
-                <section className="curriculum-pillars">
-                    <div className="pillar-item">
-                        <div className="pillar-icon">◈</div>
-                        <h5>{t('studentsGallery.pillars.one.title')}</h5>
-                        <p>{t('studentsGallery.pillars.one.description')}</p>
-                    </div>
-                    <div className="pillar-item">
-                        <div className="pillar-icon">◈</div>
-                        <h5>{t('studentsGallery.pillars.two.title')}</h5>
-                        <p>{t('studentsGallery.pillars.two.description')}</p>
-                    </div>
-                    <div className="pillar-item">
-                        <div className="pillar-icon">◈</div>
-                        <h5>{t('studentsGallery.pillars.three.title')}</h5>
-                        <p>{t('studentsGallery.pillars.three.description')}</p>
+                        <GalleryCarousel slides={bottomSlides} />
                     </div>
                 </section>
 

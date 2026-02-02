@@ -359,31 +359,64 @@
       "slides": [
         {
           "id": 1,
-          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/wrN5n3xP/DSC-8287-low.jpg",
-          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/wrN5n3xP/DSC-8287-500kb.jpg",
-          "title": "Commando Divers",
-          "info": "Shay R., Born 1965"
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032396/DSC_8287-120kb_spodug.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032519/DSC_8287-500kb_tsqllx.jpg",
+          "title": "Commando Diver",
+          "info": "Shay R."
+        },
+         {
+          "id": 2,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020354/dubidancer120kb_odct5x.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020493/dubidancer500kb_dlitxz.jpg",
+          "title": "Anatomical Study",
+          "info": "Dr.Devorah S."
         },
         {
           "id": 2,
           "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/c9CthBy/Dikla-nude-study-2019-120kb.jpg",
-          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/c9CthBy/Dikla-nude-study-2019-120kb.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032517/Dikla_nude_study_2019-500kb_ko9xpu.jpg",
           "title": "Anatomical Study",
-          "info": "Academic Drawing"
+          "info": "Dr.Dikla A."
         },
+    
         {
           "id": 3,
           "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
           "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
-          "title": "Mastery of Light",
-          "info": "Oil on Linen"
+          "title": "Still Life",
+          "info": "Dr.Devorah S."
         },
         {
           "id": 4,
-          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
-          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
-          "title": "The Golden Ratio",
-          "info": "Technical Composition"
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769852449/Dikla_Roman_head_2019_nidpna.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769852552/Dikla_Head_500kb_kmunwn.jpg",
+          "title": "Roman Sculpture Head",
+          "info": "Dr.Dikla A."
+        }
+      ]
+    },
+    "bottomCarousel": {
+      "slides": [
+        {
+          "id": 1,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg",
+          "title": "Oil Landscape Process",
+          "info": "Oil Painting | Phase 3: Progress of Oil Painting"
+        },
+        {
+          "id": 3,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/4wzFDgzz/DSC-8392-120kb.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/d4r83Ly9/DSC-8392-500kb.jpg",
+          "title": "Roman Sculpture Oil Study",
+          "info": "Oil Painting | Phase 3: Progress of Oil Painting"
+        },
+        {
+          "id": 4,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg",
+          "title": "Commando Divers Series",
+          "info": "Acrylic Painting"
         }
       ]
     },
