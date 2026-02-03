@@ -24,7 +24,19 @@ const Pricing: React.FC = () => {
                     <div className="column-left">
                         <div className="main-info-frame">
                             <p className="intro-text">{t('howItWorksPage.intro')}</p>
-                            
+
+                            {/* NEW: Student Levels */}
+                            <div className="section-block">
+                                <h3>{t('howItWorksPage.levelsTitle')}</h3>
+                                <p>{t('howItWorksPage.levelsText')}</p>
+                            </div>
+
+                            {/* NEW: Learning Format & Responsibility */}
+                            <div className="section-block">
+                                <h3>{t('howItWorksPage.formatExpectationsTitle')}</h3>
+                                <p>{t('howItWorksPage.formatExpectationsText')}</p>
+                            </div>
+
                             <div className="section-block">
                                 <h3>{t('howItWorksPage.option2Title')}</h3>
                                 <p>{t('howItWorksPage.option2FullDesc')}</p>

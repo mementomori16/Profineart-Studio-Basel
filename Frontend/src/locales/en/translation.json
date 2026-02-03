@@ -45,16 +45,30 @@
     "role": "Board Eligible Veterinary Ophthalmologist"
   },
 
-  "aboutPage": {
+  
+ "aboutPage": {
     "title": "ProFineArt Studio Basel: Contemporary Fine Art Pedagogy",
-    "intro": "ProFineArt Studio Basel is the private educational project and professional practice of Ilya Medvedev, a contemporary fine artist and certified senior educator. As the sole creator, owner, and instructor, Ilya Medvedev manages every aspect of the project, providing specialized mentorship that combines historical tradition with contemporary artistic standards. All communication and instruction are conducted in English.",
+    "intro": "ProFineArt Studio Basel is the private educational project and professional practice of Ilya Medvedev, a contemporary fine artist and certified senior educator. As the owner and instructor, Ilya Medvedev manages every aspect of the project, providing specialized mentorship that combines historical tradition with contemporary artistic standards. All instruction is conducted in English.",
+    
     "mobileTitle": "A Dedicated Mobile Education",
-    "mobileText": "ProFineArt Studio Basel operates as a mobile educational project rather than a physical school. There is no public studio or atelier for students to visit. This structure is designed to provide high-level fine art education within the student’s own environment. Ilya Medvedev travels directly to the student's private home or personal studio space to conduct every session. This ensures that the learning process is integrated into the student’s personal creative setting.",
+    "mobileText": "Operating as a mobile educational project, ProFineArt Studio Basel brings high-level fine art education directly to the student's private home or personal studio. This structure ensures that the learning process is fully integrated into the student’s personal creative environment.",
+    
     "backgroundTitle": "Academic and Professional Background",
-    "backgroundText": "The curriculum is built upon a foundation of significant academic achievement and international experience. Ilya Medvedev holds a Bachelor of Education in Fine Arts (B.Ed.FA) and an Art Teaching Certification from the Hamidrasha Faculty of the Arts, as well as Master of Fine Arts studies from the Bezalel Academy of Arts and Design. With a career as a freelance artist spanning over 15 years, Ilya Medvedev brings a wealth of museum-level experience to the teaching process. This includes seven years of intensive study in Byzantine Icon Painting in Greece and Jerusalem, providing a rare technical depth in ancient media such as Byzantine Iconography and Egg Tempera.",
-    "methodologyTitle": "Individual Courses and Methodology",
-    "methodologyText": "The education provided focuses on mastering the visual language of fine art across several disciplines. The Byzantine Iconography course explores the sacred techniques of the old masters, focusing on historical accuracy and the mastery of light. The Oil Painting and Aquarelle programs emphasize the chemistry of materials, archival integrity, and the transition from classical underpainting to modern textures. In Academic Drawing, the focus is on developing a freehand 'eye-brain-hand' connection without the use of stencils or projectors. Other specialized courses include Mixed Media, Contemporary Painting, and Stone Painting, each designed to help the student navigate the complexities of form, color, and conceptual expression.",
+    "backgroundText": "The curriculum is built upon a foundation of significant academic achievement. Ilya Medvedev holds a B.Ed.FA and Art Teaching Certification from the Hamidrasha Faculty of the Arts, alongside Master of Fine Arts studies from the Bezalel Academy of Arts and Design. Seven years of Byzantine Iconography study in Greece and Jerusalem. Over a 15-year career, Ilya Medvedev has produced 1,000+ artworks including large-scale oil paintings. Professional experience includes restoration.",
+    
+    "methodologyTitle": "Specialized Experience & Methodology",
+    "methodologyText": "A specialist in free-hand precision, Ilya Medvedev practiced for five years as a tattoo artist and street portraitist, working without stencils or preliminary sketches. This mastery of detail led to the development of hyper-realistic painting techniques for medical surgical training, designed to enhance the visual acuity of surgeons.\n\nSince 2012, this pedagogy has mentored diverse professionals, from game designers to doctors. The methodology emphasizes a freehand 'eye-brain-hand' connection across disciplines such as Byzantine Iconography, Academic Drawing, and Contemporary Painting, focusing on technical mastery and creative independence.",
+
+    "studentLevelsTitle": "Who the Courses Are For",
+    "studentLevelsText": "Courses are suitable for students from absolute beginner to advanced levels. Beginner-friendly methods use supportive materials, while advanced courses emphasize technical skill and mastery of complex techniques. Programs are designed for individuals with artistic aptitude; participants are expected to have the physical and cognitive ability to engage in fine art practice.",
+    
     "artFactsLink": "View Ilya Medvedev Profile on ArtFacts",
+  
+  
+  
+
+
+
     "slides": [
         {
             "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855814/Ily120kb_mayj5l.jpg",
@@ -351,6 +365,12 @@
     "title": "Pricing & Format",
     "sidebarTitle": "Price List",
     "intro": "Profineart Studio Basel provides private art instruction exclusively in English. Training is conducted in individual sessions for maximum comfort.",
+    "levelsTitle": "Student Levels & Learning Approach",
+  "levelsText": "Courses at ProFineArt Studio Basel are suitable for all skill levels, from complete beginners to advanced practitioners. Students select courses according to their current experience, goals, and interests. Introductory courses are available for those starting from zero and may include supportive learning tools and structured guidance. Advanced courses focus on observational drawing, material understanding, and independent artistic decision-making without auxiliary technical aids.",
+
+  "formatExpectationsTitle": "Learning Format & Student Responsibility",
+  "formatExpectationsText": "The educational format requires active participation, concentration, and personal engagement from the student. Lessons are practice-oriented and structured around observation, analysis, and hands-on work.",
+
     "option2Title": "2-Session Format",
     "option2FullDesc": "Each visit consists of 90 minutes of focused instruction (45 + 45 min).",
     "option15Title": "1.5-Session Format",

@@ -31,7 +31,9 @@ const ProgressiveImage: React.FC<{ lowRes: string; highRes: string; alt: string 
 const About: React.FC = () => {
     const { t } = useTranslation();
     const [index, setIndex] = useState(0);
-    const slides = t('aboutPage.slides', { returnObjects: true }) as any[];
+    
+    // Fallback for slides to prevent mapping errors
+    const slides = t('aboutPage.slides', { returnObjects: true }) as any[] || [];
 
     const nextSlide = () => setIndex((prev) => (prev + 1) % slides.length);
     const prevSlide = () => setIndex((prev) => (prev - 1 + slides.length) % slides.length);
@@ -48,21 +50,35 @@ const About: React.FC = () => {
                     <div className="hero-text">
                         <span className="label">PROFINEART PROFILE</span>
                         <h2>{t('aboutPage.title')}</h2>
+
                         <div className="progress-essay">
+                            {/* Introduction */}
                             <div className="feature-item">
                                 <p>{t('aboutPage.intro')}</p>
                             </div>
+
+                            {/* Mobile Education Structure */}
                             <div className="feature-item">
                                 <h4 className="item-label">{t('aboutPage.mobileTitle')}</h4>
                                 <p>{t('aboutPage.mobileText')}</p>
                             </div>
+
+                            {/* Academic & Professional Foundation */}
                             <div className="feature-item">
                                 <h4 className="item-label">{t('aboutPage.backgroundTitle')}</h4>
-                                <p>{t('aboutPage.backgroundText')}</p>
+                                <p style={{ whiteSpace: 'pre-line' }}>{t('aboutPage.backgroundText')}</p>
                             </div>
+
+                            {/* Specialized Experience & Pedagogy */}
                             <div className="feature-item">
                                 <h4 className="item-label">{t('aboutPage.methodologyTitle')}</h4>
-                                <p>{t('aboutPage.methodologyText')}</p>
+                                <p style={{ whiteSpace: 'pre-line' }}>{t('aboutPage.methodologyText')}</p>
+                            </div>
+
+                            {/* Suitability and Requirements */}
+                            <div className="feature-item">
+                                <h4 className="item-label">{t('aboutPage.studentLevelsTitle')}</h4>
+                                <p>{t('aboutPage.studentLevelsText')}</p>
                             </div>
                         </div>
                     </div>
@@ -70,27 +86,27 @@ const About: React.FC = () => {
                     <div className="hero-media">
                         <div className="hero-carousel-container">
                             <div className="carousel-wrapper">
-                                {slides && slides.length > 0 && (
+                                {slides.length > 0 && (
                                     <ProgressiveImage 
-                                        lowRes={slides[index].lowRes} 
-                                        highRes={slides[index].highRes} 
-                                        alt={slides[index].caption} 
+                                        lowRes={slides[index]?.lowRes} 
+                                        highRes={slides[index]?.highRes} 
+                                        alt={slides[index]?.caption} 
                                     />
                                 )}
-                                <button className="nav-btn prev" onClick={prevSlide}>&#8249;</button>
-                                <button className="nav-btn next" onClick={nextSlide}>&#8250;</button>
+                                <button className="nav-btn prev" onClick={prevSlide} aria-label="Previous image">&#8249;</button>
+                                <button className="nav-btn next" onClick={nextSlide} aria-label="Next image">&#8250;</button>
                             </div>
                             <div className="hero-artwork-titles">
-    <span className="art-title">{slides[index]?.caption}</span>
-    <a 
-        href="https://artfacts.net/artist/ilya-medvedev-1981-ch" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="artfacts-link-box"
-    >
-        {t('aboutPage.artFactsLink')} ↗
-    </a>
-</div>
+                                <span className="art-title">{slides[index]?.caption}</span>
+                                <a 
+                                    href="https://artfacts.net/artist/ilya-medvedev-1981-ch" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="artfacts-link-box"
+                                >
+                                    {t('aboutPage.artFactsLink')} ↗
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </section>
