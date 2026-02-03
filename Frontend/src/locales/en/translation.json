@@ -54,7 +54,24 @@
     "backgroundText": "The curriculum is built upon a foundation of significant academic achievement and international experience. Ilya Medvedev holds a Bachelor of Education in Fine Arts (B.Ed.FA) and an Art Teaching Certification from the Hamidrasha Faculty of the Arts, as well as Master of Fine Arts studies from the Bezalel Academy of Arts and Design. With a career as a freelance artist spanning over 15 years, Ilya Medvedev brings a wealth of museum-level experience to the teaching process. This includes seven years of intensive study in Byzantine Icon Painting in Greece and Jerusalem, providing a rare technical depth in ancient media such as Byzantine Iconography and Egg Tempera.",
     "methodologyTitle": "Individual Courses and Methodology",
     "methodologyText": "The education provided focuses on mastering the visual language of fine art across several disciplines. The Byzantine Iconography course explores the sacred techniques of the old masters, focusing on historical accuracy and the mastery of light. The Oil Painting and Aquarelle programs emphasize the chemistry of materials, archival integrity, and the transition from classical underpainting to modern textures. In Academic Drawing, the focus is on developing a freehand 'eye-brain-hand' connection without the use of stencils or projectors. Other specialized courses include Mixed Media, Contemporary Painting, and Stone Painting, each designed to help the student navigate the complexities of form, color, and conceptual expression.",
-    "artFactsLink": "View Ilya Medvedev Profile on ArtFacts"
+    "artFactsLink": "View Ilya Medvedev Profile on ArtFacts",
+    "slides": [
+        {
+            "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855814/Ily120kb_mayj5l.jpg",
+            "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855744/Ily500kb_yvswlt.jpg",
+            "caption": "Ilya Medvedev"
+        },
+        {
+            "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770065006/20210815_155250120kb_zbfrjq.jpg",
+            "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770065163/20210815_155250-500kb_gojd9d.jpg",
+            "caption": "Ilya Medvedev during the artistic process"
+        },
+        {
+            "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855796/IMG_3422-120kb_bx9vxo.jpg", 
+            "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855726/IMG_3422-500kb_iswlar.jpg",
+            "caption": "Master Class during Privet Mentorship Session"
+        }
+    ]
 },
 
 "studentsWorksPage": {
@@ -357,34 +374,27 @@
       "title": "The Result: Professional Command",
       "description": "The works in this gallery are the outcome of a rigorous transition. They represent the moment where technical struggle disappears and professional authority begins. By eliminating \"blind spots\" and refining the physical mechanics of painting, the student moves beyond mere imitation. What remains is a high-level mastery of light, form, and medium—turning complex theory into effortless, high-fidelity execution.",
       "slides": [
+
         {
           "id": 1,
-          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032396/DSC_8287-120kb_spodug.jpg",
-          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032519/DSC_8287-500kb_tsqllx.jpg",
-          "title": "Commando Diver",
-          "info": "Shay R."
-        },
-         {
-          "id": 2,
-          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020354/dubidancer120kb_odct5x.jpg",
-          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020493/dubidancer500kb_dlitxz.jpg",
-          "title": "Anatomical Study",
-          "info": "Dr.Devorah S."
-        },
-        {
-          "id": 2,
           "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/c9CthBy/Dikla-nude-study-2019-120kb.jpg",
           "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032517/Dikla_nude_study_2019-500kb_ko9xpu.jpg",
           "title": "Anatomical Study",
           "info": "Dr.Dikla A."
         },
-    
         {
-          "id": 3,
+          "id": 2,
           "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
           "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
           "title": "Still Life",
           "info": "Dr.Devorah S."
+        },
+        {
+          "id": 3,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032396/DSC_8287-120kb_spodug.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032519/DSC_8287-500kb_tsqllx.jpg",
+          "title": "Commando Diver",
+          "info": "Shay R."
         },
         {
           "id": 4,
@@ -392,6 +402,13 @@
           "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769852552/Dikla_Head_500kb_kmunwn.jpg",
           "title": "Roman Sculpture Head",
           "info": "Dr.Dikla A."
+        },
+         {
+          "id": 5,
+          "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020354/dubidancer120kb_odct5x.jpg",
+          "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020493/dubidancer500kb_dlitxz.jpg",
+          "title": "Anatomical Study",
+          "info": "Dr.Devorah S."
         }
       ]
     },
@@ -433,19 +450,13 @@
       "para1": "True mastery relies on more than just theory; it requires the real-time refinement of the working process. Beyond the masterclass, the core of the study process lies in the direct observation of a student’s work.",
       "para2": "This allows for the immediate correction of subtle, overlooked errors—the \"blind spots\" that often stall progress for years. By resolving these technical hurdles in the moment, the learning process is simplified, moving the student rapidly from fundamental coordination to highly sophisticated, professional techniques."
     },
-    "pillars": {
-      "one": {
-        "title": "Ancient Technique",
-        "description": "Mastery of Egg Tempera and 24k Gold Gilding."
-      },
-      "two": {
-        "title": "Material Science",
-        "description": "In-depth study of linen weights and pigment chemistry."
-      },
-      "three": {
-        "title": "Anatomical Logic",
-        "description": "Freehand drawing without mechanical assistance."
-      }
+    "exhibition": {
+      "label": "Professional Debut",
+      "title": "Thematic Exhibition: Shay R.",
+      "description": "Marking a significant milestone in the professional curriculum, student Shay R. born in 1965, presented a solo exhibition featuring ten large-scale acrylic works. The collection explored the high-stakes environment of underwater diving and sea commando operations, executed with technical precision on canvas. Attracting students from various art academies and local art critics, the exhibition was highlighted in several digital art magazines and local press, documenting Shay's transition from academic study to public recognition.",
+      "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770038876/shayexhibition120kb_fdf9ny.jpg",
+      "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770038781/shayexhibition_ifnloz.jpg",
+      "caption": "Solo Exhibition by Shay R. | Acrylic on Canvas Series"
     }
     },
 

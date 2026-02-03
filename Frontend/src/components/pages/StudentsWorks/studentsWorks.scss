@@ -6,7 +6,7 @@
     min-height: 100vh;
     width: 100%;
     color: #ffffff; 
-    padding: $space-xxxxl 0;
+    padding: $space-xxxxl 0 $space-xxl;
 
     .label {
         color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
@@ -17,146 +17,118 @@
         display: block;
         margin-bottom: $space-sm;
     }
-
-    .hero-carousel-container {
-        width: 100%;
-
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4 / 3; 
-            overflow: hidden;
-            background-color: $color-text-dark4;
-            border-radius: $border-radius-sm;
-            box-shadow: $shadow-xl;
-
-            .progressive-container {
-                position: relative;
-                width: 100%; height: 100%;
-                display: flex; align-items: center; justify-content: center;
-
-                .bg-blur-layer {
-                    position: absolute;
-                    top: 0; left: 0;
-                    width: 100%; height: 100%;
-                    object-fit: cover;
-                    filter: blur(30px) brightness(0.3);
-                    opacity: 0.5;
-                    z-index: 1;
-                }
-
-                .premium-frame {
-                    position: relative;
-                    z-index: 2;
-                    max-width: 100%;
-                    max-height: 100%;
-                    object-fit: contain; 
-                    transition: opacity 0.5s ease;
-                }
-            }
-
-            .nav-btn {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: none;
-                color: #ffffff;
-                border: none;
-                font-size: 2.5rem; 
-                font-family: Arial, sans-serif;
-                cursor: pointer;
-                opacity: 0.5;
-                transition: opacity 0.3s;
-                z-index: 10;
-                padding: $space-md;
-
-                &:hover { opacity: 1; }
-                &.prev { left: $space-xs; }
-                &.next { right: $space-xs; }
-            }
-        }
-
-        .hero-artwork-titles {
-            margin-top: $space-md;
-            .art-title {
-                display: block;
-                font-weight: $font-weight-bold;
-                font-size: $font-size-sm;
-                text-transform: uppercase;
-                color: #ffffff;
-            }
-            .student-info {
-                color: #ffffff; // Unified color
-                font-size: $font-size-xs;
-                font-style: italic;
-                opacity: 0.8;
-            }
-        }
-    }
 }
 
+// SHARED GRID STRUCTURE
 .featured-hero {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: $space-xxxxl;
-    align-items: center;
-    margin-bottom: $space-xxxxxl;
+    align-items: flex-start;
+    margin-bottom: $space-xxxxl;
 
-    @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
 
     .hero-text {
-        h2 { color: #ffffff; font-size: $font-size-h2; margin-bottom: $space-md; }
+        h2, h3 { 
+            color: #ffffff; 
+            font-size: $font-size-h2; 
+            margin-bottom: $space-md; 
+            font-weight: $font-weight-bold;
+        }
         .progress-essay p {
-            color: #ffffff !important; // Forced pure white
+            color: #ffffff !important;
             line-height: 1.8;
             font-size: 1.05rem;
-            margin: 0;
         }
     }
 }
 
+// --- CAROUSEL RE-STYLING (STRIPES NOW INVISIBLE) ---
+.hero-carousel-container {
+    width: 100%;
+    .carousel-wrapper {
+        position: relative;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        // CHANGED: Matches root background so stripes are invisible but container is stable
+        background-color: $color-text-dark3; 
+        border-radius: $border-radius-sm;
+        box-shadow: $shadow-xl;
+        
+        .carousel-progressive {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            
+            .premium-frame {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain; 
+            }
+        }
+    }
+    .hero-artwork-titles {
+        margin-top: $space-md;
+        .art-title { display: block; font-weight: $font-weight-bold; font-size: $font-size-sm; }
+        .student-info { font-size: $font-size-xs; font-style: italic; opacity: 0.6; }
+    }
+}
+
+// --- EXHIBITION RE-STYLING (CLEAN, NO STRIPES) ---
+.exhibition-clean-frame {
+    width: 100%;
+    .exhibition-progressive {
+        width: 100%;
+        background-color: transparent; 
+        border-radius: $border-radius-sm;
+        overflow: hidden;
+        box-shadow: $shadow-xl;
+
+        .premium-frame {
+            width: 100%;
+            height: auto; 
+            display: block;
+        }
+    }
+    .under-image-meta {
+        margin-top: $space-md;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: $space-sm;
+        span {
+            font-size: $font-size-xs;
+            font-style: italic;
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+    }
+}
+
+// CALCULATOR STYLES
 .timeline-calculator {
     margin: $space-xxxxl 0;
-    background-color: $color-text-dark4;
-    padding: $space-xxxl;
-    border-radius: $border-radius-md;
+    padding: $space-xxxxl 0;
     text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     h3 { color: #ffffff; }
-    p { color: #ffffff; opacity: 0.9; }
-    input[type="range"] { 
-        width: 100%; 
-        max-width: 400px; 
-        accent-color: color.adjust($color-cta-primary-warm, $lightness: 20%); 
-    }
-    .hours-display { 
-        font-size: $font-size-h2; 
-        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
-        margin: $space-md 0; 
-    }
-    .results-wrap { 
-        display: flex; 
-        justify-content: center; 
-        gap: $space-xxxxl; 
-        strong { color: #ffffff; }
-        span { color: #ffffff; opacity: 0.7; }
-    }
+    input[type="range"] { width: 100%; max-width: 400px; accent-color: $color-cta-primary-warm; }
+    .hours-display { font-size: 3.5rem; color: color.adjust($color-cta-primary-warm, $lightness: 25%); margin: $space-md 0; }
+    .results-wrap { display: flex; justify-content: center; gap: $space-xxxxl; }
 }
 
-.carousel-section-wrap {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: $space-xxxxl;
-    align-items: center;
-    margin-top: $space-xxxxxl;
+.nav-btn {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: none; color: #ffffff; border: none; font-size: 2.5rem; cursor: pointer; opacity: 0.5;
+    z-index: 20;
+    &:hover { opacity: 1; }
+    &.prev { left: 10px; } &.next { right: 10px; }
+}
 
-    @media (max-width: $breakpoint-lg) { grid-template-columns: 1fr; }
-
-    .carousel-sidebar {
-        h3 { color: #ffffff; font-size: $font-size-h2; margin-bottom: $space-md; }
-        .observation-content p {
-            color: #ffffff !important; // Forced pure white
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-    }
+.exhibition-final-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: $space-xxxxl;
+    margin-bottom: 0;
 }

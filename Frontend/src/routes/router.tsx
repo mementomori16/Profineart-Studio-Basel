@@ -16,7 +16,6 @@ import TermsOfUse from "../components/pages/TermsOfUse/TermsOfUse";
 import HowItWorks from "../components/pages/HowitWorks/Pricing";
 import StudentsWorks from "../components/pages/StudentsWorks/StudentsWorks";
 import VideoPage from "../components/pages/VideoPage/VideoPage";
-import StudentArtwork from "../components/pages/ArtworkByStudent/StudentArtwork";
 
 
 const router = createBrowserRouter([
@@ -36,7 +35,6 @@ const router = createBrowserRouter([
             { path: "legalinfo", element: <LegalInfo /> },
             { path: "terms-of-use", element: <TermsOfUse /> },
             { path: "video-page", element: <VideoPage /> },
-            { path: "student-artwork", element: <StudentArtwork /> },
             { path: "success-page", element: <SuccessPage /> },
             
 
