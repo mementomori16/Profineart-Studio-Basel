@@ -37,7 +37,8 @@ const Courses: React.FC = () => {
                         {['All', 'Drawing', 'Painting', 'Mixed'].map((cat) => (
                             <button 
                                 key={cat}
-                                className={`filter-nav-btn ${activeCategory === cat.toLowerCase() ? 'active' : ''}`}
+                                // Normalized comparison for active state highlight
+                                className={`filter-nav-btn ${activeCategory === (cat === 'All' ? 'all' : cat) ? 'active' : ''}`}
                                 onClick={() => setActiveCategory(cat === 'All' ? 'all' : cat as any)}
                             >
                                 {t(`coursesPage.filter${cat}`)}

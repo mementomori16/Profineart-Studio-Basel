@@ -12,6 +12,11 @@ $color-cta-primary-warm: #5C253B;
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
         padding-bottom: $space-sm;
 
+        @media (max-width: $breakpoint-md) {
+            // REDUCES GAP IN MOBILE: Shrinks the margin below the line
+            margin-bottom: $space-sm;
+        }
+
         .text-main-title {
             @include services-heading;
             color: $color-text-white;
@@ -39,12 +44,14 @@ $color-cta-primary-warm: #5C253B;
 .text-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: $space-xxl; // Increased gap for breathing room
+    gap: $space-xxl; 
     margin-top: $space-xl;
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
         gap: $space-xl;
+        // REDUCES GAP IN MOBILE: Shrinks the margin above the grid
+        margin-top: $space-sm;
     }
 }
 
@@ -69,16 +76,15 @@ $color-cta-primary-warm: #5C253B;
 
     .item-title {
         color: $color-text-white;
-        font-size: 1.1rem; // Scaled up from small to a proper heading
+        font-size: 1.1rem;
         font-weight: $font-weight-semibold;
         margin-bottom: $space-md;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
     }
 
-    // This controls the readability of the sub-content
     .item-body-text {
-        color: rgba(255, 255, 255, 0.85); // Brighter than before, but not 100% white
+        color: rgba(255, 255, 255, 0.85);
         font-size: 1rem;
         line-height: 1.7;
         font-weight: 300;
@@ -94,7 +100,7 @@ $color-cta-primary-warm: #5C253B;
     .label-accent {
         display: block;
         color: #ffffff;
-        font-size: 0.85rem; // Slightly larger for readability
+        font-size: 0.85rem;
         text-transform: uppercase;
         letter-spacing: 0.05rem;
         margin-bottom: 0.2rem;
@@ -103,20 +109,19 @@ $color-cta-primary-warm: #5C253B;
 
 .founder-clean-link {
     text-decoration: none;
-    display: inline; // Changed to inline so text can wrap around it properly
+    display: inline; 
     
     strong {
         color: $color-cta-primary-warm !important; 
         font-size: 1.1rem;
         font-weight: $font-weight-bold;
-        white-space: nowrap; // Keeps name and arrow on one line
+        white-space: nowrap;
 
         .arrow-symbol {
             font-size: 1.2rem;
             display: inline-block;
-            // THIS IS THE FIX:
-            margin-left: 0.4rem;  // Space between name and arrow
-            margin-right: 0.8rem; // SPACE BETWEEN ARROW AND BIO TEXT
+            margin-left: 0.4rem;
+            margin-right: 0.8rem;
             transition: transform 0.3s ease;
             vertical-align: middle;
         }
@@ -125,15 +130,9 @@ $color-cta-primary-warm: #5C253B;
     &:hover .arrow-symbol {
         transform: translateX(5px);
     }
-
-
-.item-body-text {
-    // Ensure the bio text has room to breathe
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.85);
 }
 
-    &:hover .arrow-symbol {
-        transform: translateX(5px);
-    }
+.item-body-text {
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
 }

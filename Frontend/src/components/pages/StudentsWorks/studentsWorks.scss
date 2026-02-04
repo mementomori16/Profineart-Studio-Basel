@@ -5,7 +5,12 @@
     min-height: 100vh;
     width: 100%;
     color: #ffffff; 
-    padding: $space-xxxxl 0 $space-xxl;
+    // REMOVED: Massive top padding to bring content up
+    padding: $space-md 0 $space-xxl; 
+
+    @media (max-width: $breakpoint-sm) {
+        padding-top: $space-sm; // Minimal top gap on mobile
+    }
 
     .label {
         color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
@@ -22,12 +27,15 @@
 .featured-hero {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: $space-xxxxl;
+    // RESTORED: Original wide gap between text and carousel
+    gap: $space-xxxxl; 
     align-items: flex-start;
-    margin-bottom: $space-xxxxl;
+    // REDUCED: Gap between this section and the next
+    margin-bottom: $space-xxl; 
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
+        gap: $space-xxxxl; // Keep the original gap on mobile as well
     }
 
     .hero-text {
@@ -36,6 +44,7 @@
             font-size: $font-size-h2; 
             margin-bottom: $space-md; 
             font-weight: $font-weight-bold;
+            text-transform: none; // Title casing
         }
         .progress-essay p {
             color: #ffffff !important;
@@ -45,22 +54,15 @@
     }
 }
 
-// --- CAROUSEL RE-STYLING (STRIPES NOW INVISIBLE) ---
 .hero-carousel-container {
     width: 100%;
 
     .carousel-wrapper {
         position: relative;
         aspect-ratio: 4 / 3;
-        
-        // UPDATED: Added rounded corners to match exhibition-progressive
         border-radius: $border-radius-sm; 
         overflow: hidden; 
-        
-        // UPDATED: Explicitly ensuring no shadow is present
         box-shadow: none; 
-        
-        // CHANGED: Matches root background so stripes are invisible but container is stable
         background-color: #171717;
         
         .carousel-progressive {
@@ -74,7 +76,6 @@
                 max-width: 100%;
                 max-height: 100%;
                 object-fit: contain; 
-                // Ensuring image respects the wrapper's radius
                 border-radius: inherit; 
             }
         }
@@ -87,7 +88,6 @@
     }
 }
 
-// --- EXHIBITION RE-STYLING (CLEAN, NO STRIPES) ---
 .exhibition-clean-frame {
     width: 100%;
     .exhibition-progressive {
@@ -111,21 +111,24 @@
             font-size: $font-size-xs;
             font-style: italic;
             opacity: 0.5;
-            text-transform: uppercase;
+            text-transform: none;
         }
     }
 }
 
 // CALCULATOR STYLES
 .timeline-calculator {
-    margin: $space-xxxxl 0;
-    padding: $space-xxxxl 0;
+    // REDUCED: Space around the calculator
+    margin: $space-xxl 0; 
+    padding: $space-xl 0; 
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    h3 { color: #ffffff; }
+    
+    h3 { color: #ffffff; text-transform: none; }
     input[type="range"] { width: 100%; max-width: 400px; accent-color: $color-cta-primary-warm; }
     .hours-display { font-size: 3.5rem; color: color.adjust($color-cta-primary-warm, $lightness: 25%); margin: $space-md 0; }
+    // RESTORED: Original wide gap for results
     .results-wrap { display: flex; justify-content: center; gap: $space-xxxxl; }
 }
 
@@ -140,6 +143,7 @@
 
 .exhibition-final-section {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: $space-xxxxl;
+    // REDUCED: Space at the top of the final section
+    padding-top: $space-xl; 
     margin-bottom: 0;
 }

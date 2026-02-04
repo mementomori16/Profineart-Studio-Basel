@@ -1,26 +1,32 @@
 @use "../../../global.scss" as *;
 
 .reviews-section {
-    padding: $space-xxxxl 0;
+    padding: 0; 
     
     @media (max-width: $breakpoint-md) {
-        padding: $space-xxl 0;
+        padding: 0;
     }
 }
 
 .section-header {
+    // Desktop margin
     margin-bottom: $space-xxxxl;
     border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
     padding-bottom: $space-md;
 
+    @media (max-width: $breakpoint-md) {
+        // Reduced gap for mobile between title and first review
+        margin-bottom: $space-lg; 
+    }
+
     .reviews-main-title {
         @include services-heading;
-        color: $color-text-white; // Replaced #fff
+        color: $color-text-white;
         text-align: left;
         margin: 0;
         text-transform: uppercase;
         letter-spacing: 0.4rem;
-        font-weight: $font-weight-light; // Replaced 300
+        font-weight: $font-weight-light;
 
         @media (max-width: $breakpoint-sm) {
             font-size: $font-size-h3;
@@ -46,6 +52,11 @@
     padding-bottom: $space-xxl;
     border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.05);
 
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 100%; 
         gap: $space-sm;
@@ -55,15 +66,15 @@
 
 .author-group {
     .review-author {
-        color: $color-text-white; // Replaced #fff
-        font-size: $font-size-base; // Unified with variable
-        font-weight: $font-weight-bold; // Replaced 700
+        color: $color-text-white;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
         margin: 0;
         letter-spacing: 0.0625rem;
     }
 
     .review-stars {
-        color: $color-text-white; // Replaced #fff
+        color: $color-text-white;
         font-size: 0.75rem;
         margin-top: $space-xxs;
         letter-spacing: 0.125rem;
@@ -83,17 +94,17 @@
     }
 
     .source-link:hover {
-        color: $color-text-white; // Replaced #fff
+        color: $color-text-white;
     }
 }
 
 .review-content {
     .review-text {
-        color: rgba(255, 255, 255, 0.85); // Replaced #dcdcdc for global consistency
+        color: rgba(255, 255, 255, 0.85);
         font-size: 1.0625rem;
         line-height: 1.8;
         margin: 0;
-        font-weight: $font-weight-light; // Replaced 300
+        font-weight: $font-weight-light;
         white-space: pre-line;
 
         @media (max-width: $breakpoint-sm) {

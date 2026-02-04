@@ -1,24 +1,31 @@
 @use "../../../global.scss" as *;
 
 .how-it-works-section {
-    // REDUCED TOP PADDING: Prevents double-spacing with the video section above
-    // LARGE BOTTOM PADDING: Maintains the signature breathing room below
-    padding: $space-sm 0 $space-xxxxl 0; 
+    // Top is flush, bottom has a controlled gap for the next component
+    padding: 0 0 $space-xl 0; 
     width: 100%;
 
+    @media (max-width: $breakpoint-md) {
+        // Slightly smaller breathing room on mobile
+        padding: 0 0 $space-lg 0;
+    }
+
     .section-header {
-        margin-bottom: $space-xxl;
-        // SIGNATURE LOOK: Matches Basel Service Area and Text Component
+        margin-bottom: $space-xxxxl; 
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
         padding-bottom: $space-sm;
         text-align: left;
+
+        @media (max-width: $breakpoint-md) {
+            margin-bottom: $space-lg; 
+        }
 
         .how-main-title {
             @include services-heading;
             color: $color-text-white;
             text-align: left;
             text-transform: uppercase;
-            letter-spacing: 0.4rem; // Brand consistent tracking
+            letter-spacing: 0.4rem;
             font-weight: $font-weight-light;
             margin-bottom: 0;
 
@@ -35,7 +42,7 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: $space-xs;
-    padding-top: $space-xl;
+    padding-top: 0; 
 
     @media (max-width: $breakpoint-md) {
         flex-direction: column;
@@ -49,7 +56,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 17.5rem; // Equivalent to 280px
+    max-width: 17.5rem;
 
     .step-icon-box {
         position: relative;
@@ -95,7 +102,7 @@
     }
 
     .step-desc {
-        color: rgba(255, 255, 255, 0.85); // Bright and readable
+        color: rgba(255, 255, 255, 0.85);
         font-size: 1rem; 
         line-height: 1.5;
         font-weight: $font-weight-light;
@@ -106,7 +113,7 @@
 
 .flow-arrow {
     padding-top: 2.5rem;
-    color: rgba(255, 255, 255, 0.2); // Subtle visual guide
+    color: rgba(255, 255, 255, 0.2);
     font-size: 1.5rem;
     
     @media (max-width: $breakpoint-md) {

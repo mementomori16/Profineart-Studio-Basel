@@ -2,8 +2,13 @@
 @use '../../../global.scss' as *;
 
 .pricing-senior-engine {
-    padding: $space-xxxxl 0;
+    // REDUCED TOP SPACE: Keeps it tight but professional
+    padding: $space-lg 0 $space-xxl;
     color: #ffffff;
+
+    @media (max-width: $breakpoint-sm) {
+        padding-top: $space-sm;
+    }
 
     .eyebrow, .block-label, .label {
         color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
@@ -12,16 +17,17 @@
         font-size: $font-size-xs;
         letter-spacing: 2px;
         display: block;
-        margin-bottom: $space-sm;
+        margin-bottom: $space-xs; // Tighter label gap
     }
 
     .compact-hero {
-        margin-bottom: $space-xxxxl;
+        margin-bottom: $space-xl; // Reduced from xxxxl
         .main-title {
             font-size: $font-size-h2; 
             margin: $space-xs 0 $space-md;
             color: #ffffff;
             font-weight: $font-weight-bold;
+            text-transform: none; // No all-caps
         }
         .description-lead {
             color: #ffffff !important;
@@ -35,8 +41,11 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $space-xl;
-        margin-bottom: $space-xxxxl;
-        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+        margin-bottom: $space-xl; // Reduced gap to next section
+        @media (max-width: $breakpoint-md) { 
+            grid-template-columns: 1fr;
+            gap: $space-md; // Tighter on mobile
+        }
     }
 
     .matrix-column {
@@ -79,12 +88,16 @@
     .details-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: $space-xxxxl;
-        margin-bottom: $space-xxxxl;
-        padding-top: $space-xxxxl;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        gap: $space-xl; // Reduced
+        margin-bottom: $space-xl;
+        padding-top: $space-xl;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
 
-        @media (max-width: $breakpoint-sm) { grid-template-columns: 1fr; }
+        @media (max-width: $breakpoint-sm) { 
+            grid-template-columns: 1fr; 
+            gap: $space-lg;
+            padding-top: $space-lg;
+        }
 
         .content-shard {
             .important-text {
@@ -104,8 +117,8 @@
         background: rgba(255, 255, 255, 0.02);
         border: 1px solid rgba(255, 255, 255, 0.15);
         text-decoration: none;
-        margin-bottom: $space-xxxxl;
-        transition: background 0.3s ease;
+        margin-bottom: $space-xl;
+        transition: 0.3s ease;
 
         &:hover { background: rgba(255, 255, 255, 0.05); }
 
@@ -118,9 +131,9 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $space-xl;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: $space-xl;
-        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; gap: $space-md; }
         .policy-block p { font-size: $font-size-sm; color: #ffffff; line-height: 1.7; }
     }
 }
