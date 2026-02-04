@@ -47,7 +47,7 @@
 
   
  "aboutPage": {
-    "title": "ProFineArt Studio Basel: Contemporary Fine Art Pedagogy",
+    "title": "Contemporary Fine Art Pedagogy",
     "intro": "ProFineArt Studio Basel is the private educational project and professional practice of Ilya Medvedev, a contemporary fine artist and certified senior educator. As the owner and instructor, Ilya Medvedev manages every aspect of the project, providing specialized mentorship that combines historical tradition with contemporary artistic standards. All instruction is conducted in English.",
     
     "mobileTitle": "A Dedicated Mobile Education",
@@ -363,7 +363,7 @@
 
 "howItWorksPage": {
     "title": "Pricing & Format",
-    "sidebarTitle": "Price List",
+    "sidebarTitle": "Services & Rates",
     "intro": "Profineart Studio Basel provides private art instruction exclusively in English. Training is conducted in individual sessions for maximum comfort.",
     "levelsTitle": "Student Levels & Learning Approach",
   "levelsText": "Courses at ProFineArt Studio Basel are suitable for all skill levels, from complete beginners to advanced practitioners. Students select courses according to their current experience, goals, and interests. Introductory courses are available for those starting from zero and may include supportive learning tools and structured guidance. Advanced courses focus on observational drawing, material understanding, and independent artistic decision-making without auxiliary technical aids.",
@@ -472,7 +472,7 @@
     },
     "exhibition": {
       "label": "Professional Debut",
-      "title": "Thematic Exhibition: Shay R.",
+      "title": "Thematic Exhibition",
       "description": "Marking a significant milestone in the professional curriculum, student Shay R. born in 1965, presented a solo exhibition featuring ten large-scale acrylic works. The collection explored the high-stakes environment of underwater diving and sea commando operations, executed with technical precision on canvas. Attracting students from various art academies and local art critics, the exhibition was highlighted in several digital art magazines and local press, documenting Shay's transition from academic study to public recognition.",
       "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770038876/shayexhibition120kb_fdf9ny.jpg",
       "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770038781/shayexhibition_ifnloz.jpg",

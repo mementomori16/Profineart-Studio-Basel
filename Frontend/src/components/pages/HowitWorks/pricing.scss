@@ -1,117 +1,126 @@
 @use "sass:color";
-@use '../../../global.scss' as global;
-@import '../Card/CardPage/cardPage.scss'; 
+@use '../../../global.scss' as *;
 
+.pricing-senior-engine {
+    padding: $space-xxxxl 0;
+    color: #ffffff;
 
-.pricing-how-it-works {
-    .pageTitle {
-        color: global.$color-text-dark2 !important;
-        font-weight: global.$font-weight-bold;
-        font-size: global.$font-size-h3;
+    .eyebrow, .block-label, .label {
+        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-xs;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: $space-sm;
     }
 
-    // SINGLE FRAME FOR TEXT CONTENT
-    .main-info-frame {
-        background-color: rgba(255, 255, 255, 0.4); 
-        border-radius: global.$border-radius-lg; 
-        padding: global.$space-lg;
-        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-        box-shadow: global.$shadow-sm;
-
-        .intro-text {
-            color: global.$color-text-dark4;
-            font-size: global.$font-size-base;
-            line-height: 1.7;
-            margin-bottom: global.$space-xl;
+    .compact-hero {
+        margin-bottom: $space-xxxxl;
+        .main-title {
+            font-size: $font-size-h2; 
+            margin: $space-xs 0 $space-md;
+            color: #ffffff;
+            font-weight: $font-weight-bold;
         }
-
-        .section-block {
-            margin-bottom: global.$space-xl;
-            &:last-child { margin-bottom: 0; }
-
-            h3 {
-                color: global.$color-text-dark2 !important;
-                font-size: 1.3rem;
-                margin-bottom: global.$space-sm;
-                font-weight: global.$font-weight-bold;
-            }
-
-            p {
-                color: global.$color-text-dark4;
-                line-height: 1.7;
-                margin-bottom: global.$space-md;
-            }
+        .description-lead {
+            color: #ffffff !important;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            max-width: 900px;
         }
     }
 
-    // REFINED COURSE LINK (Elegant, not heavy)
-    .course-link-box {
+    .pricing-matrix {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $space-xl;
+        margin-bottom: $space-xxxxl;
+        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+    }
+
+    .matrix-column {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 2px solid $color-cta-primary-warm; 
+        padding: $space-xl;
+        display: flex;
+        flex-direction: column;
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: $space-lg;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: $space-sm;
+            h3 { font-size: $font-size-md; margin: 0; color: #ffffff; font-weight: $font-weight-bold; }
+            .meta-tag { font-size: $font-size-xs; color: #ffffff; font-weight: $font-weight-bold; }
+        }
+
+        .rate-row {
+            display: flex;
+            justify-content: space-between;
+            padding: $space-sm 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: $font-size-sm;
+            color: #ffffff;
+            .pkg-value { font-weight: $font-weight-bold; }
+        }
+
+        .column-footer p {
+            margin-top: $space-lg;
+            font-size: $font-size-sm;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $space-xxxxl;
+        margin-bottom: $space-xxxxl;
+        padding-top: $space-xxxxl;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+        @media (max-width: $breakpoint-sm) { grid-template-columns: 1fr; }
+
+        .content-shard {
+            .important-text {
+                color: #ffffff !important;
+                line-height: 1.8;
+                font-size: 1.05rem; 
+                margin: 0;
+            }
+        }
+    }
+
+    .bridge-link {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: global.$space-md global.$space-lg;
-        margin: global.$space-xl 0;
-        border: 1px solid global.$color-primary2; 
-        border-radius: global.$border-radius-md;
+        padding: $space-xl;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         text-decoration: none;
-        transition: all 0.3s ease;
-        background: transparent;
+        margin-bottom: $space-xxxxl;
+        transition: background 0.3s ease;
 
-        .link-text-content {
-            .link-title {
-                color: global.$color-primary2;
-                font-weight: global.$font-weight-bold;
-                font-size: global.$font-size-md;
-                display: block;
-            }
-            .link-desc {
-                color: global.$color-text-dark4;
-                font-size: global.$font-size-sm;
-            }
-        }
+        &:hover { background: rgba(255, 255, 255, 0.05); }
 
-        .arrow-icon {
-            color: global.$color-primary2;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        &:hover {
-            background-color: rgba(48, 9, 9, 0.05); // Very light tint of primary2
-            box-shadow: global.$shadow-sm;
-            .arrow-icon { transform: translateX(5px); }
-        }
+        .top-line { color: #ffffff; font-weight: $font-weight-bold; font-size: $font-size-md; }
+        .sub-line { font-size: $font-size-sm; color: #ffffff; }
+        .arrow-svg { color: #ffffff; font-size: $font-size-h3; }
     }
 
-    // SIDEBAR PRICE LIST FRAME
-    .price-sidebar-frame {
-        background-color: rgba(255, 255, 255, 0.4); 
-        border-radius: global.$border-radius-lg; 
-        padding: global.$space-lg;
-        border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-        box-shadow: global.$shadow-sm;
-
-        .sidebar-title {
-            color: global.$color-text-dark2 !important;
-            font-size: 1.5rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            padding-bottom: global.$space-sm;
-            margin-bottom: global.$space-lg;
-        }
-
-        .price-group {
-            margin-bottom: global.$space-lg;
-            .group-label { color: global.$color-text-dark2; font-weight: global.$font-weight-bold; }
-            .duration-sublabel { font-size: global.$font-size-xs; color: global.$color-text-light; }
-            
-            .price-row {
-                display: flex;
-                justify-content: space-between;
-                padding: global.$space-xxs 0;
-                color: global.$color-text-dark4;
-                .pkg-price { color: global.$color-green-price; font-weight: global.$font-weight-bold; }
-            }
-        }
+    .policy-matrix {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $space-xl;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: $space-xl;
+        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+        .policy-block p { font-size: $font-size-sm; color: #ffffff; line-height: 1.7; }
     }
 }

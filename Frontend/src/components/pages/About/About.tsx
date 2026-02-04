@@ -39,7 +39,7 @@ const About: React.FC = () => {
     const prevSlide = () => setIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
     useEffect(() => {
-        document.body.style.backgroundColor = '#121212';
+        document.body.style.backgroundColor = '#171717'; 
         return () => { document.body.style.backgroundColor = ''; };
     }, []);
 
@@ -48,7 +48,7 @@ const About: React.FC = () => {
             <div className="container">
                 <section className="featured-hero">
                     <div className="hero-text">
-                        <span className="label">PROFINEART PROFILE</span>
+                        <span className="label">About PROFINEART</span>
                         <h2>{t('aboutPage.title')}</h2>
 
                         <div className="progress-essay">

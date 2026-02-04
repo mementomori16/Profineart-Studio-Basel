@@ -29,6 +29,7 @@ const Courses: React.FC = () => {
         <section className="courses-page-root">
             <div className="container"> 
                 <header className="section-header">
+                    <span className="label">Curriculum 2026</span>
                     <h2 className="courses-main-title">{t('coursesPage.title')}</h2>
                     <p className="intro-text-curated">{t('coursesPage.intro')}</p>
                     
@@ -36,8 +37,8 @@ const Courses: React.FC = () => {
                         {['All', 'Drawing', 'Painting', 'Mixed'].map((cat) => (
                             <button 
                                 key={cat}
-                                className={`filter-nav-btn ${activeCategory === cat ? 'active' : ''}`}
-                                onClick={() => setActiveCategory(cat as any)}
+                                className={`filter-nav-btn ${activeCategory === cat.toLowerCase() ? 'active' : ''}`}
+                                onClick={() => setActiveCategory(cat === 'All' ? 'all' : cat as any)}
                             >
                                 {t(`coursesPage.filter${cat}`)}
                             </button>
@@ -47,38 +48,16 @@ const Courses: React.FC = () => {
 
                 <div className="courses-list-stack">
                     {filteredAndSorted.map((product) => (
-                        <article key={product.id} className="course-row-card">
-                            <div className="image-side">
-                                <Link to={`/card/${product.id}`}>
-                                    <img 
-                                        src={product.image?.lowResUrl} 
-                                        alt="" 
-                                        className="row-img" 
-                                    />
-                                    {product.badge && (
-                                        <div className="row-badge">
-                                            {t(`products.${product.id}.badge`)}
-                                        </div>
-                                    )}
-                                </Link>
-                            </div>
-
-                            <div className="content-side">
-                                <h2 className="row-title">{t(`products.${product.id}.title`)}</h2>
+                        <article key={product.id} className="course-card-row">
+                            <div className="hero-text">
+                                <span className="label">{product.category}</span>
+                                <h3 className="row-title">{t(`products.${product.id}.title`)}</h3>
                                 
                                 <div className="unified-meta-line">
-                                    <div className="meta-item">
-                                        <FaLayerGroup /> <span>Beginners & Advanced</span>
-                                    </div>
-                                    <div className="meta-item">
-                                        <FaMapMarkerAlt /> <span>Student Space</span>
-                                    </div>
-                                    <div className="meta-item">
-                                        <FaCalendarCheck /> <span>Flexible Date & Time</span>
-                                    </div>
-                                    <div className="meta-item">
-                                        <FaUserFriends /> <span>In-Person</span>
-                                    </div>
+                                    <div className="meta-item"><FaLayerGroup /> <span>Beginners & Advanced</span></div>
+                                    <div className="meta-item"><FaMapMarkerAlt /> <span>Student Space</span></div>
+                                    <div className="meta-item"><FaCalendarCheck /> <span>Flexible Date</span></div>
+                                    <div className="meta-item"><FaUserFriends /> <span>In-Person</span></div>
                                 </div>
 
                                 <p className="row-desc">
@@ -90,6 +69,21 @@ const Courses: React.FC = () => {
                                         {t('coursesPage.viewButton')} 
                                         <FaArrowRight className="btn-icon" />
                                     </button>
+                                </Link>
+                            </div>
+
+                            <div className="hero-media">
+                                <Link to={`/card/${product.id}`} className="exhibition-frame">
+                                    <img 
+                                        src={product.image?.lowResUrl} 
+                                        alt="" 
+                                        className="premium-img" 
+                                    />
+                                    {product.badge && (
+                                        <div className="row-badge">
+                                            {t(`products.${product.id}.badge`)}
+                                        </div>
+                                    )}
                                 </Link>
                             </div>
                         </article>

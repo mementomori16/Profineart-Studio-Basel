@@ -1,248 +1,183 @@
 @use "../../../global.scss" as *;
+@use "sass:color";
 
 .courses-page-root {
     width: 100%;
     min-height: 100vh;
-    padding: 0 0 3rem 0; // Tightened bottom gap
-    background-color: #171717; 
+    padding: $space-xxxxl 0;
+    background-color: #171717;
 
-    .container {
-        max-width: 90rem; // WIDER: Increased from 75rem
-        margin: 0 auto;
-        padding: 0 1.5rem; 
-
-        @media (max-width: $breakpoint-sm) {
-            padding: 0 1rem;
-        }
+    .label {
+        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-xxs;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: $space-xs;
     }
 
     .section-header {
-        padding: 2.5rem 0 $space-xs 0; // REDUCED: Smaller top gap (was 4rem)
-        margin-bottom: 2rem;           // REDUCED: Closer to the content
-        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1); 
-
-        @media (max-width: $breakpoint-sm) {
-            padding: 1.5rem 0 $space-xs 0;
-        }
+        margin-bottom: $space-xxxl;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: $space-xl;
 
         .courses-main-title {
-            @include services-heading;
-            color: $color-text-white; 
-            text-align: left;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.4rem; 
-            font-weight: $font-weight-light;
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            line-height: 1.1;
-
-            @media (max-width: $breakpoint-sm) {
-                font-size: $font-size-h3;
-                letter-spacing: 0.1rem;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: clip;
-                display: block;
-                width: 100%;
-            }
+            color: #ffffff;
+            font-size: $font-size-h2;
+            font-weight: $font-weight-bold;
+            margin-bottom: $space-md;
         }
 
         .intro-text-curated {
-            color: rgba(255, 255, 255, 0.95); 
+            color: #ffffff;
             font-size: 1.1rem;
-            text-transform: none; 
-            letter-spacing: 0.05rem;
-            margin-top: 0.75rem; // Reduced gap
-            font-weight: 400;
-            display: block;
-            width: 100%;
-            max-width: 50rem; 
-            white-space: normal; 
-            line-height: 1.5;
-            text-align: left;
-
-            @media (max-width: $breakpoint-sm) {
-                font-size: 0.9rem;
-            }
+            max-width: 45rem;
+            line-height: 1.7;
+            opacity: 0.9;
         }
     }
 }
 
-/* NAVIGATION - All your original button styles preserved */
 .filter-navigation {
     display: flex;
     gap: 0.75rem;
-    margin-top: 1.5rem; // Reduced gap
+    margin-top: $space-xl;
     flex-wrap: wrap;
 
     .filter-nav-btn {
         background: transparent;
-        border: 0.125rem solid rgba(255, 255, 255, 0.4); 
-        color: rgba(255, 255, 255, 0.9);
-        padding: 0.7rem 1.6rem;
-        border-radius: 6.25rem;
-        font-size: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #ffffff;
+        padding: 0.5rem 1.5rem;
+        border-radius: 999px;
+        font-size: $font-size-xs;
         font-weight: 600;
         text-transform: uppercase;
         cursor: pointer;
-        transition: 0.3s ease;
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-        &:hover {
-            border-color: #fff;
-            color: #fff;
-        }
-
-        &.active {
-            background: #fff;
-            color: #000;
-            border-color: #fff;
+        &:hover, &.active {
+            background: #ffffff;
+            color: #171717;
+            border-color: #ffffff;
+            transform: translateY(-2px);
         }
     }
 }
 
-/* THE CARD STACK - Tightened Gap */
 .courses-list-stack {
     display: flex;
     flex-direction: column;
-    gap: 2rem; // REDUCED: Tightened gap between cards (was 4rem)
-    margin-top: 2rem; 
-
-    @media (max-width: $breakpoint-sm) {
-        gap: 1.5rem;
-    }
+    gap: $space-xxl; // Tight spacing to prevent detachment
 }
 
-.course-row-card {
+.course-card-row {
     display: grid;
-    grid-template-columns: 1fr;
-    background: rgba(255, 255, 255, 0.03);
-    border: none !important; 
-    border-radius: 0.5rem;
-    overflow: hidden;
-    margin-bottom: 0; 
-    padding-bottom: 0;
+    grid-template-columns: 1fr 1.3fr; // Floating style ratio
+    gap: $space-xxxxl;
+    align-items: center;
+    padding-bottom: $space-xxl;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
-    @media (min-width: 62rem) {
-        grid-template-columns: 1fr 1fr;
-        align-items: stretch;
-
-        &:nth-child(even) {
-            .image-side { order: 2; }
-            .content-side { order: 1; }
-        }
+    @media (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: $space-xl;
     }
 
-    .image-side {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 10;
-        overflow: hidden;
+    &:last-child { border-bottom: none; }
 
-        .row-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .row-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: rgba($color-cta-primary-warm, 0.85); 
-            backdrop-filter: blur(0.625rem);
-            padding: 0.4rem 1rem;
-            font-size: 0.6rem;
-            color: #fff;
-            border-radius: 6.25rem;
-            text-transform: uppercase;
-            z-index: 2;
-
-            @media (max-width: $breakpoint-sm) {
-                top: 0.6rem; 
-                font-size: 0.55rem; 
-                background: rgba($color-cta-primary-warm, 0.7); 
-                padding: 0.3rem 0.8rem;
-            }
-        }
-    }
-
-    .content-side {
-        padding: 2.5rem; // Original padding preserved
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        @media (max-width: $breakpoint-sm) {
-            padding: 1.5rem 1rem; 
-        }
-
-        @media (min-width: 75rem) { padding: 3rem 4rem; }
-
+    .hero-text {
         .row-title {
-            @include services-heading;
-            color: #fff;
-            font-weight: 300;
-            font-size: 2rem;
-            margin-bottom: 0.8rem; // Tightened
-            text-align: left;
-
-            @media (max-width: $breakpoint-sm) {
-                font-size: 1.5rem;
-            }
+            color: #ffffff;
+            font-size: $font-size-h3;
+            margin: $space-xs 0 $space-sm 0;
+            font-weight: $font-weight-bold;
         }
 
         .unified-meta-line {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-bottom: 1rem; // Tightened
-
+            gap: $space-md;
+            margin-bottom: $space-lg;
+            
             .meta-item {
-                font-size: 0.65rem; 
-                color: rgba(255, 255, 255, 0.9);
+                color: rgba(255, 255, 255, 0.8);
+                font-size: $font-size-xxs;
                 display: flex;
                 align-items: center;
-                gap: 0.6rem;
-                
-                svg { 
-                    color: #fff;
-                    font-size: 0.85rem; 
-                    flex-shrink: 0; 
-                }
+                gap: 0.5rem;
+                text-transform: uppercase;
+
+                svg { color: #ffffff; font-size: 0.85rem; }
             }
         }
 
         .row-desc {
-            color: rgba(255, 255, 255, 0.85);
+            color: #ffffff;
             font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem; // Tightened
-            width: 100%;
+            line-height: 1.8;
+            margin-bottom: $space-xl;
+            opacity: 0.85;
         }
+    }
 
-        .pill-button-wow {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 6.25rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            width: fit-content;
+    .hero-media {
+        .exhibition-frame {
+            display: block;
+            position: relative;
+            border-radius: $border-radius-sm;
+            overflow: hidden;
+            box-shadow: $shadow-xl;
+            background: #222;
 
-            @media (max-width: $breakpoint-sm) {
+            .premium-img {
                 width: 100%;
+                aspect-ratio: 16 / 10;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.6s ease;
             }
 
-            .btn-icon { color: #000; }
+            &:hover .premium-img {
+                transform: scale(1.05);
+            }
+
+            .row-badge {
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
+                background: $color-cta-primary-warm;
+                color: #ffffff;
+                padding: 0.4rem 1rem;
+                font-size: 0.6rem;
+                font-weight: bold;
+                border-radius: 999px;
+                text-transform: uppercase;
+                z-index: 2;
+            }
         }
+    }
+}
+
+.pill-button-wow {
+    background: #ffffff;
+    color: #171717;
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 999px;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover {
+        background: $color-cta-primary-warm;
+        color: #ffffff;
     }
 }
 

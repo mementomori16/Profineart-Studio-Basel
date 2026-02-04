@@ -61,7 +61,7 @@ const StudentsWorks: React.FC = () => {
     const bottomSlides = t('studentsGallery.bottomCarousel.slides', { returnObjects: true }) as any[];
 
     useEffect(() => {
-        document.body.style.backgroundColor = '#121212'; 
+        document.body.style.backgroundColor = '#171717'; 
         return () => { document.body.style.backgroundColor = ''; };
     }, []);
 
