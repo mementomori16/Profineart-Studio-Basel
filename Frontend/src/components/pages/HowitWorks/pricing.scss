@@ -2,33 +2,44 @@
 @use '../../../global.scss' as *;
 
 .pricing-senior-engine {
-    // REDUCED TOP SPACE: Keeps it tight but professional
-    padding: $space-lg 0 $space-xxl;
+    // MATCHED: Students Gallery top padding
+    padding: $space-md 0 $space-xxl; 
     color: #ffffff;
 
     @media (max-width: $breakpoint-sm) {
-        padding-top: $space-sm;
+        padding-top: $space-sm; 
     }
 
+    // BASE LABEL STYLE
     .eyebrow, .block-label, .label {
-        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
         text-transform: uppercase;
         font-weight: $font-weight-bold;
         font-size: $font-size-xs;
         letter-spacing: 2px;
         display: block;
-        margin-bottom: $space-xs; // Tighter label gap
+        // MATCHED: Gap under the premium label
+        margin-bottom: $space-sm; 
+        color: #ffffff; 
     }
 
     .compact-hero {
-        margin-bottom: $space-xl; // Reduced from xxxxl
+        margin-bottom: $space-xl; 
+        
+        // THE ONLY PREMIUM COLOR
+        .eyebrow {
+            color: color.adjust($color-cta-primary-warm, $lightness: 25%);
+        }
+
         .main-title {
             font-size: $font-size-h2; 
-            margin: $space-xs 0 $space-md;
+            // FIXED: Changed top margin from $space-xs to $space-md 
+            // to match the gap in StudentsWorks
+            margin: $space-md 0 $space-md; 
             color: #ffffff;
             font-weight: $font-weight-bold;
-            text-transform: none; // No all-caps
+            text-transform: none; 
         }
+
         .description-lead {
             color: #ffffff !important;
             line-height: 1.8;
@@ -37,21 +48,22 @@
         }
     }
 
+    // Rest of the component structure remains the same
     .pricing-matrix {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $space-xl;
-        margin-bottom: $space-xl; // Reduced gap to next section
+        margin-bottom: $space-xl; 
         @media (max-width: $breakpoint-md) { 
             grid-template-columns: 1fr;
-            gap: $space-md; // Tighter on mobile
+            gap: $space-md; 
         }
     }
 
     .matrix-column {
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: 2px solid $color-cta-primary-warm; 
+        border-top: 1px solid rgba(255, 255, 255, 0.2); 
         padding: $space-xl;
         display: flex;
         flex-direction: column;
@@ -63,6 +75,7 @@
             margin-bottom: $space-lg;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: $space-sm;
+            
             h3 { font-size: $font-size-md; margin: 0; color: #ffffff; font-weight: $font-weight-bold; }
             .meta-tag { font-size: $font-size-xs; color: #ffffff; font-weight: $font-weight-bold; }
         }
@@ -88,7 +101,7 @@
     .details-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: $space-xl; // Reduced
+        gap: $space-xl;
         margin-bottom: $space-xl;
         padding-top: $space-xl;
         border-top: 1px solid rgba(255, 255, 255, 0.1);

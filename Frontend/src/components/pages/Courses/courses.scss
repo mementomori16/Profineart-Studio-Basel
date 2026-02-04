@@ -4,21 +4,43 @@
 .courses-page-root {
     width: 100%;
     min-height: 100vh;
-    padding: $space-md 0 $space-xxl 0; // Significantly reduced top padding
+    // MATCHED: Padding from StudentsWorks
+    padding: $space-md 0 $space-xxl 0; 
     background-color: #171717;
 
     @media (max-width: $breakpoint-sm) {
-        padding-top: $space-sm; // Minimal top gap on mobile
+        padding-top: $space-sm; 
     }
 
+    .container {
+        width: 100%;
+        max-width: $breakpoint-xxl; 
+        margin: 0 auto;
+        padding-left: $space-xl;
+        padding-right: $space-xl;
+
+        @media (max-width: $breakpoint-md) {
+            padding-left: $space-lg;
+            padding-right: $space-lg;
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            padding-left: $space-md;
+            padding-right: $space-md;
+        }
+    }
+
+    // TOP PREMIUM LABEL
     .label {
         color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
         text-transform: uppercase;
         font-weight: $font-weight-bold;
-        font-size: $font-size-xxs;
+        // ENLARGED: Matched to Students Gallery
+        font-size: $font-size-xs; 
         letter-spacing: 2px;
         display: block;
-        margin-bottom: $space-xs;
+        // MATCHED: Vertical rhythm gap
+        margin-bottom: $space-sm; 
     }
 
     .section-header {
@@ -30,8 +52,10 @@
             color: #ffffff;
             font-size: $font-size-h2;
             font-weight: $font-weight-bold;
-            margin-bottom: $space-xs;
-            text-transform: none; // Ensures no all-caps forced styling
+            // FIXED: Added top margin to create the "Gallery Gap"
+            margin: $space-md 0 $space-md; 
+            text-transform: none; 
+            letter-spacing: normal; 
         }
 
         .intro-text-curated {
@@ -72,42 +96,47 @@
 .courses-list-stack {
     display: flex;
     flex-direction: column;
-    gap: $space-xl; 
-    
-    @media (max-width: $breakpoint-sm) {
-        gap: $space-lg; 
-    }
+    gap: $space-xxxl; 
 }
 
 .course-card-row {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: $space-xl;
-    align-items: center;
-    padding-bottom: $space-lg;
+    align-items: center; 
+    padding-bottom: $space-xxl;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
-        gap: $space-xs; // Tightened vertical gap between text and image on mobile
-        padding-bottom: $space-md;
+        gap: $space-md; 
+        padding-bottom: $space-xl;
     }
 
     &:last-child { border-bottom: none; }
 
     .hero-text {
+        // ENLARGED: Premium card label
+        .label {
+            font-size: $font-size-xs;
+            margin-bottom: $space-sm;
+            color: color.adjust($color-cta-primary-warm, $lightness: 25%);
+        }
+
         .row-title {
             color: #ffffff;
             font-size: $font-size-h3;
             font-weight: $font-weight-bold;
             margin-bottom: $space-xs;
-            text-transform: none; // Title casing
+            text-transform: none; 
+            letter-spacing: normal; 
         }
 
         .unified-meta-line {
             display: flex;
             flex-wrap: wrap;
             gap: $space-md;
+            margin-top: $space-md; 
             margin-bottom: $space-sm;
             
             .meta-item {
@@ -139,7 +168,7 @@
 
             .premium-img {
                 width: 100%;
-                aspect-ratio: 16 / 9;
+                aspect-ratio: 16 / 9; 
                 object-fit: cover;
                 display: block;
             }
@@ -150,8 +179,9 @@
                 left: 0.5rem;
                 background: $color-cta-primary-warm;
                 color: #ffffff;
-                padding: 0.25rem 0.75rem;
-                font-size: 0.55rem;
+                padding: 0.35rem 0.85rem;
+                // ENLARGED: Badge text
+                font-size: 0.65rem; 
                 font-weight: bold;
                 border-radius: 999px;
                 text-transform: uppercase;
@@ -174,6 +204,11 @@
     align-items: center;
     gap: 0.6rem;
     cursor: pointer;
+
+    @media (max-width: $breakpoint-md) {
+        margin-top: $space-xl;
+        margin-bottom: $space-sm;
+    }
 
     &:hover {
         background: $color-cta-primary-warm;

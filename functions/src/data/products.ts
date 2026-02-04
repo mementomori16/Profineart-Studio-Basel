@@ -182,11 +182,6 @@ export const courses: Product[] = [
         caption: 'Celine. Oil Pastels Paper. Artist: Ilya Medvedev',
       },
       {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/tMswwhVb/katya-photoshop-2025-ph120kb.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/svNG3htZ/katya-photoshop-2025-ph500kb.jpg',
-        caption: 'Nude in the Nature. Oil Pastels on Paper. Artist: Ilya Medvedev',
-      },
-      {
         lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JwRnjv8W/IMG-2825ph1225-120kb.jpg',
         highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/MkP7wmqz/IMG-32273-500kb.jpg',
         caption: 'Calella, Barselona, Spain. Oil Pastels on Paper. Artist: Ilya Medvedev',

@@ -60,15 +60,11 @@ export const courses: Product[] = [
 
     detailsImages: [
       {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/236P0Kzm/Detail1-photoshoped-12-2025120kb.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032381/stright_jar26-120kb_vdvpwr.jpg',
+        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032362/Detail1-photoshoped_12.2025120kb_fznvwl.jpg',
+        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1770229084/Detail1-photoshoped_12.2025-500kb_br5hjp.jpg',
         caption: 'Two Nudes. Oil on canvas. Artist: Ilya Medvedev',
       },
-      {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032381/stright_jar26-120kb_vdvpwr.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/pB2pdQ1R/good500kb.jpg',
-        caption: 'Tereza. Oil on canvas. Artist: Ilya Medvedev',
-      },
+      
       {
         lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/6RCSpq0h/IMG-4906-photoshoped-12-2025-120kb.jpg',
         highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/84YtZNQs/IMG-4906-photoshoped-12-2025-500kb.jpg',
@@ -94,7 +90,7 @@ export const courses: Product[] = [
     thumbnails: [
       {
         lowResUrl: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/PG11gxKp/IMG-508715120kb.jpg",
-        highResUrl: '',
+        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032365/IMG_508715120kb_xj602b.jpg',
       },
     ],
 
@@ -182,13 +178,8 @@ export const courses: Product[] = [
         caption: 'Celine. Oil Pastels Paper. Artist: Ilya Medvedev',
       },
       {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/tMswwhVb/katya-photoshop-2025-ph120kb.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/svNG3htZ/katya-photoshop-2025-ph500kb.jpg',
-        caption: 'Nude in the Nature. Oil Pastels on Paper. Artist: Ilya Medvedev',
-      },
-      {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JwRnjv8W/IMG-2825ph1225-120kb.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/MkP7wmqz/IMG-32273-500kb.jpg',
+        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032364/IMG_3232-120kb_pmjfzt.jpg',
+        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3232-500kb_lifcup.jpg',
         caption: 'Calella, Barselona, Spain. Oil Pastels on Paper. Artist: Ilya Medvedev',
       },
     ],
