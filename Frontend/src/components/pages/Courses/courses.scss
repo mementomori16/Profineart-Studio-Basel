@@ -4,8 +4,8 @@
 .courses-page-root {
     width: 100%;
     min-height: 100vh;
-    // MATCHED: Padding from StudentsWorks
-    padding: $space-md 0 $space-xxl 0; 
+    // UPDATED: Removed bottom gap (changed $space-xxl to 0)
+    padding: $space-md 0 0 0; 
     background-color: #171717;
 
     @media (max-width: $breakpoint-sm) {
@@ -30,16 +30,13 @@
         }
     }
 
-    // TOP PREMIUM LABEL
     .label {
         color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
         text-transform: uppercase;
         font-weight: $font-weight-bold;
-        // ENLARGED: Matched to Students Gallery
         font-size: $font-size-xs; 
         letter-spacing: 2px;
         display: block;
-        // MATCHED: Vertical rhythm gap
         margin-bottom: $space-sm; 
     }
 
@@ -52,7 +49,6 @@
             color: #ffffff;
             font-size: $font-size-h2;
             font-weight: $font-weight-bold;
-            // FIXED: Added top margin to create the "Gallery Gap"
             margin: $space-md 0 $space-md; 
             text-transform: none; 
             letter-spacing: normal; 
@@ -116,7 +112,6 @@
     &:last-child { border-bottom: none; }
 
     .hero-text {
-        // ENLARGED: Premium card label
         .label {
             font-size: $font-size-xs;
             margin-bottom: $space-sm;
@@ -180,7 +175,6 @@
                 background: $color-cta-primary-warm;
                 color: #ffffff;
                 padding: 0.35rem 0.85rem;
-                // ENLARGED: Badge text
                 font-size: 0.65rem; 
                 font-weight: bold;
                 border-radius: 999px;
@@ -204,10 +198,12 @@
     align-items: center;
     gap: 0.6rem;
     cursor: pointer;
+    // UPDATED: Added space between text and button for desktop
+    margin-top: $space-lg;
 
     @media (max-width: $breakpoint-md) {
-        margin-top: $space-xl;
-        margin-bottom: $space-sm;
+        // UPDATED: Centered button on mobile
+        margin: $space-xl auto $space-sm;
     }
 
     &:hover {

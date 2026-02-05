@@ -6,11 +6,13 @@
   aspect-ratio: 16 / 9; 
   background: #000;
   overflow: hidden; 
+  border-radius: 0.5rem;
   
   &.is-expanded {
     aspect-ratio: auto;
     width: 100vw;
     height: 100vh;
+    border-radius: 0;
   }
 }
 
@@ -18,15 +20,24 @@
   position: absolute; 
   inset: 0;
   z-index: 10;
-  pointer-events: none; // Strictly blocks YouTube icons
+  pointer-events: none;
+  transition: transform 1.5s ease-in-out; 
+
+  &.zoomed-view {
+    /* 1.27 scale to fully hide all YT icons */
+    transform: scale(1.39); 
+  }
+
+  &.normal-view {
+    transform: scale(1);
+  }
 
   .video-iframe {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 106%; 
-    height: 106%; 
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border: none;
   }
 }
@@ -41,41 +52,21 @@
   pointer-events: auto; 
 
   .ui-pill {
-    background: global.$color-cta-primary-warm; 
+    /* Transparent Premium Style for all buttons */
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
     color: #fff;
-    border: none;
     padding: 0.6rem 1.2rem;
     border-radius: global.$border-radius-xl;
     font-size: 0.6rem;
     font-weight: global.$font-weight-bold;
     cursor: pointer;
     text-transform: uppercase;
+    transition: background 0.3s;
 
-    &.expand-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
   }
-}
-
-.video-placeholder {
-  position: absolute;
-  inset: 0;
-  background: #000;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.5s ease-in; // Faster fade to hide YT transition
-  pointer-events: none;
-  &.hidden { opacity: 0; }
-}
-
-.modern-loader {
-  color: #fff;
-  font-size: 0.625rem;
-  letter-spacing: 0.3125rem;
-  text-transform: uppercase;
-  opacity: 0.5;
 }

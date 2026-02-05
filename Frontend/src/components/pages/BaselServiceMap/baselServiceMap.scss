@@ -42,7 +42,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: $space-xxxl; 
-    border-top: 0.0625rem solid rgba(255, 255, 255, 0.05);
+    border-top: none;
     padding-top: $space-xl;
 
     @media (max-width: $breakpoint-md) {

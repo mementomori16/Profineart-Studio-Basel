@@ -1,14 +1,14 @@
 @use "../../../global.scss" as *;
 
 .text-review-centered {
-    // Reduced top padding from xxxxl to xl
-    padding: $space-xl 0 $space-xxxxl 0; 
+    // UPDATED: Added a little more gap to the bottom (added $space-sm)
+    padding: $space-xl 0 ($space-xxxxl + $space-sm) 0; 
     background-color: #171717; 
     width: 100%;
 
     .section-header {
-        // Reduced gap to connect title to content
-        margin-bottom: $space-lg; 
+        // Kept the increased gap from previous step
+        margin-bottom: $space-xxxl; 
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15);
         padding-bottom: $space-sm;
         text-align: left;
@@ -18,7 +18,6 @@
             font-size: $font-size-h2; 
             font-weight: $font-weight-bold;
             text-transform: uppercase;
-            // Unified letter-spacing across all components
             letter-spacing: 0.4rem; 
             margin-bottom: 0;
 

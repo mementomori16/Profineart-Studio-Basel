@@ -8,13 +8,19 @@ const VideoPage: React.FC = () => {
     const myVideoId = "ucTuc7tvZDo"; 
 
     return (
-        <section className="text-component-section masterclass-final">
+        <section className="text-component-section masterclass-final-clean">
             <div className="container">
+                {/* Header matches Text component structure exactly */}
                 <header className="text-header">
                     <h2 className="text-main-title">{t('masterclass.title')}</h2>
-                    <h3 className="text-subtitle masterclass-sub-size">{t('masterclass.subtitle')}</h3>
                 </header>
                 
+                {/* Subtitle appears AFTER the line */}
+                <div className="subtitle-wrapper">
+                    <h3 className="text-subtitle masterclass-sub-size">{t('masterclass.subtitle')}</h3>
+                </div>
+
+                {/* Centered video with rounded corners */}
                 <div className="video-centering-wrapper">
                     <VideoPlayer videoId={myVideoId} />
                 </div>

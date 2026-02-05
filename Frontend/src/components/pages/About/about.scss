@@ -5,12 +5,12 @@
     min-height: auto;
     width: 100%;
     color: #ffffff; 
-    // REDUCED: Removed $space-xxxxl to bring content to the top
-    padding: $space-md 0 $space-xl; 
+    // REMOVED: All bottom spacing
+    padding: $space-md 0 0 0; 
     margin-bottom: 0;
 
     @media (max-width: $breakpoint-sm) {
-        padding-top: $space-sm; // Minimal gap for mobile
+        padding-top: $space-sm; 
     }
 
     .label {
@@ -27,48 +27,70 @@
 .featured-hero {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    gap: $space-xxxxl; // Kept internal gap for breathing room
+    gap: $space-xxxxl; 
     align-items: start;
     margin-bottom: 0;
     padding-bottom: 0;
 
     @media (max-width: $breakpoint-md) {
-        grid-template-columns: 1fr;
-        padding-bottom: $space-md;
-        gap: $space-lg; // Smaller gap between text and image on mobile
+        grid-template-columns: 1fr; 
+        padding-bottom: 0;
+        gap: 0px; 
+
+        .hero-media {
+            order: 2; 
+            position: relative;
+            top: 0;
+            width: calc(100% + (#{$space-lg} * 2)); 
+            margin-left: -#{$space-lg}; 
+            margin-right: -#{$space-lg};
+            
+            // UPDATED: Negative margin to pull carousel even closer to text
+            margin-top: -$space-md; 
+            margin-bottom: 0;
+
+            @media (max-width: $breakpoint-sm) {
+                width: calc(100% + (#{$space-md} * 2));
+                margin-left: -#{$space-md};
+                margin-right: -#{$space-md};
+            }
+        }
+
+        .hero-text {
+            order: 1;
+            // Ensure the very last paragraph has no bottom padding
+            .progress-essay .feature-item:last-child {
+                margin-bottom: 0;
+                p { margin-bottom: 0; }
+            }
+        }
     }
 
     .hero-text {
         h2 { 
             color: #ffffff; 
             font-size: $font-size-h2; 
-            margin-bottom: $space-md; 
+            margin-bottom: $space-xl; 
             font-weight: $font-weight-bold;
-            text-transform: none; // Title casing
         }
 
         .progress-essay {
             .feature-item {
-                margin-bottom: $space-xl;
+                margin-bottom: $space-xxl;
                 
                 .item-label {
-                    color: #ffffff; 
-                    font-size: $font-size-sm;
-                    text-transform: none; // CHANGED: Removed uppercase
-                    margin-bottom: $space-xs;
+                    color: #ffffff !important; 
+                    font-size: 1.35rem; 
+                    margin-bottom: $space-sm;
                     display: block;
                     font-weight: $font-weight-bold;
-                    letter-spacing: 1px;
                 }
                 
                 p {
-                    color: #ffffff !important; 
+                    color: rgba(255, 255, 255, 0.9) !important; 
                     line-height: 1.8;
                     font-size: 1.05rem;
-                    margin-bottom: 0;
                 }
-
-                &:last-child { margin-bottom: 0; }
             }
         }
     }
@@ -89,20 +111,36 @@
         background-color: #000;
         border-radius: $border-radius-sm;
         overflow: hidden;
-        box-shadow: $shadow-xl; 
+        
+        @media (max-width: $breakpoint-md) {
+            border-radius: 0; 
+            box-shadow: none;
+        }
         
         .carousel-progressive {
             width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
-            .premium-frame { max-width: 100%; max-height: 100%; object-fit: contain; }
+            .premium-frame { 
+                width: 100%;
+                max-height: 100%; 
+                object-fit: cover; 
+            }
         }
     }
 
     .hero-artwork-titles {
-        margin-top: $space-md;
+        @media (max-width: $breakpoint-md) {
+            padding: $space-sm $space-md; 
+        }
+
+        margin-top: 0; 
         display: flex;
         flex-direction: column;
         gap: $space-md; 
+        background: #171717;
+        // REMOVED: Any bottom margin/padding
+        padding-bottom: 0;
+        margin-bottom: 0;
         
         .art-title { 
             display: block;
@@ -123,15 +161,13 @@
             font-size: 11px;
             font-weight: $font-weight-bold;
             letter-spacing: 3px;
-            text-transform: uppercase; // Kept uppercase for the UI button style
-            transition: all 0.4s ease;
-            background: transparent;
+            text-transform: uppercase;
+            // Ensure this is the last element with no bottom margin
+            margin-bottom: 0;
 
             &:hover {
                 border-color: $color-cta-primary-warm;
                 color: $color-cta-primary-warm;
-                background: rgba(255, 255, 255, 0.02);
-                letter-spacing: 4px;
             }
         }
     }

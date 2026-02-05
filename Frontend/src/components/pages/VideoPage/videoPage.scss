@@ -1,23 +1,17 @@
 @use "sass:color";
 @use "../../../global.scss" as *;
 
-.text-component-section.masterclass-final {
-    // Removed all unnecessary gaps
+.text-component-section.masterclass-final-clean {
     padding: 0; 
     width: 100%;
 
-    @media (max-width: $breakpoint-md) {
-        padding: 0; 
-    }
-
     .text-header {
-        margin-bottom: $space-md; 
+        margin-bottom: 0; 
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
         padding-bottom: $space-sm;
         text-align: left;
 
         @media (max-width: $breakpoint-md) {
-            margin-bottom: $space-xs; 
             padding-bottom: $space-xs;
         }
 
@@ -28,17 +22,28 @@
             text-transform: uppercase;
             letter-spacing: 0.4rem; 
             font-weight: $font-weight-bold;
+            text-align: left;
 
             @media (max-width: $breakpoint-sm) {
                 font-size: $font-size-h3;
                 letter-spacing: 0.2rem;
             }
         }
+    }
+
+    .subtitle-wrapper {
+        text-align: left;
+        margin-top: $space-sm; 
+        margin-bottom: $space-lg;
+
+        @media (max-width: $breakpoint-md) {
+            margin-top: $space-xs;
+            margin-bottom: $space-md;
+        }
 
         .masterclass-sub-size {
             font-size: 0.95rem;
             color: #ffffff !important;
-            margin-top: $space-xxs;
             font-weight: $font-weight-normal;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -52,23 +57,18 @@
 
     .video-centering-wrapper {
         width: 100%;
-        // Limits width so it's not "gigantic" on desktop
         max-width: 56.25rem; 
-        // Centers the video in the middle of the screen
-        margin: $space-lg auto 0; 
-
-        @media (max-width: $breakpoint-md) {
-            max-width: 100%;
-            margin: $space-sm auto 0;
-        }
+        margin: 0 auto; 
         
+        // Applying rounded corners to the component container
         :global(.studio-video-master) {
             width: 100% !important;
             max-width: none !important;
             margin: 0 !important;
-            background: transparent !important;
+            background: #000 !important;
             box-shadow: none !important;
-            border-radius: 0 !important;
+            border-radius: 0.5rem !important; // Little round edges
+            overflow: hidden !important;
         }
     }
 }

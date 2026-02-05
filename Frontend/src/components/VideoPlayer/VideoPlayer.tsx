@@ -10,7 +10,7 @@ declare global {
 
 const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
   const [isMuted, setIsMuted] = useState(true);
-  const [isFullyLoaded, setIsFullyLoaded] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(true); 
   const [isFullscreen, setIsFullscreen] = useState(false);
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -41,8 +41,6 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
           fs: 0, 
           disablekb: 1,
           playsinline: 1,
-          autohide: 1,
-          showinfo: 0,
         },
         events: {
           onReady: (event: any) => {
@@ -50,9 +48,10 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
             event.target.playVideo();
           },
           onStateChange: (event: any) => {
-            // Immediately hide placeholder when video starts to avoid seeing YT icons
             if (event.data === window.YT.PlayerState.PLAYING) {
-              setIsFullyLoaded(true);
+              setTimeout(() => {
+                setIsZoomed(false);
+              }, 6000);
               startLoopCheck();
             }
           }
@@ -73,10 +72,8 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
         if (playerRef.current?.getCurrentTime) {
           const currentTime = playerRef.current.getCurrentTime();
           const duration = playerRef.current.getDuration();
-          // Loop starts exactly 4 seconds before the end
           if (duration > 0 && currentTime >= (duration - 4)) {
             playerRef.current.seekTo(0);
-            playerRef.current.playVideo();
           }
         }
       }, 100);
@@ -108,22 +105,16 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
 
   const handleToggleExpand = () => {
     if (!document.fullscreenElement) {
-      containerRef.current?.requestFullscreen?.();
+      const el = containerRef.current as any;
+      if (el.requestFullscreen) el.requestFullscreen();
     } else {
-      document.exitFullscreen?.();
+      if (document.exitFullscreen) document.exitFullscreen();
     }
   };
 
   return (
     <div ref={containerRef} className={`studio-video-master ${isFullscreen ? 'is-expanded' : ''}`}>
-      {/* Black placeholder without spinner to hide YT loading icons */}
-      <div className={`video-placeholder ${isFullyLoaded ? 'hidden' : ''}`}>
-        <div className="loader-content">
-          <div className="modern-loader">PROFINEART STUDIO BASEL</div>
-        </div>
-      </div>
-
-      <div className="video-inner-container">
+      <div className={`video-inner-container ${isZoomed ? 'zoomed-view' : 'normal-view'}`}>
         <div id={`Youtubeer-${videoId}`} className="video-iframe" />
       </div>
 
@@ -131,7 +122,7 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
         <button className="ui-pill" onClick={toggleMute}>
           {isMuted ? "TAP FOR SOUND" : "MUTE"}
         </button>
-        <button className="ui-pill expand-btn" onClick={handleToggleExpand}>
+        <button className="ui-pill" onClick={handleToggleExpand}>
           {isFullscreen ? "EXIT" : "EXPAND"}
         </button>
       </div>
