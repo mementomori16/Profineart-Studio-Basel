@@ -7,6 +7,7 @@
         color: rgba(255, 255, 255, 0.5) !important; 
         margin-top: global.$space-sm;
         text-align: center;
+        font-style: italic;
     }
 }
 
@@ -15,6 +16,13 @@
 
     .infodate {
         @include global.info-container-date;
+        color: global.$color-text-light !important; 
+        text-transform: uppercase;
+        font-weight: global.$font-weight-bold;
+        font-size: global.$font-size-sm !important; 
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: global.$space-sm;
     }
 
     .content-frame {
@@ -26,43 +34,69 @@
 
         .detailsTitle {
             @include global.info-container-details-title;
+            color: #ffffff !important; 
+            font-size: global.$font-size-h4 !important; 
+            font-weight: global.$font-weight-bold;
+            margin-bottom: global.$space-md;
+            text-transform: none;
         }
 
         &.no-bg-mobile {
             @media (max-width: global.$breakpoint-sm) {
                 background: transparent;
                 border: none;
-                padding-left: 0;
-                padding-right: 0;
+                padding: 0;
             }
         }
     }
 
     .description, .detailsText {
         @include global.info-container-description;
+        
+        color: #ffffff !important;
+        line-height: 1.8;
+
+        p, div, span, li {
+            color: #ffffff !important;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: global.$space-md;
+        }
+
+        h2, h3 {
+            color: #ffffff !important;
+            font-size: global.$font-size-h4 !important; 
+            font-weight: global.$font-weight-bold !important;
+            margin-top: global.$space-xl;
+            margin-bottom: global.$space-sm;
+            text-transform: none;
+        }
+
+        h5 {
+            color: global.$color-text-light !important;
+            font-size: global.$font-size-sm !important; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: global.$font-weight-bold;
+            margin-top: global.$space-lg;
+            margin-bottom: global.$space-xs;
+            display: block;
+        }
     }
 
-    // Controls visibility to prevent double content
     .mobile-staggered-view, .mobile-only-section {
-        @media (min-width: 1024px) { 
-            display: none !important; 
-        }
+        @media (min-width: 1024px) { display: none !important; }
     }
 
     .desktop-full-text-view {
-        @media (max-width: 1023px) { 
-            display: none !important; 
-        }
+        @media (max-width: 1023px) { display: none !important; }
     }
 }
 
 .infoContainer-visual-column {
-    @media (max-width: 1023px) { 
-        display: none !important; 
-    }
+    @media (max-width: 1023px) { display: none !important; }
     display: flex;
     flex-direction: column;
-    gap: 0; 
 }
 
 .detailImageWrapper {
@@ -74,7 +108,8 @@
     padding: 0;
     cursor: pointer;
     overflow: hidden;
-    border-radius: global.$border-radius-md;
+    // Updated: All 4 corners rounded slightly (0.25rem)
+    border-radius: global.$border-radius-sm;
 
     .detailImage {
         width: 100%;
@@ -82,22 +117,14 @@
         object-fit: cover;
         opacity: 0;
         transition: opacity 0.5s ease, transform 0.3s ease;
+        background-color: #171717;
+        // Ensure child image follows the wrapper's radius
+        border-radius: inherit;
 
-        &.loaded { 
-            opacity: 1; 
-        }
-
-        &:hover {
-            transform: scale(1.02);
-        }
-
-        &.is-portrait {
-            aspect-ratio: 3 / 4; 
-        }
-
-        &.is-landscape {
-            aspect-ratio: 3 / 2;
-        }
+        &.loaded { opacity: 1; }
+        &:hover { transform: scale(1.02); }
+        &.is-portrait { aspect-ratio: 3 / 4; }
+        &.is-landscape { aspect-ratio: 3 / 2; }
     }
     @include caption-style;
 }
@@ -116,30 +143,26 @@
         border-radius: global.$border-radius-xl !important;
         font-weight: global.$font-weight-bold;
         color: white !important;
-        border: none;
         text-transform: uppercase;
         font-size: 0.8rem;
         letter-spacing: 0.05rem;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        border: none; 
     }
 
     .btn-book-now { 
         background-color: global.$color-cta-primary-warm; 
-        &:hover {
-            background-color: color.adjust(global.$color-cta-primary-warm, $lightness: -5%);
+        &:hover { 
+            background-color: global.$color-cta-primary-hover; 
         }
     }
 
     .btn-add-to-cart { 
         background-color: rgba(255, 255, 255, 0.1); 
         border: 1px solid rgba(255, 255, 255, 0.2); 
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-        &.in-cart {
-            border-color: rgba(255, 255, 255, 0.4);
-            color: rgba(255, 255, 255, 0.6) !important;
+        &:hover { 
+            background-color: rgba(255, 255, 255, 0.15); 
         }
     }
 }

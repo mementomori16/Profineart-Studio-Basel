@@ -59,10 +59,11 @@ export const courses: Product[] = [
     ],
 
     detailsImages: [
+     
       {
-        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032362/Detail1-photoshoped_12.2025120kb_fznvwl.jpg',
-        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1770229084/Detail1-photoshoped_12.2025-500kb_br5hjp.jpg',
-        caption: 'Two Nudes. Oil on canvas. Artist: Ilya Medvedev',
+        lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032365/IMG_4840-darker_2025-120kb_fbaaqe.jpg',
+        highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4840-darker_2025_a6ypts.jpg',
+        caption: 'Tereza. Oil on canvas. Artist: Ilya Medvedev',
       },
       
       {
