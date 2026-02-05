@@ -18,7 +18,7 @@ const IconsHowItWorks: React.FC = () => {
                             <div className="step-number">1</div>
                         </div>
                         <h4 className="step-title">Choose Course</h4>
-                        <p className="step-desc">Pick your preferred fine art subject from our catalog.</p>
+                        <p className="step-desc">Pick your preferred fine art subject from the catalog.</p>
                     </div>
 
                     <div className="flow-arrow">→</div>

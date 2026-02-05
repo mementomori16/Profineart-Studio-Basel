@@ -39,7 +39,15 @@
     "bio": "Artist and educator with an MFA from Bezalel Academy. Creator of the academy's methodology and digital platform, with a practice spanning 1,000+ professional works."
   },
 
+  "masterclass": {
+    "label": "Masterclass Series",
+    "title": "Masterclass",
+    "subtitle": "Oil Painting Process by the Mentor",
+    "expand": "Expand View"
+  },
+
 "textReview": {
+    "sectionTitle": "Trust",
     "quote": "I quickly realized I was in the right hands—a patient, attentive, and kind teacher with a rare ability to explain complex principles simply and clearly without pressure.",
     "author": "Dr. Dikla Arad",
     "role": "Board Eligible Veterinary Ophthalmologist"

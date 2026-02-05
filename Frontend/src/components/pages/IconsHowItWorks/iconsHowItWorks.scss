@@ -2,32 +2,39 @@
 
 .how-it-works-section {
     // Top is flush, bottom has a controlled gap for the next component
-    padding: 0 0 $space-xl 0; 
+    padding: $space-xl 0 $space-xxxxl 0; 
     width: 100%;
+    background-color: #171717;
 
     @media (max-width: $breakpoint-md) {
-        // Slightly smaller breathing room on mobile
-        padding: 0 0 $space-lg 0;
+        padding: $space-lg 0 $space-xxl 0;
+    }
+
+    .container {
+        max-width: $breakpoint-xl;
+        margin: 0 auto;
+        padding: 0 $space-lg;
     }
 
     .section-header {
         margin-bottom: $space-xxxxl; 
-        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15); // Slightly brighter for clarity
         padding-bottom: $space-sm;
         text-align: left;
 
         @media (max-width: $breakpoint-md) {
-            margin-bottom: $space-lg; 
+            margin-bottom: $space-xl; 
         }
 
         .how-main-title {
-            @include services-heading;
-            color: $color-text-white;
+            color: #ffffff;
+            font-size: $font-size-h2; 
+            font-weight: $font-weight-bold;
             text-align: left;
             text-transform: uppercase;
-            letter-spacing: 0.4rem;
-            font-weight: $font-weight-light;
+            letter-spacing: 0.4rem; // Increased tracking for premium feel
             margin-bottom: 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 
             @media (max-width: $breakpoint-sm) {
                 font-size: $font-size-h3;
@@ -47,7 +54,7 @@
     @media (max-width: $breakpoint-md) {
         flex-direction: column;
         align-items: center;
-        gap: $space-xl;
+        gap: $space-xxl;
     }
 }
 
@@ -60,61 +67,72 @@
 
     .step-icon-box {
         position: relative;
-        width: 5rem;
-        height: 5rem;
-        color: $color-text-white;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 5.5rem;
+        height: 5.5rem;
+        color: #ffffff; 
+        background: rgba(255, 255, 255, 0.08); // Brighter container
+        border: 1px solid rgba(255, 255, 255, 0.3); // High contrast border
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: $space-lg;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
 
         .step-icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
         }
 
         .step-number {
             position: absolute;
             top: 0;
             right: 0;
-            width: 1.625rem;
-            height: 1.625rem;
-            background: $color-text-white;
-            color: $color-text-dark4;
+            width: 1.75rem;
+            height: 1.75rem;
+            background: #ffffff; 
+            color: #171717; 
             border-radius: 50%;
             font-size: 0.85rem;
             font-weight: $font-weight-bold;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
     }
 
     .step-title {
-        color: $color-text-white;
-        font-size: 1.1rem;
-        font-weight: $font-weight-semibold;
+        color: #ffffff;
+        font-size: 1.1rem; 
+        font-weight: $font-weight-bold;
         text-transform: uppercase;
-        margin-bottom: $space-xs;
-        letter-spacing: 0.05rem;
+        margin-bottom: $space-sm;
+        letter-spacing: 1.5px;
+        text-align: center;
     }
 
     .step-desc {
-        color: rgba(255, 255, 255, 0.85);
+        color: #ffffff; // Absolute white for 100% brightness
         font-size: 1rem; 
-        line-height: 1.5;
-        font-weight: $font-weight-light;
+        line-height: 1.7; // Increased for better readability
+        font-weight: $font-weight-normal;
         text-align: center;
+        opacity: 1; // Removed transparency entirely
         margin: 0;
     }
 }
 
 .flow-arrow {
     padding-top: 2.5rem;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.25); // Brighter arrows
     font-size: 1.5rem;
+    font-weight: bold;
     
     @media (max-width: $breakpoint-md) {
         display: none;
