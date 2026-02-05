@@ -48,13 +48,8 @@ export const courses = [
         ],
         detailsImages: [
             {
-                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/236P0Kzm/Detail1-photoshoped-12-2025120kb.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032381/stright_jar26-120kb_vdvpwr.jpg',
-                caption: 'Two Nudes. Oil on canvas. Artist: Ilya Medvedev',
-            },
-            {
-                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032381/stright_jar26-120kb_vdvpwr.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/pB2pdQ1R/good500kb.jpg',
+                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032365/IMG_4840-darker_2025-120kb_fbaaqe.jpg',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4840-darker_2025_a6ypts.jpg',
                 caption: 'Tereza. Oil on canvas. Artist: Ilya Medvedev',
             },
             {
@@ -79,7 +74,7 @@ export const courses = [
         thumbnails: [
             {
                 lowResUrl: "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/PG11gxKp/IMG-508715120kb.jpg",
-                highResUrl: '',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032365/IMG_508715120kb_xj602b.jpg',
             },
         ],
         detailsImages: [
@@ -156,13 +151,8 @@ export const courses = [
                 caption: 'Celine. Oil Pastels Paper. Artist: Ilya Medvedev',
             },
             {
-                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/tMswwhVb/katya-photoshop-2025-ph120kb.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/svNG3htZ/katya-photoshop-2025-ph500kb.jpg',
-                caption: 'Nude in the Nature. Oil Pastels on Paper. Artist: Ilya Medvedev',
-            },
-            {
-                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JwRnjv8W/IMG-2825ph1225-120kb.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/MkP7wmqz/IMG-32273-500kb.jpg',
+                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032364/IMG_3232-120kb_pmjfzt.jpg',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3232-500kb_lifcup.jpg',
                 caption: 'Calella, Barselona, Spain. Oil Pastels on Paper. Artist: Ilya Medvedev',
             },
         ],

@@ -11,11 +11,17 @@ declare global {
 const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
   const [isMuted, setIsMuted] = useState(true);
   const [isFullyLoaded, setIsFullyLoaded] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. LOAD YOUTUBE API IF NOT PRESENT
+    const syncFullscreen = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', syncFullscreen);
+    return () => document.removeEventListener('fullscreenchange', syncFullscreen);
+  }, []);
+
+  useEffect(() => {
     if (!window.YT) {
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
@@ -23,7 +29,6 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
       firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
     }
 
-    // 2. INITIALIZE PLAYER
     const initPlayer = () => {
       playerRef.current = new window.YT.Player(`Youtubeer-${videoId}`, {
         videoId: videoId,
@@ -33,22 +38,21 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
           modestbranding: 1,
           rel: 0,
           iv_load_policy: 3,
-          fs: 0,
+          fs: 0, 
           disablekb: 1,
           playsinline: 1,
+          autohide: 1,
+          showinfo: 0,
         },
         events: {
           onReady: (event: any) => {
             event.target.mute();
-            event.target.setVolume(50);
             event.target.playVideo();
           },
           onStateChange: (event: any) => {
-            // Once the video actually starts playing, we wait 3s then hide the loader
+            // Immediately hide placeholder when video starts to avoid seeing YT icons
             if (event.data === window.YT.PlayerState.PLAYING) {
-              setTimeout(() => {
-                setIsFullyLoaded(true);
-              }, 3000);
+              setIsFullyLoaded(true);
               startLoopCheck();
             }
           }
@@ -62,7 +66,6 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
       window.onYouTubeIframeAPIReady = initPlayer;
     }
 
-    // 3. SEAMLESS LOOP LOGIC
     let interval: NodeJS.Timeout;
     const startLoopCheck = () => {
       if (interval) clearInterval(interval);
@@ -70,8 +73,8 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
         if (playerRef.current?.getCurrentTime) {
           const currentTime = playerRef.current.getCurrentTime();
           const duration = playerRef.current.getDuration();
-          // Loop 3 seconds before the end to avoid YouTube's "Related Videos" screen
-          if (duration > 0 && currentTime >= (duration - 3)) {
+          // Loop starts exactly 4 seconds before the end
+          if (duration > 0 && currentTime >= (duration - 4)) {
             playerRef.current.seekTo(0);
             playerRef.current.playVideo();
           }
@@ -79,7 +82,6 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
       }, 100);
     };
 
-    // 4. PERFORMANCE: PAUSE VIDEO WHEN NOT IN VIEW
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (playerRef.current?.playVideo) {
@@ -97,43 +99,42 @@ const VideoPlayer: React.FC<{ videoId: string }> = ({ videoId }) => {
     };
   }, [videoId]);
 
-  // 5. SYNC MUTE STATE
-  useEffect(() => {
-    if (playerRef.current && typeof playerRef.current.mute === 'function') {
-      if (isMuted) {
-        playerRef.current.mute();
-      } else {
-        playerRef.current.unMute();
-        playerRef.current.setVolume(50);
-      }
+  const toggleMute = () => {
+    if (playerRef.current) {
+      isMuted ? playerRef.current.unMute() : playerRef.current.mute();
+      setIsMuted(!isMuted);
     }
-  }, [isMuted]);
+  };
+
+  const handleToggleExpand = () => {
+    if (!document.fullscreenElement) {
+      containerRef.current?.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  };
 
   return (
-    <div ref={containerRef} className="studio-video-master">
-      
-      {/* LOADING SCREEN WITH ICON */}
+    <div ref={containerRef} className={`studio-video-master ${isFullscreen ? 'is-expanded' : ''}`}>
+      {/* Black placeholder without spinner to hide YT loading icons */}
       <div className={`video-placeholder ${isFullyLoaded ? 'hidden' : ''}`}>
         <div className="loader-content">
-          <div className="video-spinner" />
           <div className="modern-loader">PROFINEART STUDIO BASEL</div>
         </div>
       </div>
 
-      {/* THE ACTUAL VIDEO */}
       <div className="video-inner-container">
         <div id={`Youtubeer-${videoId}`} className="video-iframe" />
       </div>
 
-      {/* INTERACTIVE CONTROLS */}
-      <button 
-        className="small-sound-pill" 
-        onClick={() => setIsMuted(!isMuted)}
-        aria-label={isMuted ? "Unmute video" : "Mute video"}
-      >
-        {isMuted ? "TAP FOR SOUND" : "MUTE"}
-      </button>
-      
+      <div className="custom-player-ui">
+        <button className="ui-pill" onClick={toggleMute}>
+          {isMuted ? "TAP FOR SOUND" : "MUTE"}
+        </button>
+        <button className="ui-pill expand-btn" onClick={handleToggleExpand}>
+          {isFullscreen ? "EXIT" : "EXPAND"}
+        </button>
+      </div>
     </div>
   );
 };

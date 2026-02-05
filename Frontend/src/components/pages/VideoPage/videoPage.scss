@@ -1,57 +1,66 @@
 @use "sass:color";
 @use "../../../global.scss" as *;
 
-.video-masterclass-section {
-    padding: $space-xl 0; 
+.text-component-section.masterclass-final {
+    // Removed all unnecessary gaps
+    padding: 0; 
     width: 100%;
-    background-color: transparent;
 
     @media (max-width: $breakpoint-md) {
-        padding: $space-md 0; 
-    }
-
-    // This wrapper keeps text aligned with your other components
-    .content-boundary {
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
+        padding: 0; 
     }
 
     .text-header {
+        margin-bottom: $space-md; 
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
-        padding-bottom: $space-xs;
+        padding-bottom: $space-sm;
+        text-align: left;
+
+        @media (max-width: $breakpoint-md) {
+            margin-bottom: $space-xs; 
+            padding-bottom: $space-xs;
+        }
 
         .text-main-title {
             @include services-heading;
             color: #ffffff; 
+            margin: 0;
+            text-transform: uppercase;
             letter-spacing: 0.4rem; 
             font-weight: $font-weight-bold;
-            text-transform: uppercase;
 
             @media (max-width: $breakpoint-sm) {
                 font-size: $font-size-h3;
                 letter-spacing: 0.2rem;
             }
         }
-    }
 
-    .subtitle-wrap {
-        margin-top: $space-sm;
-        margin-bottom: $space-lg;
-
-        .text-subtitle {
-            font-size: 1rem;
-            color: #ffffff;
+        .masterclass-sub-size {
+            font-size: 0.95rem;
+            color: #ffffff !important;
+            margin-top: $space-xxs;
             font-weight: $font-weight-normal;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
-            opacity: 0.8;
+            opacity: 0.9;
+
+            @media (max-width: $breakpoint-md) {
+                font-size: 0.85rem;
+            }
         }
     }
 
-    .video-viewport-wrapper {
+    .video-centering-wrapper {
         width: 100%;
-        position: relative;
+        // Limits width so it's not "gigantic" on desktop
+        max-width: 56.25rem; 
+        // Centers the video in the middle of the screen
+        margin: $space-lg auto 0; 
+
+        @media (max-width: $breakpoint-md) {
+            max-width: 100%;
+            margin: $space-sm auto 0;
+        }
         
         :global(.studio-video-master) {
             width: 100% !important;
@@ -59,32 +68,7 @@
             margin: 0 !important;
             background: transparent !important;
             box-shadow: none !important;
-
-            :global(.video-inner-container) {
-                aspect-ratio: 16 / 9;
-                background: transparent !important;
-            }
-        }
-    }
-
-    // MOBILE LANDSCAPE MODE: When user turns the phone
-    @media (max-width: $breakpoint-md) and (orientation: landscape) {
-        padding: 0; // Remove all gaps
-        
-        .content-boundary {
-            display: none; // Hide titles to make room for video
-        }
-
-        .video-viewport-wrapper {
-            height: 100vh; // Fill the whole screen height
-            
-            :global(.studio-video-master) {
-                height: 100vh;
-                :global(.video-inner-container) {
-                    height: 100%;
-                    aspect-ratio: auto; // Let it fill the landscape view
-                }
-            }
+            border-radius: 0 !important;
         }
     }
 }

@@ -40,11 +40,9 @@
   },
 
   "masterclass": {
-    "label": "Masterclass Series",
     "title": "Masterclass",
-    "subtitle": "Oil Painting Process by the Mentor",
-    "expand": "Expand View"
-  },
+    "subtitle": "Oil Painting Process by the Mentor"
+},
 
 "textReview": {
     "sectionTitle": "Trust",

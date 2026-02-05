@@ -8,19 +8,16 @@ const VideoPage: React.FC = () => {
     const myVideoId = "ucTuc7tvZDo"; 
 
     return (
-        <section className="video-masterclass-section">
-            <div className="content-boundary">
+        <section className="text-component-section masterclass-final">
+            <div className="container">
                 <header className="text-header">
                     <h2 className="text-main-title">{t('masterclass.title')}</h2>
+                    <h3 className="text-subtitle masterclass-sub-size">{t('masterclass.subtitle')}</h3>
                 </header>
                 
-                <div className="subtitle-wrap">
-                    <h3 className="text-subtitle">{t('masterclass.subtitle')}</h3>
+                <div className="video-centering-wrapper">
+                    <VideoPlayer videoId={myVideoId} />
                 </div>
-            </div>
-
-            <div className="video-viewport-wrapper">
-                <VideoPlayer videoId={myVideoId} />
             </div>
         </section>
     );
