@@ -1,21 +1,22 @@
 @use "../../../global.scss" as *;
 
 .service-area-section {
-    padding: $space-lg 0;
+    // REMOVED: Bottom gap set to 0 as requested
+    padding: $space-lg 0 0; 
 
     .section-header {
-        margin-bottom: $space-xl;
+        margin-bottom: $space-md; 
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
-        padding-bottom: $space-sm;
+        padding-bottom: $space-md;
 
         .service-main-title {
             @include services-heading;
-            color: $color-text-white;
+            color: #ffffff; 
             text-align: left;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 0.4rem;
-            font-weight: $font-weight-light;
+            font-weight: $font-weight-bold;
 
             @media (max-width: $breakpoint-sm) {
                 font-size: $font-size-h3;
@@ -26,28 +27,27 @@
 }
 
 .service-description-wrapper {
-    margin-bottom: $space-xxl;
+    margin-bottom: $space-xl;
     
     .description-text {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1.15rem;
-        line-height: 1.7;
-        font-weight: $font-weight-light;
+        color: #ffffff !important; // Bright white
+        font-size: 1.05rem; 
+        line-height: 1.8;
+        font-weight: $font-weight-normal;
         margin: 0;
-        max-width: 100%;
     }
 }
 
 .locations-wide-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); // Spreads content wide across the screen
-    gap: $space-xl;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xxxl; 
     border-top: 0.0625rem solid rgba(255, 255, 255, 0.05);
     padding-top: $space-xl;
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
-        gap: $space-lg;
+        gap: $space-xl;
     }
 }
 
@@ -58,29 +58,29 @@
 
     .location-meta {
         .location-title {
-            color: $color-text-white;
+            color: #ffffff; 
             font-size: $font-size-base;
             font-weight: $font-weight-bold;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 0.0625rem;
         }
 
         .location-subtitle {
             font-size: $font-size-xxs;
-            color: $color-text-light;
+            color: rgba(255, 255, 255, 0.6); 
             text-transform: uppercase;
-            letter-spacing: 0.1rem;
             margin-top: $space-xxs;
         }
     }
 
     .location-content {
         .location-text {
-            color: rgba(255, 255, 255, 0.6);
+            // UPDATED: Now pure white, full opacity, and matching line-height
+            color: #ffffff !important; 
+            opacity: 1; 
             font-size: 1rem;
-            line-height: 1.6;
-            font-weight: $font-weight-light;
+            line-height: 1.8; 
+            font-weight: $font-weight-normal; 
             margin: 0;
         }
     }

@@ -1,32 +1,32 @@
 @use "../../../global.scss" as *;
 
 .reviews-section {
-    padding: 0; 
+    // Increased gap on bottom to match the xxl/xxxl spacing in studentsWorks
+    padding: 0 0 $space-xxxxl; 
     
     @media (max-width: $breakpoint-md) {
-        padding: 0;
+        padding: 0 0 $space-xxl;
     }
 }
 
 .section-header {
-    // Desktop margin
     margin-bottom: $space-xxxxl;
     border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
     padding-bottom: $space-md;
 
     @media (max-width: $breakpoint-md) {
-        // Reduced gap for mobile between title and first review
         margin-bottom: $space-lg; 
     }
 
     .reviews-main-title {
         @include services-heading;
-        color: $color-text-white;
+        // Aligned to pure white like StudentsWorks h2/h3
+        color: #ffffff; 
         text-align: left;
         margin: 0;
         text-transform: uppercase;
         letter-spacing: 0.4rem;
-        font-weight: $font-weight-light;
+        font-weight: $font-weight-bold; // Matched bold weight
 
         @media (max-width: $breakpoint-sm) {
             font-size: $font-size-h3;
@@ -66,7 +66,8 @@
 
 .author-group {
     .review-author {
-        color: $color-text-white;
+        // Pure white font
+        color: #ffffff;
         font-size: $font-size-base;
         font-weight: $font-weight-bold;
         margin: 0;
@@ -74,11 +75,12 @@
     }
 
     .review-stars {
-        color: $color-text-white;
+        // Matched the bright star/icon look
+        color: #ffffff;
         font-size: 0.75rem;
         margin-top: $space-xxs;
         letter-spacing: 0.125rem;
-        opacity: 0.8;
+        opacity: 0.9;
     }
 }
 
@@ -87,24 +89,26 @@
     
     .source-text, .source-link {
         font-size: $font-size-xxs;
-        color: $color-text-light;
+        // Light grey but keeping it legible, similar to the student-info opacity
+        color: rgba(255, 255, 255, 0.6);
         text-transform: uppercase;
         letter-spacing: 0.0625rem;
         text-decoration: none;
     }
 
     .source-link:hover {
-        color: $color-text-white;
+        color: #ffffff;
     }
 }
 
 .review-content {
     .review-text {
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 1.0625rem;
+        // Exactly matching the .progress-essay p styles from StudentsWorks
+        color: #ffffff !important;
+        font-size: 1.05rem; 
         line-height: 1.8;
         margin: 0;
-        font-weight: $font-weight-light;
+        font-weight: $font-weight-normal;
         white-space: pre-line;
 
         @media (max-width: $breakpoint-sm) {

@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { courses } from '../../../../functions/src/data/products'; 
+import { 
+    FaLayerGroup, 
+    FaMapMarkerAlt, 
+    FaCalendarCheck, 
+    FaUserFriends 
+} from 'react-icons/fa'; 
 import './courseTeaser.scss';
 
 const CourseTeaser: React.FC = () => {
@@ -23,15 +29,43 @@ const CourseTeaser: React.FC = () => {
 
                 <div className="teaser-grid">
                     {teaserCourses.map((course) => (
-                        <Link to={`/card/${course.id}`} key={course.id} className="teaser-card">
+                        <Link 
+                            to={`/card/${course.id}`} 
+                            key={course.id} 
+                            className="teaser-card"
+                        >
                             <div className="teaser-image-wrapper">
-                                <img src={course.image?.lowResUrl} alt={course.title} />
+                                <img 
+                                    src={course.image?.lowResUrl} 
+                                    alt={t(`products.${course.id}.title`)} 
+                                />
                                 <div className="teaser-overlay">
                                     <span>{t('coursesPage.viewButton')}</span>
                                 </div>
                             </div>
+
                             <div className="teaser-info">
                                 <h3>{t(`products.${course.id}.title`)}</h3>
+                                
+                                <div className="unified-meta-line">
+                                    <div className="meta-item">
+                                        <FaLayerGroup /> 
+                                        <span>Beginners & Advanced</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <FaMapMarkerAlt /> 
+                                        <span>Student Space</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <FaCalendarCheck /> 
+                                        <span>Flexible Date</span>
+                                    </div>
+                                    <div className="meta-item">
+                                        <FaUserFriends /> 
+                                        <span>In-Person</span>
+                                    </div>
+                                </div>
+
                                 <p>{t(`products.${course.id}.briefDescription`)}</p>
                             </div>
                         </Link>
