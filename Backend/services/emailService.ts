@@ -14,8 +14,8 @@ const getPostmarkClient = () => {
  */
 export async function sendConfirmationEmail(details: FulfillmentDetails): Promise<void> {
     const client = getPostmarkClient();
-    const logoUrl = "https://res.cloudinary.com/dpayqcrg5/image/upload/fl_limit_size:150000/v1769809657/Group_148_1_eozycn.png";
-
+// Adding f_png forces standard PNG, and fl_lossless ensures transparency stays intact
+const logoUrl = "https://res.cloudinary.com/dpayqcrg5/image/upload/f_png,fl_lossless/v1770316951/Group_29_qprfgd.png";
     try {
         await client.sendEmail({
             "From": `"Profineart Studio Basel" <info@profineart.ch>`,
@@ -47,9 +47,14 @@ export async function sendConfirmationEmail(details: FulfillmentDetails): Promis
 <body>
     <div class="wrapper">
         <div class="container">
-            <div class="header">
-                <img src="${logoUrl}" alt="Profineart Studio Basel" class="logo">
-            </div>
+            <div class="header" style="padding: 50px 20px; text-align: center;">
+    <img 
+        src="${logoUrl}" 
+        alt="Profineart Studio Basel" 
+        width="280" 
+        style="display: inline-block; width: 280px; height: auto; max-width: 90%; border: 0; outline: none; text-decoration: none;"
+    >
+</div>
             <div class="content">
                 <h2 class="main-heading">Booking Confirmed</h2>
                 <p>The payment was successful and the art session is officially secured. This mentorship focuses on mastering the visual language of art through historical tradition and contemporary standards.</p>

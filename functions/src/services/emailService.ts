@@ -14,7 +14,7 @@ const getPostmarkClient = () => {
  */
 export async function sendConfirmationEmail(details: FulfillmentDetails): Promise<void> {
     const client = getPostmarkClient();
-    const logoUrl = "https://res.cloudinary.com/dpayqcrg5/image/upload/w_1000,q_auto:eco,f_jpg/v1769809657/Group_148_1_eozycn.png";
+    const logoUrl = "https://res.cloudinary.com/dpayqcrg5/image/upload/f_png,fl_lossless/v1769809657/Group_148_1_eozycn.png";
 
     try {
         await client.sendEmail({
