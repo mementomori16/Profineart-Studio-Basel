@@ -134,14 +134,21 @@
 },
 
 
- "coursesPage": {
+"coursesPage": {
     "title": "Profineart Courses",
     "intro": "Master the visual language of fine art. Select a discipline below to view the full curriculum and secure your private sessions.",
     "viewButton": "Learn & Book",
     "filterAll": "All",
     "filterDrawing": "Drawing Courses",
     "filterPainting": "Painting Courses",
-    "filterMixed": "Mixed Media" 
+    "filterMixed": "Mixed Media",
+    "curriculumLabel": "Curriculum 2026",
+    "meta": {
+        "level": "Beginners & Advanced",
+        "location": "Student Space",
+        "date": "Flexible Date",
+        "format": "In-Person"
+    }
 },
 
   "cardPage": {
@@ -632,6 +639,16 @@
   "explore": "Explore",
   "rights": "All rights reserved.",
   "legal": "Legal Info",
-  "terms": "Terms of Use"
+  "terms": "Terms of Use",
+  "payments": "Secure Payments",
+  "processedBy": "Processed by",
+  "paymentMethods": [
+    "TWINT",
+    "Visa",
+    "Mastercard",
+    "Apple Pay",
+    "Google Pay",
+    "Klarna"
+  ]
 }
 }

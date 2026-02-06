@@ -90,6 +90,23 @@
   ]
 },
 
+"coursesPage": {
+    "title": "Profineart Kurse",
+    "intro": "Meistern Sie die visuelle Sprache der bildenden Kunst. Wählen Sie unten eine Disziplin aus, um das vollständige Curriculum einzusehen und Ihre privaten Sitzungen zu buchen.",
+    "viewButton": "Details & Buchen",
+    "filterAll": "Alle",
+    "filterDrawing": "Zeichenkurse",
+    "filterPainting": "Malkurse",
+    "filterMixed": "Mixed Media",
+    "curriculumLabel": "Curriculum 2026",
+    "meta": {
+        "level": "Anfänger & Fortgeschrittene",
+        "location": "Atelier des Schülers",
+        "date": "Flexible Termine",
+        "format": "Präsenzunterricht"
+    }
+},
+
 "cardPage": {
     "productNotFound": "Produkt nicht gefunden",
     "technologiesUsed": "",
@@ -99,7 +116,7 @@
     "mediumType_privateLessons": "Individuelle Sitzungen",
     "backToCourses": "Zurück zu den Kursen"
   },
-  
+
   "common": {
     "loading": "Laden...",
     "loadingSlots": "Termine werden geprüft...",
@@ -566,11 +583,21 @@
     }
   },
   "footer": {
-    "brandName": "Profineart Studio Basel",
-    "description": "Professionelle Kurse für Bildende Kunst & Zeitgenössische Malerei in Ihrem privaten Umfeld",
-    "explore": "Entdecken",
-    "rights": "Alle Rechte vorbehalten.",
-    "legal": "Impressum",
-    "terms": "Nutzungsbedingungen"
-  }
+  "brandName": "Profineart Studio Basel",
+  "description": "Professionelle Kurse für Bildende Kunst & zeitgenössische Malerei in Ihrem privaten Umfeld",
+  "explore": "Entdecken",
+  "rights": "Alle Rechte vorbehalten.",
+  "legal": "Rechtliches",
+  "terms": "Nutzungsbedingungen",
+  "payments": "Sichere Zahlungen",
+  "processedBy": "Abgewickelt durch",
+  "paymentMethods": [
+    "TWINT",
+    "Visa",
+    "Mastercard",
+    "Apple Pay",
+    "Google Pay",
+    "Klarna"
+  ]
+}
 }

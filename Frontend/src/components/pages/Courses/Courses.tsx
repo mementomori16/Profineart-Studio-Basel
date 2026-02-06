@@ -29,7 +29,7 @@ const Courses: React.FC = () => {
         <section className="courses-page-root">
             <div className="container"> 
                 <header className="section-header">
-                    <span className="label">Curriculum 2026</span>
+                    <span className="label">{t('coursesPage.curriculumLabel')}</span>
                     <h2 className="courses-main-title">{t('coursesPage.title')}</h2>
                     <p className="intro-text-curated">{t('coursesPage.intro')}</p>
                     
@@ -37,7 +37,6 @@ const Courses: React.FC = () => {
                         {['All', 'Drawing', 'Painting', 'Mixed'].map((cat) => (
                             <button 
                                 key={cat}
-                                // Normalized comparison for active state highlight
                                 className={`filter-nav-btn ${activeCategory === (cat === 'All' ? 'all' : cat) ? 'active' : ''}`}
                                 onClick={() => setActiveCategory(cat === 'All' ? 'all' : cat as any)}
                             >
@@ -55,10 +54,10 @@ const Courses: React.FC = () => {
                                 <h3 className="row-title">{t(`products.${product.id}.title`)}</h3>
                                 
                                 <div className="unified-meta-line">
-                                    <div className="meta-item"><FaLayerGroup /> <span>Beginners & Advanced</span></div>
-                                    <div className="meta-item"><FaMapMarkerAlt /> <span>Student Space</span></div>
-                                    <div className="meta-item"><FaCalendarCheck /> <span>Flexible Date</span></div>
-                                    <div className="meta-item"><FaUserFriends /> <span>In-Person</span></div>
+                                    <div className="meta-item"><FaLayerGroup /> <span>{t('coursesPage.meta.level')}</span></div>
+                                    <div className="meta-item"><FaMapMarkerAlt /> <span>{t('coursesPage.meta.location')}</span></div>
+                                    <div className="meta-item"><FaCalendarCheck /> <span>{t('coursesPage.meta.date')}</span></div>
+                                    <div className="meta-item"><FaUserFriends /> <span>{t('coursesPage.meta.format')}</span></div>
                                 </div>
 
                                 <p className="row-desc">

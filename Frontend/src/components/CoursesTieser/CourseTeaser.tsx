@@ -13,7 +13,6 @@ import './courseTeaser.scss';
 const CourseTeaser: React.FC = () => {
     const { t } = useTranslation();
 
-    // Show only the top 3 priority courses for the homepage teaser
     const priorityIds = ["803", "801", "800"]; 
     const teaserCourses = courses
         .filter(c => priorityIds.includes(c.id.toString()))
@@ -50,19 +49,19 @@ const CourseTeaser: React.FC = () => {
                                 <div className="unified-meta-line">
                                     <div className="meta-item">
                                         <FaLayerGroup /> 
-                                        <span>Beginners & Advanced</span>
+                                        <span>{t('coursesPage.meta.level')}</span>
                                     </div>
                                     <div className="meta-item">
                                         <FaMapMarkerAlt /> 
-                                        <span>Student Space</span>
+                                        <span>{t('coursesPage.meta.location')}</span>
                                     </div>
                                     <div className="meta-item">
                                         <FaCalendarCheck /> 
-                                        <span>Flexible Date</span>
+                                        <span>{t('coursesPage.meta.date')}</span>
                                     </div>
                                     <div className="meta-item">
                                         <FaUserFriends /> 
-                                        <span>In-Person</span>
+                                        <span>{t('coursesPage.meta.format')}</span>
                                     </div>
                                 </div>
 

@@ -7,6 +7,9 @@ import './footer.scss';
 const Footer: React.FC = () => {
   const { t } = useTranslation();
 
+  // Retrieve payment methods array from JSON
+  const paymentMethods = t('footer.paymentMethods', { returnObjects: true }) as string[];
+
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -42,18 +45,15 @@ const Footer: React.FC = () => {
 
         {/* Column 4: Trust & Payments */}
         <div className="footer-column">
-          <h4 className="footer-header">{t('footer.payments', 'Secure Payments')}</h4>
+          <h4 className="footer-header">{t('footer.payments')}</h4>
           <div className="footer-stripe-info">
             <FaLock className="footer-icon-lock" />
-            <span>Processed by <strong>Stripe</strong></span>
+            <span>{t('footer.processedBy')} <strong>Stripe</strong></span>
           </div>
           <div className="footer-payment-icons">
-             <span className="payment-badge">TWINT</span>
-             <span className="payment-badge">Visa</span>
-             <span className="payment-badge">Mastercard</span>
-             <span className="payment-badge">Apple Pay</span>
-             <span className="payment-badge">Google Pay</span>
-             <span className="payment-badge">Klarna</span>
+             {Array.isArray(paymentMethods) && paymentMethods.map((method) => (
+               <span key={method} className="payment-badge">{method}</span>
+             ))}
           </div>
         </div>
       </div>
