@@ -114,7 +114,7 @@
             }
 
             .btn-checkout-inviting {
-                background-color: global.$color-cta-primary-warm;
+                background-color: color.adjust(global.$color-cta-primary-warm, $lightness: 8%);
                 color: global.$color-text-white;
                 border: none;
                 padding: global.$space-sm global.$space-xl;
