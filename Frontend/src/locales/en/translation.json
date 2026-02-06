@@ -21,7 +21,6 @@
     
   },    
 
-
  "textComponent": {
 "title": "The Mentorship",
   "subtitle": "Mastery of Fine Art",
@@ -51,6 +50,51 @@
     "role": "Board Eligible Veterinary Ophthalmologist"
   },
 
+ "howItWorks": {
+  "mainTitle": "How It Works",
+  "step1": {
+    "title": "Choose Course",
+    "desc": "Pick your preferred fine art subject from the catalog."
+  },
+  "step2": {
+    "title": "Book & Pay",
+    "desc": "Select format, amount, date, time, and your studio address."
+  },
+  "step3": {
+    "title": "Contact",
+    "desc": "Instructor will contact you to advise on session preparation."
+  },
+  "step4": {
+    "title": "Studio Session",
+    "desc": "Instructor travels to your studio at the booked day and time."
+  }
+},
+
+"serviceArea": {
+  "title": "Service Area",
+  "mainDescription": "A mobile educational project providing high-level fine art education within your own environment. The learning process is fully integrated into your personal creative setting through direct travel to your studio space.",
+  "locations": [
+    {
+      "id": "switzerland",
+      "title": "Switzerland",
+      "subtitle": "CH — Basel & Region",
+      "text": "Full mobile service within Basel-Stadt, Basel-Landschaft, and a 21km operational radius."
+    },
+    {
+      "id": "border",
+      "title": "Germany / France",
+      "subtitle": "DE / FR — Border Regions",
+      "text": "Coverage across regional border towns and the immediate Alsace and Southern Baden areas."
+    },
+    {
+      "id": "international",
+      "title": "International",
+      "subtitle": "Global — Special Request",
+      "text": "Available for travel to major Swiss hubs, European cultural centers, and international metropolitan areas for specialized projects."
+    }
+  ]
+},
+
   
  "aboutPage": {
     "title": "Contemporary Fine Art Pedagogy",
@@ -70,11 +114,6 @@
     
     "artFactsLink": "View Ilya Medvedev Profile on ArtFacts",
   
-  
-  
-
-
-
     "slides": [
         {
             "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855814/Ily120kb_mayj5l.jpg",
@@ -94,19 +133,6 @@
     ]
 },
 
-"studentsWorksPage": {
-    "title": "Students' Works Gallery",
-    "intro": "A selection of fine art pieces created by students during their private mentorship sessions.",
-    "sidebarTitle": "Creative Progress",
-    "sidebarText": "Each piece represents a milestone in the student's journey, from technical exercises to finished masterpieces."
-},
-
-  "carousel": {
-    "globalTitlePrimary": "Individual Fine Art Painting Courses in Basel",
-    "globalTitleSecondary": "Find what course can fit you the best",
-    "globalDescription": "Develop a professional painting with private training tailored to your goals. Whether mastering the physics of Aquarelle or the structural logic of Mixed Media, we bring the studio to your home in Basel and the area.",
-    "learnMoreButton": "Explore Fine Art Courses"
-  },
 
  "coursesPage": {
     "title": "Profineart Courses",

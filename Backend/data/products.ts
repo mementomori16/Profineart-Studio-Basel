@@ -187,7 +187,7 @@ export const courses: Product[] = [
       {
         lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032364/IMG_3232-120kb_pmjfzt.jpg',
         highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3232-500kb_lifcup.jpg',
-        caption: 'Calella, Barselona, Spain. Oil Pastels on Paper. Artist: Ilya Medvedev',
+        caption: 'Alina. Oil Pastels on Paper. Artist: Ilya Medvedev',
       },
     ],
 

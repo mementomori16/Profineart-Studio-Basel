@@ -1,10 +1,10 @@
 {
   "home": {
-    "home": "Startseite",
+    "home": "Home",
     "howItWorks": "Preis & Format",
     "courses": "Kursbuchung",
-    "about": "Über uns",
-    "studentsWorks": "Galerie",
+    "about": "Über",
+    "studentsWorks": "Schülerarbeiten",
     "contact": "Kontakt",
     "cv": "Lebenslauf",
     "welcomeHero": {
@@ -44,6 +44,176 @@
     "author": "Dr. Dikla Arad",
     "role": "Fachtierärztin für Ophthalmologie"
   },
+
+  "howItWorks": {
+  "mainTitle": "So funktioniert es",
+  "step1": {
+    "title": "Kurs wählen",
+    "desc": "Wählen Sie Ihr bevorzugtes Kunstthema aus dem Katalog aus."
+  },
+  "step2": {
+    "title": "Buchen & Bezahlen",
+    "desc": "Wählen Sie Format, Anzahl, Datum, Uhrzeit und Ihre Studio-Adresse aus."
+  },
+  "step3": {
+    "title": "Kontakt",
+    "desc": "Der Kursleiter wird Sie kontaktieren, um Sie bei der Vorbereitung der Sitzung zu beraten."
+  },
+  "step4": {
+    "title": "Studio-Sitzung",
+    "desc": "Der Kursleiter kommt am gebuchten Tag und zur vereinbarten Zeit zu Ihnen ins Studio."
+  }
+},
+
+"serviceArea": {
+  "title": "Servicegebiet",
+  "mainDescription": "Ein mobiles Bildungsprojekt, das hochkarätige Kunstausbildung in Ihrem eigenen Umfeld anbietet. Der Lernprozess wird durch die direkte Anreise zu Ihrem Atelier vollständig in Ihr persönliches kreatives Umfeld integriert.",
+  "locations": [
+    {
+      "id": "switzerland",
+      "title": "Schweiz",
+      "subtitle": "CH — Basel & Region",
+      "text": "Vollständiger mobiler Service in Basel-Stadt, Basel-Landschaft und einem operativen Radius von 21 km."
+    },
+    {
+      "id": "border",
+      "title": "Deutschland / Frankreich",
+      "subtitle": "DE / FR — Grenzregionen",
+      "text": "Abdeckung der regionalen Grenzstädte sowie der Gebiete im Elsass und Südbaden."
+    },
+    {
+      "id": "international",
+      "title": "International",
+      "subtitle": "Global — Auf Anfrage",
+      "text": "Verfügbar für Reisen in Schweizer Grosszentren, europäische Kulturmetropolen und internationale Ballungsräume für spezialisierte Projekte."
+    }
+  ]
+},
+
+"cardPage": {
+    "productNotFound": "Produkt nicht gefunden",
+    "technologiesUsed": "",
+    "siteLink": "Website-Link:",
+    "mediumForPrivateLessonsCheck": "Course", 
+    "mediumType": "Kurs",
+    "mediumType_privateLessons": "Individuelle Sitzungen",
+    "backToCourses": "Zurück zu den Kursen"
+  },
+  
+  "common": {
+    "loading": "Laden...",
+    "loadingSlots": "Termine werden geprüft...",
+    "nextStep": "Nächster Schritt",
+    "processing": "Zahlung wird verarbeitet...",
+    "backToHome": "Zurück zur Startseite",
+    "currency": "CHF",
+    "minutes": "Min.",
+    "lessons": "Lektionen",
+    "lesson": "Lektion",
+    "bestValue": "BESTES ANGEBOT",
+    "unknown": "Unbekannt",
+    "remove": "Entfernen",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "message": "Nachricht",
+    "successTitle": "Buchung erfolgreich",
+    "successMsg": "Vielen Dank! Ihre Zahlung war erfolgreich.",
+    "emailNote": "Eine Bestätigungs-E-Mail wurde versandt.",
+    "birthdate": "Geburtsdatum"
+  },
+  "checkout": {
+    "bookNowButton": "Jetzt buchen",
+    "addToCartButton": "In den Warenkorb",
+    "alreadyInBasket": "Bereits im Warenkorb",
+    "mainTitle": "Buchung abschließen",
+    "step1Title": "Datum & Uhrzeit wählen",
+    "step2Title": "Kontakt- & Zahlungsdetails",
+    "backToSchedule": "Zurück zum Kalender",
+    "successTitle": "Buchung bestätigt! 🎉",
+    "successMessage": "Vielen Dank! Ihre Sitzung wurde erfolgreich gebucht. Eine Bestätigungs-E-Mail mit allen Details wurde versendet.",
+    "summaryDate": "Geplantes Datum",
+    "errorTitle": "Buchung fehlgeschlagen",
+    "errorMessage": "Es gab ein Problem bei der Verarbeitung Ihrer Anfrage. Bitte versuchen Sie es erneut.",
+    "tryAgain": "Erneut versuchen",
+    "confirmAndPay": "Bestätigen und Bezahlen",
+    "bookingSummary": "Buchungsübersicht",
+    "summaryPackage": "Paket",
+    "totalPrice": "Gesamtpreis",
+    "selectPackageTitle": "1. Kurspaket wählen",
+    "packageInstruction": "Wählen Sie bei Paketen mit mehreren Lektionen Ihr Paket aus und buchen Sie nur das Datum und die Uhrzeit Ihrer ersten Lektion. Die restlichen Sitzungen werden nach dem Kauf direkt mit dem Kursleiter vereinbart. Pakete verfallen nicht.",
+    "pickDateAndTimeTitle": "2. Datum und Uhrzeit wählen",
+    "selectDatePlaceholder": "Datum wählen",
+    "enterAddressTitle": "3. Adresse eingeben",
+    "addressPlaceholder": "Adresse eingeben (z. B. Strasse, Stadt, 4052 Basel)",
+    "addressRequired": "Bitte geben Sie Ihre Adresse ein.",
+    "addressValidating": "Prüfung...",
+    "addressCheckButton": "Adresse prüfen",
+    "addressValidSuccess": "Service an diesem Standort verfügbar!",
+    "addressInvalid": "Die Adresse liegt ausserhalb des Servicegebiets oder ist ungültig.",
+    "validationError": "Bei der Adressvalidierung ist ein Fehler aufgetreten.",
+    "continueToDetails": "Weiter zu den Kontaktdaten",
+    "noAvailableSlots": "Keine verfügbaren Termine für das gewählte Paket an diesem Tag gefunden.",
+    "loadingSlotsMessage": "Lade Termine für {{lessons}} x {{duration}} Min...",
+    "personalDetails": "Persönliche Daten",
+    "addressDetails": "Adressdaten",
+    "addressInstruction": "Der Lehrer kann zu Ihrer Adresse kommen, wenn diese in einem Umkreis von 25 km um die Stadt Basel liegt. Dies umfasst Basel-Land, den nördlichen Aargau sowie die Grenzstädte in Deutschland und Frankreich. Bitte prüfen Sie Ihre Adresse unten.",
+    "toOrder": "In den Warenkorb",
+    "checkoutButtonText": "Zur Kasse",
+    "summaryTime": "Geplante Uhrzeit",
+    "printReceipt": "Quittung drucken"
+  },
+
+ 
+  "schedule": {
+    "selectPackage": "Pakettyp wählen",
+    "selectDate": "Datum wählen",
+    "selectTime": "Uhrzeit wählen"
+  },
+  "form": {
+    "name": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer (Optional)",
+    "message": "Nachricht / Besondere Wünsche (Optional)",
+    "date": "Datum",
+    "timeSlots": "Verfügbare Zeitfenster",
+    "dateOfBirth": "Geburtsdatum",
+    "dobPlaceholder": "TT.MM.JJJJ",
+    "streetAndNumber": "Strasse und Hausnummer",
+    "apartmentAndFloor": "Wohnung / Etage (Optional)",
+    "index": "Postleitzahl (PLZ)",
+    "city": "Ort",
+    "country": "Land",
+    "iAgreeTo": "Ich stimme den",
+    "termsOfUse": "Nutzungsbedingungen zu"
+  },
+  "packages": {
+    "basic": { "label": "1-Stunden-Sitzung" },
+    "premium": { "label": "1,5-Stunden-Sitzung (erweitert)" }
+  },
+  "error": {
+    "productNotFound": "Fehler: Produkt nicht gefunden.",
+    "failedToFetchSchedule": "Der Zeitplan konnte nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "invalidRequest": "Ungültige Anfrage. Bitte wählen Sie ein Paket und ein Datum.",
+    "completeAllSteps": "Bitte wählen Sie ein Datum, ein Zeitfenster und validieren Sie Ihre Adresse."
+  },
+  "validation": {
+    "nameEmailRequired": "Name und E-Mail sind Pflichtfelder.",
+    "slotRequired": "Bitte wählen Sie ein Datum und ein Zeitfenster.",
+    "requiredFields": "Name, E-Mail und alle Hauptadressfelder (Strasse, PLZ, Ort, Land) sind erforderlich.",
+    "dobRequired": "Das Geburtsdatum ist erforderlich.",
+    "termsRequired": "Sie müssen den Nutzungsbedingungen zustimmen."
+  },
+  "cart": {
+    "mainTitle": "Ihr Warenkorb",
+    "emptyMessage": "Ihr Warenkorb ist leer.",
+    "backToCourses": "Zurück zu den Kursen",
+    "itemsCount": "Sie haben {{count}} Artikel in Ihrem Warenkorb.",
+    "clearAll": "Warenkorb leeren",
+    "itemDescriptionShort": "Dies ist eine kurze Beschreibung Ihres ausgewählten Artikels.",
+    "multiItemError": "Bitte buchen und bezahlen Sie jeden Kurs einzeln und nicht gesammelt."
+  },
+
   "products": {
     "800": {
       "title": "Byzantinische Ikonographie Kurs",
@@ -147,8 +317,30 @@
     "methodologyText": "Als Spezialist für Freihandpräzision arbeitete Ilya Medvedev fünf Jahre lang als Tätowierer und Strassenporträtist, wobei er ohne Schablonen oder Vorzeichnungen arbeitete. Diese Detailgenauigkeit führte zur Entwicklung hyperrealistischer Maltechniken für das medizinisch-chirurgische Training, um die visuelle Schärfe von Chirurgen zu verbessern.\n\nSeit 2012 hat diese Pädagogik verschiedenste Fachleute betreut, von Spieledesignern bis hin zu Ärzten. Die Methodik betont eine freihändige 'Auge-Hirn-Hand'-Verbindung in Disziplinen wie byzantinischer Ikonographie, akademischem Zeichnen und zeitgenössischer Malerei, wobei der Fokus auf technischer Meisterschaft und kreativer Unabhängigkeit liegt.",
     "studentLevelsTitle": "Für wen die Kurse geeignet sind",
     "studentLevelsText": "Die Kurse sind für Schüler vom absoluten Anfänger bis zum Fortgeschrittenen geeignet. Anfängerfreundliche Methoden nutzen unterstützende Materialien, während Fortgeschrittenenkurse den Schwerpunkt auf technisches Geschick und die Beherrschung komplexer Techniken legen. Die Programme sind für Personen mit künstlerischer Begabung konzipiert; von den Teilnehmern wird erwartet, dass sie über die physischen und kognitiven Fähigkeiten verfügen, um sich künstlerisch zu betätigen.",
-    "artFactsLink": "Ilya Medvedev Profil auf ArtFacts ansehen"
-  },
+    "artFactsLink": "Ilya Medvedev Profil auf ArtFacts ansehen",
+  
+      "slides": [
+        {
+            "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855814/Ily120kb_mayj5l.jpg",
+            "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855744/Ily500kb_yvswlt.jpg",
+            "caption": "Ilya Medvedev"
+        },
+        {
+            "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770065006/20210815_155250120kb_zbfrjq.jpg",
+            "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770065163/20210815_155250-500kb_gojd9d.jpg",
+            "caption": "Ilya Medvedev during the artistic process"
+        },
+        {
+            "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855796/IMG_3422-120kb_bx9vxo.jpg", 
+            "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769855726/IMG_3422-500kb_iswlar.jpg",
+            "caption": "Master Class during Privet Mentorship Session"
+        }
+    ]
+},
+
+
+
+
   "howItWorksPage": {
     "title": "Preis & Format",
     "sidebarTitle": "Sitzungs-Architektur",
@@ -174,78 +366,97 @@
   },
 
 
-  "studentsGallery": {
-    "hero": {
-      "label": "Der akademische Prozess",
-      "title": "Das Ergebnis: Professionelle Souveränität",
-      "description": "Die Werke in dieser Galerie sind das Ergebnis eines intensiven Übergangs. Sie repräsentieren den Moment, in dem der technische Kampf verschwindet und professionelle Autorität beginnt. Durch das Eliminieren von 'blinden Flecken' und das Verfeinern der physischen Mechanik der Malerei bewegt sich der Schüler über die reine Nachahmung hinaus. Was bleibt, ist eine hochkarätige Beherrschung von Licht, Form und Medium – die komplexe Theorie in mühelose, hochpräzise Ausführung verwandelt.",
-      "slides": [
-        {
-          "id": 1,
-          "title": "Anatomische Studie",
-          "info": "Dr. Dikla A."
-        },
-        {
-          "id": 2,
-          "title": "Stillleben",
-          "info": "Dr. Devorah S."
-        },
-        {
-          "id": 3,
-          "title": "Commando Diver",
-          "info": "Shay R."
-        },
-        {
-          "id": 4,
-          "title": "Römischer Skulpturenkopf",
-          "info": "Dr. Dikla A."
-        },
-        {
-          "id": 5,
-          "title": "Anatomische Studie",
-          "info": "Dr. Devorah S."
-        }
-      ]
-    },
-    "bottomCarousel": {
-      "slides": [
-        {
-          "id": 1,
-          "title": "Öl-Landschaftsprozess",
-          "info": "Ölmalerei | Phase 3: Fortschritt der Ölmalerei"
-        },
-        {
-          "id": 3,
-          "title": "Römische Skulptur Ölstudie",
-          "info": "Ölmalerei | Phase 3: Fortschritt der Ölmalerei"
-        },
-        {
-          "id": 4,
-          "title": "Commando Divers Serie",
-          "info": "Acrylmalerei"
-        }
-      ]
-    },
-    "calculator": {
-      "title": "Verpflichtung zur Meisterschaft",
-      "subtitle": "Bestimmen Sie Ihr Tempo durch das 320-stündige professionelle Curriculum.",
-      "foundations": "Grundlagen",
-      "graduation": "Vollständiger Abschluss",
-      "hoursPerWeek": "Stunden / Woche"
-    },
-    "mentorship": {
-      "label": "Die Mentoring-Methode",
-      "title": "Direkte Beobachtung",
-      "para1": "Wahre Meisterschaft beruht auf mehr als nur Theorie; sie erfordert die Echtzeit-Verfeinerung des Arbeitsprozesses. Über die Masterclass hinaus liegt der Kern des Lernprozesses in der direkten Beobachtung der Arbeit des Schülers.",
-      "para2": "Dies ermöglicht die sofortige Korrektur subtiler, übersehener Fehler – jener 'blinden Flecken', die den Fortschritt oft jahrelang aufhalten. Durch das Lösen dieser technischen Hürden im Moment wird der Lernprozess vereinfacht und führt den Schüler rasch von der grundlegenden Koordination zu hochkomplexen, professionellen Techniken."
-    },
-    "exhibition": {
-      "label": "Professionelles Debüt",
-      "title": "Thematische Ausstellung",
-      "description": "Als bedeutender Meilenstein im professionellen Curriculum präsentierte der Schüler Shay R., Jahrgang 1965, eine Einzelausstellung mit zehn grossformatigen Acrylwerken. Die Kollektion erkundete die hochemotionale Umgebung des Unterwassertauchens und der Marinekommando-Einsätze, ausgeführt mit technischer Präzision auf Leinwand. Die Ausstellung zog Studenten verschiedener Kunstakademien und lokale Kunstkritiker an und wurde in mehreren digitalen Kunstmagazinen und der Lokalpresse hervorgehoben, was Shays Übergang vom akademischen Studium zur öffentlichen Anerkennung dokumentierte.",
-      "caption": "Einzelausstellung von Shay R. | Serie Acryl auf Leinwand"
-    }
+ "studentsGallery": {
+  "hero": {
+    "label": "Der akademische Prozess",
+    "title": "Das Ergebnis: Professionelle Souveränität",
+    "description": "Die Werke in dieser Galerie sind das Ergebnis eines intensiven Übergangs. Sie repräsentieren den Moment, in dem der technische Kampf verschwindet und professionelle Autorität beginnt. Durch das Eliminieren von 'blinden Flecken' und das Verfeinern der physischen Mechanik der Malerei bewegt sich der Schüler über die reine Nachahmung hinaus. Was bleibt, ist eine hochkarätige Beherrschung von Licht, Form und Medium – die komplexe Theorie in mühelose, hochpräzise Ausführung verwandelt.",
+    "slides": [
+      {
+        "id": 1,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/c9CthBy/Dikla-nude-study-2019-120kb.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032517/Dikla_nude_study_2019-500kb_ko9xpu.jpg",
+        "title": "Anatomische Studie",
+        "info": "Dr. Dikla A."
+      },
+      {
+        "id": 2,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DfwZCvrY/Dubi-22024-07-05-120kb.jpg",
+        "title": "Stillleben",
+        "info": "Dr. Devorah S."
+      },
+      {
+        "id": 3,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032396/DSC_8287-120kb_spodug.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032519/DSC_8287-500kb_tsqllx.jpg",
+        "title": "Commando Diver",
+        "info": "Shay R."
+      },
+      {
+        "id": 4,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769852449/Dikla_Roman_head_2019_nidpna.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1769852552/Dikla_Head_500kb_kmunwn.jpg",
+        "title": "Römischer Skulpturenkopf",
+        "info": "Dr. Dikla A."
+      },
+      {
+        "id": 5,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020354/dubidancer120kb_odct5x.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020493/dubidancer500kb_dlitxz.jpg",
+        "title": "Anatomische Studie",
+        "info": "Dr. Devorah S."
+      }
+    ]
   },
+  "bottomCarousel": {
+    "slides": [
+      {
+        "id": 1,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg",
+        "title": "Öl-Landschaftsprozess",
+        "info": "Ölmalerei | Phase 3: Fortschritt der Ölmalerei"
+      },
+      {
+        "id": 3,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/4wzFDgzz/DSC-8392-120kb.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/d4r83Ly9/DSC-8392-500kb.jpg",
+        "title": "Römische Skulptur Ölstudie",
+        "info": "Ölmalerei | Phase 3: Fortschritt der Ölmalerei"
+      },
+      {
+        "id": 4,
+        "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg",
+        "highRes": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0jmLH9Bv/DSC-1939-500kb.jpg",
+        "title": "Commando Divers Serie",
+        "info": "Acrylmalerei"
+      }
+    ]
+  },
+  "calculator": {
+    "title": "Verpflichtung zur Meisterschaft",
+    "subtitle": "Bestimmen Sie Ihr Tempo durch das 320-stündige professionelle Curriculum.",
+    "foundations": "Grundlagen",
+    "graduation": "Vollständiger Abschluss",
+    "hoursPerWeek": "Stunden / Woche"
+  },
+  "mentorship": {
+    "label": "Die Mentoring-Methode",
+    "title": "Direkte Beobachtung",
+    "para1": "Wahre Meisterschaft beruht auf mehr als nur Theorie; sie erfordert die Echtzeit-Verfeinerung des Arbeitsprozesses. Über die Masterclass hinaus liegt der Kern des Lernprozesses in der direkten Beobachtung der Arbeit des Schülers.",
+    "para2": "Dies ermöglicht die sofortige Korrektur subtiler, übersehener Fehler – jener 'blinden Flecken', die den Fortschritt oft jahrelang aufhalten. Durch das Lösen dieser technischen Hürden im Moment wird der Lernprozess vereinfacht und führt den Schüler rasch von der grundlegenden Koordination zu hochkomplexen, professionellen Techniken."
+  },
+  "exhibition": {
+    "label": "Professionelles Debüt",
+    "title": "Thematische Ausstellung",
+    "description": "Als bedeutender Meilenstein im professionellen Curriculum präsentierte der Schüler Shay R., Jahrgang 1965, eine Einzelausstellung mit zehn grossformatigen Acrylwerken. Die Kollektion erkundete die hochemotionale Umgebung des Unterwassertauchens und der Marinekommando-Einsätze, ausgeführt mit technischer Präzision auf Leinwand. Die Ausstellung zog Studenten verschiedener Kunstakademien und lokale Kunstkritiker an und wurde in mehreren digitalen Kunstmagazinen und der Lokalpresse hervorgehoben, was Shays Übergang vom akademischen Studium zur öffentlichen Anerkennung dokumentierte.",
+    "lowRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770038876/shayexhibition120kb_fdf9ny.jpg",
+    "highRes": "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770038781/shayexhibition_ifnloz.jpg",
+    "caption": "Einzelausstellung von Shay R. | Serie Acryl auf Leinwand"
+  }
+},
+
   "contactPage": {
     "title": "Kontakt",
     "imageCaption": "Basel, Schweiz",
