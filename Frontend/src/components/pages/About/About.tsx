@@ -48,34 +48,30 @@ const About: React.FC = () => {
             <div className="container">
                 <section className="featured-hero">
                     <div className="hero-text">
-                        <span className="label">About PROFINEART</span>
+                        {/* REPLACED HARDCODED TEXT HERE */}
+                        <span className="label">{t('aboutPage.sectionLabel')}</span>
                         <h2>{t('aboutPage.title')}</h2>
 
                         <div className="progress-essay">
-                            {/* Introduction */}
                             <div className="feature-item">
                                 <p>{t('aboutPage.intro')}</p>
                             </div>
 
-                            {/* Mobile Education Structure */}
                             <div className="feature-item">
                                 <h4 className="item-label">{t('aboutPage.mobileTitle')}</h4>
                                 <p>{t('aboutPage.mobileText')}</p>
                             </div>
 
-                            {/* Academic & Professional Foundation */}
                             <div className="feature-item">
                                 <h4 className="item-label">{t('aboutPage.backgroundTitle')}</h4>
                                 <p style={{ whiteSpace: 'pre-line' }}>{t('aboutPage.backgroundText')}</p>
                             </div>
 
-                            {/* Specialized Experience & Pedagogy */}
                             <div className="feature-item">
                                 <h4 className="item-label">{t('aboutPage.methodologyTitle')}</h4>
                                 <p style={{ whiteSpace: 'pre-line' }}>{t('aboutPage.methodologyText')}</p>
                             </div>
 
-                            {/* Suitability and Requirements */}
                             <div className="feature-item">
                                 <h4 className="item-label">{t('aboutPage.studentLevelsTitle')}</h4>
                                 <p>{t('aboutPage.studentLevelsText')}</p>

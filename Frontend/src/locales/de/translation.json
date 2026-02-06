@@ -324,6 +324,7 @@
     }
   },
   "aboutPage": {
+    "sectionLabel": "Über PROFINEART",
     "title": "Zeitgenössische Kunstpädagogik",
     "intro": "ProFineArt Studio Basel ist das private Bildungsprojekt und die berufliche Praxis von Ilya Medvedev, einem zeitgenössischen bildenden Künstler und zertifizierten Dozenten. Als Inhaber und Kursleiter leitet Ilya Medvedev jeden Aspekt des Projekts und bietet spezialisiertes Mentoring an, das historische Tradition mit zeitgenössischen künstlerischen Standards verbindet. Der Unterricht findet auf Englisch statt.",
     "mobileTitle": "Engagierte mobile Ausbildung",
@@ -356,7 +357,9 @@
 },
 
 
-
+"similarProducts": {
+  "exploreOtherCourses": "Weitere Kurse entdecken"
+},
 
   "howItWorksPage": {
     "title": "Preis & Format",

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async'; // SEO Import
 import CardContainer from '../CardContainer/CardContainer'; 
 import InfoContainer from '../InfoContainer/InfoContainer';
 import SimilarProducts from '../../../SimilarProducts/SimilarProducts';
@@ -14,6 +15,9 @@ const CardPage: React.FC = () => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     
+    // Fix for React 19 Type Mismatch
+    const HelmetComponent = Helmet as any;
+
     useEffect(() => {
         document.body.style.backgroundColor = '#171717';
         return () => { document.body.style.backgroundColor = ''; };
@@ -47,6 +51,19 @@ const CardPage: React.FC = () => {
 
     return (
         <div className="cardPageContainer">
+            {/* --- SEO DYNAMIC TAGS --- */}
+            <HelmetComponent>
+                <title>{t(`products.${product.id}.title`)} | Profineart Studio Basel</title>
+                <meta name="description" content={t(`products.${product.id}.briefDescription`)} />
+                <link rel="canonical" href={`https://profineart.ch/card/${product.id}`} />
+                
+                {/* Social Media Preview (Open Graph) */}
+                <meta property="og:title" content={`${t(`products.${product.id}.title`)} - Private Course`} />
+                <meta property="og:description" content={t(`products.${product.id}.briefDescription`)} />
+                <meta property="og:image" content={product.image.highResUrl} />
+                <meta property="og:type" content="website" />
+            </HelmetComponent>
+
             <div className="cardContentWrapper">
                 <div className="cardHeader">
                     <h1 className="pageTitle">{t(`products.${product.id}.title`)}</h1>
