@@ -11,7 +11,6 @@ type Props = {
     onOpenGallery?: (index: number) => void;
 };
 
-// Updated DetailImage to handle High-Res pre-loading
 const DetailImage: React.FC<{ 
     lowRes: string, 
     highRes: string, 
@@ -24,7 +23,6 @@ const DetailImage: React.FC<{
     const [orientation, setOrientation] = useState<'is-portrait' | 'is-landscape'>('is-portrait');
 
     useEffect(() => {
-        // 1. Determine orientation and initial load state using the lowRes image
         const imgLow = new Image();
         imgLow.src = lowRes;
         imgLow.onload = () => {
@@ -35,11 +33,10 @@ const DetailImage: React.FC<{
             }
         };
 
-        // 2. Pre-load the High-Resolution image in the background
         const imgHigh = new Image();
         imgHigh.src = highRes;
         imgHigh.onload = () => {
-            setCurrentSrc(highRes); // Swap to high res once downloaded
+            setCurrentSrc(highRes);
             setIsHighResLoaded(true);
         };
     }, [lowRes, highRes]);
@@ -113,8 +110,8 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
                 {product.date && <p className="infodate">{product.date}</p>}
                 
                 <div className="info-main-wrapper">
-                    {/* Unified Frame: Wraps everything to ensure only ONE border/background */}
-                    <div className="content-frame">
+                    {/* Added the 'no-bg-mobile' class here */}
+                    <div className="content-frame no-bg-mobile">
                         <div 
                             className="description" 
                             dangerouslySetInnerHTML={{ __html: t(`products.${product.id}.description`) }} 
@@ -122,7 +119,6 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
 
                         {!isDetailsTextMissing && (
                             <div className="detailsSection-wrapper">
-                                {/* Mobile View Logic: Images are interleaved here */}
                                 <div className="mobile-staggered-view">
                                     {renderImg(0)}
                                     <h3 className="detailsTitle">{t(`products.${product.id}.detailsSection.title`)}</h3>
@@ -133,7 +129,6 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
                                     )}
                                 </div>
 
-                                {/* Desktop View Logic: Full text flow */}
                                 <div className="desktop-full-text-view">
                                     <h3 className="detailsTitle">{t(`products.${product.id}.detailsSection.title`)}</h3>
                                     <div className="detailsText" dangerouslySetInnerHTML={{ __html: processedDetailsText }} />

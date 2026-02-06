@@ -32,6 +32,15 @@
         margin-bottom: global.$space-xl;
         border: 1px solid rgba(255, 255, 255, 0.08); 
 
+        // Removed background/border but kept a professional side-gap
+        &.no-bg-mobile {
+            @media (max-width: global.$breakpoint-sm) {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 global.$space-md !important; // Keeps text from touching edges
+            }
+        }
+
         .detailsTitle {
             @include global.info-container-details-title;
             color: #ffffff !important; 
@@ -39,14 +48,6 @@
             font-weight: global.$font-weight-bold;
             margin-bottom: global.$space-md;
             text-transform: none;
-        }
-
-        &.no-bg-mobile {
-            @media (max-width: global.$breakpoint-sm) {
-                background: transparent;
-                border: none;
-                padding: 0;
-            }
         }
     }
 
@@ -72,11 +73,12 @@
             text-transform: none;
         }
 
+        // Task: Make gray titles (h5) a little bigger
         h5 {
             color: global.$color-text-light !important;
-            font-size: global.$font-size-sm !important; 
+            font-size: global.$font-size-md !important; // Increased from sm
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.1rem;
             font-weight: global.$font-weight-bold;
             margin-top: global.$space-lg;
             margin-bottom: global.$space-xs;
@@ -108,7 +110,6 @@
     padding: 0;
     cursor: pointer;
     overflow: hidden;
-    // Updated: All 4 corners rounded slightly (0.25rem)
     border-radius: global.$border-radius-sm;
 
     .detailImage {
@@ -118,7 +119,6 @@
         opacity: 0;
         transition: opacity 0.5s ease, transform 0.3s ease;
         background-color: #171717;
-        // Ensure child image follows the wrapper's radius
         border-radius: inherit;
 
         &.loaded { opacity: 1; }
