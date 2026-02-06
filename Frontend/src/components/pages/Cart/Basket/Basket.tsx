@@ -1,31 +1,25 @@
-// src/components/pages/Cart/Basket.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useCart, CartItem } from '../../../../context/CartContext/CartContext';
-import { FiShoppingCart, FiTrash } from 'react-icons/fi';
+import { FiShoppingCart, FiTrash, FiAlertCircle } from 'react-icons/fi';
 import './basket.scss';
 
 const BasketItemCard: React.FC<{
   item: CartItem;
   onRemove: (id: number) => void;
   onCheckout: (id: number) => void;
-}> = ({ item, onRemove, onCheckout }) => {
+  isBlocked: boolean;
+}> = ({ item, onRemove, onCheckout, isBlocked }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const getProductName = (id: number) => t(`products.${id}.title`);
   const getProductBriefDescription = (id: number) => t(`products.${id}.briefDescription`); 
   
-  // ➡️ FIXED: Handler for navigation to use the correct URL structure /card/:id
-  const handleItemClick = () => {
-      navigate(`/card/${item.id}`); 
-  };
-
   return (
     <div className="basket-item-card">
-      {/* 1. Clickable Image Container */}
-      <div className="item-image-container" onClick={handleItemClick}>
+      <div className="item-image-container" onClick={() => navigate(`/card/${item.id}`)}>
         <img
           src={item.image?.lowResUrl || ''}
           alt={getProductName(item.id)}
@@ -33,18 +27,21 @@ const BasketItemCard: React.FC<{
         />
       </div>
 
-      {/* 2. Clickable Details */}
-      <div className="item-details" onClick={handleItemClick}>
+      <div className="item-details" onClick={() => navigate(`/card/${item.id}`)}>
         <h3>{getProductName(item.id)}</h3>
         <p>{getProductBriefDescription(item.id)}</p> 
       </div>
 
       <div className="item-actions">
-        <button className="btn-checkout" onClick={() => onCheckout(item.id)}>
+        <button 
+          className="btn-checkout-inviting" 
+          onClick={() => onCheckout(item.id)}
+          disabled={isBlocked}
+        >
           {t('checkout.checkoutButtonText')}
         </button>
-        <button className="btn-remove" onClick={() => onRemove(item.id)}>
-          <FiTrash style={{ marginRight: '0.25rem' }} />
+        <button className="btn-remove-subtle" onClick={() => onRemove(item.id)}>
+          <FiTrash />
           {t('common.remove')}
         </button>
       </div>
@@ -57,28 +54,32 @@ const Basket: React.FC = () => {
   const { cart, removeItemFromCart, clearCart } = useCart();
   const navigate = useNavigate();
 
-  const handleRemove = (productId: number) => removeItemFromCart(productId);
+  const isBlocked = cart.length > 1;
 
-  const handleItemCheckout = (productId: number) => {
-    navigate(`/order/${productId}`);
-  };
+  useEffect(() => {
+    document.body.style.backgroundColor = '#171717'; 
+    return () => { document.body.style.backgroundColor = ''; };
+  }, []);
 
   return (
     <div className="shopping-basket-page container">
-      
       <div className="basket-frame">
         <h1 className="text-center">
           <FiShoppingCart style={{ marginRight: '0.5rem' }} />
           {t('cart.mainTitle')}
         </h1>
 
+        {isBlocked && (
+          <div className="basket-error-notice">
+            <FiAlertCircle className="error-icon" />
+            <span>{t('cart.multiItemError')}</span>
+          </div>
+        )}
+
         {cart.length === 0 ? (
           <div className="basket-empty-message">
             <p>{t('cart.emptyMessage')}</p>
-            <button
-              className="btn-back-to-courses"
-              onClick={() => navigate('/courses')}
-            >
+            <button className="btn-back-to-courses" onClick={() => navigate('/courses')}>
               {t('cart.backToCourses')}
             </button>
           </div>
@@ -89,8 +90,9 @@ const Basket: React.FC = () => {
                 <BasketItemCard
                   key={item.id}
                   item={item}
-                  onRemove={handleRemove}
-                  onCheckout={handleItemCheckout}
+                  onRemove={removeItemFromCart}
+                  onCheckout={(id) => navigate(`/order/${id}`)}
+                  isBlocked={isBlocked}
                 />
               ))}
             </div>

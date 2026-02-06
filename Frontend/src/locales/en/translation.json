@@ -239,13 +239,14 @@
     "termsRequired": "You must agree to the Terms of Use."
   },
 
-  "cart": {
+"cart": {
     "mainTitle": "Your Basket",
     "emptyMessage": "Your basket is empty.",
     "backToCourses": "Back to Courses",
     "itemsCount": "You have {{count}} item(s) in your basket.",
     "clearAll": "Clear Basket",
-    "itemDescriptionShort": "This is a brief description of your selected item."
+    "itemDescriptionShort": "This is a brief description of your selected item.",
+    "multiItemError": "Please book and pay for each course separately and not in once."
   },
 
 "products": {

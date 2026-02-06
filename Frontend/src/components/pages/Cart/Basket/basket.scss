@@ -9,239 +9,205 @@
     .text-center {
         text-align: center;
         margin-bottom: global.$space-xl;
-        margin-top: 0;
-        color: global.$color-text-dark;
+        color: #ffffff;
         font-size: global.$font-size-h3;
         display: flex;
         align-items: center;
         justify-content: center;
+        svg { margin-right: 0.5rem; }
+    }
 
-        svg {
-            margin-right: 0.5rem;
+    .basket-error-notice {
+        background-color: rgba(255, 77, 77, 0.1);
+        color: #ffcccc;
+        border: 1px solid global.$color-error;
+        padding: global.$space-md;
+        border-radius: global.$border-radius-sm;
+        margin-bottom: global.$space-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: global.$font-size-sm;
+        text-align: center;
+
+        .error-icon {
+            flex-shrink: 0;
+            margin-right: 0.8rem;
         }
     }
 
     .basket-frame {
         width: 100%;
-        max-width: global.$breakpoint-xxl;
-        margin: 0 auto;
-        background-color: global.$color-surface;
-        border: 0.0625rem solid global.$color-border-subtle;
+        background-color: #1e1e1e;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: global.$border-radius-lg;
-        box-shadow: global.$shadow-md;
         padding: global.$space-xl;
-
-        @media (max-width: global.$breakpoint-md) {
-            padding: global.$space-lg;
-        }
 
         @media (max-width: global.$breakpoint-sm) {
             padding: global.$space-md;
         }
     }
 
-    .basket-content-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: global.$space-lg;
-    }
-
-    .basket-list {
-        display: flex;
-        flex-direction: column;
-        gap: global.$space-md;
-    }
-
-    /* -------------------------------
-       BASKET ITEM CARD (RESPONSIVE)
-    -------------------------------- */
     .basket-item-card {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: global.$space-md;
-        background-color: global.$color-button-languege;
+        background-color: #262626;
         border-radius: global.$border-radius-xl;
-        box-shadow: global.$shadow-sm;
-        border: 0.0625rem solid global.$color-border-subtle;
+        border: 1px solid rgba(255, 255, 255, 0.05);
         gap: global.$space-md;
+        margin-bottom: global.$space-md;
 
+        // RESPONSIVE STACKING
         @media (max-width: global.$breakpoint-md) {
             flex-direction: column;
-            align-items: stretch;
             text-align: center;
-        }
-
-        .item-image-container,
-        .item-details {
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .item-image-container:hover,
-        .item-details:hover {
-            opacity: 0.85;
+            padding: global.$space-lg;
         }
 
         .item-image-container {
-            width: 6.25rem;
-            height: 4.6875rem;
-            margin-right: global.$space-md;
-            overflow: hidden;
+            width: 8rem; // Slightly larger for better visibility
+            height: 6rem;
             border-radius: global.$border-radius-sm;
+            overflow: hidden;
             flex-shrink: 0;
+            cursor: pointer;
 
             @media (max-width: global.$breakpoint-md) {
-                margin-right: 0;
-                margin-bottom: global.$space-sm;
-                align-self: center;
+                width: 100%;
+                height: 10rem;
             }
 
-            .item-image {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
+            .item-image { 
+                width: 100%; 
+                height: 100%; 
+                object-fit: cover; 
             }
         }
 
         .item-details {
             flex-grow: 1;
-            margin-right: global.$space-md;
+            cursor: pointer;
 
-            @media (max-width: global.$breakpoint-md) {
-                margin-right: 0;
+            h3 { 
+                color: #ffffff; 
+                margin: 0 0 4px 0; 
+                font-size: global.$font-size-h6; 
             }
-
-            h3 {
-                margin: 0 0 global.$space-xxs 0;
-                font-size: global.$font-size-h6;
-                font-weight: global.$font-weight-bold;
-                color: global.$color-text-dark;
-            }
-
-            p {
-                margin: 0;
-                font-size: global.$font-size-sm;
-                color: global.$color-text-dark2;
+            p { 
+                color: rgba(255, 255, 255, 0.6); 
+                margin: 0; 
+                font-size: global.$font-size-sm; 
             }
         }
 
         .item-actions {
             display: flex;
-            gap: global.$space-sm;
+            gap: global.$space-md;
             align-items: center;
 
             @media (max-width: global.$breakpoint-md) {
-                justify-content: center;
                 width: 100%;
-            }
-
-            @media (max-width: global.$breakpoint-sm) {
                 flex-direction: column;
-                width: 100%;
+                margin-top: global.$space-sm;
             }
 
-            .btn-checkout {
-                @extend .btn-cta-secondary;
-                padding: global.$space-xs global.$space-lg;
+            .btn-checkout-inviting {
+                background-color: global.$color-cta-primary-warm;
+                color: global.$color-text-white;
+                border: none;
+                padding: global.$space-sm global.$space-xl;
                 border-radius: global.$border-radius-xl;
-                font-weight: global.$font-weight-medium;
+                font-weight: global.$font-weight-bold;
+                cursor: pointer;
+                transition: transform 0.2s, background-color 0.2s;
+                white-space: nowrap;
 
-                @media (max-width: global.$breakpoint-sm) {
+                @media (max-width: global.$breakpoint-md) {
                     width: 100%;
+                }
+
+                &:hover:not(:disabled) {
+                    background-color: global.$color-cta-primary-hover;
+                    transform: scale(1.03);
+                }
+
+                &:disabled {
+                    background-color: #444;
+                    color: #888;
+                    cursor: not-allowed;
+                    opacity: 0.5;
                 }
             }
 
-            .btn-remove {
-                @extend .btn;
-                display: flex;
-                align-items: center;
-                background-color: global.$color-error;
-                color: global.$color-text-white;
+            .btn-remove-subtle {
+                background: none;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: rgba(255, 255, 255, 0.4);
                 padding: global.$space-xs global.$space-md;
                 border-radius: global.$border-radius-xl;
-                font-weight: global.$font-weight-medium;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                cursor: pointer;
+                font-size: global.$font-size-xs;
+                transition: all 0.2s;
 
-                @media (max-width: global.$breakpoint-sm) {
-                    width: 100%;
-                    justify-content: center;
-                }
-
-                svg {
-                    margin-right: 0.25rem;
+                @media (max-width: global.$breakpoint-md) {
+                    border: none;
+                    text-decoration: underline;
                 }
 
                 &:hover {
-                    background-color: color.adjust(global.$color-error, $lightness: -10%);
-                    box-shadow: global.$shadow-md;
-                    transform: translateY(-0.0625rem);
+                    color: global.$color-error;
+                    border-color: global.$color-error;
+                    background: rgba(global.$color-error, 0.05);
                 }
             }
         }
     }
 
-    /* -------------------------------
-       EMPTY BASKET
-    -------------------------------- */
-    .basket-empty-message {
-        text-align: center;
-        padding: global.$space-xxl;
-        border: 0.125rem dashed global.$color-border-subtle-2;
-        border-radius: global.$border-radius-lg;
-        background-color: global.$color-surface;
-
-        p {
-            font-size: global.$font-size-h5;
-            color: global.$color-text-light;
-        }
-
-        .btn-back-to-courses {
-            @extend .btn-cta-primary;
-            margin-top: global.$space-lg;
-        }
-    }
-
-    /* -------------------------------
-       SUMMARY (RESPONSIVE)
-    -------------------------------- */
     .basket-summary {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-top: global.$space-md;
-        border-top: 0.0625rem solid global.$color-border-subtle;
+        padding-top: global.$space-lg;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: global.$space-md;
 
         @media (max-width: global.$breakpoint-sm) {
             flex-direction: column;
-            gap: global.$space-sm;
-            text-align: center;
+            gap: global.$space-md;
         }
-
-        p {
-            font-size: global.$font-size-md;
-            font-weight: global.$font-weight-semibold;
-            color: global.$color-text-dark;
-            margin: 0;
+        
+        p { 
+            color: #ffffff; 
+            margin: 0; 
+            font-weight: global.$font-weight-semibold; 
         }
 
         .btn-clear-cart {
-            display: flex;
-            align-items: center;
             background: none;
             border: none;
-            color: global.$color-error;
-            cursor: pointer;
+            color: rgba(255, 255, 255, 0.3);
             text-decoration: underline;
-            padding: global.$space-xs;
+            cursor: pointer;
             font-size: global.$font-size-sm;
+            &:hover { color: global.$color-error; }
+        }
+    }
 
-            svg {
-                margin-right: 0.25rem;
-            }
-
-            &:hover {
-                color: color.adjust(global.$color-error, $lightness: -10%);
-            }
+    .basket-empty-message {
+        text-align: center;
+        padding: global.$space-xxl;
+        p { 
+            color: rgba(255, 255, 255, 0.5); 
+            font-size: global.$font-size-h5; 
+        }
+        .btn-back-to-courses { 
+            @extend .btn-cta-primary; 
+            margin-top: global.$space-lg; 
         }
     }
 }
