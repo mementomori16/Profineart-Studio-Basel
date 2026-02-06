@@ -4,6 +4,7 @@ import logo from '../../../assets/images/icons/Group 177.svg';
 import { FaShoppingBasket } from 'react-icons/fa'; // Elegant basket icon
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../../../context/CartContext/CartContext';
+import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
 
 const NavDesktop = () => {
   const { t } = useTranslation('translation');
@@ -40,7 +41,7 @@ const NavDesktop = () => {
         </ul>
 
         <div className="nav-right-actions">
-          {/* <LanguageSwitcher /> */}
+           <LanguageSwitcher /> 
 
           <Link to="/basket" className="basket-icon">
             <FaShoppingBasket size={24} />

@@ -1,4 +1,3 @@
-// NavMobile.tsx
 import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
@@ -7,6 +6,9 @@ import { FaShoppingBasket } from 'react-icons/fa';
 import { useCart } from '../../../context/CartContext/CartContext';
 import './navMobile.scss';
 import logo from '../../../assets/images/icons/Group 177.svg';
+import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
+// 1. Import the switcher
+
 
 const NavMobile = () => {
   const [isOpen, setOpen] = useState(false);
@@ -63,6 +65,11 @@ const NavMobile = () => {
             </NavLink>
           </li>
         ))}
+        
+        {/* 2. Add the Language Switcher at the bottom of the list */}
+        <li className="mobile-item language-item">
+          <LanguageSwitcher onCloseMenu={closeMenu} />
+        </li>
       </ul>
     </header>
   );

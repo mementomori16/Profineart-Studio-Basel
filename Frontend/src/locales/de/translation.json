@@ -1,52 +1,365 @@
 {
-  "home": "Home",
-  "services": "",
-  "projects": "",
-  "about": "",
-  "contact": "",
-  "cv": "",
+  "home": {
+    "home": "Startseite",
+    "howItWorks": "Preis & Format",
+    "courses": "Kursbuchung",
+    "about": "Über uns",
+    "studentsWorks": "Galerie",
+    "contact": "Kontakt",
+    "cv": "Lebenslauf",
+    "welcomeHero": {
+      "serviceTitle": "Professionelle Kurse für Bildende Kunst & Zeitgenössische Malerei in Ihrem privaten Umfeld in Basel und Umgebung",
+      "companyName": "Profineart Studio Basel",
+      "ctaButton": "Kurs buchen"
+    }
+  },
   "homePage": {
-    "aboutTeaserTitle": "",
+    "aboutTeaserTitle": "Professionelle Kunstausbildung in Basel",
     "aboutTeaserDescription": "",
-    "learnMoreButton": ""
+    "learnMoreButton": "Mehr erfahren"
   },
-  "carousel": {
-    "globalTitle": "",
-    "globalDescription": "",
-    "learnMoreButton": ""
+  "textComponent": {
+    "title": "Das Mentoring",
+    "subtitle": "Meisterschaft der Bildenden Kunst",
+    "experience": "Ein privates Bildungsprojekt, das spezialisiertes Mentoring bietet und historische Tradition mit zeitgenössischen künstlerischen Standards verbindet. Dieses mobile Projekt bringt professionelle Ausbildung direkt in Ihr persönliches Atelier, um sicherzustellen, dass das Lernen in Ihr eigenes kreatives Umfeld integriert wird.",
+    "curriculum": "Fokus auf die Beherrschung der visuellen Sprache der Kunst durch die Chemie der Materialien, historische Genauigkeit und den Übergang von klassischer Untermalung zu modernen Texturen. Die Ausbildung umfasst die Komplexität von Form und konzeptionellem Ausdruck.",
+    "labelBackground": "Hintergrund",
+    "textBackground": "Aufgebaut auf bedeutenden akademischen Leistungen und einer fülle von Erfahrungen auf Museumsniveau.",
+    "labelSpecialization": "Spezialisierung",
+    "textSpecialization": "Seltene technische Tiefe in antiken Medien, wie der byzantinischen Ikonographie, neben zeitgenössischer figurativer Malerei.",
+    "labelCommunication": "Kommunikation",
+    "textCommunication": "Der gesamte Unterricht und die Kommunikation erfolgen auf Englisch."
   },
-  "projectsPage": {
-    "title": "",
-    "viewButton": ""
+  "founder": {
+    "role": "Gründer & Kursleiter",
+    "bio": "Künstler und Pädagoge mit einem MFA der Bezalel Academy. Schöpfer der Methodik und digitalen Plattform der Akademie, mit einer Praxis von über 1.000 professionellen Werken."
   },
-  "servicesPage": {
-    "title": "",
-    "viewButton": ""
+  "masterclass": {
+    "title": "Masterclass",
+    "subtitle": "Ölmalerei-Prozess durch den Mentor"
   },
-  "cardPage": {
-    "productNotFound": "",
-    "technologiesUsed": "",
-    "siteLink": ""
+  "textReview": {
+    "sectionTitle": "Vertrauen",
+    "quote": "Ich merkte schnell, dass ich in den richtigen Händen war – ein geduldiger, aufmerksamer und freundlicher Lehrer mit der seltenen Fähigkeit, komplexe Prinzipien einfach und klar ohne Druck zu erklären.",
+    "author": "Dr. Dikla Arad",
+    "role": "Fachtierärztin für Ophthalmologie"
   },
   "products": {
-  
-
+    "800": {
+      "title": "Byzantinische Ikonographie Kurs",
+      "briefDescription": "Entschlüsseln Sie die alten Geheimnisse der sakralen Malerei durch exklusive, individuelle Sitzungen mit Fokus auf historische Techniken und die Meisterschaft der Eitempera.",
+      "badge": "Historisch & Traditionell",
+      "description": "<h3>Der Programmfokus</h3><p>Dieses einzigartige Programm bietet exklusive individuelle Sitzungen an, die sich der Beherrschung der technischen Fertigkeiten sowie der historischen und spirituellen Tiefe der byzantinischen Ikonographie widmen.</p><h2>Fragen, die Sie beantworten werden</h2><h5>Geheimnisse der Meister</h5><p>Was sind die Geheimnisse, die nur professionellen Ikonenmalern und erfahrenen Restauratoren bekannt sind? Wir erforschen die Komposition der Ikonographie und wie die schimmernden, lebendigen Farben entstehen.</p><h5>Makellose Lasurtechnik</h5><p>Wie wird die komplexe Technik der Eitempera-Lasur fehlerfrei ausgeführt?</p><h5>Meisterschaft in Linie und Form</h5><p>Wie zieht man perfekte Linien mit einem einzigen Pinselstrich und zeichnet einen idealen Kreis mit dem Pinsel? Wie entsteht das Volumen von Gewändern und die Masse der Falten in der Kleidung ikonographischer Figuren?</p><h5>Die Kunst der Gesichter und Vergoldung</h5><p>Wie werden die Gesichter der Heiligen gemalt, damit sie bei schwachem Licht und Kerzenschein lebendig wirken? Wie überzieht man die Ikone mit echtem Blattgold und wie erstellt man feine Falten und Muster mit Gold?</p>",
+      "detailsSection": {
+        "title": "Programminhalt und technische Meisterschaft",
+        "text": "<h5>Grundlagen des Freihandzeichnens</h5><p>Der Kern dieses Programms ist die Beherrschung des Freihandzeichnens ohne Schablonen oder Projektoren. Sie lernen, den menschlichen Körper von Grund auf zu konstruieren: von der Anatomie der Hände und Füsse bis hin zu verschiedenen Porträts von Säuglingen, Erwachsenen und älteren Menschen. Wir decken alles ab, von der Aktform bis hin zu detaillierter Kleidung, Fussbekleidung und Schmuck. Dies ist die wesentliche Basis des byzantinischen Programms; die Beherrschung dieser Grundlagen ist erforderlich, bevor zur Farbalerei übergegangen wird.</p><h5>Maltechniken und Materialien</h5><p>Sie werden die mehrschichtige Lasur- und Untermalungstechnik beherrschen. Sie werden Pigmente, wasserbasierte Farben und Eitempera gründlich studieren. Sie meistern die korrekte Technik im Umgang mit Pinseln und dem Malstock.</p><h5>Schulen und Traditionen</h5><p>Sie werden verschiedene ikonographische Traditionen erkunden: Protobyzantinische Technik, Fayum-Porträts und römische Malerei. Ikonenmalerei-Schulen: Römisch, Kretisch, Russisch, Mazedonisch und Koptisch.</p><h3>Künstlerisches und philosophisches Erbe</h3><p>Der Ikonographiekurs ist ein tiefes Eintauchen in die antike Kunst und die Techniken der alten Meister und bietet ein starkes Fundament für jeden Künstler. Ikonographie ist eine Kunst, in der jedes Element wie Farbe, Geste und Pose ein Symbol ist, das metaphysische Bedeutung vermittelt. Sie lernen, diese komplexe visuelle Sprache zu lesen und zu gestalten. Die Beherrschung der ikonographischen Zeichnung, Symbolik, Eitempera-Lasur und Vergoldung bietet eine dauerhafte, hochwertige technische Basis für Werke in traditionellen wie auch modernen Kontexten.</p><h3>Format und Logistik</h3><p>Die Ausbildung erfolgt in privaten Einzelsitzungen, wobei der Lehrer für maximalen Komfort und Effizienz zum Schüler nach Hause kommt. Sie wählen Ihr Paket aus 1, 5 oder 10 Lektionen. Bitte beachten Sie, dass alle notwendigen Materialien und Geräte nicht in den Sitzungskosten enthalten sind. Der Unterricht findet in Basel, Basel-Landschaft und angrenzenden Vororten in Deutschland und Frankreich statt.</p>"
+      }
+    },
+    "801": {
+      "title": "Ölmalerei Kurs",
+      "briefDescription": "Meistern Sie das vielseitigste und prestigeträchtigste Medium der Welt. Von der klassischen Untermalung bis zu modernen Texturen – bauen Sie ein professionelles Fundament in der Ölmalerei auf.",
+      "badge": "Klassisch & Zeitgenössisch",
+      "description": "<h3>Der Programmfokus</h3><p>Die Ölmalerei ist die prestigeträchtigste und flexibelste Technik der Kunstgeschichte, von lichtdurchlässigen, aquarellartigen Lasuren bis hin zu dickem, massivem Impasto. Dieses Programm vereinfacht ihre komplexen Variablen und bietet Künstlern ein starkes Fundament.</p><h2>Fragen, die Sie beantworten werden</h2><h5>Die Grundlagen</h5><p>Welche Komponenten bilden die wesentliche Basis für die Ölmalerei? Warum leuchtet ein Gemälde in tiefen, lebendigen Farben, während ein anderes stumpf und trocken wirkt? Wie erzeugt man Licht, Schatten und perfekte Farbübergänge?</p><h5>Anatomie und Porträtmalerei</h5><p>Wie malt man den menschlichen Körper und erstellt ein Porträt? Was ist das Geheimnis für die Darstellung von Hauttextur und lebensechten Tönen? Wie erzeugt man Halbtöne und nahtlose Übergänge?</p><h5>Werkzeuge und Materialien</h5><p>Was ist der Zweck von groben gegenüber weichen Pinseln? Welche Pigmente und Öle eignen sich am besten für grossformatige Werke und welche für kleine, detaillierte Miniaturen? Warum sollte man zwischen Leinwand, Holz oder Papier wählen?</p>",
+      "detailsSection": {
+        "title": "Programminhalt und technische Meisterschaft",
+        "text": "<h5>Grundlagenzeichnung und Komposition</h5><p>Traditionelles Zeichnen ist das Herzstück der Ölmalerei. Manchmal entsteht die Zeichnung während des Malprozesses. Dies erfordert eine hohe Meisterschaft, die wir im Kurs behandeln. Sie lernen Form und Proportion anhand verschiedener Quellen zu beherrschen: Fotografien, alte Meister oder Live-Atelier-Setups. Wir arbeiten an Stillleben, Live-Modellen oder 'En Plein Air'-Sitzungen.</p><h5>Die Kunst der Untermalung</h5><p>Sie meistern die Technik der ersten Skizze mit Kohle, Pastell, Graphit, Eitempera, Acryl oder Öl. Diese Phase vereinfacht den gesamten Malprozess und kann oft als eigenständiges Werk stehen oder als strukturelle Karte für Ihre Schichten dienen.</p><h5>Leinwand- und Oberflächenvorbereitung</h5><p>Sie erlernen die professionelle Kunst der Oberflächenvorbereitung: das Aufspannen von Leinwänden (Leinen, Baumwolle oder Synthetik) und das Verständnis von Fadengewichten. Wir untersuchen die kritische Verbindung zwischen Leimen und Gesso und wie diese die Brillanz, den Glanz und die Archivqualität Ihres Werks beeinflussen.</p><h5>Fortgeschrittene Anwendung und Mehrschichtigkeit</h5><p>Wir erkunden das Spektrum von 'Alla Prima' bis hin zu komplexen Lasuren. Sie lernen den Einsatz spezieller Weichpinsel für luftige Töne und feine Details. Wir studieren die Chemie der Öle – wie Lein- und Walnussöl – und welche Sorten sich für Hyperrealismus gegenüber grossformatigen Werken eignen. Sie meistern zudem den Einsatz des Malstocks und die abschliessende Firnis zum Schutz Ihres Werks.</p><h3>Künstlerisches und philosophisches Erbe</h3><p>Die Beherrschung der Ölmalerei ist ein Eintauchen in die primäre Sprache der bildenden Kunst, die seit Jahrhunderten den globalen Markt dominiert. In der zeitgenössischen Kunst hebt die Beherrschung des Öls einen Künstler ab und bietet eine materielle Tiefe, die von Galerien geschätzt wird. Dieser Kurs bietet die technische Meisterschaft, um sich zwischen Hyperrealismus und expressiver Abstraktion zu bewegen.</p><h3>Format und Logistik</h3><p>Die Ausbildung erfolgt in privaten Einzelsitzungen bei Ihnen zu Hause. Sie wählen Ihr Paket aus 1, 5 oder 10 Lektionen. Materialien sind nicht im Preis enthalten. Unterricht in Basel, Basel-Landschaft sowie Grenzgebieten Deutschland/Frankreich.</p>"
+      }
+    },
+    "802": {
+      "title": "Mischtechnik Zeichenkurs",
+      "briefDescription": "Meistern Sie die vielseitige Verschmelzung von trockenen und nassen Medien, um anspruchsvolle Illustrationen und Kunstwerke zu schaffen, die die Lücke zwischen klassischer Zeichnung und moderner Malerei schliessen.",
+      "badge": "Vielseitig & Illustrativ",
+      "description": "<h3>Der Programmfokus</h3><p>Dieses Programm entwickelt ein starkes künstlerisches Fundament durch die Beherrschung des Zusammenspiels verschiedener Materialien. Es entstehen Werke an der Grenze zwischen klassischer Zeichnung und professioneller Malerei.</p><h2>Fragen, die Sie beantworten werden</h2><h5>Schichtung und Logik</h5><p>Wie kombiniert man Graphit und Pastell effektiv mit wasserbasierten Farben? Wir erforschen die strukturelle Logik der Schichtung.</p><h5>Synergie der Medien</h5><p>Wie können Werkzeuge wie Airbrush, Marker und Trockenpigmente neben traditionellen Pinseln eingesetzt werden, um Tiefe und Textur zu erzielen?</p><h5>Meisterschaft im Detail</h5><p>Wie führt man präzise Detailarbeiten mit Tinte, Federn und feinen Pinseln aus, um ein Stück zu seinem finalen Schliff zu bringen?</p><h5>Historischer und moderner Kontext</h5><p>Wie haben Meister wie Dürer und Da Vinci diese Techniken angewendet? Wie werden diese Methoden heute in der digitalen Industrie eingesetzt?</p>",
+      "detailsSection": {
+        "title": "Programminhalt und technische Meisterschaft",
+        "text": "<h5>Fortgeschrittene Materialkunde</h5><p>Sie gewinnen umfassendes Wissen über Pigmente, alkoholbasierte Marker, Tusche und verschiedene wasserbasierte Medien wie Tempera, Aquarell, Gouache und Acryl. Sie lernen auf verschiedenen Oberflächen wie Papier, Karton und Holz zu arbeiten.</p><h5>Technik und Ausführung</h5><p>Der Kurs deckt alles von der Graphitskizze bis zum fortgeschrittenen Finishing ab. Sie meistern klassische Zeichentechniken, die Darstellung von Faltenwurf und spezialisierte Auftragungsmethoden mit Airbrush oder Schwämmen.</p><h5>Professionelle Vielseitigkeit</h5><p>Die hier erworbenen Fähigkeiten sind in der modernen Industrie sehr gefragt, von der Kinderbuchillustration bis hin zum Game-Design. Wir untersuchen auch, wie diese physischen Werke für die Grafikdesign-Branche digitalisiert werden.</p><h3>Künstlerisches und philosophisches Erbe</h3><p>Die Beherrschung der Mischtechnik befreit den Künstler von den Einschränkungen eines einzelnen Mediums. Ob Galerie-Kunst oder kommerzielle Illustration – dieser Kurs bietet die Werkzeuge für professionelle Tiefe und Komplexität.</p><h3>Format und Logistik</h3><p>Privatunterricht beim Schüler zu Hause. Wahlweise 1, 5 oder 10 Lektionen. Materialien nicht inbegriffen. Servicegebiet: Basel, Basel-Land und Grenzregionen.</p>"
+      }
+    },
+    "803": {
+      "title": "Aquarell Kurs",
+      "briefDescription": "Meistern Sie das empfindliche Gleichgewicht von Wasser und Licht. Von der präzisen linearen Zeichnung bis hin zu fortgeschrittenen Lasuren entwickeln Sie professionelle Fähigkeiten in der anspruchsvollen Aquarellmalerei.",
+      "badge": "Licht & Transparent",
+      "description": "<h3>Der Programmfokus</h3><p>Aquarell ist die Kunst, die Elemente Wasser und Pigment zu kontrollieren. Dieses Programm enthüllt die Einzigartigkeit dieses Mediums: von der Physik des Papiers bis hin zur Erstellung anspruchsvoller, grossformatiger Werke.</p><h2>Fragen, die Sie beantworten werden</h2><h5>Geheimnisse der Meisterschaft</h5><p>Was ist die wahre Magie des Aquarells? Wir erforschen, wie man die Farbreinheit bewahrt und eine Überarbeitung des Papiers vermeidet.</p><h5>Technische Exzellenz</h5><p>Wie erzielt man eine perfekt gleichmässige Lasur ohne sichtbare Streifen? Was ist Granulation und wie nutzt man diesen Effekt künstlerisch?</p><h5>Geschwindigkeit und Geduld</h5><p>Wie arbeitet man akribisch und ruhig, obwohl Aquarell Geduld erfordert? Und wie lernt man gleichzeitig, sofortige Entscheidungen zu treffen, solange die Farbe noch nass ist?</p>",
+      "detailsSection": {
+        "title": "Programminhalt und technische Meisterschaft",
+        "text": "<h5>Grundlagenzeichnung und Basis</h5><p>Ein hochwertiges Aquarell beginnt mit einer makellosen Graphitzeichnung. Wir legen Priorität auf die Übertragung eines fotografischen Prototyps in eine präzise Skizze, lernen aber auch die Anpassung an Live-Setups.</p><h5>Materialkunde</h5><p>Sie studieren Papiertypen und deren Einfluss auf das Ergebnis. Wir meistern das Aufziehen von Papier auf Holzbretter und nutzen Neigungswinkel für Farbeffekte.</p><h5>Werkzeuge und Chemie</h5><p>Tiefgehende Untersuchung von Aquarellfarben und Mischprinzipien. Arbeit mit Profipinseln und Hilfsmitteln wie Gummiarabikum und Maskierflüssigkeit.</p><h5>Anwendungstechniken</h5><p>Nass-in-Nass (Alla Prima) sowie Nass-auf-Trocken-Techniken und Mehrschichtlasuren für tiefe, transparente Farben.</p><h3>Künstlerisches und philosophisches Erbe</h3><p>Modernes Aquarell geht weit über kleine Skizzen hinaus und findet Platz in grossen internationalen Ausstellungen. Dieser Kurs bietet das Fundament für professionelle Illustration und Modedesign.</p><h3>Format und Logistik</h3><p>Einzelunterricht zu Hause beim Schüler. Pakete von 1, 5 oder 10 Lektionen. Exklusive Materialien. Einsatzgebiet Basel und Umgebung.</p>"
+      }
+    },
+    "804": {
+      "title": "Akademischer Zeichenkurs",
+      "briefDescription": "Meistern Sie die Sprache von Linie, Licht und Schatten. Bauen Sie eine starke 'Auge-Hirn-Hand'-Verbindung durch Freihandtechniken und klassisches Anatomiestudium auf.",
+      "badge": "Grundlegend & Strukturell",
+      "description": "<h3>Der Programmfokus</h3><p>Grafik ist das Fundament aller bildenden Künste. Während die Malerei durch Farbe spricht, nutzt die Grafik Linie, Strich und Kontrast. Dieses Programm fokussiert auf die kognitive und physische Meisterschaft.</p><h2>Fragen, die Sie beantworten werden</h2><h5>Die menschliche Form</h5><p>Wie konstruiert man das menschliche Gesicht und den Körper präzise? Was sind die Geheimnisse für realistische Proportionen?</p><h5>Komposition und Massstab</h5><p>Warum passen manche Zeichnungen nicht aufs Blatt? Wie misst man Objekte mit dem Auge ab, um jedes Mal den perfekten Massstab zu finden?</p><h5>Die Logik des Lichts</h5><p>Wie entstehen Licht und Schatten, um einer flachen Oberfläche dreidimensionales Volumen zu verleihen?</p><h5>Überwindung des leeren Blattes</h5><p>Was tun, wenn eine Zeichnung 'feststeckt'? Sie lernen, Fehler als Teil des strukturellen Prozesses zu sehen.</p>",
+      "detailsSection": {
+        "title": "Programminhalt und technische Meisterschaft",
+        "text": "<h5>Die Kraft des Freihandstrichs</h5><p>In Zeiten von Projektoren und KI wird die Kunst der freien Hand zu einer Elite-Fähigkeit. Wir verzichten auf Schablonen, um eine echte biologische 'Handschrift' zu entwickeln. Dies fördert das räumliche Vorstellungsvermögen und die Feinmotorik.</p><h5>Materialkunde und spezialisierte Medien</h5><p>Professionelles Verständnis der Interaktion von Medium und Untergrund. Wir studieren Papiertypen für Graphit, Kohle und Pastell sowie die korrekte Nutzung von Fixativen und Estompen. Einführung in die 'Dry Brush'-Technik.</p><h5>Anatomisches Fundament und Textur</h5><p>Anatomie ist die wichtigste Säule der Grafik. Wir konzentrieren uns auf realistische Formen und beherrschen den 'Strich' – die Kontrolle von Linienstärke und Dichte. Erforschung von Tiefschwarz mit Naturkohle und lebendiger Schichtung mit Pastellen.</p><h3>Künstlerisches und philosophisches Erbe</h3><p>Das Meistern des Freihandzeichnens ist eine kognitive Übung, die eine direkte Verbindung zwischen Wahrnehmung und Ausführung schafft. Es transformiert den Schüler vom Handwerker zum Künstler mit eigenem Stil.</p><h3>Format und Logistik</h3><p>Privatunterricht beim Schüler zu Hause in Basel und Umgebung. Wahlweise 1, 5 oder 10 Lektionen. Materialien nicht inbegriffen.</p>"
+      }
+    },
+    "805": {
+      "title": "Steinmalerei Kurs",
+      "briefDescription": "Meistern Sie die antike und moderne Kunst der Malerei auf Stein. Von prähistorischen Petroglyphen bis zur zeitgenössischen Kunst – lernen Sie, rohe geologische Formen in ewige Meisterwerke zu verwandeln.",
+      "badge": "Einzigartig & Taktil",
+      "description": "<h3>Der Programmfokus</h3><p>Die Malerei auf Stein ist zugleich eine der ältesten und modernsten Formen des Selbstausdrucks. Im Gegensatz zu einer flachen Leinwand ist <u>Stein ein dreidimensionales, ewiges Objekt</u>, das den Künstler herausfordert, mit seiner einzigartigen Form, seinem Gewicht und seiner geologischen Geschichte zu arbeiten.</p><h2>Fragen, die Sie beantworten werden</h2><h5>Das Erbe des Steins</h5><p>Wie nutzten unsere Vorfahren Ocker und Kohle, um heilige Petroglyphen in Höhlen wie Altamira zu schaffen? Was sind die Geheimnisse der Meister des 16. Jahrhunderts, wie Sebastiano del Piombo, die die <u>natürlichen Adern von Marmor und Schiefer</u> nutzten, um Wolken und Wellen zu imitieren?</p><h5>Moderne Kunst vs. Handwerk</h5><p>Wie gelingt der Übergang von einfachen Dekosteinen zur 'Hohen Kunst'? Wir erkunden die Werke moderner Meister, die Steine in hyperrealistische Tiere oder surreale konzeptionelle Objekte verwandeln.</p><h5>Technische Beständigkeit</h5><p>Wie stellen Sie sicher, dass die Farbe <u>niemals abplatzt, reisst oder verblasst</u>? Wir werden die Schichtungstechniken meistern, die notwendig sind, damit der Stein frei bewegt werden kann und ein 'ultimativ' dauerhaftes Kunstobjekt bleibt.</p><h5>Die Philosophie der Form</h5><p>Wie kann ein Riss, eine Vertiefung oder die natürliche Kontur eines Felsens zu einem lebenswichtigen Teil Ihrer Komposition werden? Sie werden lernen, das verborgene Bild im Rohmaterial zu 'sehen'.</p>",
+      "detailsSection": {
+        "title": "Programminhalt und technische Meisterschaft",
+        "text": "<h5>Oberflächenvorbereitung und Nivellierung</h5><p>Einen perfekt flachen Stein zu finden, ist selten. Sie werden lernen, <u>Ihre eigene Oberfläche zu konstruieren</u>, indem Sie spezielle Grundierungen erstellen. Wir behandeln Materialien, mit denen Sie unebene Oberflächen ausgleichen oder eine spezifische Textur über dem Stein erzeugen können, um eine professionelle Haftung der Farbe selbst auf den 'glattesten' Mineralien zu gewährleisten.</p><h5>Miniatur- und Mehrschichtmalerei</h5><p>Die Arbeit auf Stein beinhaltet oft Miniaturmalerei, die extreme Geduld und Präzision erfordert. Sie werden den <u>sequenziellen Auftrag von Schichten</u> mit verschiedenen Medien meistern: Öl, Acryl, Tempera oder sogar Aquarell. Dieser Prozess umfasst detailliertes Skizzieren und den Aufbau von Volumen durch Lasur, ähnlich der klassischen Ikonographie und dem akademischen Zeichnen.</p><h5>3D-Denken und Problemlösung</h5><p>Der Kurs entwickelt <u>'volumetrisches' Denken</u>. Im Gegensatz zu einem flachen Blatt Papier erfordert ein Stein, dass Sie eine 360-Grad-Ansicht und eine nichtlineare Oberfläche berücksichtigen. Diese Fähigkeit ist essenziell für die Lösung komplexer künstlerischer Probleme im Zusammenhang mit unregelmässigen Formen und dreidimensionalen Texturen.</p><h3>Künstlerisches und philosophisches Erbe</h3><p>Die Beherrschung der Steinmalerei bietet ein starkes Fundament für <u>Design und Konstruktion</u>. Die hier gewonnene Geduld und Präzision sind direkt auf andere unregelmässige Objekte und moderne Industrien übertragbar. In Zukunft können Schüler diese Fähigkeiten in der <b>Architekturdekoration</b> (Anpassung von Marmor- oder Granitinterieurs), im <b>Schmuckdesign</b> (Miniaturen auf Halbedelsteinen) und in der <b>Spieleentwicklung</b> anwenden – wo ein tiefes Verständnis von geologischen Texturen und Lichtinteraktion für realistisches 3D-Texturing lebenswichtig ist.</p><h3>Format und Logistik</h3><p>Die Ausbildung erfolgt in privaten Einzelsitzungen beim Schüler zu Hause. Sie wählen Ihr Paket aus 1, 5 oder 10 Lektionen. Materialien sind nicht inbegriffen. Unterricht in Basel, Basel-Landschaft sowie Grenzgebieten Deutschland/Frankreich.</p>"
+      }
+    },
+    "806": {
+      "title": "Zeitgenössische Malerei Kurs",
+      "briefDescription": "Meistern Sie die Verschmelzung von Disziplin der Alten Meister und zeitgenössischer Vision. Lernen Sie, hochkarätige Kunst zu schaffen, die technische Perfektion mit roher, konzeptioneller Kraft verbindet.",
+      "badge": "Ultrakontemporär",
+      "description": "<h3>Der Programmfokus</h3><p>Erfordert zeitgenössische Kunst Können oder nur Ideen? Dieser Kurs beweist, dass die stärksten modernen Künstler Meister der Tradition sind. Wir erforschen die Malerei als viszeralen Akt von Geste und Drama, der weit über mechanisches Kopieren oder einfache Illustration hinausgeht.</p><h2>Fragen, die Sie beantworten werden</h2><h5>Die Realität des Stils</h5><p>Was definiert die Linie zwischen Hyperrealismus und Magischem Realismus? Warum schätzt die moderne Malerei 'unfertige' Kanten und sichtbare Tropfen neben extremer Präzision?</p><h5>Markt und Bedeutung</h5><p>Wie unterscheidet man 'Hohe Kunst' von Kitsch? Ist Ihr Werk ein kommerzielles Produkt oder ein Meisterwerk auf Museumsniveau?</p><h5>Die Macht der Tradition</h5><p>Wie nutzen wir die Geschichte als Werkzeugkasten statt als Käfig? Warum ist die Beherrschung der menschlichen Form immer noch die ultimative Waffe des zeitgenössischen Malers?</p>",
+      "detailsSection": {
+        "title": "Programminhalt und technische Meisterschaft",
+        "text": "<h5>Die moderne Alchemie der Farbe</h5><p>Sie werden das physische 'Ereignis' des Malens meistern: von <b>Alla Prima</b> und schwerem Impasto bis hin zu den anspruchsvollen Geheimnissen der mehrschichtigen <b>Lasur</b>. Wir konzentrieren uns auf 'psychologische Ähnlichkeit' statt nur auf fotografische Genauigkeit.</p><h5>Dekonstruktion der Meister</h5><p>Lernen Sie, die Methoden der Grossen zu 'hacken', um Ihren eigenen unverwechselbaren Stil aufzubauen. Wir erforschen, wie man technische Perfektion mit dem Mut balanciert, eine Leinwand zu zerstören und neu zu erfinden, wobei die Angst vor dem 'verdorbenen' Werk zugunsten des rohen Ausdrucks verloren geht.</p><h5>Die technische Basis</h5><p>Wir behandeln die essenzielle Physik der Ölmalerei: von der Oberflächenvorbereitung und Untermalung bis zur Chemie der Malmittel. Dieser Kurs bietet das strukturelle Fundament, das für Ausstellungen auf Museumsniveau und professionelle Galerievertretung erforderlich ist.</p><h3>Format und Logistik</h3><p>Private Einzelsitzungen beim Schüler zu Hause für maximale Effizienz. Wählen Sie ein Paket von 1, 5 oder 10 Lektionen. Materialien sind nicht inbegriffen. Verfügbar in Basel, Basel-Landschaft und Nachbarorten in Deutschland und Frankreich.</p>"
+      }
+    }
   },
   "testimonials": {
- 
+    "mainTitle": "Bewertungen",
+    "1": {
+      "author": "Samantha Levitt",
+      "source": "via Apprentus",
+      "text": "Mein Kurs bei Ilya war grossartig. Ilya war freundlich, sehr sachkundig, ermutigend und passte sich völlig meinen Bedürfnissen und Zielen an. Es hat Spass gemacht, mit ihm langfristige Projekte zu planen und über Stile und Kunstgeschichte zu diskutieren. Wenn Sie einen Lehrer suchen, der sowohl erfahren und sachkundig als auch entspannt ist, kann ich Ilya nur wärmstens empfehlen!"
+    },
+    "2": {
+      "author": "Alona Rechson",
+      "text": "Ich habe Ilya durch die Welt der bildenden Künste kennengelernt. In erster Linie ist er ein unglaublicher Künstler, eine faszinierende und kontroverse Figur und wirklich einer der lustigsten Menschen, die ich je kannte! Er war auch mein Tätowierer; er half mir beim Einstieg in die Branche, betreute mich und gab mir den Mut, anzufangen. Heute bin ich stolze Besitzerin meines eigenen Tattoo-Unternehmens ❤️"
+    },
+    "3": {
+      "author": "Dr. Devorah Schwartz-Arad",
+      "text": "Die Lektionen mit Ihnen waren eine bereichernde Erfahrung, die strenges schrittweises Lernen ohne Kompromisse bei der Qualität mit einem Sinn für Perfektion und korrekte Methodik verband. Wir begannen bei den Grundlagen – Leinwand vorbereiten, Messen und Verstehen von Proportionen sowie Acryl-Untermalung – bis hin zum Höhepunkt: der Ölmalerei. Derzeit arbeite ich an Porträts meiner Familienmitglieder nach Fotos. Sie haben mir definitiv ein solides Fundament für meine Arbeit gegeben, und ich hoffe, dass die Ergebnisse Sie nicht enttäuschen werden."
+    },
+    "4": {
+      "author": "Dr. Dikla Arad",
+      "text": "Ich kam vor etwa zwei Jahren mit fast null Erfahrung und vielen Ängsten zu Ihnen. Schnell merkte ich, dass ich in den richtigen Händen war. Sie sind ein geduldiger, aufmerksamer und freundlicher Lehrer mit der seltenen Fähigkeit, komplexe Prinzipien einfach und klar ohne Druck zu erklären. Sie wussten genau, wann Sie führen, wann Sie korrigieren und wann Sie mich experimentieren lassen mussten. Besonders schätzte ich Ihr Bestehen darauf, dass ich alles selbst mache – vor allem die schwierigen Korrekturen – damit das Gemälde am Ende ganz 'mein' ist, was mir ein riesiges Stolzgefühl gibt. Dies war eine bestärkende Erfahrung, sowohl künstlerisch als auch persönlich. Ich habe zuvor bei verschiedenen Lehrern gelernt, aber Ihr Unterricht war ehrlich, bereichernd und erfüllt von wahrem Glauben an die Kunst. Sie haben dafür gesorgt, dass wir andere Künstler kennenlernen und brachten immer Beispiele der Meister mit, um Ihre Anweisungen zu stützen. Danke für die Reise und den Glauben an mich."
+    }
   },
   "aboutPage": {
-    
+    "title": "Zeitgenössische Kunstpädagogik",
+    "intro": "ProFineArt Studio Basel ist das private Bildungsprojekt und die berufliche Praxis von Ilya Medvedev, einem zeitgenössischen bildenden Künstler und zertifizierten Dozenten. Als Inhaber und Kursleiter leitet Ilya Medvedev jeden Aspekt des Projekts und bietet spezialisiertes Mentoring an, das historische Tradition mit zeitgenössischen künstlerischen Standards verbindet. Der Unterricht findet auf Englisch statt.",
+    "mobileTitle": "Engagierte mobile Ausbildung",
+    "mobileText": "Als mobiles Bildungsprojekt bringt ProFineArt Studio Basel hochkarätige Kunstausbildung direkt zu den Schülern nach Hause oder in deren persönliches Atelier. Diese Struktur stellt sicher, dass der Lernprozess vollständig in das persönliche kreative Umfeld integriert wird.",
+    "backgroundTitle": "Akademischer und beruflicher Hintergrund",
+    "backgroundText": "Das Curriculum basiert auf einem Fundament bedeutender akademischer Leistungen. Ilya Medvedev besitzt einen B.Ed.FA und ein Lehrdiplom für Kunst der Hamidrasha Faculty of the Arts, sowie Master of Fine Arts Studien der Bezalel Academy of Arts and Design. Zudem absolvierte er sieben Jahre Studium der byzantinischen Ikonographie in Griechenland und Jerusalem. In seiner über 15-jährigen Karriere hat Ilya Medvedev mehr als 1.000 Kunstwerke geschaffen, darunter großformatige Ölrepro- und Originalwerke. Seine Berufserfahrung umfasst auch die Restaurierung.",
+    "methodologyTitle": "Spezialisierte Erfahrung & Methodik",
+    "methodologyText": "Als Spezialist für Freihandpräzision arbeitete Ilya Medvedev fünf Jahre lang als Tätowierer und Strassenporträtist, wobei er ohne Schablonen oder Vorzeichnungen arbeitete. Diese Detailgenauigkeit führte zur Entwicklung hyperrealistischer Maltechniken für das medizinisch-chirurgische Training, um die visuelle Schärfe von Chirurgen zu verbessern.\n\nSeit 2012 hat diese Pädagogik verschiedenste Fachleute betreut, von Spieledesignern bis hin zu Ärzten. Die Methodik betont eine freihändige 'Auge-Hirn-Hand'-Verbindung in Disziplinen wie byzantinischer Ikonographie, akademischem Zeichnen und zeitgenössischer Malerei, wobei der Fokus auf technischer Meisterschaft und kreativer Unabhängigkeit liegt.",
+    "studentLevelsTitle": "Für wen die Kurse geeignet sind",
+    "studentLevelsText": "Die Kurse sind für Schüler vom absoluten Anfänger bis zum Fortgeschrittenen geeignet. Anfängerfreundliche Methoden nutzen unterstützende Materialien, während Fortgeschrittenenkurse den Schwerpunkt auf technisches Geschick und die Beherrschung komplexer Techniken legen. Die Programme sind für Personen mit künstlerischer Begabung konzipiert; von den Teilnehmern wird erwartet, dass sie über die physischen und kognitiven Fähigkeiten verfügen, um sich künstlerisch zu betätigen.",
+    "artFactsLink": "Ilya Medvedev Profil auf ArtFacts ansehen"
   },
-  "similarProducts": {
-    "exploreOtherServices": ""
+  "howItWorksPage": {
+    "title": "Preis & Format",
+    "sidebarTitle": "Sitzungs-Architektur",
+    "intro": "Profineart Studio Basel bietet privaten Kunstunterricht ausschliesslich auf Englisch an. Das Training findet in Einzelsitzungen für maximalen Komfort statt.",
+    "levelsTitle": "Schülerniveaus & Lernansatz",
+    "levelsText": "Die Kurse im ProFineArt Studio Basel sind für alle Könnerstufen geeignet, vom absoluten Anfänger bis zum Fortgeschrittenen. Die Schüler wählen die Kurse entsprechend ihrer aktuellen Erfahrung, ihren Zielen und Interessen aus. Einführungskurse für Anfänger können unterstützende Lernwerkzeuge und strukturierte Anleitung beinhalten. Fortgeschrittenenkurse konzentrieren sich auf beobachtendes Zeichnen, Materialverständnis und unabhängige künstlerische Entscheidungsfindung ohne technische Hilfsmittel.",
+    "formatExpectationsTitle": "Lernformat & Schülerverantwortung",
+    "formatExpectationsText": "Das Bildungsformat erfordert aktive Teilnahme, Konzentration und persönliches Engagement des Schülers. Die Lektionen sind praxisorientiert und um Beobachtung, Analyse und praktische Arbeit herum strukturiert.",
+    "option2Title": "2-Lektionen-Format",
+    "option2FullDesc": "Jeder Besuch besteht aus 90 Minuten konzentriertem Unterricht (45 + 45 Min.).",
+    "option15Title": "1,5-Lektionen-Format",
+    "option15FullDesc": "Jeder Besuch besteht aus 70 Minuten konzentriertem Unterricht.",
+    "option1Title": "1-Lektion-Format",
+    "option1FullDesc": "Jeder Besuch besteht aus 45 Minuten konzentriertem Unterricht.",
+    "coursesLinkTitle": "Kurskatalog & Direktbuchung",
+    "coursesLinkSub": "Sehen Sie hier vollständige Curriculum-Details ein und leiten Sie Direktbestellungen für Sitzungen ein.",
+    "locationTitle": "Servicegebiet",
+    "locationText": "Einzelstunden sind in der Stadt Basel beim Kunden zu Hause oder im Atelier verfügbar. Die Anreise ist im Umkreis von 25 km um Basel inbegriffen (Basel-Land, nördlicher Aargau, Grenzorte in Deutschland und Frankreich).",
+    "bookingTitle": "Buchung & Bezahlung",
+    "bookingText": "Während der Online-Buchung des gewählten Kurses können Sie Datum und Uhrzeit wählen sowie Ihren Standort, Ihre Adresse, Kontaktinformationen und zusätzliche Informationen angeben.",
+    "refundTitle": "Paket-Rückerstattungen",
+    "refundText": "Während einzelne Probelektionen endgültig sind, bieten Mehrfach-Pakete Flexibilität. Falls das gesamte Paket aus irgendeinem Grund nicht abgeschlossen werden kann, ist auf Anfrage eine Rückerstattung für verbleibende, nicht genutzte Einheiten verfügbar."
   },
-  "similarProjects": {
-    
+
+
+  "studentsGallery": {
+    "hero": {
+      "label": "Der akademische Prozess",
+      "title": "Das Ergebnis: Professionelle Souveränität",
+      "description": "Die Werke in dieser Galerie sind das Ergebnis eines intensiven Übergangs. Sie repräsentieren den Moment, in dem der technische Kampf verschwindet und professionelle Autorität beginnt. Durch das Eliminieren von 'blinden Flecken' und das Verfeinern der physischen Mechanik der Malerei bewegt sich der Schüler über die reine Nachahmung hinaus. Was bleibt, ist eine hochkarätige Beherrschung von Licht, Form und Medium – die komplexe Theorie in mühelose, hochpräzise Ausführung verwandelt.",
+      "slides": [
+        {
+          "id": 1,
+          "title": "Anatomische Studie",
+          "info": "Dr. Dikla A."
+        },
+        {
+          "id": 2,
+          "title": "Stillleben",
+          "info": "Dr. Devorah S."
+        },
+        {
+          "id": 3,
+          "title": "Commando Diver",
+          "info": "Shay R."
+        },
+        {
+          "id": 4,
+          "title": "Römischer Skulpturenkopf",
+          "info": "Dr. Dikla A."
+        },
+        {
+          "id": 5,
+          "title": "Anatomische Studie",
+          "info": "Dr. Devorah S."
+        }
+      ]
+    },
+    "bottomCarousel": {
+      "slides": [
+        {
+          "id": 1,
+          "title": "Öl-Landschaftsprozess",
+          "info": "Ölmalerei | Phase 3: Fortschritt der Ölmalerei"
+        },
+        {
+          "id": 3,
+          "title": "Römische Skulptur Ölstudie",
+          "info": "Ölmalerei | Phase 3: Fortschritt der Ölmalerei"
+        },
+        {
+          "id": 4,
+          "title": "Commando Divers Serie",
+          "info": "Acrylmalerei"
+        }
+      ]
+    },
+    "calculator": {
+      "title": "Verpflichtung zur Meisterschaft",
+      "subtitle": "Bestimmen Sie Ihr Tempo durch das 320-stündige professionelle Curriculum.",
+      "foundations": "Grundlagen",
+      "graduation": "Vollständiger Abschluss",
+      "hoursPerWeek": "Stunden / Woche"
+    },
+    "mentorship": {
+      "label": "Die Mentoring-Methode",
+      "title": "Direkte Beobachtung",
+      "para1": "Wahre Meisterschaft beruht auf mehr als nur Theorie; sie erfordert die Echtzeit-Verfeinerung des Arbeitsprozesses. Über die Masterclass hinaus liegt der Kern des Lernprozesses in der direkten Beobachtung der Arbeit des Schülers.",
+      "para2": "Dies ermöglicht die sofortige Korrektur subtiler, übersehener Fehler – jener 'blinden Flecken', die den Fortschritt oft jahrelang aufhalten. Durch das Lösen dieser technischen Hürden im Moment wird der Lernprozess vereinfacht und führt den Schüler rasch von der grundlegenden Koordination zu hochkomplexen, professionellen Techniken."
+    },
+    "exhibition": {
+      "label": "Professionelles Debüt",
+      "title": "Thematische Ausstellung",
+      "description": "Als bedeutender Meilenstein im professionellen Curriculum präsentierte der Schüler Shay R., Jahrgang 1965, eine Einzelausstellung mit zehn grossformatigen Acrylwerken. Die Kollektion erkundete die hochemotionale Umgebung des Unterwassertauchens und der Marinekommando-Einsätze, ausgeführt mit technischer Präzision auf Leinwand. Die Ausstellung zog Studenten verschiedener Kunstakademien und lokale Kunstkritiker an und wurde in mehreren digitalen Kunstmagazinen und der Lokalpresse hervorgehoben, was Shays Übergang vom akademischen Studium zur öffentlichen Anerkennung dokumentierte.",
+      "caption": "Einzelausstellung von Shay R. | Serie Acryl auf Leinwand"
+    }
   },
   "contactPage": {
-   
+    "title": "Kontakt",
+    "imageCaption": "Basel, Schweiz",
+    "description": "",
+    "emailPrefix": "E-Mail:",
+    "contactEmail": "",
+    "connectTitle": "Lassen Sie uns in Kontakt treten",
+    "connectDescription": "",
+    "form": {
+      "namePlaceholder": "Ihr Name",
+      "emailPlaceholder": "Ihre E-Mail",
+      "phonePlaceholder": "Ihre Telefonnummer",
+      "messagePlaceholder": "Ihre Nachricht",
+      "privacyAgreement": "Durch Ankreuzen dieses Kästchens erklären Sie sich damit einverstanden, dass ich Sie kontaktieren darf, um Ihre Anfrage zu besprechen.",
+      "submitButton": "Nachricht senden",
+      "successMessage": "Nachricht erfolgreich gesendet!",
+      "errorMessage": "Nachricht konnte nicht gesendet werden: "
+    },
+    "privacyError": "Bitte akzeptieren Sie die Datenschutzbestimmungen, um Ihre Nachricht zu senden."
+  },
+  "legalPage": {
+    "mainTitle": "Datenschutz & Impressum",
+    "privacyPolicy": {
+      "section1": {
+        "title": "Einleitung",
+        "text": "Der Schutz personenbezogener Daten ist ein zentrales Anliegen. Die Datenverarbeitung erfolgt ausschliesslich im Rahmen der geltenden gesetzlichen Anforderungen, insbesondere des Schweizer Bundesgesetzes über den Datenschutz (DSG) und der Datenschutz-Grundverordnung (DSGVO)."
+      },
+      "section2": {
+        "title": "Verantwortliche Partei",
+        "text": "Die Verantwortung für die Datenverarbeitung liegt beim Betreiber dieser Anwendung. Anfragen zum Datenschutz können über das Kontaktformular auf der Kontaktseite eingereicht werden."
+      },
+      "section3": {
+        "title": "Geistiges Eigentum und Urheberrecht",
+        "text": "Alle Abbildungen von Gemälden, Zeichnungen und künstlerischen Inhalten sind Originalwerke von Ilya Medvedev. Die unbefugte Nutzung, Vervielfältigung, Verbreitung oder Änderung dieser Bilder ist unter allen Bedingungen strengstens untersagt. Alle Fotografien innerhalb der Anwendung sind das ausschliessliche Eigentum des Betreibers."
+      },
+      "section4": {
+        "title": "Umfang der Datenverarbeitung",
+        "text": "Die Datenverarbeitung umfasst freiwillig übermittelte Informationen (wie Name, E-Mail-Adresse, physische Adresse und Geburtsdatum) sowie technische Daten (IP-Adresse, Gerätetyp), die automatisch zu Sicherheits- und Optimierungszwecken erfasst werden."
+      },
+      "section5": {
+        "title": "Zahlungen (Stripe & Google Pay)",
+        "text": "Die Bestellabwicklung erfolgt über Stripe. Dies umfasst Kreditkarten und digitale Geldbörsen wie Google Pay. Es werden keine sensiblen Zahlungs- oder Kreditkartendaten auf den Anwendungsservern gespeichert."
+      },
+      "section6": {
+        "title": "Hosting und Datenstandort",
+        "text": "Die Anwendung wird über Firebase (Google Cloud) gehostet. Die Server befinden sich in Zürich, Schweiz (Region: europe-west6), wodurch sichergestellt ist, dass die Daten innerhalb der Schweizer Gerichtsbarkeit verbleiben."
+      },
+      "section7": {
+        "title": "Cookies",
+        "text": "Es werden ausschliesslich technisch notwendige Session-Cookies verwendet, um die Buchungsfunktionalität und Formularübermittlungen zu ermöglichen. Marketing- oder Drittanbieter-Tracking-Cookies werden nicht eingesetzt."
+      },
+      "section8": {
+        "title": "Datenweitergabe",
+        "text": "Daten werden an Dritte nur dann weitergegeben, wenn dies zur Vertragserfüllung notwendig ist (z. B. Payroll Plus AG für Abrechnungszwecke) oder eine gesetzliche Verpflichtung besteht."
+      },
+      "section9": {
+        "title": "Betroffenenrechte",
+        "text": "Nach dem DSG bestehen Rechte auf Auskunft, Berichtigung, Löschung und Datenübertragbarkeit. Um diese Rechte auszuüben, sollte die Kommunikation über das Kontaktformular erfolgen."
+      },
+      "section10": {
+        "title": "Datensicherheit",
+        "text": "Eine SSL/TLS-Verschlüsselung ist implementiert, um die Übertragung vertraulicher Inhalte und persönlicher Anfragen zu schützen."
+      },
+      "section11": {
+        "title": "Änderungen",
+        "text": "Das Recht, diese Datenschutzerklärung zu aktualisieren, bleibt vorbehalten. Die aktuellste Version wird auf dieser Seite bereitgestellt."
+      }
+    }
+  },
+  "termsPage": {
+    "mainTitle": "Nutzungsbedingungen",
+    "section1": {
+      "title": "Leistungsumfang",
+      "text": "Profineart Studio Basel, vertreten durch Ilya Medvedev, bietet privaten Kunstunterricht an. Die Dienstleistungen werden auf freiberuflicher Basis über die Payroll Plus AG erbracht."
+    },
+    "section2": {
+      "title": "Geografische Einschränkungen",
+      "text": "Das Standard-Servicegebiet umfasst Basel und Standorte in einem Umkreis von 25 km. Standorte ausserhalb dieses Radius erfordern eine vorherige Bestätigung."
+    },
+    "section3": {
+      "title": "Buchung und Terminplanung",
+      "text": "Erste Sitzungen werden über den Online-Kalender gebucht. Anschliessende Paket-Lektionen werden direkt mit dem Kursleiter vereinbart."
+    },
+    "section4": {
+      "title": "Preise und Bezahlung",
+      "text": "Alle Preise verstehen sich in CHF und beinhalten die Anreise innerhalb des 25-km-Radius. Die Zahlung ist zum Zeitpunkt der Buchung fällig."
+    },
+    "section5": {
+      "title": "Stornierungsbedingungen",
+      "text": "Stornierungen müssen 48 Stunden im Voraus erfolgen. Bei verspäteten Stornierungen wird eine Gebühr von 50 CHF erhoben, ausser in medizinischen Notfällen."
+    },
+    "section6": {
+      "title": "Rückerstattungsrichtlinie",
+      "text": "Einzellektionen sind nicht erstattungsfähig. Bei Paketen von 5 oder 10 Lektionen ist eine Rückerstattung der verbleibenden Einheiten möglich, falls der Kunde nach der ersten Lektion unzufrieden ist."
+    },
+    "section7": {
+      "title": "Verantwortung des Schülers",
+      "text": "Der Fortschritt hängt vom Engagement des Schülers und dem Abschluss von Aufgaben ab. Der Kursleiter haftet nicht für Sachschäden am Ort des Unterrichts."
+    },
+    "section8": {
+      "title": "Kommunikation",
+      "text": "Die primäre Kommunikation erfolgt per E-Mail. Telefonischer Kontakt wird erst nach einer bestätigten Buchung ermöglicht."
+    },
+    "section9": {
+      "title": "Anwendbares Recht",
+      "text": "Diese Vereinbarung unterliegt dem Schweizer Recht. Gerichtsstand ist Basel."
+    }
+  },
+  "footer": {
+    "brandName": "Profineart Studio Basel",
+    "description": "Professionelle Kurse für Bildende Kunst & Zeitgenössische Malerei in Ihrem privaten Umfeld",
+    "explore": "Entdecken",
+    "rights": "Alle Rechte vorbehalten.",
+    "legal": "Impressum",
+    "terms": "Nutzungsbedingungen"
   }
-  
-    
-  }
+}
