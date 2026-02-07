@@ -48,9 +48,14 @@ export const courses = [
         ],
         detailsImages: [
             {
-                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032365/IMG_4840-darker_2025-120kb_fbaaqe.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032416/IMG_4840-darker_2025_a6ypts.jpg',
-                caption: 'Tereza. Oil on canvas. Artist: Ilya Medvedev',
+                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1770367830/Detail1-photoshoped_2025-120kb_d2oxvt.jpg',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1770367854/Detail1-photoshoped_2025-500kb_asjvxi.jpg',
+                caption: 'Nudes. Oil on canvas. Artist: Ilya Medvedev',
+            },
+            {
+                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032381/stright_jar26-120kb_vdvpwr.jpg',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1770234432/stright_jar26500%D0%BB%D0%B8_ythrjh.jpg',
+                caption: 'Old Jar. Oil on canvas. Artist: Ilya Medvedev',
             },
             {
                 lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/6RCSpq0h/IMG-4906-photoshoped-12-2025-120kb.jpg',
@@ -79,9 +84,9 @@ export const courses = [
         ],
         detailsImages: [
             {
-                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/dxbsLPS/IMG-3271ph12-2025100kb.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/XxwRtFvB/IMG-3271ph12-2025500kb.jpg',
-                caption: 'Baby Lion. Mixed technique on Paper. Artist: Ilya Medvedev',
+                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/PGsqYvcV/Joe-Pesci-small-120kb.jpg',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/C3QhM3F8/Joe-Pesci-small-500kb.jpg',
+                caption: 'Joe Pesci. Mixed technique on Paper. Artist: Ilya Medvedev',
             },
             {
                 lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/WW9CK96g/Parrot-Scanned-and-photoshoped-smaller123kb.jpg',
@@ -89,9 +94,9 @@ export const courses = [
                 caption: 'Parrot. Mixed technique on Cardboard. Artist: Ilya Medvedev',
             },
             {
-                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/PGsqYvcV/Joe-Pesci-small-120kb.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/C3QhM3F8/Joe-Pesci-small-500kb.jpg',
-                caption: 'Joe Pesci. Mixed technique on Paper. Artist: Ilya Medvedev',
+                lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/dxbsLPS/IMG-3271ph12-2025100kb.jpg',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/XxwRtFvB/IMG-3271ph12-2025500kb.jpg',
+                caption: 'Baby Lion. Mixed technique on Paper. Artist: Ilya Medvedev',
             },
         ],
         medium: 'Course',
@@ -153,7 +158,7 @@ export const courses = [
             {
                 lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032364/IMG_3232-120kb_pmjfzt.jpg',
                 highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032414/IMG_3232-500kb_lifcup.jpg',
-                caption: 'Calella, Barselona, Spain. Oil Pastels on Paper. Artist: Ilya Medvedev',
+                caption: 'Alina. Oil Pastels on Paper. Artist: Ilya Medvedev',
             },
         ],
         medium: 'Course',
@@ -301,8 +306,8 @@ export const PRODUCT_PACKAGES = [
         description: 'Single session of 45 minutes.',
         lessons: 1,
         durationMinutes: 45,
-        price: 0.5, // Price from label
-        label: '1 Session (45 min) - 58 CHF',
+        price: 59, // Price from label
+        label: '1 Session (45 min) - 59 CHF',
         sessionType: '1 Session',
     },
     {

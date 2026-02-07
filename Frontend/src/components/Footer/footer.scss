@@ -147,4 +147,28 @@
             color: $color-navbar-title-hover; 
         }
     }
+
+    .footer-pwa-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: $color-navbar-title-hover; // Using your highlight color
+    font-size: 0.9rem;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    transition: opacity 0.3s ease;
+    font-family: inherit;
+
+    &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
+
+    .pwa-icon {
+        font-size: 0.8rem;
+    }
+}
 }

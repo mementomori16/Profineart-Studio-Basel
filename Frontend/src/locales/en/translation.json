@@ -643,6 +643,7 @@
   "terms": "Terms of Use",
   "payments": "Secure Payments",
   "processedBy": "Processed by",
+  "installApp": "Install App",
   "paymentMethods": [
     "TWINT",
     "Visa",
