@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Helmet } from 'react-helmet-async'; // SEO Import
+// Removed Helmet import to fix build crash
 import CardContainer from '../CardContainer/CardContainer'; 
 import InfoContainer from '../InfoContainer/InfoContainer';
 import SimilarProducts from '../../../SimilarProducts/SimilarProducts';
@@ -15,16 +15,42 @@ const CardPage: React.FC = () => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     
-    // Fix for React 19 Type Mismatch
-    const HelmetComponent = Helmet as any;
-
-    useEffect(() => {
-        document.body.style.backgroundColor = '#171717';
-        return () => { document.body.style.backgroundColor = ''; };
-    }, []);
-
     const allProducts: Product[] = [...products.courses]; 
     const product = allProducts.find((p) => p.id === Number(id));
+
+    // --- SEO & BACKGROUND EFFECT ---
+    useEffect(() => {
+        document.body.style.backgroundColor = '#171717';
+        
+        if (product) {
+            const title = `${t(`products.${product.id}.title`)} | Profineart Studio Basel`;
+            const description = t(`products.${product.id}.briefDescription`);
+            const url = `https://profineart.ch/card/${product.id}`;
+            const imageUrl = product.image.highResUrl;
+
+            // Update Standard Meta Tags
+            document.title = title;
+            document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+            
+            // Update Open Graph (Social Media)
+            document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+            document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+            document.querySelector('meta[property="og:image"]')?.setAttribute('content', imageUrl);
+            document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
+            
+            // Update Canonical Link
+            let canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) {
+                canonical.setAttribute('href', url);
+            }
+        }
+
+        return () => { 
+            document.body.style.backgroundColor = ''; 
+            // Reset title when leaving page if desired
+            document.title = "Profineart Studio Basel";
+        };
+    }, [product, t]);
 
     const [galleryData, setGalleryData] = useState<{images: any[], startIndex: number} | null>(null);
 
@@ -51,19 +77,8 @@ const CardPage: React.FC = () => {
 
     return (
         <div className="cardPageContainer">
-            {/* --- SEO DYNAMIC TAGS --- */}
-            <HelmetComponent>
-                <title>{t(`products.${product.id}.title`)} | Profineart Studio Basel</title>
-                <meta name="description" content={t(`products.${product.id}.briefDescription`)} />
-                <link rel="canonical" href={`https://profineart.ch/card/${product.id}`} />
-                
-                {/* Social Media Preview (Open Graph) */}
-                <meta property="og:title" content={`${t(`products.${product.id}.title`)} - Private Course`} />
-                <meta property="og:description" content={t(`products.${product.id}.briefDescription`)} />
-                <meta property="og:image" content={product.image.highResUrl} />
-                <meta property="og:type" content="website" />
-            </HelmetComponent>
-
+            {/* Helmet component removed to prevent React 19 / Vite build crash */}
+            
             <div className="cardContentWrapper">
                 <div className="cardHeader">
                     <h1 className="pageTitle">{t(`products.${product.id}.title`)}</h1>
