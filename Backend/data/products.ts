@@ -307,8 +307,8 @@ export const PRODUCT_PACKAGES: LessonPackage[] = [
     description: '10 x 2 sessions of 90 minutes.',
     lessons: 20, // 10 * 2 = 20 sessions total
     durationMinutes: 90,
-    price: 950, // Price from label
-    label: '10 x 2 Sessions (20x45 min) - 950 CHF',
+    price: 955, // Price from label
+    label: '10 x 2 Sessions (20x45 min) - 955 CHF',
     isFeatured: true,
     sessionType: '2 Sessions' 
   },
@@ -340,8 +340,8 @@ export const PRODUCT_PACKAGES: LessonPackage[] = [
     description: '10 x 1.5 Sessions (10x70 min) - 770 CHF.',
     lessons: 15,
     durationMinutes: 70, // Assuming 70 minutes for 1.5 session
-    price: 770,
-    label: '10 x 1.5 Sessions (10x70 min) - 770 CHF',
+    price: 765,
+    label: '10 x 1.5 Sessions (10x70 min) - 765 CHF',
     isFeatured: true,
     sessionType: '1.5 Sessions',
   },
@@ -353,8 +353,8 @@ export const PRODUCT_PACKAGES: LessonPackage[] = [
     description: 'Single session of 45 minutes.',
     lessons: 1,
     durationMinutes: 45,
-    price: 59, // Price from label
-    label: '1 Session (45 min) - 59 CHF',
+    price: 60, // Price from label
+    label: '1 Session (45 min) - 60 CHF',
     sessionType: '1 Session',
   },
   {
@@ -363,8 +363,8 @@ export const PRODUCT_PACKAGES: LessonPackage[] = [
     description: 'Five sessions, 45 min each.', // Changed from 60 to 45 for consistency
     lessons: 5,
     durationMinutes: 45, // Changed from 60 to 45 for consistency
-    price: 265,
-    label: '5 x 1 Sessions (5x45 min) - 265 CHF',
+    price: 290,
+    label: '5 x 1 Sessions (5x45 min) - 290 CHF',
     sessionType: '1 Session',
   },
   {
@@ -373,8 +373,8 @@ export const PRODUCT_PACKAGES: LessonPackage[] = [
     description: 'Ten sessions, 45 minutes each.', // Changed from 60 to 45 for consistency
     lessons: 10,
     durationMinutes: 45, // Changed from 60 to 45 for consistency
-    price: 525,
-    label: '10 x 1 Sessions (10x45 min) - 525 CHF',
+    price: 565,
+    label: '10 x 1 Sessions (10x45 min) - 565 CHF',
     isFeatured: true,
     sessionType: '1 Session',
   },
