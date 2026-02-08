@@ -28,29 +28,25 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
 
     useEffect(() => {
         const fixHeight = () => {
-            // VisualViewport is the only reliable way to get actual visible height on mobile
             const vvHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
             document.documentElement.style.setProperty('--vh', `${vvHeight * 0.01}px`);
         };
-
         fixHeight();
         window.visualViewport?.addEventListener('resize', fixHeight);
         window.addEventListener('resize', fixHeight);
 
-        // Original Preloading Logic
-        const dMed = new Image(); dMed.src = HERO_IMAGES.desktop.medium;
-        dMed.onload = () => {
-            setDesktopStage('medium');
-            const dHigh = new Image(); dHigh.src = HERO_IMAGES.desktop.large;
-            dHigh.onload = () => setDesktopStage('high');
+        const preload = (type: 'desktop' | 'mobile') => {
+            const med = new Image();
+            med.src = HERO_IMAGES[type].medium;
+            med.onload = () => {
+                type === 'desktop' ? setDesktopStage('medium') : setMobileStage('medium');
+                const high = new Image();
+                high.src = HERO_IMAGES[type].large;
+                high.onload = () => type === 'desktop' ? setDesktopStage('high') : setMobileStage('high');
+            };
         };
-
-        const mMed = new Image(); mMed.src = HERO_IMAGES.mobile.medium;
-        mMed.onload = () => {
-            setMobileStage('medium');
-            const mHigh = new Image(); mHigh.src = HERO_IMAGES.mobile.large;
-            mHigh.onload = () => setMobileStage('high');
-        };
+        preload('desktop');
+        preload('mobile');
 
         return () => {
             window.visualViewport?.removeEventListener('resize', fixHeight);
@@ -58,19 +54,20 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
         };
     }, []);
 
-  const handleScroll = () => {
-        // We find the Hero itself
+    const handleScroll = () => {
         const heroElement = document.querySelector('.welcome-hero-art');
-        
         if (heroElement) {
-            // The exact bottom of the hero is where the next section starts
             const heroBottom = heroElement.getBoundingClientRect().bottom;
             const scrollTarget = heroBottom + window.pageYOffset;
+            
+            // Adjusting for mobile accuracy: 
+            // We subtract a rem-based offset to account for sticky nav/header overlap
+            const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+            const isMobile = window.innerWidth <= 768; // Matching $breakpoint-md roughly
+            const offset = isMobile ? (3.5 * rootFontSize) : 0; 
 
-            // We subtract NOTHING here because the Hero height 
-            // already accounts for the sticky navbar in SCSS.
             window.scrollTo({
-                top: scrollTarget, 
+                top: scrollTarget - offset,
                 behavior: 'smooth'
             });
         } else if (onArrowClick) {
@@ -93,7 +90,6 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
                 </div>
                 <div className="art-vignette"></div>
             </div>
-
             <div className="hero-content">
                 <header className="info-frame">
                     <h1 className="service-title">{t('home.welcomeHero.serviceTitle')}</h1>
@@ -103,7 +99,6 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
                     </button>
                 </header>
             </div>
-
             <button className="scroll-arrow" onClick={handleScroll} aria-label="Scroll Down">
                 <span className="arrow-down"></span>
             </button>
