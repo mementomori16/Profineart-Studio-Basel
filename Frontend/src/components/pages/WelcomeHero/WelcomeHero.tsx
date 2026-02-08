@@ -16,7 +16,6 @@ const HERO_IMAGES = {
     }
 };
 
-// Define the interface for props
 interface WelcomeHeroProps {
     onArrowClick?: () => void;
 }
@@ -28,6 +27,15 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
     const [mobileStage, setMobileStage] = useState<'low' | 'medium' | 'high'>('low');
 
     useEffect(() => {
+        // Fix for mobile browser toolbars (Pixel/Samsung)
+        const fixHeight = () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+        fixHeight();
+        window.addEventListener('resize', fixHeight);
+
+        // Your Original Preloading Logic
         const dMed = new Image();
         dMed.src = HERO_IMAGES.desktop.medium;
         dMed.onload = () => {
@@ -45,6 +53,8 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
             mHigh.src = HERO_IMAGES.mobile.large;
             mHigh.onload = () => setMobileStage('high');
         };
+
+        return () => window.removeEventListener('resize', fixHeight);
     }, []);
 
     return (
@@ -90,7 +100,6 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
                 </header>
             </div>
 
-            {/* Click event now uses the passed prop */}
             <button className="scroll-arrow" onClick={onArrowClick} aria-label="Scroll Down">
                 <span className="arrow-down"></span>
             </button>

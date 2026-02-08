@@ -3,13 +3,15 @@
 .welcome-hero-art {
     position: relative;
     width: 100%;
+    // Senior Fix: Use the JS variable to handle dynamic browser bars
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
-    // Added dvh as a modern fallback for mobile only
     min-height: 100vh;
     max-height: 100vh;
+    max-height: calc(var(--vh, 1vh) * 100);
+    
     display: flex;
-    align-items: center; // Restored Desktop centering
+    align-items: center; 
     overflow: hidden;
     background-color: #000;
 
@@ -38,9 +40,10 @@
             position: absolute;
             inset: 0;
             z-index: 4;
-            background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+            // RESTORED: Original Gradient balance
+            background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
             @media (max-width: 1023px) { 
-                background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 100%); 
+                background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.8) 100%); 
             }
         }
     }
@@ -59,7 +62,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-top: 10vh; // Text to top on mobile
+            padding-top: 10vh;
         }
 
         .info-frame {
@@ -79,7 +82,7 @@
             font-weight: 500;
             margin-bottom: 1.5rem;
             text-shadow: 0 2px 15px rgba(0,0,0,1);
-            @media (max-width: 1023px) { display: none; } // Clean text top
+            @media (max-width: 1023px) { display: none; }
         }
 
         .brand-signature {
@@ -113,7 +116,7 @@
             
             @media (max-width: 1023px) { 
                 position: absolute;
-                bottom: 140px; // Mobile only aggressive position
+                bottom: 140px; 
                 left: 50%;
                 transform: translateX(-50%);
                 white-space: nowrap;
@@ -131,13 +134,13 @@
         cursor: pointer;
         z-index: 25;
         
-        // RESTORED ORIGINAL DESKTOP POSITION
+        // RESTORED: Original Desktop positioning
         bottom: 18vh; 
-        @media (max-width: 480px) { bottom: 12vh; } // Original mobile-tiny rule
+        @media (max-width: 480px) { bottom: 12vh; } 
         
-        // ADDED AGGRESSIVE MOBILE OVERRIDE
         @media (max-width: 1023px) { 
-            bottom: 80px !important; // Forced higher for mobile visibility
+            // THE FIX: Move it up slightly just for mobile browsers
+            bottom: 80px !important; 
         }
         
         .arrow-down {
