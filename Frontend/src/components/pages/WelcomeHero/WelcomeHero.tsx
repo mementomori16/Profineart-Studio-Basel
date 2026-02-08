@@ -27,65 +27,69 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
     const [mobileStage, setMobileStage] = useState<'low' | 'medium' | 'high'>('low');
 
     useEffect(() => {
-        // Fix for mobile browser toolbars (Pixel/Samsung)
         const fixHeight = () => {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            // VisualViewport is the only reliable way to get actual visible height on mobile
+            const vvHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+            document.documentElement.style.setProperty('--vh', `${vvHeight * 0.01}px`);
         };
+
         fixHeight();
+        window.visualViewport?.addEventListener('resize', fixHeight);
         window.addEventListener('resize', fixHeight);
 
-        // Your Original Preloading Logic
-        const dMed = new Image();
-        dMed.src = HERO_IMAGES.desktop.medium;
+        // Original Preloading Logic
+        const dMed = new Image(); dMed.src = HERO_IMAGES.desktop.medium;
         dMed.onload = () => {
             setDesktopStage('medium');
-            const dHigh = new Image();
-            dHigh.src = HERO_IMAGES.desktop.large;
+            const dHigh = new Image(); dHigh.src = HERO_IMAGES.desktop.large;
             dHigh.onload = () => setDesktopStage('high');
         };
 
-        const mMed = new Image();
-        mMed.src = HERO_IMAGES.mobile.medium;
+        const mMed = new Image(); mMed.src = HERO_IMAGES.mobile.medium;
         mMed.onload = () => {
             setMobileStage('medium');
-            const mHigh = new Image();
-            mHigh.src = HERO_IMAGES.mobile.large;
+            const mHigh = new Image(); mHigh.src = HERO_IMAGES.mobile.large;
             mHigh.onload = () => setMobileStage('high');
         };
 
-        return () => window.removeEventListener('resize', fixHeight);
+        return () => {
+            window.visualViewport?.removeEventListener('resize', fixHeight);
+            window.removeEventListener('resize', fixHeight);
+        };
     }, []);
+
+  const handleScroll = () => {
+        // We find the Hero itself
+        const heroElement = document.querySelector('.welcome-hero-art');
+        
+        if (heroElement) {
+            // The exact bottom of the hero is where the next section starts
+            const heroBottom = heroElement.getBoundingClientRect().bottom;
+            const scrollTarget = heroBottom + window.pageYOffset;
+
+            // We subtract NOTHING here because the Hero height 
+            // already accounts for the sticky navbar in SCSS.
+            window.scrollTo({
+                top: scrollTarget, 
+                behavior: 'smooth'
+            });
+        } else if (onArrowClick) {
+            onArrowClick();
+        }
+    };
 
     return (
         <section className="welcome-hero-art">
             <div className="art-background">
                 <div className="image-wrapper desktop-img">
                     <img src={HERO_IMAGES.desktop.small} className="hero-image stage-passive" alt="" />
-                    <img 
-                        src={HERO_IMAGES.desktop.medium} 
-                        className={`hero-image stage-med ${desktopStage !== 'low' ? 'visible' : ''}`} 
-                        alt="" 
-                    />
-                    <img 
-                        src={HERO_IMAGES.desktop.large} 
-                        className={`hero-image stage-high ${desktopStage === 'high' ? 'visible' : ''}`} 
-                        alt="" 
-                    />
+                    <img src={HERO_IMAGES.desktop.medium} className={`hero-image stage-med ${desktopStage !== 'low' ? 'visible' : ''}`} alt="" />
+                    <img src={HERO_IMAGES.desktop.large} className={`hero-image stage-high ${desktopStage === 'high' ? 'visible' : ''}`} alt="" />
                 </div>
-
                 <div className="image-wrapper mobile-img">
                     <img src={HERO_IMAGES.mobile.small} className="hero-image stage-passive" alt="" />
-                    <img 
-                        src={HERO_IMAGES.mobile.medium} 
-                        className={`hero-image stage-med ${mobileStage !== 'low' ? 'visible' : ''}`} 
-                        alt="" 
-                    />
-                    <img 
-                        src={HERO_IMAGES.mobile.large} 
-                        className={`hero-image stage-high ${mobileStage === 'high' ? 'visible' : ''}`} 
-                        alt="" 
-                    />
+                    <img src={HERO_IMAGES.mobile.medium} className={`hero-image stage-med ${mobileStage !== 'low' ? 'visible' : ''}`} alt="" />
+                    <img src={HERO_IMAGES.mobile.large} className={`hero-image stage-high ${mobileStage === 'high' ? 'visible' : ''}`} alt="" />
                 </div>
                 <div className="art-vignette"></div>
             </div>
@@ -100,7 +104,7 @@ const WelcomeHero: React.FC<WelcomeHeroProps> = ({ onArrowClick }) => {
                 </header>
             </div>
 
-            <button className="scroll-arrow" onClick={onArrowClick} aria-label="Scroll Down">
+            <button className="scroll-arrow" onClick={handleScroll} aria-label="Scroll Down">
                 <span className="arrow-down"></span>
             </button>
         </section>

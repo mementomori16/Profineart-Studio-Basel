@@ -1,15 +1,24 @@
 @import '../../../global.scss';
 
+// This height needs to match your NavMobile height (~3rem logo + padding)
+$mobile-nav-height: 3.9rem; 
+
 .welcome-hero-art {
     position: relative;
     width: 100%;
-    // Senior Fix: Use the JS variable to handle dynamic browser bars
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
-    min-height: 100vh;
-    max-height: 100vh;
-    max-height: calc(var(--vh, 1vh) * 100);
     
+    // Fallback
+    height: 100vh;
+    
+    // 🔥 THE FIX: Subtract the sticky navbar height from the visible viewport height
+    height: calc((var(--vh, 1vh) * 100) - #{$mobile-nav-height});
+    max-height: calc((var(--vh, 1vh) * 100) - #{$mobile-nav-height});
+    min-height: calc((var(--vh, 1vh) * 100) - #{$mobile-nav-height});
+
+    @media (min-width: 1024px) {
+        height: 100vh; // Adjust if desktop nav is also sticky
+    }
+
     display: flex;
     align-items: center; 
     overflow: hidden;
@@ -40,10 +49,11 @@
             position: absolute;
             inset: 0;
             z-index: 4;
-            // RESTORED: Original Gradient balance
+            // Original Desktop darkness
             background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
             @media (max-width: 1023px) { 
-                background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.8) 100%); 
+                // Lightened Mobile darkness (only 0.3 at top, 0.6 at bottom)
+                background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.6) 100%); 
             }
         }
     }
@@ -62,7 +72,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-top: 10vh;
+            padding-top: 8vh;
         }
 
         .info-frame {
@@ -110,13 +120,9 @@
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            &:hover { transform: scale(1.05); }
-            
             @media (max-width: 1023px) { 
                 position: absolute;
-                bottom: 140px; 
+                bottom: 25%; // Responsive relative to the new shortened height
                 left: 50%;
                 transform: translateX(-50%);
                 white-space: nowrap;
@@ -133,16 +139,12 @@
         border: none;
         cursor: pointer;
         z-index: 25;
-        
-        // RESTORED: Original Desktop positioning
-        bottom: 18vh; 
-        @media (max-width: 480px) { bottom: 12vh; } 
-        
+        bottom: 8vh; 
+
         @media (max-width: 1023px) { 
-            // THE FIX: Move it up slightly just for mobile browsers
-            bottom: 80px !important; 
+            bottom: 10% !important; 
         }
-        
+
         .arrow-down {
             display: block;
             width: 1.5rem;
