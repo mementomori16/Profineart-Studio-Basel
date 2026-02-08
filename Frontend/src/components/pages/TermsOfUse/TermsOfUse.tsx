@@ -7,23 +7,24 @@ const TermsOfUse: React.FC = () => {
     const sections = Array.from({ length: 9 }, (_, i) => i + 1);
 
     useEffect(() => {
+        // Syncing background color with LegalInfo/StudentsWorks
         document.body.style.backgroundColor = '#171717'; 
         return () => { document.body.style.backgroundColor = ''; };
     }, []);
 
     return (
-        <div className="terms-page-root">
+        <div className="legal-page-root">
             <div className="container">
-                <header className="terms-page-header">
+                <header className="legal-page-header">
                     <h2>{t('termsPage.mainTitle')}</h2>
                 </header>
 
-                <div className="terms-content-stack">
+                <div className="legal-content-stack">
                     {sections.map((num) => (
-                        <section className="terms-stack-item" key={num}>
+                        <section className="legal-stack-item" key={num}>
                             <div className="item-text">
                                 <h3>{num}. {t(`termsPage.section${num}.title`)}</h3>
-                                <div className="terms-body">
+                                <div className="legal-body">
                                     <p>{t(`termsPage.section${num}.text`)}</p>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 @use "../../../global.scss" as *;
 
-.terms-page-root {
+// Using the same class names to ensure 1:1 visual match with LegalInfo
+.legal-page-root {
     min-height: 100vh;
     width: 100%;
     color: #ffffff; 
@@ -10,7 +11,7 @@
         padding-top: $space-md;
     }
 
-    .terms-page-header {
+    .legal-page-header {
         margin-bottom: $space-xl; 
 
         h2 {
@@ -19,22 +20,28 @@
             color: #ffffff;
             margin: 0;
             text-transform: none;
+            // FIXED: Reduced letter-spacing for long German words
+            letter-spacing: -0.01em; 
+            line-height: 1.2;
+            word-wrap: break-word;
+            
+            @media (max-width: $breakpoint-md) {
+                font-size: $font-size-h3; // Scale down slightly for mobile
+            }
         }
     }
 }
 
-.terms-content-stack {
+.legal-content-stack {
     display: flex;
     flex-direction: column;
     gap: $space-xl; 
-    // EXPANDED: Increased from 800px to 100% with a higher max-width 
-    // to fill the "ghost" space and match the wide hero layout.
     width: 100%;
-    max-width: 1200px; 
+    max-width: 1200px; // Fills the ghostly gaps
 
-    .terms-stack-item {
+    .legal-stack-item {
         border: none;
-        width: 100%; // Ensure the item takes up the full allowed width
+        width: 100%;
         
         .item-text {
             h3 {
@@ -44,14 +51,14 @@
                 font-weight: $font-weight-bold;
             }
 
-            .terms-body p {
-                color: #f8f8f8 !important;
-                // Slightly adjusted line-height for better flow on longer lines
+            .legal-body p {
+                color: #f8f8f8 !important; 
                 line-height: 1.7; 
                 font-size: 1.1rem;
                 margin: 0;
-                text-align: justify; // Optional: creates a clean block look on wide screens
+                // FIXED: Better text flow for long German paragraphs
                 hyphens: auto;
+                text-align: left; 
             }
         }
     }
