@@ -1,36 +1,38 @@
-// src/components/pages/TermsOfUse/TermsOfUse.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import './termsOfUse.scss';
 
 const TermsOfUse: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
+    const sections = Array.from({ length: 9 }, (_, i) => i + 1);
 
-  // Array to map the 9 sections from translation.json
-  const sections = Array.from({ length: 9 }, (_, i) => i + 1);
+    useEffect(() => {
+        document.body.style.backgroundColor = '#171717'; 
+        return () => { document.body.style.backgroundColor = ''; };
+    }, []);
 
-  return (
-    <div className="cardPageContainer">
-      <div className="cardContentWrapper">
-        <div className="cardHeader">
-          <h1 className="pageTitle">{t('termsPage.mainTitle')}</h1>
-        </div>
+    return (
+        <div className="terms-page-root">
+            <div className="container">
+                <header className="terms-page-header">
+                    <h2>{t('termsPage.mainTitle')}</h2>
+                </header>
 
-        <div className="terms-body-content">
-          {sections.map((num) => (
-            <div className="terms-section" key={num}>
-              <p className="section-text">
-                <span className="section-number">{num}. </span>
-                <span className="section-title">{t(`termsPage.section${num}.title`)}</span>
-                <br />
-                {t(`termsPage.section${num}.text`)}
-              </p>
+                <div className="terms-content-stack">
+                    {sections.map((num) => (
+                        <section className="terms-stack-item" key={num}>
+                            <div className="item-text">
+                                <h3>{num}. {t(`termsPage.section${num}.title`)}</h3>
+                                <div className="terms-body">
+                                    <p>{t(`termsPage.section${num}.text`)}</p>
+                                </div>
+                            </div>
+                        </section>
+                    ))}
+                </div>
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default TermsOfUse;

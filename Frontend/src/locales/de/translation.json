@@ -19,20 +19,23 @@
     "learnMoreButton": "Mehr erfahren"
   },
   "textComponent": {
-    "title": "Das Mentoring",
+    "title": "Das Mentorenprogramm",
     "subtitle": "Meisterschaft der Bildenden Kunst",
-    "experience": "Ein privates Bildungsprojekt, das spezialisiertes Mentoring bietet und historische Tradition mit zeitgenössischen künstlerischen Standards verbindet. Dieses mobile Projekt bringt professionelle Ausbildung direkt in Ihr persönliches Atelier, um sicherzustellen, dass das Lernen in Ihr eigenes kreatives Umfeld integriert wird.",
-    "curriculum": "Fokus auf die Beherrschung der visuellen Sprache der Kunst durch die Chemie der Materialien, historische Genauigkeit und den Übergang von klassischer Untermalung zu modernen Texturen. Die Ausbildung umfasst die Komplexität von Form und konzeptionellem Ausdruck.",
+    "experience": "Ein privates Bildungsprojekt, das spezialisiertes Mentoring bietet und historische Tradition mit zeitgenössischen künstlerischen Standards verbindet. Dieses mobile Projekt bringt professionelle Ausbildung direkt in Ihr persönliches Atelier, um sicherzustellen, dass das Lernen in Ihre eigene kreative Umgebung integriert wird.",
+    "curriculumTitle": "Der Lehrplan",
+    "curriculum": "Konzentration auf die Beherrschung der visuellen Kunstsprache durch Materialchemie, historische Genauigkeit und den Übergang von klassischer Untermalung zu modernen Texturen. Die Ausbildung umfasst die Komplexität von Form und konzeptuellem Ausdruck.",
+    "standardsTitle": "Professionelle Standards",
     "labelBackground": "Hintergrund",
-    "textBackground": "Aufgebaut auf bedeutenden akademischen Leistungen und einer fülle von Erfahrungen auf Museumsniveau.",
+    "textBackground": "Basierend auf bedeutenden akademischen Leistungen und einem reichen Erfahrungsschatz auf Museumsniveau.",
     "labelSpecialization": "Spezialisierung",
     "textSpecialization": "Seltene technische Tiefe in antiken Medien, wie der byzantinischen Ikonographie, neben zeitgenössischer figurativer Malerei.",
     "labelCommunication": "Kommunikation",
     "textCommunication": "Der gesamte Unterricht und die Kommunikation erfolgen auf Englisch."
   },
   "founder": {
-    "role": "Gründer & Kursleiter",
-    "bio": "Künstler und Pädagoge mit einem MFA der Bezalel Academy. Schöpfer der Methodik und digitalen Plattform der Akademie, mit einer Praxis von über 1.000 professionellen Werken."
+    "role": "Gründer & Dozent",
+    "name": "Ilya Medvedev",
+    "bio": "Künstler und Pädagoge mit einem MFA der Bezalel Academy. Schöpfer der Methodik und der digitalen Plattform der Akademie, mit einer Praxis, die über 1.000 professionelle Werke umfasst."
   },
   "masterclass": {
     "title": "Masterclass",

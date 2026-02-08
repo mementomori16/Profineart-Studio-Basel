@@ -1,47 +1,55 @@
-// src/components/pages/Attributions/legal-info.scss
-@use "sass:color";
-@use '../../../global.scss' as global;
+@use "../../../global.scss" as *;
 
-// This is the main "Frame" for the whole page
-.terms-body-content {
-  /* --- MATCHING THE COURSES FRAME --- */
-  width: 100%;
-  max-width: global.$breakpoint-xxl;
-  margin: 0 auto;
-  
-  // This ensures the page "frame" has the same depth/color as Courses
-  background-color: transparent; 
-  
-  // Padding and Layout
-  padding: global.$space-xl global.$space-xxl;
-  display: flex;
-  flex-direction: column;
-  gap: global.$space-lg;
+.legal-page-root {
+    min-height: 100vh;
+    width: 100%;
+    color: #ffffff; 
+    padding: $space-lg 0 $space-xxxxl; 
 
-  @media (max-width: global.$breakpoint-md) {
-    padding: global.$space-lg;
-  }
-
-  .terms-section {
-    // Ensuring the text inside the frame is readable
-    .section-text {
-      color: global.$color-text-dark4; // Matching the InfoContainer text color
-      font-size: global.$font-size-base;
-      line-height: 1.7;
-      margin: 0;
-      text-align: left;
+    @media (max-width: $breakpoint-sm) {
+        padding-top: $space-md;
     }
 
-    .section-number, 
-    .section-title {
-      color: global.$color-text-dark2; // Matching the Courses title color
-      font-weight: global.$font-weight-bold;
-    }
+    .legal-page-header {
+        margin-bottom: $space-xl; 
 
-    .section-title {
-      text-transform: uppercase;
-      font-size: global.$font-size-sm;
-      letter-spacing: 0.05em;
+        h2 {
+            font-size: $font-size-h2;
+            font-weight: $font-weight-bold;
+            color: #ffffff;
+            margin: 0;
+            text-transform: none;
+        }
     }
-  }
+}
+
+.legal-content-stack {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl; 
+    width: 100%;
+    // Wide layout to banish the "ghosts" and fill the horizontal space
+    max-width: 1200px; 
+
+    .legal-stack-item {
+        border: none;
+        width: 100%;
+        
+        .item-text {
+            h3 {
+                color: #ffffff;
+                font-size: 1.2rem;
+                margin-bottom: $space-xs;
+                font-weight: $font-weight-bold;
+                text-transform: none; // Title Case consistency
+            }
+
+            .legal-body p {
+                color: #f8f8f8 !important; // Bright, readable white-gray
+                line-height: 1.7; 
+                font-size: 1.1rem;
+                margin: 0;
+            }
+        }
+    }
 }

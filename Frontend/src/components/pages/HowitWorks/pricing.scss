@@ -135,6 +135,13 @@
 
         &:hover { background: rgba(255, 255, 255, 0.05); }
 
+        .text-stack {
+            display: flex;
+            flex-direction: column;
+            gap: $space-xs; // Adds breathing room between title and subtitle
+            text-align: left;
+        }
+
         .top-line { color: #ffffff; font-weight: $font-weight-bold; font-size: $font-size-md; }
         .sub-line { font-size: $font-size-sm; color: #ffffff; }
         .arrow-svg { color: #ffffff; font-size: $font-size-h3; }

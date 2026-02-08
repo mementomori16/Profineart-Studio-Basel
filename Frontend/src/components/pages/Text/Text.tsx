@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './text.scss';
 
 const Text: React.FC = () => {
     const { t } = useTranslation();
+
+    useEffect(() => {
+        document.body.style.backgroundColor = '#171717'; 
+        return () => { document.body.style.backgroundColor = ''; };
+    }, []);
 
     return (
         <section className="text-component-section">
@@ -21,13 +26,13 @@ const Text: React.FC = () => {
                     
                     {/* Curriculum */}
                     <div className="text-grid-item">
-                        <h4 className="item-title">The Curriculum</h4>
+                        <h4 className="item-title">{t('textComponent.curriculumTitle')}</h4>
                         <p className="item-body-text">{t('textComponent.curriculum')}</p>
                     </div>
 
                     {/* Standards */}
                     <div className="text-grid-item">
-                        <h4 className="item-title">Professional Standards</h4>
+                        <h4 className="item-title">{t('textComponent.standardsTitle')}</h4>
                         <div className="standards-list">
                             <p className="item-body-text">
                                 <strong className="label-accent">{t('textComponent.labelBackground')}</strong> 
@@ -46,7 +51,7 @@ const Text: React.FC = () => {
                         <div className="standards-list">
                             <p className="item-body-text">
                                 <Link to="/about" className="founder-clean-link">
-                                    <strong>Ilya Medvedev <span className="arrow-symbol">→</span></strong>
+                                    <strong>{t('founder.name')} <span className="arrow-symbol">→</span></strong>
                                 </Link>
                                 {t('founder.bio')}
                             </p>

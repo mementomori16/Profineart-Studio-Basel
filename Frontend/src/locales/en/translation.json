@@ -21,20 +21,23 @@
     
   },    
 
- "textComponent": {
-"title": "The Mentorship",
-  "subtitle": "Mastery of Fine Art",
-  "experience": "A private educational project providing specialized mentorship that combines historical tradition with contemporary artistic standards. This mobile project brings professional training directly to your personal studio to ensure learning is integrated into your own creative setting.",
-  "curriculum": "Focus on mastering the visual language of art through the chemistry of materials, historical accuracy, and the transition from classical underpainting to modern textures. The training covers the complexities of form and conceptual expression.",
-  "labelBackground": "Background",
-  "textBackground": "Built on significant academic achievement and a wealth of museum-level experience.",
-  "labelSpecialization": "Specialization",
-  "textSpecialization": "Rare technical depth in ancient media, such as Byzantine Iconography, alongside contemporary figurative painting.",
-  "labelCommunication": "Communication",
-  "textCommunication": "All instruction and communication are conducted in English."
-},
-"founder": {
+"textComponent": {
+    "title": "The Mentorship",
+    "subtitle": "Mastery of Fine Art",
+    "experience": "A private educational project providing specialized mentorship that combines historical tradition with contemporary artistic standards. This mobile project brings professional training directly to your personal studio to ensure learning is integrated into your own creative setting.",
+    "curriculumTitle": "The Curriculum",
+    "curriculum": "Focus on mastering the visual language of art through the chemistry of materials, historical accuracy, and the transition from classical underpainting to modern textures. The training covers the complexities of form and conceptual expression.",
+    "standardsTitle": "Professional Standards",
+    "labelBackground": "Background",
+    "textBackground": "Built on significant academic achievement and a wealth of museum-level experience.",
+    "labelSpecialization": "Specialization",
+    "textSpecialization": "Rare technical depth in ancient media, such as Byzantine Iconography, alongside contemporary figurative painting.",
+    "labelCommunication": "Communication",
+    "textCommunication": "All instruction and communication are conducted in English."
+  },
+  "founder": {
     "role": "Founder & Instructor",
+    "name": "Ilya Medvedev",
     "bio": "Artist and educator with an MFA from Bezalel Academy. Creator of the academy's methodology and digital platform, with a practice spanning 1,000+ professional works."
   },
 

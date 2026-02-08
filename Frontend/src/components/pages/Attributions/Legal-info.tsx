@@ -1,36 +1,39 @@
-// src/components/pages/Attributions/Legal-info.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import './legal-info.scss'; 
 
 const LegalInfo: React.FC = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
+    const sections = Array.from({ length: 11 }, (_, i) => i + 1);
 
-  // Mapping the 11 sections defined for Privacy Policy
-  const sections = Array.from({ length: 11 }, (_, i) => i + 1);
+    useEffect(() => {
+        // Matching background with StudentsWorks and TermsOfUse
+        document.body.style.backgroundColor = '#171717'; 
+        return () => { document.body.style.backgroundColor = ''; };
+    }, []);
 
-  return (
-    <div className="cardPageContainer">
-      <div className="cardContentWrapper">
-        <div className="cardHeader">
-          <h1 className="pageTitle">{t('legalPage.mainTitle')}</h1>
-        </div>
+    return (
+        <div className="legal-page-root">
+            <div className="container">
+                <header className="legal-page-header">
+                    <h2>{t('legalPage.mainTitle')}</h2>
+                </header>
 
-        <div className="terms-body-content">
-          {sections.map((num) => (
-            <div className="terms-section" key={num}>
-              <p className="section-text">
-                <span className="section-number">{num}. </span>
-                <span className="section-title">{t(`legalPage.privacyPolicy.section${num}.title`)}</span>
-                <br />
-                {t(`legalPage.privacyPolicy.section${num}.text`)}
-              </p>
+                <div className="legal-content-stack">
+                    {sections.map((num) => (
+                        <section className="legal-stack-item" key={num}>
+                            <div className="item-text">
+                                <h3>{num}. {t(`legalPage.privacyPolicy.section${num}.title`)}</h3>
+                                <div className="legal-body">
+                                    <p>{t(`legalPage.privacyPolicy.section${num}.text`)}</p>
+                                </div>
+                            </div>
+                        </section>
+                    ))}
+                </div>
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default LegalInfo;
