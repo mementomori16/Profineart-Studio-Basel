@@ -4,20 +4,28 @@
 // Local variable for the Ilya link accent
 $color-cta-primary-warm: #5C253B;
 
+// ACCESSIBILITY FIX: This shade is slightly more saturated than #ac4b6e
+// It provides better contrast against dark backgrounds for "Text" scores.
+$color-accent-accessible: #c55a83; 
+
 .text-component-section {
     padding: $space-xxxxl 0;
     width: 100%;
     @media (max-width: $breakpoint-md) {
         padding: $space-xxl 0 $space-xxxxl;
     }
+    
     .text-header {
         margin-bottom: $space-xl;
-        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        // Increased opacity for the border to guide the eye better
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15);
         padding-bottom: $space-md;
+        
         @media (max-width: $breakpoint-md) {
             margin-bottom: $space-xs;
             padding-bottom: $space-xs;
         }
+
         .text-main-title {
             @include services-heading;
             color: #ffffff;
@@ -26,11 +34,13 @@ $color-cta-primary-warm: #5C253B;
             text-transform: uppercase;
             letter-spacing: 0.4rem;
             font-weight: $font-weight-bold;
+            
             @media (max-width: $breakpoint-sm) {
                 font-size: $font-size-h3;
                 letter-spacing: 0.2rem;
             }
         }
+
         .text-subtitle {
             font-size: 1.1rem;
             color: #ffffff !important;
@@ -38,7 +48,9 @@ $color-cta-primary-warm: #5C253B;
             font-weight: $font-weight-normal;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
-            opacity: 1;
+            // Removed opacity logic to ensure 100% legibility
+            opacity: 1; 
+
             @media (max-width: $breakpoint-md) {
                 margin-top: 0;
                 font-size: 1rem;
@@ -52,6 +64,7 @@ $color-cta-primary-warm: #5C253B;
     grid-template-columns: repeat(3, 1fr);
     gap: $space-xxl;
     margin-top: $space-xl;
+    
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
         gap: $space-xl;
@@ -63,22 +76,26 @@ $color-cta-primary-warm: #5C253B;
     &.primary {
         grid-column: 1 / -1;
         margin-bottom: $space-md;
-        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.05);
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.08); // Slightly clearer border
         padding-bottom: $space-xl;
+        
         @media (max-width: $breakpoint-md) {
             padding-bottom: $space-md;
             margin-bottom: 0;
         }
+        
         p {
             font-size: 1.4rem;
             line-height: 1.8;
             color: #ffffff !important;
             font-weight: $font-weight-normal;
+            
             @media (max-width: $breakpoint-sm) {
                 font-size: 1.15rem;
             }
         }
     }
+
     .item-title {
         color: #ffffff;
         font-size: 1.1rem;
@@ -93,9 +110,11 @@ $color-cta-primary-warm: #5C253B;
     display: flex;
     flex-direction: column;
     gap: $space-sm;
+    
     @media (max-width: $breakpoint-md) {
         gap: $space-md;
     }
+
     .label-accent {
         display: block;
         color: #ffffff;
@@ -104,7 +123,8 @@ $color-cta-primary-warm: #5C253B;
         letter-spacing: 0.05rem;
         margin-bottom: 0.2rem;
         font-weight: $font-weight-bold;
-        opacity: 1;
+        opacity: 0.9; // Slight drop in opacity for labels creates hierarchy without failing contrast
+        
         @media (max-width: $breakpoint-md) {
             margin-bottom: $space-xxs;
         }
@@ -113,31 +133,48 @@ $color-cta-primary-warm: #5C253B;
 
 .founder-clean-link {
     text-decoration: none;
-    display: inline;
+    display: inline-block; 
+    vertical-align: middle; // Extra layer of alignment for the parent
+
     strong {
-        color: #ac4b6e !important;
+        color: $color-accent-accessible !important;
         font-size: 1.1rem;
         font-weight: $font-weight-bold;
         white-space: nowrap;
+        
+        // 🔥 THE AGGRESSIVE CENTERING FIX
+        display: inline-flex;
+        align-items: center; 
+        line-height: 1; // Removes extra font-descender space
+        
         .arrow-symbol {
             font-size: 1.2rem;
             display: inline-block;
-            margin-left: 0.4rem;
+            margin-left: 0.5rem;
             margin-right: 0.8rem;
             transition: transform 0.3s ease;
-            vertical-align: middle;
-            color: #ac4b6e;
+            color: inherit;
+            
+            // 🔥 NEGATIVE NUDGE: Moves the arrow UP to counteract the font baseline
+            transform: translateY(-2px); 
+            
+            // Ensures the symbol's bounding box doesn't have its own internal height
+            line-height: 0; 
         }
     }
+
     &:hover .arrow-symbol {
-        transform: translateX(5px);
+        // Maintain the upward nudge while sliding right
+        transform: translateX(5px) translateY(-2px);
     }
 }
 
 .item-body-text {
     line-height: 1.8;
-    color: #ffffff !important;
+    // Ensuring body text remains fully white for maximum readability on dark bgs
+    color: #ffffff !important; 
     display: block;
+    
     &:not(:last-child) {
         margin-bottom: $space-xs;
     }
