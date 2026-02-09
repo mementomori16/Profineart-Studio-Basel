@@ -1,7 +1,7 @@
 import { NavLink, Link } from 'react-router-dom';
 import './navDesktop.scss';
 import logo from '../../../assets/images/icons/Group 177.svg';
-import { FaShoppingBasket } from 'react-icons/fa'; // Elegant basket icon
+import { FaShoppingBasket } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../../../context/CartContext/CartContext';
 import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
@@ -16,7 +16,6 @@ const NavDesktop = () => {
     { label: t('home.howItWorks'), path: '/how-it-works' },
     { label: t('home.studentsWorks'), path: '/students-works' },
     { label: t('home.about'), path: '/about' },
-    
   ];
 
   return (
@@ -43,7 +42,12 @@ const NavDesktop = () => {
         <div className="nav-right-actions">
            <LanguageSwitcher /> 
 
-          <Link to="/basket" className="basket-icon">
+          <Link 
+            to="/basket" 
+            className="basket-icon" 
+            aria-label="View Cart"
+            
+          >
             <FaShoppingBasket size={24} />
             {cart.length > 0 && (
               <span className="basket-badge">{cart.length}</span>
@@ -56,4 +60,3 @@ const NavDesktop = () => {
 };
 
 export default NavDesktop;
-
