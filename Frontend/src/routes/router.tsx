@@ -16,6 +16,7 @@ import TermsOfUse from "../components/pages/TermsOfUse/TermsOfUse";
 import HowItWorks from "../components/pages/HowitWorks/Pricing";
 import StudentsWorks from "../components/pages/StudentsWorks/StudentsWorks";
 import VideoPage from "../components/pages/VideoPage/VideoPage";
+import { FlyerGenerator } from "../components/FlyerTemplate/FlyerGenerator";
 
 
 const router = createBrowserRouter([
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
             { path: "terms-of-use", element: <TermsOfUse /> },
             { path: "video-page", element: <VideoPage /> },
             { path: "success-page", element: <SuccessPage /> },
+            { path: "generate-flyer", element: <FlyerGenerator /> }, // Add this line
             
 
          

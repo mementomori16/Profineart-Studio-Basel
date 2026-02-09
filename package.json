@@ -8,6 +8,8 @@
     "dev": "concurrently --kill-others \"npm run start:client\" \"npm run start:server\""
   },
   "devDependencies": {
+    "@types/qrcode": "^1.5.6",
+    "@types/qrcode.react": "^3.0.0",
     "@vitejs/plugin-react-swc": "^4.2.2",
     "concurrently": "^9.2.1",
     "typescript": "^5.9.3",
@@ -23,6 +25,8 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-helmet-async": "^2.0.5",
-    "react-player": "^3.4.0"
+    "react-player": "^3.4.0",
+    "react-qr-code": "^2.0.18",
+    "react-to-print": "^3.2.0"
   }
 }
