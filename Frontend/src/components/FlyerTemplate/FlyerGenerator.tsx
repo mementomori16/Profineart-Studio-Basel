@@ -106,7 +106,6 @@ export const FlyerGenerator: React.FC = () => {
 
                 <footer className="flyer-footer">
                     <div className="footer-line">
-                        <strong>ILYA MEDVEDEV | MENTOR</strong>
                         <strong className="email-text">info@profineart.ch</strong>
                     </div>
                     
