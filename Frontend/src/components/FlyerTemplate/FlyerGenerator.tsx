@@ -108,7 +108,6 @@ export const FlyerGenerator: React.FC = () => {
                     <div className="footer-line">
                         <strong className="email-text">info@profineart.ch</strong>
                     </div>
-                    
                 </footer>
             </article>
         </div>
