@@ -191,6 +191,7 @@
   
 
   "checkout": {
+    "noServiceOnSundayOrHoliday": "No lessons available on Sundays or official holidays.",
     "bookNowButton": "Book Now",
     "addToCartButton": "Add to Basket",
     "alreadyInBasket": "In Your Basket",
