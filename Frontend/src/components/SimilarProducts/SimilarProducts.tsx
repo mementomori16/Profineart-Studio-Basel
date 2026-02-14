@@ -24,21 +24,27 @@ const SimilarProducts: React.FC<SimilarProductsProps> = ({ currentProductId }) =
             <div className="scrollableGallery">
                 {finalOtherCourses.map(product => (
                     <div key={product.id} className="similarProductItem">
-                        {/* Badge implementation exactly like Courses.tsx */}
+                        {/* Badge implementation */}
                         {product.badge && (
                             <div className="badge">
                                 {t(`products.${product.id}.badge`)}
                             </div>
                         )}
 
-                        <Link to={`/card/${product.id}`} className="imageWrapper">
+                        {/* ✅ SENIOR SEO UPDATE: Link changed from /card/id to /course/slug */}
+                        <Link to={`/course/${product.slug}`} className="imageWrapper">
                             <img
                                 src={product.image.lowResUrl} 
                                 alt={t(`products.${product.id}.title`)} 
                                 className="image"
+                                loading="lazy" 
                             />
                         </Link>
-                        <h3 className="title">{t(`products.${product.id}.title`)}</h3>
+                        
+                        {/* ✅ Optional but recommended: Link the title too for better UX/SEO */}
+                        <Link to={`/course/${product.slug}`} className="title-link">
+                           <h3 className="title">{t(`products.${product.id}.title`)}</h3>
+                        </Link>
                     </div>
                 ))}
             </div>

@@ -289,6 +289,7 @@
 "products": {
   "800": {
     "title": "Byzantine Iconography Course",
+    "slug": "byzantine-iconography-course",
     "briefDescription": "Unlock the ancient secrets of sacred painting through exclusive, live individual sessions with a focus on historical techniques and mastery of Egg Tempera.",
     
     "badge": "Historical & Traditional",
@@ -303,6 +304,7 @@
 
      "801": {
      "title": "Oil Painting Course",
+      "slug": "oil-painting-course",
     "briefDescription": "Master the world’s most versatile and prestigious medium. From classical underpainting to modern textures, build a professional foundation in oil painting mastery.",
     "badge": "Classical & Contemporary",
     "description": "<h3>The Program Focus</h3><p>Oil painting is the most prestigious and flexible technique in art history, from translucent watercolor-like washes to thick, massive impasto. This program is designed to simplify its complex variables, providing artists with a powerful foundation that even experienced painters often struggle to master.</p><h2>Questions You Will Answer</h2><h5>The Fundamentals</h5><p>Which components serve as the essential base for oil painting? Why does one painting glow with deep, vibrant colors while another appears dull and dry? How do you create light, shadow, and perfect color transitions?</p><h5>Anatomy and Portraiture</h5><p>How to paint the human body and create a portrait? What is the secret to rendering skin texture and lifelike tones? How do you create halftones and seamless transitions?</p><h5>Tools and Materials</h5><p>What is the purpose of coarse vs. soft brushes, and why are specific varnishes and thinners essential? Which pigments and oils are best for large-scale works, and which are required for small, detailed miniatures? Why choose between canvas, wood, or paper?</p>",
@@ -315,6 +317,7 @@
 
     "802": {
     "title": "Mixed Media Drawing Course",
+    "slug": "mixed-media-drawing-course",
   "briefDescription": "Master the versatile fusion of dry and wet media to create sophisticated illustrations and fine art, bridging the gap between classical drawing and modern painting.",
   "badge": "Versatile & Illustrative",
   "description": "<h3>The Program Focus</h3><p>This program develops a powerful artistic foundation by mastering the interaction of various materials, creating works that sit on the fine line between classical drawing and professional painting.</p><h2>Questions You Will Answer</h2><h5>Layering and Logic</h5><p>How do you effectively combine graphite and pastel with water-based paints? We explore the structural logic of layering—whether following a classical sequence or a creative, spontaneous order.</p><h5>Media Synergy</h5><p>How can tools like airbrushes, markers, and dry pigments be used alongside traditional brushes to achieve depth and texture?</p><h5>Mastery of Detail</h5><p>How do you execute precise detailing using ink, pens, and fine brushes to bring a piece to its final, professional polish?</p><h5>Historical and Modern Context</h5><p>How did masters like Dürer and Da Vinci use these techniques? How are these methods applied today in digital industries and character design?</p>",
@@ -326,6 +329,7 @@
 
   "803": {
   "title": "Aquarelle Course",
+  "slug": "aquarelle-course",
   "briefDescription": "Master the delicate balance of water and light. From precise photographic-based linear drawing to advanced glazing, develop professional skills in the sophisticated medium of Aquarelle.",
   "badge": "Light & Translucent",
   "description": "<h3>The Program Focus</h3><p>Aquarelle is the art of controlling the elements of water and pigment. This program is designed to reveal the uniqueness of this specific medium: from understanding the physics of paper to creating sophisticated, large-scale works.</p><h2>Questions You Will Answer</h2><h5>Secrets of Mastery</h5><p>What is the true magic and uniqueness of Aquarelle? We will explore how to maintain color purity, avoid overworking the paper, and prevent unwanted surface damage.</p><h5>Technical Excellence</h5><p>How do you achieve a perfectly smooth wash without visible streaks? What is granulation, and how can you turn this effect into an artistic advantage?</p><h5>Speed and Patience</h5><p>How to work meticulously and calmly, given that Aquarelle requires patience? At the same time—how do you learn to make instant decisions while the paint is still wet?</p>",
@@ -337,6 +341,7 @@
 
 "804": {
   "title": "Academic Drawing Course",
+  "slug": "academic-drawing-course",
   "briefDescription": "Master the language of line, light, and shadow. Build a powerful 'eye-brain-hand' connection through freehand techniques and classical anatomical study.",
   "badge": "Foundational & Structural",
   "description": "<h3>The Program Focus</h3><p>Graphics are the bedrock of all visual arts. While painting communicates through color and emotion, graphics speak the language of line, stroke, and contrast. This program focuses on developing the cognitive and physical mastery required to render the world with precision and character.</p><h2>Questions You Will Answer</h2><h5>The Human Form</h5><p>How do you accurately construct the human face and body? What are the secrets to achieving realistic proportions and capturing the essence of a subject?</p><h5>Composition and Scale</h5><p>Why do some drawings fail to fit the paper, and how do you master spatial planning? How do you measure objects with your eye to ensure perfect scale every time?</p><h5>The Logic of Light</h5><p>How is light and shadow created to give a flat surface three-dimensional volume? How do you manage transitions between sharp contrasts and soft gradients?</p><h5>Overcoming the Blank Page</h5><p>What should you do when a drawing feels 'stuck'? You will learn to view mistakes as part of the structural process, removing the fear of the white canvas.</p>",
@@ -348,6 +353,7 @@
 
 "805": {
     "title": "Stone Painting Course",
+    "slug": "stone-painting-course",
     "briefDescription": "Master the ancient and modern art of painting on stone. From prehistoric petroglyphs to contemporary fine art, learn to transform raw geological forms into eternal masterpieces.",
     "badge": "Unique & Tactile",
     "description": "<h3>The Program Focus</h3><p>Painting on stone is both one of the oldest and most contemporary forms of self-expression. Unlike a flat canvas, stone is a three-dimensional, eternal object that challenges the artist to work with its unique shape, weight, and geological history.</p><h2>Questions You Will Answer</h2><h5>The Heritage of Stone</h5><p>How did our ancestors use ochre and charcoal to create sacred petroglyphs in caves like Altamira? What are the secrets of the 16th-century masters, like Sebastiano del Пьомбо, who used the natural veins of marble and slate to mimic clouds and waves?</p><h5>Contemporery Fine Art vs. Craft</h5><p>How to transition from simple decorative pebbles to Contemporery Art? We explore the works of modern masters who transform stones into hyper-realistic animals or surreal conceptual objects.</p><h5>Technical Durability</h5><p>How do you ensure that paint never chips, cracks, or fades? We will master the layering techniques necessary for the stone to be handled freely and remain an 'ultimate' durable art object.</p><h5>The Philosophy of Form</h5><p>How can a crack, depression, or the natural contour of a rock become a vital part of your composition? You will learn to 'see' the hidden image within the raw material.</p>",
@@ -359,6 +365,7 @@
 
   "806": {
   "title": "Contemporary Painting Course",
+  "slug": "contemporary-painting-course",
   "briefDescription": "Master the fusion of Old Master discipline and contemporary vision. Learn to create high-level art that balances technical perfection with raw, conceptual power.",
   "badge": "Ultracontemporery",
   "description": "<h3>The Program Focus</h3><p>Does contemporary art require skill, or is it just ideas? This course proves that the strongest modern artists are masters of tradition. We explore painting as a visceral act of gesture and drama, moving far beyond mechanical copying or simple illustration.</p><h2>Questions You Will Answer</h2><h5>The Reality of Style</h5><p>What defines the line between Hyperrealism and Magical Realism? Why does modern painting value 'unfinished' edges and visible drips alongside extreme precision?</p><h5>Market and Meaning</h5><p>How do you distinguish 'High Art' from Kitsch? Is your work a commercial product or a museum-level masterpiece?</p><h5>The Power of Tradition</h5><p>How do we use history as a toolkit rather than a cage? Why is the mastery of the human form still the ultimate weapon of the contemporary painter?</p>",

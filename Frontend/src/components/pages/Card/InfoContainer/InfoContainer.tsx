@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../../context/CartContext/CartContext';
 import { Product } from '../../../../../../Backend/types/Product';
+import { useSeo } from '../../../../hooks/useSeo'; 
 import './infoContainer.scss';
 
 type Props = {
@@ -58,6 +59,9 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
     const navigate = useNavigate();
     const { addItemToCart, isProductInCart } = useCart();
 
+    // UPDATED: Only updating SEO to use the slug for better search engine results
+    useSeo(product.slug || product.id.toString(), product.image?.lowResUrl);
+
     const rawDetailsText = t(`products.${product.id}.detailsSection.text`);
     const durationText = t('courses.standardDurationText');
     const isBookable = product.medium === t('cardPage.mediumForPrivateLessonsCheck');
@@ -77,6 +81,7 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
             >
                 {itemInCart ? t('checkout.alreadyInBasket') : t('checkout.addToCartButton')}
             </button>
+            {/* Kept exactly as requested for the API checkout logic */}
             <button className="btn-book-now" onClick={() => navigate(`/order/${product.id}`)}>
                 {t('checkout.bookNowButton')}
             </button>
@@ -110,7 +115,6 @@ const InfoContainer: React.FC<Props> = ({ product, isTextOnly, onOpenGallery }) 
                 {product.date && <p className="infodate">{product.date}</p>}
                 
                 <div className="info-main-wrapper">
-                    {/* Added the 'no-bg-mobile' class here */}
                     <div className="content-frame no-bg-mobile">
                         <div 
                             className="description" 

@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { courses } from '../../../../../Backend/data/products'; 
 import { FaLayerGroup, FaMapMarkerAlt, FaCalendarCheck, FaUserFriends, FaArrowRight } from 'react-icons/fa'; 
+import { useSeo } from '../../../hooks/useSeo'; 
 import './courses.scss';
 
 const Courses: React.FC = () => { 
     const { t } = useTranslation();
     const [activeCategory, setActiveCategory] = useState<'all' | 'Drawing' | 'Painting' | 'Mixed'>('all');
+
+    // Default SEO for the list page
+    useSeo();
 
     useEffect(() => {
         document.body.style.backgroundColor = '#171717';
@@ -64,7 +68,8 @@ const Courses: React.FC = () => {
                                     {t(`products.${product.id}.briefDescription`)}
                                 </p>
 
-                                <Link to={`/card/${product.id}`}>
+                                {/* Updated to use slug for the URL */}
+                                <Link to={`/course/${product.slug}`}>
                                     <button className="pill-button-wow">
                                         {t('coursesPage.viewButton')} 
                                         <FaArrowRight className="btn-icon" />
@@ -73,10 +78,11 @@ const Courses: React.FC = () => {
                             </div>
 
                             <div className="hero-media">
-                                <Link to={`/card/${product.id}`} className="exhibition-frame">
+                                {/* Updated to use slug for the URL */}
+                                <Link to={`/course/${product.slug}`} className="exhibition-frame">
                                     <img 
                                         src={product.image?.lowResUrl} 
-                                        alt="" 
+                                        alt={t(`products.${product.id}.title`)} 
                                         className="premium-img" 
                                     />
                                     {product.badge && (

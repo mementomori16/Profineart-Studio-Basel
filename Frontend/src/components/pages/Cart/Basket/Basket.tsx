@@ -17,9 +17,19 @@ const BasketItemCard: React.FC<{
   const getProductName = (id: number) => t(`products.${id}.title`);
   const getProductBriefDescription = (id: number) => t(`products.${id}.briefDescription`); 
   
+  // ✅ Senior Adjustment: Use slug for detail navigation, ID for checkout
+  const handleNavigateToProduct = () => {
+    if (item.slug) {
+      navigate(`/course/${item.slug}`);
+    } else {
+      // Fallback to ID if slug is missing for some reason
+      navigate(`/course/${item.id}`);
+    }
+  };
+
   return (
     <div className="basket-item-card">
-      <div className="item-image-container" onClick={() => navigate(`/card/${item.id}`)}>
+      <div className="item-image-container" onClick={handleNavigateToProduct}>
         <img
           src={item.image?.lowResUrl || ''}
           alt={getProductName(item.id)}
@@ -27,7 +37,7 @@ const BasketItemCard: React.FC<{
         />
       </div>
 
-      <div className="item-details" onClick={() => navigate(`/card/${item.id}`)}>
+      <div className="item-details" onClick={handleNavigateToProduct}>
         <h3>{getProductName(item.id)}</h3>
         <p>{getProductBriefDescription(item.id)}</p> 
       </div>
@@ -58,8 +68,13 @@ const Basket: React.FC = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = '#171717'; 
-    return () => { document.body.style.backgroundColor = ''; };
-  }, []);
+    // Senior SEO: Set page title for the basket
+    document.title = `${t('cart.mainTitle')} | Profineart Studio`;
+    
+    return () => { 
+      document.body.style.backgroundColor = ''; 
+    };
+  }, [t]);
 
   return (
     <div className="shopping-basket-page container">

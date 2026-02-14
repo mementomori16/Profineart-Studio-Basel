@@ -6,6 +6,7 @@ import { LessonPackage, Product, Testimonial } from '../types/Product.js';
 export const courses: Product[] = [
   {
     id: 800,
+    slug: 'byzantine-iconography-course',
     category: 'Painting',
     badge: 'has_badge',
     image: {
@@ -43,6 +44,7 @@ export const courses: Product[] = [
 
   {
     id: 801,
+    slug: 'oil-painting-course',
     category: 'Painting',
     badge: 'has_badge',
     image: {
@@ -86,6 +88,7 @@ export const courses: Product[] = [
 
   {
     id: 802,
+    slug: 'mixed-media-drawing-course',
     category: 'Mixed',
     badge: 'has_badge',
     image: {
@@ -125,6 +128,7 @@ export const courses: Product[] = [
   },
   {
     id: 803,
+    slug: 'aquarelle-course',
     category: 'Painting',
     badge: 'has_badge',
     image: {
@@ -161,6 +165,7 @@ export const courses: Product[] = [
 
   {
     id: 804,
+    slug: 'academic-drawing-course',
     category: 'Drawing',
     badge: 'has_badge',
     image: {
@@ -198,6 +203,7 @@ export const courses: Product[] = [
 
    {
     id: 805,
+    slug: 'stone-painting-course',
     category: 'Painting',
     badge: 'has_badge',
     image: {
@@ -238,6 +244,7 @@ export const courses: Product[] = [
 
    {
     id: 806,
+    slug: 'contemporary-painting-course',
     category: 'Painting',
     badge: 'has_badge',
     image: {

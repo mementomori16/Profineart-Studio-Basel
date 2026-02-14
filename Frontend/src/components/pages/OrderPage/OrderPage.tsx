@@ -74,8 +74,13 @@ const OrderPage: React.FC = () => {
 
     const handleBackStep = () => setStep(1); 
 
+    // ✅ FIXED: Navigate to the new /course/slug route
     const handleNavigateBackToProduct = () => {
-        navigate(`/card/${id}`);
+        if (product?.slug) {
+            navigate(`/course/${product.slug}`);
+        } else {
+            navigate('/courses');
+        }
     };
     
     if (error && !product) return <div className="order-page-error">{error}</div>;
@@ -104,7 +109,7 @@ const OrderPage: React.FC = () => {
                         slotSelection={slotSelection}
                         initialDetails={customerDetails}
                         onBackStep={handleBackStep}
-                        onTitleClick={handleNavigateBackToProduct} // ✅ Passed correctly
+                        onTitleClick={handleNavigateBackToProduct} 
                     />
                 )}
             </div> 

@@ -1,57 +1,37 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// Removed Helmet import to fix build crash
 import CardContainer from '../CardContainer/CardContainer'; 
 import InfoContainer from '../InfoContainer/InfoContainer';
 import SimilarProducts from '../../../SimilarProducts/SimilarProducts';
 import { products } from '../../../../../../Backend/data/products';
 import ViewGallery from '../../View Gallery/ViewGallery'; 
 import { Product } from '../../../../../../Backend/types/Product'; 
+import { useSeo } from '../../../../hooks/useSeo';
 
 import './cardPage.scss';
 
 const CardPage: React.FC = () => {
     const { t } = useTranslation();
-    const { id } = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>(); // The slug from the URL
     
     const allProducts: Product[] = [...products.courses]; 
-    const product = allProducts.find((p) => p.id === Number(id));
+    const product = allProducts.find((p) => p.slug === id);
 
-    // --- SEO & BACKGROUND EFFECT ---
+    // 1. CALL THE SEO ENGINE
+    // This handles your title, description, keywords, canonicals, and Schema.org
+    useSeo(id, product?.image.highResUrl);
+
+    // 2. ORIGINAL BACKGROUND EFFECT
     useEffect(() => {
         document.body.style.backgroundColor = '#171717';
-        
-        if (product) {
-            const title = `${t(`products.${product.id}.title`)} | Profineart Studio Basel`;
-            const description = t(`products.${product.id}.briefDescription`);
-            const url = `https://profineart.ch/card/${product.id}`;
-            const imageUrl = product.image.highResUrl;
-
-            // Update Standard Meta Tags
-            document.title = title;
-            document.querySelector('meta[name="description"]')?.setAttribute('content', description);
-            
-            // Update Open Graph (Social Media)
-            document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
-            document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
-            document.querySelector('meta[property="og:image"]')?.setAttribute('content', imageUrl);
-            document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
-            
-            // Update Canonical Link
-            let canonical = document.querySelector('link[rel="canonical"]');
-            if (canonical) {
-                canonical.setAttribute('href', url);
-            }
-        }
-
         return () => { 
             document.body.style.backgroundColor = ''; 
-            // Reset title when leaving page if desired
-            document.title = "Profineart Studio Basel";
+            document.title = "Profineart Studio Basel"; // Reset when leaving
         };
-    }, [product, t]);
+    }, []);
 
+    // 3. ORIGINAL GALLERY LOGIC
     const [galleryData, setGalleryData] = useState<{images: any[], startIndex: number} | null>(null);
 
     const { mainGalleryImages, detailsGalleryImages } = useMemo(() => {
@@ -69,7 +49,8 @@ const CardPage: React.FC = () => {
         };
     }, [product]);
 
-    if (!product) return <p>{t('cardPage.productNotFound')}</p>;
+    // 4. ERROR HANDLING
+    if (!product) return <p style={{color: 'white', padding: '100px', textAlign: 'center'}}>{t('cardPage.productNotFound')}</p>;
 
     const openDetailsGallery = (index: number) => {
         setGalleryData({ images: detailsGalleryImages, startIndex: index });
@@ -77,8 +58,6 @@ const CardPage: React.FC = () => {
 
     return (
         <div className="cardPageContainer">
-            {/* Helmet component removed to prevent React 19 / Vite build crash */}
-            
             <div className="cardContentWrapper">
                 <div className="cardHeader">
                     <h1 className="pageTitle">{t(`products.${product.id}.title`)}</h1>

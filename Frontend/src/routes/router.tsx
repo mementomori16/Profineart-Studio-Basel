@@ -18,13 +18,11 @@ import StudentsWorks from "../components/pages/StudentsWorks/StudentsWorks";
 import VideoPage from "../components/pages/VideoPage/VideoPage";
 import { FlyerGenerator } from "../components/FlyerTemplate/FlyerGenerator";
 
-
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
         children: [
-
             // --- BASIC ROUTES ---
             { path: "/", element: <Home /> },
             { path: "home", element: <Navigate to="/" replace /> },
@@ -37,23 +35,27 @@ const router = createBrowserRouter([
             { path: "terms-of-use", element: <TermsOfUse /> },
             { path: "video-page", element: <VideoPage /> },
             { path: "success-page", element: <SuccessPage /> },
-            { path: "generate-flyer", element: <FlyerGenerator /> }, // Add this line
-            
+            { path: "generate-flyer", element: <FlyerGenerator /> }, 
 
-         
-
-            // ---------------------------------------------------------
-            // 🛒 *** FIXED ROUTE ORDER ***
-            // Basket must be BEFORE card/:id to prevent route swallowing
-            // ---------------------------------------------------------
+            // --- BASKET ---
             { path: "basket", element: <Basket /> },
 
-            // PRODUCT PAGE (Dynamic Route)
-            { path: "card/:id", element: <CardPage /> },
+            // --- SEO FRIENDLY PRODUCT ROUTES ---
+            // 'course/:id' now handles the slug (e.g., course/oil-painting-course)
+            { path: "course/:id", element: <CardPage /> },
+
+            // --- LEGACY REDIRECT (Optional but Recommended) ---
+            // If someone visits the old /card/801, send them to the main courses list
+            // instead of a 404. This protects your SEO ranking.
+            { path: "card/:id", element: <Navigate to="/courses" replace /> },
 
             // --- ORDER PROCESS ---
+            // Keeping numeric :id here is fine as it's a functional step, not for SEO
             { path: "order/:id", element: <OrderPage /> },
             { path: "order/success", element: <SuccessPage /> },
+
+            // --- 404 FALLBACK ---
+            { path: "*", element: <Navigate to="/" replace /> },
         ],
     },
 ]);
