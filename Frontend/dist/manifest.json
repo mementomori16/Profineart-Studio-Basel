@@ -1,17 +1,17 @@
 {
   "short_name": "ProFineArt",
   "name": "Profineart Studio Basel",
-  "description": "Professional fine art mentorship and painting courses in Basel & Professionelles Kunst-Mentoring und Malkurse in Basel.",
+  "description": "Professional fine art painting mentorship in Basel & Professionelles Kunst-Mentoring und Malkurse in Basel.",
   "icons": [
     {
-      "src": "/logo.svg",
-      "type": "image/svg+xml",
+      "src": "/logo.png",
+      "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
     },
     {
-      "src": "/logo.svg",
-      "type": "image/svg+xml",
+      "src": "/logo-maskable.png",
+      "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
     }

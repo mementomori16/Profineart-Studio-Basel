@@ -1,34 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang="de-CH" style="background-color: #171717;">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="apple-touch-icon" href="/logo.svg" />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#171717">
-    
-    <meta name="mobile-web-app-capable" content="yes"> 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#171717">
 
-    <link rel="manifest" href="/manifest.json" />
+  <!-- Favicon & Manifest -->
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="apple-touch-icon" href="/logo-maskable.png" />
+  <link rel="manifest" href="/manifest.json" />
 
-    <title>Profineart Studio Basel | Fine Art Courses & Private Mentorship</title>
-    
-    <meta name="description" content="In-person private mentorship & painting courses in the student's studio or home. Professionelle Malkurse & Privatunterricht in Basel. Instruction in English & Russian.">
-    <meta name="keywords" content="Malkurs Basel, Art lessons Basel, Privatunterricht Kunst, Painting teacher Basel, Ölmalerei Basel, Byzantine Iconography, Ikonographie Basel, уроки рисования на русском, художественное образование в базеле, рисовать в Базеле, преподаватель живописи в Базеле, живопись в Швейцарии, иконопись в Швейцарии, уроки иконописи в швейцарии">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://profineart.ch/" />
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://profineart.ch/">
-    <meta property="og:title" content="Profineart Studio Basel | Private Art Mentorship">
-    <meta property="og:description" content="Professional fine art education delivered to your home or studio. Mobile mentoring in Basel, Zurich, and beyond. Instruction in English & Russian.">
-    <meta property="og:image" content="https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg">
+  <!-- SEO Metadata -->
+  <title>Profineart Studio Basel | Fine Art Painting Courses & Private Mentorship</title>
+  <meta name="description" content="In-person private painting mentorship & painting courses in Basel, Zurich, and Bern. Professionelle Malkurse & Privatunterricht. Instruction in English & German.">
+  <meta name="keywords" content="Malkurs Basel, Art lessons Basel, Privatunterricht Kunst, Painting teacher Basel, Ölmalerei Basel, Byzantine Iconography, Ikonographie Basel, Fine art education Basel, Painting teacher Switzerland">
 
-    <meta name="geo.region" content="CH-BS" />
-    <meta name="geo.placename" content="Basel, Riehen, Allschwil, Muttenz, Reinach, Zurich, Bern" />
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Profineart Studio Basel | Private Fine Art Painting Mentorship">
+  <meta property="og:description" content="Professional fine art painting education delivered to your home or studio. Mobile mentoring in Basel, Zurich, and beyond. Instruction in English & German.">
+  <meta property="og:url" content="https://profineart.ch/">
+  <meta property="og:image" content="https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg">
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:locale:alternate" content="en_US" />
 
-    <script type="application/ld+json">
+  <!-- Geo / Local SEO -->
+  <meta name="geo.region" content="CH-BS" />
+  <meta name="geo.placename" content="Basel, Riehen, Allschwil, Muttenz, Reinach, Zurich, Bern" />
+
+  <!-- Preload important image -->
+  <link rel="preload" as="image" href="https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg" crossorigin="anonymous">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Profineart Studio Basel",
+      "url": "https://profineart.ch/",
+      "alternateName": ["ProFineArt", "Profineart Basel"]
+    },
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -36,14 +52,16 @@
       "image": "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg",
       "@id": "https://profineart.ch",
       "url": "https://profineart.ch",
-      "description": "Mobile professional fine art mentorship and painting courses. Education directly to your studio in Basel, Zurich, and Bern. Уроки рисования, живописи и иконописи в Базеле и Швейцарии на русском языке.",
+      "description": "Mobile professional fine art painting mentorship. Education delivered directly to your studio in Basel, Zurich, and Bern. Professional art painting lessons and iconography courses.",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Mobile Service",
+        "postalCode": "4000",
         "addressLocality": "Basel",
         "addressRegion": "BS",
         "addressCountry": "CH"
       },
-      "knowsLanguage": ["en", "ru", "de"],
+      "knowsLanguage": ["en", "de"],
       "areaServed": [
         { "@type": "City", "name": "Basel" },
         { "@type": "City", "name": "Zurich" },
@@ -57,32 +75,37 @@
         "@type": "OfferCatalog",
         "name": "Art Courses",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oil Painting (Ölmalerei / Живопись маслом)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Byzantine Iconography (Ikonographie / Иконопись)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Academic Drawing (Akademisches Zeichnen / Рисунок)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aquarelle Painting (Aquarell / Акварель)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Stone Painting (Steinmalerei / Роспись на камне)" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Contemporary Painting (Zeitgenössische Malerei / Современная живопись)" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oil Painting (Ölmalerei)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Byzantine Iconography (Ikonographie)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Academic Drawing (Akademisches Zeichnen)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aquarelle Painting (Aquarell)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Stone Painting (Steinmalerei)" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Contemporary Painting (Zeitgenössische Malerei)" } }
         ]
       }
     }
-    </script>
+  ]
+  </script>
 
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg" media="(min-width: 1025px)" crossorigin="anonymous">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/tjTJ8wv/photoshoped-new-2025-Royal-Gore-Oil-on-canvas-111-x-200-cm-2008-50kb.jpg" media="(max-width: 1024px)" crossorigin="anonymous">
-
-    <style>
-        body { margin: 0; padding: 0; background-color: #171717; }
-        @media only screen and (min-device-width: 800px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
-            body { min-height: 100vh; display: flex; flex-direction: column; }
-            #root { flex: 1; display: flex; flex-direction: column; }
-            footer { margin-top: auto; }
-        }
-    </style>
-  <script type="module" crossorigin src="/assets/index-aMCii5-H.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-C5RQb5pq.css">
+  <!-- Styles -->
+  <style>
+    body { margin: 0; padding: 0; background-color: #171717; }
+    @media only screen and (min-device-width: 800px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      body { min-height: 100vh; display: flex; flex-direction: column; }
+      #root { flex: 1; display: flex; flex-direction: column; }
+      footer { margin-top: auto; }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-C3OhnoIt.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Dw4Mp4WI.css">
 </head>
 <body>
-    <div id="root"></div>
+  <!-- Static H1 fallback for SEO and bots -->
+  <noscript>
+    <h1>Fine Art Courses & Private Mentorship in Basel</h1>
+    <p>Professional painting courses and iconography mentorship in Basel, Zurich, and Bern. Instruction in English & German.</p>
+  </noscript>
+
+  <div id="root"></div>
 </body>
 </html>
