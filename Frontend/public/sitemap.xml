@@ -1,81 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://profineart.ch/</loc>
-    <lastmod>2026-02-15</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg</image:loc>
+      <image:caption>Profineart Studio Basel - Fine Art Painting Mentorship</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DTFv3k1/PXL-202511-500kb.jpg</image:loc>
+      <image:caption>Oil Landscape Process - Progress of Oil Painting</image:caption>
+    </image:image>
   </url>
 
-  <url>
-    <loc>https://profineart.ch/courses</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://profineart.ch/about</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://profineart.ch/courses</loc><lastmod>2026-02-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://profineart.ch/about</loc><lastmod>2026-02-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://profineart.ch/how-it-works</loc><lastmod>2026-02-16</lastmod><priority>0.6</priority></url>
 
   <url>
     <loc>https://profineart.ch/course/oil-painting-course</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/qMLc4c6j/Vanitas-ph12-2025.jpg</image:loc>
+      <image:caption>Skulls, Fruits and Flowers. Oil on canvas. Artist: Ilya Medvedev</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://profineart.ch/course/byzantine-iconography-course</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg</image:loc>
+      <image:caption>Presentation of Christ at the Temple. Egg Tempera on Primed Wood Panel</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://profineart.ch/course/mixed-media-drawing-course</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/PvKs8FBC/photoshoped2025final500kb.jpg</image:loc>
+      <image:caption>E.T. Mixed technique on Cardboard. Artist: Ilya Medvedev</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://profineart.ch/course/aquarelle-course</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/qYMcNV5T/No-borders500kb.jpg</image:loc>
+      <image:caption>Nude on Sofa and Skull. Aquarelle on Cotton Paper. Artist: Ilya Medvedev</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://profineart.ch/course/academic-drawing-course</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/gZM6WBzn/IMG-32273closeup-500kb.jpg</image:loc>
+      <image:caption>Study of Feet on a Striped Throw. Oil Pastels on Paper</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://profineart.ch/course/stone-painting-course</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-16</lastmod>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/m5WVpFrF/Copy-of-marble-sculpture-of-Lely-Venus-2-c-BCE-on-a-piece-of-anchient-Roman-marble-found-in-Caesar.jpg</image:loc>
+      <image:caption>Lely Venus. Acrylic on Ancient Roman Marble. Artist: Ilya Medvedev</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://profineart.ch/course/contemporary-painting-course</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/0Vz0cz5M/Mcdonalds-2010-Oil-on-canvas-145-x-191-cm-Ilya-Medvedev-ph01-26-500kb.jpg</image:loc>
+      <image:caption>Lunch at McDonalds. Oil on Canvas. Artist: Ilya Medvedev</image:caption>
+    </image:image>
   </url>
 
   <url>
     <loc>https://profineart.ch/students-works</loc>
-    <lastmod>2026-02-15</lastmod>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://profineart.ch/how-it-works</loc>
-    <lastmod>2026-02-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032517/Dikla_nude_study_2019-500kb_ko9xpu.jpg</image:loc>
+      <image:caption>Anatomical Study - Student: Dr. Dikla A.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/upload/v1769032519/DSC_8287-500kb_tsqllx.jpg</image:loc>
+      <image:caption>Commando Diver - Student: Shay R.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/upload/v1769852552/Dikla_Head_500kb_kmunwn.jpg</image:loc>
+      <image:caption>Roman Sculpture Head - Student: Dr. Dikla A.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://res.cloudinary.com/dpayqcrg5/image/upload/v1770020493/dubidancer500kb_dlitxz.jpg</image:loc>
+      <image:caption>Anatomical Study - Student: Dr. Devorah S.</image:caption>
+    </image:image>
   </url>
 
 </urlset>

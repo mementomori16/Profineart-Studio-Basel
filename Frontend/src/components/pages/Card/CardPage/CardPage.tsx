@@ -13,25 +13,24 @@ import './cardPage.scss';
 
 const CardPage: React.FC = () => {
     const { t } = useTranslation();
-    const { id } = useParams<{ id: string }>(); // The slug from the URL
+    const { id } = useParams<{ id: string }>(); // This is the slug (e.g., 'oil-painting-course')
     
     const allProducts: Product[] = [...products.courses]; 
     const product = allProducts.find((p) => p.slug === id);
 
-    // 1. CALL THE SEO ENGINE
-    // This handles your title, description, keywords, canonicals, and Schema.org
+    // 1. SEO ENGINE CALL
+    // Passing the slug and the 500kb high-res image to the hook
     useSeo(id, product?.image.highResUrl);
 
-    // 2. ORIGINAL BACKGROUND EFFECT
+    // 2. BACKGROUND EFFECT
     useEffect(() => {
         document.body.style.backgroundColor = '#171717';
         return () => { 
             document.body.style.backgroundColor = ''; 
-            document.title = "Profineart Studio Basel"; // Reset when leaving
         };
     }, []);
 
-    // 3. ORIGINAL GALLERY LOGIC
+    // 3. GALLERY LOGIC
     const [galleryData, setGalleryData] = useState<{images: any[], startIndex: number} | null>(null);
 
     const { mainGalleryImages, detailsGalleryImages } = useMemo(() => {
@@ -39,7 +38,7 @@ const CardPage: React.FC = () => {
         const mapImg = (img: any) => ({
             url: img.highResUrl, 
             lowResUrl: img.lowResUrl, 
-            title: product.title, 
+            title: t(`products.${product.id}.title`), 
             date: product.date || '',
             caption: img.caption
         });
@@ -47,9 +46,8 @@ const CardPage: React.FC = () => {
             mainGalleryImages: [mapImg(product.image), ...product.thumbnails.map(mapImg)],
             detailsGalleryImages: product.detailsImages?.map(mapImg) || []
         };
-    }, [product]);
+    }, [product, t]);
 
-    // 4. ERROR HANDLING
     if (!product) return <p style={{color: 'white', padding: '100px', textAlign: 'center'}}>{t('cardPage.productNotFound')}</p>;
 
     const openDetailsGallery = (index: number) => {

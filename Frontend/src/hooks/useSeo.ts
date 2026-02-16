@@ -8,9 +8,15 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
   useEffect(() => {
     // 1. BASE DEFAULTS
     let title = `${t('coursesPage.title')} | Profineart Studio Basel`;
-    let description = "Private in-person painting courses and art mentorship in Basel, Zurich, and Bern. Individual lessons in your studio or home.";
+    
+    // Default description
+    let rawDescription = "Private in-person painting courses and art mentorship in Basel, Zurich, and Bern. Individual lessons in your studio or home.";
+    
     let keywords = "Malkurs Basel, Art lessons Switzerland, painting teacher Zurich, drawing lessons Bern, иконопись в швейцарии, private art mentor, oil painting Basel, Ikonenmalerei Schweiz, art classes Lörrach, Saint-Louis art";
+    
+    // Default Image (Using 500kb high-res for social sharing/snippets)
     let img = imageUrl || "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg";
+    
     const baseUrl = "https://profineart.ch";
     const currentUrl = slug ? `${baseUrl}/course/${slug}` : `${baseUrl}/courses`;
 
@@ -23,12 +29,11 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
       if (product) {
         isProductPage = true;
         const productTitle = t(`products.${product.id}.title`);
-        const productBrief = t(`products.${product.id}.briefDescription`);
+        rawDescription = t(`products.${product.id}.briefDescription`);
 
-        description = productBrief;
+        // Force High-Res for SEO Snippets
         img = imageUrl || product.image?.highResUrl || img;
 
-        // Custom Title/Keyword logic for the most important search terms
         switch (slug) {
           case 'byzantine-iconography-course':
           case 'contemporary-iconography-course':
@@ -50,21 +55,40 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
       }
     }
 
-    // 3. APPLY META TAGS (Visible to all Search Engines)
+    // 3. CLEAN UP DESCRIPTION (Remove HTML tags and limit length)
+    // This prevents <div> or <p> tags from appearing in Google search results
+    const cleanDescription = rawDescription
+      .replace(/<[^>]*>/g, '') 
+      .replace(/\s+/g, ' ')
+      .trim()
+      .substring(0, 160);
+
+    // 4. APPLY META TAGS
     document.title = title;
-    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+    document.querySelector('meta[name="description"]')?.setAttribute('content', cleanDescription);
     document.querySelector('meta[name="keywords"]')?.setAttribute('content', keywords);
 
-    // 4. OPEN GRAPH & CANONICAL
+    // 5. OPEN GRAPH & THUMBNAIL OPTIMIZATION
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', cleanDescription);
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', img);
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', currentUrl);
     
+    // Helps Google/Twitter handle image cropping better
+    document.querySelector('meta[name="twitter:card"]')?.setAttribute('content', 'summary_large_image');
+    document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', img);
+    
     let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', currentUrl);
+    if (canonical) {
+      canonical.setAttribute('href', currentUrl);
+    } else {
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = currentUrl;
+      document.head.appendChild(link);
+    }
 
-    // 5. THE SENIOR SEO WIN: SCHEMA INJECTION
+    // 6. SCHEMA INJECTION
     const scriptId = 'dynamic-seo-schema';
     document.getElementById(scriptId)?.remove();
 
@@ -81,7 +105,7 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
         "@context": "https://schema.org",
         "@type": slug ? "Course" : "ItemList",
         "name": title,
-        "description": description,
+        "description": cleanDescription,
         "image": img,
         "provider": {
           "@type": "LocalBusiness",
