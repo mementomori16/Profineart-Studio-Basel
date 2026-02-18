@@ -2,28 +2,48 @@ import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 import { useTranslation } from 'react-i18next';
-import { FaShoppingBasket } from 'react-icons/fa';
+import { FaShoppingBasket, FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import { useCart } from '../../../context/CartContext/CartContext';
 import './navMobile.scss';
 import logo from '../../../assets/images/icons/Group 177.svg';
 import LanguageSwitcher from '../../Languege-switcher/Languege-switcher';
-// 1. Import the switcher
-
 
 const NavMobile = () => {
   const [isOpen, setOpen] = useState(false);
+  const [showSubMenu, setShowSubMenu] = useState(false);
   const { t } = useTranslation('translation');
   const { cart } = useCart();
 
   const routes = [
     { label: t('home.home'), path: '/' },
-    { label: t('home.courses'), path: '/courses' },
+    { 
+      label: t('home.courses'), 
+      path: '/courses',
+      subRoutes: [
+        { label: 'Oil Painting', path: '/course/oil-painting-course' },
+        { label: 'Byzantine Iconography', path: '/course/byzantine-iconography-course' },
+        { label: 'Aquarelle', path: '/course/aquarelle-course' },
+        { label: 'Academic Drawing', path: '/course/academic-drawing-course' },
+        { label: 'Mixed Media', path: '/course/mixed-media-drawing-course' },
+        { label: 'Stone Painting', path: '/course/stone-painting-course' },
+        { label: 'Contemporary Painting', path: '/course/contemporary-painting-course' },
+      ]
+    },
     { label: t('home.howItWorks'), path: '/how-it-works' },
     { label: t('home.studentsWorks'), path: '/students-works' },
     { label: t('home.about'), path: '/about' },
   ];
 
-  const closeMenu = () => setOpen(false);
+  const closeMenu = () => {
+    setOpen(false);
+    setShowSubMenu(false);
+  };
+
+  const toggleSubMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSubMenu(!showSubMenu);
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -55,18 +75,42 @@ const NavMobile = () => {
       <ul className={`mobile-menu ${isOpen ? 'active' : ''}`}>
         {routes.map((route) => (
           <li key={route.path} className="mobile-item">
-            <NavLink
-              to={route.path}
-              className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
-              end={route.path === '/'}
-              onClick={closeMenu}
-            >
-              {route.label}
-            </NavLink>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+              <NavLink
+                to={route.path}
+                className={({ isActive }) => `mobile-link ${isActive ? 'active' : ''}`}
+                end={route.path === '/'}
+                onClick={closeMenu}
+              >
+                {route.label}
+              </NavLink>
+              
+              {route.subRoutes && (
+                <div onClick={toggleSubMenu} style={{ padding: '0.5rem', cursor: 'pointer' }}>
+                  <FaChevronDown style={{ 
+                    color: 'white', 
+                    transform: showSubMenu ? 'rotate(180deg)' : 'rotate(0)', 
+                    transition: 'transform 0.3s' 
+                  }} />
+                </div>
+              )}
+            </div>
+
+            {route.subRoutes && (
+              <ul className={`mobile-submenu ${showSubMenu ? 'open' : ''}`}>
+                {route.subRoutes.map((sub) => (
+                  <li key={sub.path}>
+                    <Link to={sub.path} className="mobile-sublink" onClick={closeMenu}>
+                      <span>{sub.label}</span>
+                      <FaChevronRight size={10} style={{ opacity: 0.3, marginRight: '1rem' }} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
         
-        {/* 2. Add the Language Switcher at the bottom of the list */}
         <li className="mobile-item language-item">
           <LanguageSwitcher onCloseMenu={closeMenu} />
         </li>

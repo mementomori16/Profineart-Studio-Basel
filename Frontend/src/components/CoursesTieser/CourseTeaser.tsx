@@ -13,7 +13,9 @@ import './courseTeaser.scss';
 const CourseTeaser: React.FC = () => {
     const { t } = useTranslation();
 
-    const priorityIds = ["803", "801", "800"]; 
+    // Expanded to 6 courses for a better grid and more internal links
+    const priorityIds = ["800", "801", "803", "804", "805", "806"]; 
+    
     const teaserCourses = courses
         .filter(c => priorityIds.includes(c.id.toString()))
         .sort((a, b) => priorityIds.indexOf(a.id.toString()) - priorityIds.indexOf(b.id.toString()));
@@ -29,7 +31,8 @@ const CourseTeaser: React.FC = () => {
                 <div className="teaser-grid">
                     {teaserCourses.map((course) => (
                         <Link 
-                            to={`/card/${course.id}`} 
+                            // CHANGED: Direct link to the specific course slug
+                            to={`/course/${course.slug}`} 
                             key={course.id} 
                             className="teaser-card"
                         >
