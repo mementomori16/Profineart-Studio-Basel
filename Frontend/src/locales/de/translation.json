@@ -5,12 +5,14 @@
     "courses": "Kursbuchung",
     "about": "Über",
     "studentsWorks": "Schülerarbeiten",
-    "contact": "Kontakt",
-    "cv": "Lebenslauf",
-    "welcomeHero": {
-      "serviceTitle": "Professionelle Kurse für Bildende Kunst & Zeitgenössische Malerei in Ihrem privaten Umfeld in Basel und Umgebung",
-      "companyName": "Profineart Studio Basel",
-      "ctaButton": "Kurs buchen"
+    "courseList": {
+      "oil": "Ölmalerei",
+      "byzantine": "Byzantinische Ikonographie",
+      "aquarelle": "Aquarell",
+      "academic": "Akademisches Zeichnen",
+      "mixed": "Mischtechnik",
+      "stone": "Steinmalerei",
+      "contemporary": "Zeitgenössische Malerei"
     }
   },
   "homePage": {

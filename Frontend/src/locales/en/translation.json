@@ -5,12 +5,14 @@
     "courses": "Course Booking",
     "about": "About",
     "studentsWorks": "Students Gallery",
-    "contact": "Contact",
-    "cv": "CV",
-    "welcomeHero": {
-      "serviceTitle": "Professional Fine Art & Contemporary painting courses in your private environment in Basel and Basel Area",
-      "companyName": "Profineart Studio Basel",
-      "ctaButton": "Course Booking"
+    "courseList": {
+      "oil": "Oil Painting",
+      "byzantine": "Byzantine Iconography",
+      "aquarelle": "Aquarelle",
+      "academic": "Academic Drawing",
+      "mixed": "Mixed Media",
+      "stone": "Stone Painting",
+      "contemporary": "Contemporary Painting"
     }
   },
 
