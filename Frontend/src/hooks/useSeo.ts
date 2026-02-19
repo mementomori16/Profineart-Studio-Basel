@@ -8,150 +8,109 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
   useEffect(() => {
     const isDe = i18n.language.startsWith('de');
     const baseUrl = "https://profineart.ch";
-
-    // --- NEW: THE "SUPER-TAG" DATA BLOCKS ---
-    // These blocks ensure you cover every town and niche you mentioned.
-    const townsCH = "Basel, Zurich, Bern, Allschwil, Reinach, Muttenz, Pratteln, Binningen, Liestal, Münchenstein, Oberwil, Aesch, Arlesheim, Bubendorf, Gelterkinden, Sissach, Bottmingen";
-    const townsInt = "Lörrach, Weil am Rhein, Saint-Louis, Huningue";
-    const nicheMentors = "private painting mentor, fine art tutor, contemporary figurative painting, tattoo artist painting coach, portfolio preparation, academic drawing mentor";
-    const courseTypes = "oil painting, iconography, stone painting, mixed media, acrylic lessons, in-person sessions";
-
-    // 1. BASE DEFAULTS (Localized and Saturating the Meta Tags)
-    let title = isDe 
-      ? `Privatunterricht & Malkurse | Profineart Studio Basel & Schweiz` 
-      : `Private Art Mentorship & Painting Courses | Basel, Zurich, Bern`;
-    
-    let rawDescription = isDe
-      ? `Professioneller privater Kunstunterricht und Mentoring in ${townsCH} sowie ${townsInt}. Individuelle Lektionen für Ölmalerei und Zeichnen direkt bei Ihnen.`
-      : `Private in-person painting courses and art mentorship in ${townsCH} and nearby French/German towns. Professional drawing and painting tutor at your location.`;
-    
-    let keywords = isDe
-      ? `Malkurs Basel, Zeichenkurs Basel, Privatunterricht Kunst, Ölmalerei Schweiz, Ikonenmalerei, ${townsCH}, ${townsInt}, ${nicheMentors}, ${courseTypes}`
-      : `Private painting teacher Basel, art mentor Zurich, painting tutor Bern, ${nicheMentors}, ${courseTypes}, ${townsCH}, ${townsInt}, in-person art classes`;
-    
-    let img = imageUrl || "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg";
+    // Sitemap uses /course/slug
     const currentUrl = slug ? `${baseUrl}/course/${slug}` : `${baseUrl}/courses`;
+    let img = imageUrl || "https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/JWdc4DCb/No-borders50kb.jpg";
 
-    // 2. COURSE-SPECIFIC DEEP OPTIMIZATION (Using Slugs)
-    if (slug) {
-      const product = courses.find(p => p.slug === slug);
-      if (product) {
-        const productTitle = t(`products.${product.id}.title`);
-        rawDescription = t(`products.${product.id}.briefDescription`);
-        img = imageUrl || product.image?.highResUrl || img;
+    let title = "";
+    let rawDescription = "";
+    let keywords = "";
 
-        switch (slug) {
-          case 'byzantine-iconography-course':
-          case 'contemporary-iconography-course':
-            title = isDe ? `${productTitle} Schweiz | Ikonenmalerei Basel` : `${productTitle} Switzerland | Byzantine Art Mentor`;
-            keywords += ", иконопись в швейцарии, egg tempera lessons, religious art workshop, Ikonen malen Basel";
-            break;
-          case 'oil-painting-course':
-            title = isDe ? `${productTitle} Basel & Zurich | Ölmalerei Privatlehrer` : `${productTitle} Basel | Professional Oil Painting Mentor`;
-            keywords += ", figurative oil painting, painting for tattoo artists, academic techniques, museum quality instruction";
-            break;
-          case 'academic-drawing-course':
-            title = isDe ? `${productTitle} Basel | Zeichenkurs & Anatomie` : `${productTitle} Basel | Academic Drawing & Portfolio Prep`;
-            keywords += ", anatomical drawing, graphite mentor, art school preparation, charcoal drawing Basel";
-            break;
-          case 'stone-painting-course':
-            title = isDe ? `Steinmalerei Kurs Schweiz | ${productTitle}` : `Stone Painting Course Basel | ${productTitle}`;
-            keywords += ", painting on stone, unique art workshop, painting on marble Switzerland";
-            break;
-          case 'aquarelle-course':
-            title = isDe ? `Aquarellkurs Basel & Lörrach | ${productTitle}` : `Aquarelle Painting Tutor | Basel & Switzerland`;
-            keywords += ", watercolor teacher, aquarelle mentorship, painting on paper Basel";
-            break;
-          default:
-            title = `${productTitle} | Profineart Studio Basel`;
+    // Exact towns from your data
+    const towns = "Basel, Basel-Landschaft, Zurich, Bern, Allschwil, Reinach, Muttenz, Pratteln, Binningen, Liestal, Münchenstein, Oberwil, Aesch, Arlesheim, Bubendorf, Gelterkinden, Sissach, Bottmingen, Lörrach, Weil am Rhein, Saint-Louis, Huningue";
+
+    if (isDe) {
+      // GERMAN SEO (Instruction in English)
+      title = "Privatunterricht & Mentoring | Profineart Studio Basel";
+      rawDescription = `Professionelles Kunst-Mentoring in ${towns}. Privater Malunterricht (Unterricht auf Englisch) bei Ihnen zu Hause oder im Atelier.`;
+      keywords = `Privatunterricht Malen, Kunst Mentor Basel, privater Mallehrer, Ölmalerei Mentor, Zeichnen Privatstunden, Mappenvorbereitung, Malen für Tätowierer, Figurative Malerei, ${towns}`;
+
+      if (slug) {
+        const p = courses.find(c => c.slug === slug);
+        if (p) {
+          title = `${t(`products.${p.id}.title`)} | Mentoring Basel`;
+          rawDescription = t(`products.${p.id}.briefDescription`) + " (Unterricht auf Englisch)";
+          
+          // German Keyword Injection based on slug
+          if (slug === 'byzantine-iconography-course') keywords += ", Ikonenmalerei, Eitempera Malen, sakrale Kunst, Vergoldung";
+          if (slug === 'oil-painting-course') keywords += ", Ölmalerei Technik, Porträtmalerei, klassische Untermalung";
+          if (slug === 'mixed-media-drawing-course') keywords += ", Mixed Media Kunst, Illustration Mentor, Grafik Design";
+          if (slug === 'aquarelle-course') keywords += ", Aquarellmalerei, Wasserfarben Mentor, Lasurtechnik";
+          if (slug === 'academic-drawing-course') keywords += ", Akademisches Zeichnen, Anatomie Tutor, Kohlezeichnung";
+          if (slug === 'stone-painting-course') keywords += ", Malen auf Stein, Kunst auf Marmor, Steinmalerei";
+          if (slug === 'contemporary-painting-course') keywords += ", Zeitgenössische Malerei, Alla Prima Technik";
+        }
+      }
+    } else {
+      // ENGLISH SEO
+      title = "Private Fine Art Mentorship | Profineart Studio Basel";
+      rawDescription = `Professional private art mentorship in ${towns}. Exclusive individual sessions at your location. Instruction in English.`;
+      keywords = `private painting mentor, fine art mentorship, painting tutor, professional art mentor, in-person painting sessions, figurative painting mentor, academic drawing tutor, oil painting coach, tattoo artist painting mentor, portfolio preparation, ${towns}`;
+
+      if (slug) {
+        const p = courses.find(c => c.slug === slug);
+        if (p) {
+          title = `${t(`products.${p.id}.title`)} | Private Mentorship Basel`;
+          rawDescription = t(`products.${p.id}.briefDescription`);
+
+          // English Keyword Injection based on slug
+          if (slug === 'byzantine-iconography-course') keywords += ", byzantine iconography mentor, egg tempera glazing, sacred painting, historical techniques, gilding master";
+          if (slug === 'oil-painting-course') keywords += ", oil painting mentor, classical underpainting, impasto technique, professional oil coach, portraiture";
+          if (slug === 'mixed-media-drawing-course') keywords += ", mixed media mentor, dry and wet media fusion, illustration sessions";
+          if (slug === 'aquarelle-course') keywords += ", aquarelle painting mentor, watercolor mentorship, paper physics, translucent painting";
+          if (slug === 'academic-drawing-course') keywords += ", academic drawing mentorship, freehand stroke, anatomical study";
+          if (slug === 'stone-painting-course') keywords += ", painting on stone mentor, fine art on marble, tactile art, miniature painting";
+          if (slug === 'contemporary-painting-course') keywords += ", contemporary painting mentor, old master discipline, conceptual power";
         }
       }
     }
 
-    // 3. APPLY CLEAN METADATA (Sanitizing for Google Snippets)
-    const cleanDescription = rawDescription
-      .replace(/<[^>]*>/g, '') 
-      .replace(/\s+/g, ' ')
-      .trim()
-      .substring(0, 160);
-
+    // FINAL APPLICATION
+    const cleanDescription = rawDescription.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().substring(0, 160);
     document.title = title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', cleanDescription);
     document.querySelector('meta[name="keywords"]')?.setAttribute('content', keywords);
 
-    // 4. SOCIAL & CANONICAL
+    // Socials
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', cleanDescription);
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', img);
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', currentUrl);
-    
-    document.querySelector('meta[name="twitter:card"]')?.setAttribute('content', 'summary_large_image');
-    document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', img);
 
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-        canonical.setAttribute('href', currentUrl);
-    } else {
-        const link = document.createElement('link');
-        link.rel = 'canonical';
-        link.href = currentUrl;
-        document.head.appendChild(link);
-    }
-
-    // 5. HREFLANG (Crucial for Swiss SEO)
-    const setHreflang = (lang: string, href: string) => {
-        let el = document.querySelector(`link[hreflang="${lang}"]`) as HTMLLinkElement;
-        if (!el) {
-            el = document.createElement('link');
-            el.rel = 'alternate';
-            el.hreflang = lang;
-            document.head.appendChild(el);
-        }
-        el.href = href;
+    // HREFLANG
+    const updateHreflang = (lang: string, url: string) => {
+      let el = document.querySelector(`link[hreflang="${lang}"]`) as HTMLLinkElement;
+      if (!el) {
+        el = document.createElement('link');
+        el.rel = 'alternate';
+        el.hreflang = lang;
+        document.head.appendChild(el);
+      }
+      el.href = url;
     };
-    setHreflang('de-CH', `${baseUrl}/course/${slug || ''}?lang=de`);
-    setHreflang('en-CH', `${baseUrl}/course/${slug || ''}?lang=en`);
+    updateHreflang('de-CH', `${baseUrl}/course/${slug || ''}?lang=de`);
+    updateHreflang('en-CH', `${baseUrl}/course/${slug || ''}?lang=en`);
 
-    // 6. SCHEMA INJECTION (Localized AreaServed for Maps)
+    // SCHEMA
     const scriptId = 'dynamic-seo-schema';
     document.getElementById(scriptId)?.remove();
-
-    const schemas: any[] = [
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Courses", "item": `${baseUrl}/courses` },
-          ...(slug ? [{ "@type": "ListItem", "position": 2, "name": title, "item": currentUrl }] : [])
-        ]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Profineart Studio Basel",
-        "image": img,
-        "description": cleanDescription,
-        "url": currentUrl,
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Basel",
-          "addressCountry": "CH"
-        },
-        "areaServed": [
-            "Basel", "Zurich", "Bern", "Allschwil", "Reinach", "Muttenz", "Pratteln", 
-            "Binningen", "Liestal", "Münchenstein", "Oberwil", "Aesch", "Arlesheim", 
-            "Lörrach", "Saint-Louis", "Weil am Rhein"
-        ]
-      }
-    ];
-
     const script = document.createElement('script');
     script.id = scriptId;
     script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify(schemas);
+    script.innerHTML = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Profineart Studio Basel",
+      "image": img,
+      "description": cleanDescription,
+      "url": currentUrl,
+      "address": { "@type": "PostalAddress", "addressLocality": "Basel", "addressCountry": "CH" },
+      "areaServed": towns.split(', '),
+      "knowsLanguage": "en"
+    });
     document.head.appendChild(script);
 
     document.documentElement.lang = i18n.language;
 
-  }, [slug, i18n.language, t, imageUrl]);
+  }, [slug, t, i18n.language, imageUrl]);
 };
