@@ -18,8 +18,8 @@ export const courses: Product[] = [
 
     thumbnails: [
       {
-              lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DH18FBpL/100kbphotoshoped-more-bright-1.jpg',
-      highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
+      lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DH18FBpL/100kbphotoshoped-more-bright-1.jpg',
+      highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1772459094/photoshoped-more_bright-500kb_t1n6vo.jpg',
       },
     ],
 
