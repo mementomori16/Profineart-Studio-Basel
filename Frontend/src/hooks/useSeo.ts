@@ -23,7 +23,7 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
       // GERMAN SEO (Instruction in English)
       title = "Privatunterricht & Mentoring | Profineart Studio Basel";
       rawDescription = `Professionelles Kunst-Mentoring in ${towns}. Privater Malunterricht (Unterricht auf Englisch) bei Ihnen zu Hause oder im Atelier.`;
-      keywords = `Privatunterricht Malen, Kunst Mentor Basel, privater Mallehrer, Ölmalerei Mentor, Zeichnen Privatstunden, Mappenvorbereitung, Malen für Tätowierer, Figurative Malerei, ${towns}`;
+      keywords = `Privatunterricht Malen, Kunst Mentor Basel, privater Mallehrer, Ölmalerei Mentor, Zeichnen Privatstunden, Mappenvorbereitung, Malen für Tätowierer, Figurative Malerei, privater mallehrer basel, aquarell privatstunden basel, atelierunterricht basel, malunterricht für erwachsene basel,  ${towns}`;
 
       if (slug) {
         const p = courses.find(c => c.slug === slug);
@@ -32,20 +32,20 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
           rawDescription = t(`products.${p.id}.briefDescription`) + " (Unterricht auf Englisch)";
           
           // German Keyword Injection based on slug
-          if (slug === 'byzantine-iconography-course') keywords += ", Ikonenmalerei, Eitempera Malen, sakrale Kunst, Vergoldung";
-          if (slug === 'oil-painting-course') keywords += ", Ölmalerei Technik, Porträtmalerei, klassische Untermalung";
-          if (slug === 'mixed-media-drawing-course') keywords += ", Mixed Media Kunst, Illustration Mentor, Grafik Design";
-          if (slug === 'aquarelle-course') keywords += ", Aquarellmalerei, Wasserfarben Mentor, Lasurtechnik";
-          if (slug === 'academic-drawing-course') keywords += ", Akademisches Zeichnen, Anatomie Tutor, Kohlezeichnung";
-          if (slug === 'stone-painting-course') keywords += ", Malen auf Stein, Kunst auf Marmor, Steinmalerei";
-          if (slug === 'contemporary-painting-course') keywords += ", Zeitgenössische Malerei, Alla Prima Technik";
+          if (slug === 'byzantine-iconography-course') keywords += ", Ikonenmalerei Mentor, Ikonen Malkurs, privater Ikonenmallehrer, Eitempera Malerei Mentoring, sakrale Kunst in Basel, historische Maltechniken Basel, Vergoldung Privatunterricht Basel, Vergoldung Lehrer, Ikonenmalerei Privatlehrer Basel, Ikonenmalerei Tutor Basel, Eitempera Malerei Mentor Basel, Eitempera Malerei Privatunterricht";
+          if (slug === 'oil-painting-course') keywords += ", Ölmalerei Mentor, Ölmalerei Tutor, Ölmalerei Privatunterricht, privater Ölmalerei Lehrer, klassische Untermalung, Impasto Technik, professioneller Ölmalerei Coach, Porträtmalerei, Ölmalerei Privatlehrer in Basel, Ölmalerei Lehrer Basel, Ölmalerei Tutor Basel, Ölmalerei Mentor Baselland";
+          if (slug === 'mixed-media-drawing-course') keywords += ", Mixed Media Mentor, Zeichnen Tutor, Mischtechnik Kunst, Illustration Privatstunden, Mixed Media Zeichnen Privatlehrer, Mixed Media Tutor Basel";
+          if (slug === 'aquarelle-course') keywords += ", Aquarellmalerei Mentor, Aquarell Mentoring, Papierphysik Kunst, lasierende Malerei, Aquarellmalerei Tutor, Aquarell Privatlehrer, Aquarell Tutor Basel, Aquarellmalerei Privatunterricht, Aquarell Lehrer in Basel";
+          if (slug === 'academic-drawing-course') keywords += ", Zeichenlehrer in Basel, Zeichnen Privatlehrer Basel, Zeichen Mentor, Zeichen Tutor, akademisches Zeichnen Mentoring, freihändiges Zeichnen, Zeichenkurs Basel, Anatomiestudium Basel, Anatomisches Zeichnen Coaching";
+          if (slug === 'stone-painting-course') keywords += ", Malen auf Stein Mentor, Kunst auf Marmor, taktile Kunst, Miniaturmalerei Studium, Malen auf Stein Tutor, Malen auf Stein Privatlehrer, Malen auf Stein in Basel, Steinmalerei Kurs Basel";
+          if (slug === 'contemporary-painting-course') keywords += ", zeitgenössische Malerei Mentor, zeitgenössische Malerei Tutor, Disziplin der alten Meister, konzeptionelle Kunst, zeitgenössische Kunst Mentor, zeitgenössische Kunst Privatlehrer, zeitgenössische Kunst Tutor in Basel, zeitgenössische Malerei Lehrer Basel";
         }
       }
     } else {
       // ENGLISH SEO
       title = "Private Fine Art Mentorship | Profineart Studio Basel";
       rawDescription = `Professional private art mentorship in ${towns}. Exclusive individual sessions at your location. Instruction in English.`;
-      keywords = `private painting mentor, fine art mentorship, painting tutor, professional art mentor, in-person painting sessions, figurative painting mentor, academic drawing tutor, oil painting coach, tattoo artist painting mentor, portfolio preparation, ${towns}`;
+      keywords = `private painting mentor, fine art mentorship, painting tutor, professional art mentor, in-person painting sessions, figurative painting mentor, academic drawing tutor, oil painting coach, tattoo artist painting mentor, personal portfolio preparation, english speaking painting private classes basel, mobile art teacher basel, private art mentorship basel, one-on-one art classes basel, one-on-one painting classes basel, acrylic painting lessons basel, acrylic painting privet lessons basel, oil painting tutor basel, oil painting privet teacher, oil painting tutor in basel switzerland, drawing tutor in basel switzerland, drawing mentor in basel switzerland, watercolor tutor, watercolor mentor, watercolor privet teacher, academic drawing course in basel switzerland,  ${towns}`;
 
       if (slug) {
         const p = courses.find(c => c.slug === slug);
@@ -54,13 +54,13 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
           rawDescription = t(`products.${p.id}.briefDescription`);
 
           // English Keyword Injection based on slug
-          if (slug === 'byzantine-iconography-course') keywords += ", byzantine iconography mentor, egg tempera glazing, sacred painting, historical techniques, gilding master";
-          if (slug === 'oil-painting-course') keywords += ", oil painting mentor, classical underpainting, impasto technique, professional oil coach, portraiture";
-          if (slug === 'mixed-media-drawing-course') keywords += ", mixed media mentor, dry and wet media fusion, illustration sessions";
-          if (slug === 'aquarelle-course') keywords += ", aquarelle painting mentor, watercolor mentorship, paper physics, translucent painting";
-          if (slug === 'academic-drawing-course') keywords += ", academic drawing mentorship, freehand stroke, anatomical study";
-          if (slug === 'stone-painting-course') keywords += ", painting on stone mentor, fine art on marble, tactile art, miniature painting";
-          if (slug === 'contemporary-painting-course') keywords += ", contemporary painting mentor, old master discipline, conceptual power";
+          if (slug === 'byzantine-iconography-course') keywords += ", byzantine iconography mentor, iconography painting tutor, byzantine iconography privet teacher, egg tempera glazing mentorship, sacred painting in basel switzerland, historical techniques mentorship in basel switzerland, gilding mastery tutoring in basel switzerland, gilding privet teacher, byzantine iconography privet teacher in basel switzerland, byzantine iconography tutor in basel switzerland, egg tempera painting mentor in basel switzerland, egg tempera painting tutor in basel switzerland, egg tempera painting privet teacher in basel switzerland";
+          if (slug === 'oil-painting-course') keywords += ", oil painting mentor, oil painting tutor, oil painting private teaching, oil painting privet teacher, classical underpainting, impasto technique, professional oil coach, portraiture, oil painting privet teacher in basel switzerland, oil painting teacher in basel switzerland, oil painting tutor in basel switzerland, oil painting mentor in baseland";
+          if (slug === 'mixed-media-drawing-course') keywords += ", mixed media painting mentor, drawing tutor, dry and wet media fusion, illustration sessions, mixed media drawing privet teacher, mixed media drawing tutor";
+          if (slug === 'aquarelle-course') keywords += ", aquarelle painting mentor, watercolor mentorship, paper physics, translucent painting, aquarelle painting tutor, aquarelle painting privet teacher, watercolor painting tutor, watercolor painting privet teacher, watercolor painting teacher in Basel";
+          if (slug === 'academic-drawing-course') keywords += ", drawing teacher in basel switzerland, drawing privet teacher in basel switzerland, drawing mentor, drawing tutor, academic drawing mentorship, freehand stroke, freehand drawing course in basel switzerland, anatomical study in basel switzerland, anatomical drawing tutoring";
+          if (slug === 'stone-painting-course') keywords += ", painting on stone mentor, fine art on marble, tactile art, miniature painting study, painting on stone tutor, painting on stone privet teacher, painting on stone in basel switzerland, painting on stone course in basel switzerland";
+          if (slug === 'contemporary-painting-course') keywords += ", contemporary painting mentor, contemporery painting tutor,old master discipline, conceptual power, contemporery art painting mentor, contemporery art painting privet teacher, contemporery art painting tutor in basel switzerland, contemporery art painting teacher in basel switzerland";
         }
       }
     }
@@ -99,7 +99,7 @@ export const useSeo = (slug?: string, imageUrl?: string) => {
     script.type = 'application/ld+json';
     script.innerHTML = JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "ArtSchool",
       "name": "Profineart Studio Basel",
       "image": img,
       "description": cleanDescription,
