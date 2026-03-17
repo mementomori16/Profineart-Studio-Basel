@@ -2,6 +2,7 @@
 export const courses = [
     {
         id: 800,
+        slug: 'byzantine-iconography-course',
         category: 'Painting',
         badge: 'has_badge',
         image: {
@@ -12,7 +13,7 @@ export const courses = [
         thumbnails: [
             {
                 lowResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/DH18FBpL/100kbphotoshoped-more-bright-1.jpg',
-                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/fetch/f_auto,q_auto/https://i.ibb.co/8L2X1jfz/smaller2025-Recovered500kb.jpg',
+                highResUrl: 'https://res.cloudinary.com/dpayqcrg5/image/upload/v1772459094/photoshoped-more_bright-500kb_t1n6vo.jpg',
             },
         ],
         detailsImages: [
@@ -33,6 +34,7 @@ export const courses = [
     },
     {
         id: 801,
+        slug: 'oil-painting-course',
         category: 'Painting',
         badge: 'has_badge',
         image: {
@@ -69,6 +71,7 @@ export const courses = [
     },
     {
         id: 802,
+        slug: 'mixed-media-drawing-course',
         category: 'Mixed',
         badge: 'has_badge',
         image: {
@@ -105,6 +108,7 @@ export const courses = [
     },
     {
         id: 803,
+        slug: 'aquarelle-course',
         category: 'Painting',
         badge: 'has_badge',
         image: {
@@ -136,6 +140,7 @@ export const courses = [
     },
     {
         id: 804,
+        slug: 'academic-drawing-course',
         category: 'Drawing',
         badge: 'has_badge',
         image: {
@@ -167,6 +172,7 @@ export const courses = [
     },
     {
         id: 805,
+        slug: 'stone-painting-course',
         category: 'Painting',
         badge: 'has_badge',
         image: {
@@ -203,6 +209,7 @@ export const courses = [
     },
     {
         id: 806,
+        slug: 'contemporary-painting-course',
         category: 'Painting',
         badge: 'has_badge',
         image: {
