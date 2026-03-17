@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node prerender.js",
+    "build": "npx vite build && node prerender.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -21,7 +21,7 @@
     "@vitejs/plugin-react": "^5.0.2",
     "axios": "^1.13.2",
     "firebase": "^11.1.0",
-    "firebase-admin": "^13.5.0",
+    "firebase-admin": "^10.3.0",
     "font-awesome": "^4.7.0",
     "font-awesome-icons": "^1.6.0",
     "framer-motion": "^12.11.3",
@@ -30,6 +30,7 @@
     "jsonresume-theme-markdown": "^1.0.2",
     "lottie-web": "^5.12.2",
     "luxon": "^3.7.2",
+    "puppeteer": "^22.0.0",
     "react": "^18.3.1",
     "react-alice-carousel": "^2.9.1",
     "react-datepicker": "^8.9.0",
@@ -46,6 +47,7 @@
     "react-zoom-pan-pinch": "^3.6.1",
     "redux": "^5.0.1",
     "sass": "^1.83.0",
+    "serve-handler": "^6.1.6",
     "slick-carousel": "^1.8.1",
     "use-sound": "^4.0.3",
     "vite-plugin-svgr": "^4.5.0"

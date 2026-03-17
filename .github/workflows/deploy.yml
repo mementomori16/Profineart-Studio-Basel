@@ -24,7 +24,6 @@ jobs:
           sudo apt-get install -y google-chrome-stable
 
       - name: Install Frontend Dependencies
-        # Using npm install + NODE_ENV=development ensures puppeteer is found
         run: npm install
         working-directory: ./Frontend
         env:
@@ -32,11 +31,13 @@ jobs:
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
 
       - name: Build Frontend (Vite + Prerender)
-        run: npm run build
+        run: |
+          # Fix the "Permission denied" error for vite
+          chmod -R +x node_modules/.bin
+          npm run build
         working-directory: ./Frontend
         env:
           NODE_ENV: development
-          # This variable tells your prerender.js exactly where Chrome is
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
 
       - name: Install Functions Dependencies
