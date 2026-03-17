@@ -13,6 +13,7 @@
     "@vitejs/plugin-react-swc": "^4.2.2",
     "concurrently": "^9.2.1",
     "puppeteer": "^24.39.1",
+    "serve-handler": "^6.1.7",
     "typescript": "^5.9.3",
     "vite": "^7.2.7",
     "vite-plugin-sitemap": "^0.8.2"
