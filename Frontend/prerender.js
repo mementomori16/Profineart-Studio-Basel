@@ -37,16 +37,17 @@ async function prerender() {
     
     const browser = await puppeteer.launch({ 
       headless: "new",
+      // This is the ONLY addition: it allows GitHub to point to the correct Chrome binary
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || null,
       args: [
-    '--no-sandbox', 
-    '--disable-setuid-sandbox',
-    '--disable-dev-shm-usage', // Helps with memory in CI
-    '--disable-gpu'            // Standard for headless CI
-  ]
+        '--no-sandbox', 
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu'
+      ]
     });
 
     const page = await browser.newPage();
-    // Large viewport prevents "hidden" content issues
     await page.setViewport({ width: 1440, height: 2000 });
 
     const today = new Date().toISOString().split('T')[0];
@@ -79,7 +80,6 @@ async function prerender() {
             route
           );
 
-          // Scroll to trigger lazy-loading and footer visibility
           await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
           await new Promise(r => setTimeout(r, 1000));
           await page.evaluate(() => window.scrollTo(0, 0));
@@ -89,12 +89,9 @@ async function prerender() {
         }
       }
 
-      // Final buffer for stability
       await new Promise(r => setTimeout(r, 3000));
 
-      // 1. INJECT SEO METADATA BEFORE SAVING
       await page.evaluate((isoDate) => {
-        // Add or update Meta Last-Modified
         let meta = document.querySelector('meta[name="last-modified"]');
         if (!meta) {
           meta = document.createElement('meta');
@@ -103,7 +100,6 @@ async function prerender() {
         }
         meta.content = isoDate;
 
-        // Update JSON-LD Schema dateModified
         const schemas = document.querySelectorAll('script[type="application/ld+json"]');
         schemas.forEach(script => {
           try {
@@ -116,9 +112,7 @@ async function prerender() {
                 updateObj(data);
             }
             script.innerText = JSON.stringify(data);
-          } catch (e) {
-            // Skip scripts that aren't valid JSON or don't need updates
-          }
+          } catch (e) {}
         });
       }, new Date().toISOString());
 
@@ -133,17 +127,13 @@ async function prerender() {
       console.log(`✅ Success: Generated /${route}/index.html`);
     }
 
-    // 2. UPDATE SITEMAP.XML DATES
-    // Note: Assuming sitemap.xml is in your 'public' folder
     const sitemapPath = path.join(__dirname, 'public', 'sitemap.xml'); 
     if (fs.existsSync(sitemapPath)) {
       console.log('🗺️ Updating sitemap.xml timestamps...');
       let sitemap = fs.readFileSync(sitemapPath, 'utf8');
       
-      // Replaces all <lastmod> tags with today's date
       sitemap = sitemap.replace(/<lastmod>.*?<\/lastmod>/g, `<lastmod>${today}</lastmod>`);
       
-      // Save updated sitemap back to public and also to dist for the build
       fs.writeFileSync(sitemapPath, sitemap);
       fs.writeFileSync(path.join(__dirname, 'dist', 'sitemap.xml'), sitemap);
       console.log(`✅ Sitemap updated to ${today}`);

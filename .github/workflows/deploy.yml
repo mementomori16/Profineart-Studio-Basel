@@ -18,20 +18,26 @@ jobs:
           cache: 'npm'
           cache-dependency-path: Frontend/package-lock.json
 
-      # --- REPLACED MANUAL APT-GET WITH THIS ---
-      - name: Install Puppeteer dependencies
+      - name: Install Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgbm-dev
-          npx puppeteer browsers install chrome
+          sudo apt-get install -y google-chrome-stable
 
       - name: Install Frontend Dependencies
-        run: npm ci
+        # Using npm install + NODE_ENV=development ensures puppeteer is found
+        run: npm install
         working-directory: ./Frontend
+        env:
+          NODE_ENV: development
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
 
       - name: Build Frontend (Vite + Prerender)
         run: npm run build
         working-directory: ./Frontend
+        env:
+          NODE_ENV: development
+          # This variable tells your prerender.js exactly where Chrome is
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
 
       - name: Install Functions Dependencies
         run: npm ci
