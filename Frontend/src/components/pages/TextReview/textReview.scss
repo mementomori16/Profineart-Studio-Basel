@@ -1,13 +1,11 @@
 @use "../../../global.scss" as *;
 
 .text-review-centered {
-    // UPDATED: Added a little more gap to the bottom (added $space-sm)
     padding: $space-xl 0 ($space-xxxxl + $space-sm) 0; 
     background-color: #171717; 
     width: 100%;
 
     .section-header {
-        // Kept the increased gap from previous step
         margin-bottom: $space-xxxl; 
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15);
         padding-bottom: $space-sm;
@@ -46,7 +44,7 @@
         opacity: 1; 
         
         @media (max-width: $breakpoint-md) {
-            font-size: 1.4rem;
+            font-size: 1.55rem; // BUMPED ON MOBILE
         }
     }
 }
@@ -63,32 +61,35 @@
         letter-spacing: 0.25rem;
         color: #ffffff;
         font-weight: $font-weight-bold;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 1.1rem; // BUMPED ON MOBILE
+        }
     }
 
     .divider {
         color: #ffffff;
-        opacity: 0.4;
+        opacity: 0.6; // Slightly brighter
         font-weight: $font-weight-light;
     }
 
     .role {
         font-size: $font-size-xs;
         color: #ffffff;
-        opacity: 0.9; 
+        opacity: 1; // FULL BRIGHTNESS
         text-transform: uppercase;
         letter-spacing: 0.15rem;
         font-weight: $font-weight-normal;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 1rem; // BUMPED ON MOBILE
+        }
     }
 
     @media (max-width: $breakpoint-sm) {
         flex-direction: column;
         gap: $space-sm;
-        
         .divider { display: none; }
-        
-        .role {
-            text-align: center;
-            max-width: 280px;
-        }
+        .role { text-align: center; max-width: 280px; }
     }
 }

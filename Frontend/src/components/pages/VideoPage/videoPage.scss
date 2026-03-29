@@ -7,7 +7,7 @@
 
     .text-header {
         margin-bottom: 0; 
-        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15); // MORE VISIBLE
         padding-bottom: $space-sm;
         text-align: left;
 
@@ -25,7 +25,7 @@
             text-align: left;
 
             @media (max-width: $breakpoint-sm) {
-                font-size: $font-size-h3;
+                font-size: $font-size-h3; // UNTOUCHED
                 letter-spacing: 0.2rem;
             }
         }
@@ -47,10 +47,10 @@
             font-weight: $font-weight-normal;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
-            opacity: 0.9;
+            opacity: 1; // FULL BRIGHTNESS
 
             @media (max-width: $breakpoint-md) {
-                font-size: 0.85rem;
+                font-size: 0.85rem; // SCALED FOR MOBILE
             }
         }
     }
@@ -60,14 +60,13 @@
         max-width: 56.25rem; 
         margin: 0 auto; 
         
-        // Applying rounded corners to the component container
         :global(.studio-video-master) {
             width: 100% !important;
             max-width: none !important;
             margin: 0 !important;
             background: #000 !important;
             box-shadow: none !important;
-            border-radius: 0.5rem !important; // Little round edges
+            border-radius: 0.5rem !important; 
             overflow: hidden !important;
         }
     }

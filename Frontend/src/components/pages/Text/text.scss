@@ -1,11 +1,7 @@
 @use "sass:color";
 @use "../../../global.scss" as *;
 
-// Local variable for the Ilya link accent
 $color-cta-primary-warm: #5C253B;
-
-// ACCESSIBILITY FIX: This shade is slightly more saturated than #ac4b6e
-// It provides better contrast against dark backgrounds for "Text" scores.
 $color-accent-accessible: #c55a83; 
 
 .text-component-section {
@@ -17,7 +13,6 @@ $color-accent-accessible: #c55a83;
     
     .text-header {
         margin-bottom: $space-xl;
-        // Increased opacity for the border to guide the eye better
         border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15);
         padding-bottom: $space-md;
         
@@ -28,7 +23,7 @@ $color-accent-accessible: #c55a83;
 
         .text-main-title {
             @include services-heading;
-            color: #ffffff;
+            color: #ffffff; 
             text-align: left;
             margin: 0;
             text-transform: uppercase;
@@ -43,17 +38,17 @@ $color-accent-accessible: #c55a83;
 
         .text-subtitle {
             font-size: 1.1rem;
-            color: #ffffff !important;
+            color: #ffffff !important; 
             margin-top: $space-xxs;
             font-weight: $font-weight-normal;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
-            // Removed opacity logic to ensure 100% legibility
             opacity: 1; 
 
             @media (max-width: $breakpoint-md) {
                 margin-top: 0;
-                font-size: 1rem;
+                // SCALED UP: Matching InfoContainer headers
+                font-size: 1.25rem; 
             }
         }
     }
@@ -76,7 +71,7 @@ $color-accent-accessible: #c55a83;
     &.primary {
         grid-column: 1 / -1;
         margin-bottom: $space-md;
-        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.08); // Slightly clearer border
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.08); 
         padding-bottom: $space-xl;
         
         @media (max-width: $breakpoint-md) {
@@ -87,11 +82,12 @@ $color-accent-accessible: #c55a83;
         p {
             font-size: 1.4rem;
             line-height: 1.8;
-            color: #ffffff !important;
+            color: #ffffff !important; 
             font-weight: $font-weight-normal;
             
             @media (max-width: $breakpoint-sm) {
-                font-size: 1.15rem;
+                // SCALED UP: Keeping the primary paragraph dominant
+                font-size: 1.5rem; 
             }
         }
     }
@@ -117,35 +113,56 @@ $color-accent-accessible: #c55a83;
 
     .label-accent {
         display: block;
-        color: #ffffff;
+        color: #ffffff; 
         font-size: 0.85rem;
         text-transform: uppercase;
         letter-spacing: 0.05rem;
         margin-bottom: 0.2rem;
         font-weight: $font-weight-bold;
-        opacity: 0.9; // Slight drop in opacity for labels creates hierarchy without failing contrast
+        opacity: 1; 
         
         @media (max-width: $breakpoint-md) {
+            // SCALED UP: From 0.85rem to 1.1rem to match InfoContainer
+            font-size: 1.1rem; 
             margin-bottom: $space-xxs;
         }
+    }
+}
+
+.item-body-text {
+    line-height: 1.8;
+    color: #ffffff !important; 
+    display: block;
+    font-size: 1rem;
+    
+    @media (max-width: $breakpoint-md) {
+        // SCALED UP: Matching the primary paragraph feel
+        font-size: 1.2rem; 
+    }
+
+    &:not(:last-child) {
+        margin-bottom: $space-xs;
     }
 }
 
 .founder-clean-link {
     text-decoration: none;
     display: inline-block; 
-    vertical-align: middle; // Extra layer of alignment for the parent
+    vertical-align: middle; 
 
     strong {
-        color: $color-accent-accessible !important;
+        color: $color-accent-accessible !important; 
         font-size: 1.1rem;
         font-weight: $font-weight-bold;
         white-space: nowrap;
-        
-        // 🔥 THE AGGRESSIVE CENTERING FIX
         display: inline-flex;
         align-items: center; 
-        line-height: 1; // Removes extra font-descender space
+        line-height: 1; 
+
+        @media (max-width: $breakpoint-md) {
+            // SCALED UP: Link visibility on mobile
+            font-size: 1.25rem; 
+        }
         
         .arrow-symbol {
             font-size: 1.2rem;
@@ -154,28 +171,12 @@ $color-accent-accessible: #c55a83;
             margin-right: 0.8rem;
             transition: transform 0.3s ease;
             color: inherit;
-            
-            // 🔥 NEGATIVE NUDGE: Moves the arrow UP to counteract the font baseline
             transform: translateY(-2px); 
-            
-            // Ensures the symbol's bounding box doesn't have its own internal height
             line-height: 0; 
         }
     }
 
     &:hover .arrow-symbol {
-        // Maintain the upward nudge while sliding right
         transform: translateX(5px) translateY(-2px);
-    }
-}
-
-.item-body-text {
-    line-height: 1.8;
-    // Ensuring body text remains fully white for maximum readability on dark bgs
-    color: #ffffff !important; 
-    display: block;
-    
-    &:not(:last-child) {
-        margin-bottom: $space-xs;
     }
 }

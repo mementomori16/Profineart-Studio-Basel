@@ -4,7 +4,6 @@
 .courses-page-root {
     width: 100%;
     min-height: 100vh;
-    // UPDATED: Removed bottom gap (changed $space-xxl to 0)
     padding: $space-md 0 0 0; 
     background-color: #171717;
 
@@ -31,10 +30,12 @@
     }
 
     .label {
-        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
+        // BRIGHTER
+        color: color.adjust($color-cta-primary-warm, $lightness: 35%); 
         text-transform: uppercase;
         font-weight: $font-weight-bold;
-        font-size: $font-size-xs; 
+        // BIGGER
+        font-size: 0.85rem; 
         letter-spacing: 2px;
         display: block;
         margin-bottom: $space-sm; 
@@ -55,11 +56,12 @@
         }
 
         .intro-text-curated {
+            // BRIGHTER & BIGGER
             color: #ffffff;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             max-width: 48rem;
             line-height: 1.6;
-            opacity: 0.95;
+            opacity: 1; 
         }
     }
 }
@@ -113,9 +115,10 @@
 
     .hero-text {
         .label {
-            font-size: $font-size-xs;
+            // BIGGER
+            font-size: 0.85rem;
             margin-bottom: $space-sm;
-            color: color.adjust($color-cta-primary-warm, $lightness: 25%);
+            color: color.adjust($color-cta-primary-warm, $lightness: 35%);
         }
 
         .row-title {
@@ -135,21 +138,24 @@
             margin-bottom: $space-sm;
             
             .meta-item {
-                color: rgba(255, 255, 255, 0.8);
-                font-size: 0.65rem;
+                // BRIGHTER & BIGGER
+                color: #ffffff;
+                font-size: 0.85rem;
                 display: flex;
                 align-items: center;
                 gap: 0.4rem;
                 text-transform: uppercase;
-                svg { color: #ffffff; font-size: 0.75rem; }
+                svg { color: #ffffff; font-size: 0.9rem; }
             }
         }
 
         .row-desc {
+            // BRIGHTER & BIGGER
             color: #ffffff;
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             margin-bottom: $space-md;
+            font-weight: 400; // Removed light weight for clarity
         }
     }
 
@@ -198,11 +204,9 @@
     align-items: center;
     gap: 0.6rem;
     cursor: pointer;
-    // UPDATED: Added space between text and button for desktop
     margin-top: $space-lg;
 
     @media (max-width: $breakpoint-md) {
-        // UPDATED: Centered button on mobile
         margin: $space-xl auto $space-sm;
     }
 

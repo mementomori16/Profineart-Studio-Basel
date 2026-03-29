@@ -1,12 +1,11 @@
 @use "../../../global.scss" as *;
 
 .service-area-section {
-    // REMOVED: Bottom gap set to 0 as requested
     padding: $space-lg 0 0; 
 
     .section-header {
         margin-bottom: $space-md; 
-        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15);
         padding-bottom: $space-md;
 
         .service-main-title {
@@ -19,7 +18,7 @@
             font-weight: $font-weight-bold;
 
             @media (max-width: $breakpoint-sm) {
-                font-size: $font-size-h3;
+                font-size: $font-size-h3; // UNTOUCHED
                 letter-spacing: 0.2rem;
             }
         }
@@ -30,11 +29,18 @@
     margin-bottom: $space-xl;
     
     .description-text {
-        color: #ffffff !important; // Bright white
+        // BRIGHTER
+        color: #ffffff !important; 
         font-size: 1.05rem; 
         line-height: 1.8;
         font-weight: $font-weight-normal;
         margin: 0;
+        opacity: 1;
+
+        @media (max-width: $breakpoint-sm) {
+            // SCALED FOR MOBILE
+            font-size: 1.35rem;
+        }
     }
 }
 
@@ -59,29 +65,46 @@
     .location-meta {
         .location-title {
             color: #ffffff; 
-            font-size: $font-size-base;
+            font-size: $font-size-base; // UNTOUCHED
             font-weight: $font-weight-bold;
             margin: 0;
             text-transform: uppercase;
+
+            @media (max-width: $breakpoint-sm) {
+                // SCALED FOR MOBILE
+                font-size: 1.2rem;
+            }
         }
 
         .location-subtitle {
+            // BRIGHTER
             font-size: $font-size-xxs;
-            color: rgba(255, 255, 255, 0.6); 
+            color: #ffffff; 
+            opacity: 0.8;
             text-transform: uppercase;
             margin-top: $space-xxs;
+
+            @media (max-width: $breakpoint-sm) {
+                // SCALED FOR MOBILE
+                font-size: 1rem;
+            }
         }
     }
 
     .location-content {
         .location-text {
-            // UPDATED: Now pure white, full opacity, and matching line-height
+            // BRIGHTER
             color: #ffffff !important; 
             opacity: 1; 
             font-size: 1rem;
             line-height: 1.8; 
             font-weight: $font-weight-normal; 
             margin: 0;
+
+            @media (max-width: $breakpoint-sm) {
+                // SCALED FOR MOBILE
+                font-size: 1.15rem;
+            }
         }
     }
 }

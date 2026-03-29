@@ -5,7 +5,6 @@
     min-height: auto;
     width: 100%;
     color: #ffffff; 
-    // REMOVED: All bottom spacing
     padding: $space-md 0 0 0; 
     margin-bottom: 0;
 
@@ -21,6 +20,11 @@
         letter-spacing: 2px;
         display: block;
         margin-bottom: $space-sm;
+
+        @media (max-width: $breakpoint-sm) {
+            // SCALED FOR MOBILE
+            font-size: 1.1rem;
+        }
     }
 }
 
@@ -45,7 +49,6 @@
             margin-left: -#{$space-lg}; 
             margin-right: -#{$space-lg};
             
-            // UPDATED: Negative margin to pull carousel even closer to text
             margin-top: -$space-md; 
             margin-bottom: 0;
 
@@ -58,7 +61,6 @@
 
         .hero-text {
             order: 1;
-            // Ensure the very last paragraph has no bottom padding
             .progress-essay .feature-item:last-child {
                 margin-bottom: 0;
                 p { margin-bottom: 0; }
@@ -69,7 +71,7 @@
     .hero-text {
         h2 { 
             color: #ffffff; 
-            font-size: $font-size-h2; 
+            font-size: $font-size-h2; // UNTOUCHED
             margin-bottom: $space-xl; 
             font-weight: $font-weight-bold;
         }
@@ -87,9 +89,16 @@
                 }
                 
                 p {
-                    color: rgba(255, 255, 255, 0.9) !important; 
+                    // BRIGHTER
+                    color: #ffffff !important; 
                     line-height: 1.8;
                     font-size: 1.05rem;
+                    opacity: 1;
+
+                    @media (max-width: $breakpoint-sm) {
+                        // SCALED FOR MOBILE
+                        font-size: 1.25rem;
+                    }
                 }
             }
         }
@@ -138,7 +147,6 @@
         flex-direction: column;
         gap: $space-md; 
         background: #171717;
-        // REMOVED: Any bottom margin/padding
         padding-bottom: 0;
         margin-bottom: 0;
         
@@ -146,7 +154,14 @@
             display: block;
             font-weight: $font-weight-bold;
             font-size: $font-size-sm;
-            color: #cdcdcd; 
+            // BRIGHTER
+            color: #ffffff; 
+            opacity: 1;
+
+            @media (max-width: $breakpoint-sm) {
+                // SCALED FOR MOBILE
+                font-size: 1.1rem;
+            }
         }
         
         .artfacts-link-box {
@@ -155,15 +170,20 @@
             justify-content: center;
             width: 100%; 
             padding: $space-sm $space-md;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             color: #ffffff;
             text-decoration: none;
             font-size: 11px;
             font-weight: $font-weight-bold;
             letter-spacing: 3px;
             text-transform: uppercase;
-            // Ensure this is the last element with no bottom margin
             margin-bottom: 0;
+
+            @media (max-width: $breakpoint-sm) {
+                // SCALED FOR MOBILE
+                font-size: 14px;
+                padding: $space-md;
+            }
 
             &:hover {
                 border-color: $color-cta-primary-warm;

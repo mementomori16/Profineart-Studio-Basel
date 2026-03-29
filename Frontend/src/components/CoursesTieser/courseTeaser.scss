@@ -50,14 +50,8 @@
 
     &:hover {
         transform: translateY(-0.625rem);
-        
-        .teaser-image-wrapper img {
-            transform: scale(1.05);
-        }
-
-        .teaser-overlay {
-            opacity: 1;
-        }
+        .teaser-image-wrapper img { transform: scale(1.05); }
+        .teaser-overlay { opacity: 1; }
     }
 
     .teaser-image-wrapper {
@@ -92,7 +86,7 @@
                 border: 0.0625rem solid #fff;
                 padding: 0.5rem 1.2rem;
                 text-transform: uppercase;
-                font-size: 0.65rem;
+                font-size: 0.75rem; // Increased
                 letter-spacing: 0.1rem;
                 font-weight: $font-weight-bold;
             }
@@ -102,24 +96,26 @@
     .teaser-info {
         h3 {
             color: #ffffff; 
-            font-size: $font-size-sm; 
+            font-size: $font-size-md; // Increased from sm
             font-weight: $font-weight-bold;
             margin-bottom: $space-xs;
             text-transform: uppercase; 
             letter-spacing: 1px;
+            
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.2rem;
+            }
         }
 
         .unified-meta-line {
             display: flex;
             flex-wrap: wrap;
-            // Tighter gap to accommodate 4 items in a card
             gap: $space-sm $space-md; 
             margin-bottom: $space-md;
             
             .meta-item {
-                color: rgba(255, 255, 255, 0.7);
-                // Slightly smaller text so all 4 items fit nicely
-                font-size: 0.6rem;
+                color: #ffffff; // Brightened from 0.7 opacity
+                font-size: 0.75rem; // Increased from 0.6
                 display: flex;
                 align-items: center;
                 gap: 0.35rem;
@@ -127,20 +123,28 @@
                 letter-spacing: 0.5px;
                 white-space: nowrap;
 
+                @media (max-width: $breakpoint-sm) {
+                    font-size: 0.85rem;
+                }
+
                 svg { 
-                    color: color.adjust($color-cta-primary-warm, $lightness: 20%); 
-                    font-size: 0.7rem; 
+                    color: color.adjust($color-cta-primary-warm, $lightness: 30%); 
+                    font-size: 0.9rem; 
                 }
             }
         }
 
         p {
             color: #ffffff; 
-            font-size: 0.95rem;
+            font-size: 1rem; // Increased from 0.95
             line-height: 1.6;
-            font-weight: $font-weight-normal;
-            opacity: 0.85; 
+            font-weight: $font-weight-normal; // Use 400 for better visibility
+            opacity: 1; // Removed 0.85 opacity
             
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.1rem;
+            }
+
             display: -webkit-box;
             -webkit-line-clamp: 3;
             line-clamp: 3;
@@ -157,7 +161,7 @@
     .view-all-link {
         color: color.adjust($color-cta-primary-warm, $lightness: 25%);
         text-decoration: none;
-        font-size: $font-size-xs;
+        font-size: 1rem; // Increased from xs
         text-transform: uppercase;
         letter-spacing: 2px;
         font-weight: $font-weight-bold;
@@ -174,10 +178,7 @@
         &:hover {
             gap: 1.25rem;
             filter: brightness(1.2);
-            
-            .arrow {
-                transform: translateX(5px);
-            }
+            .arrow { transform: translateX(5px); }
         }
     }
 }

@@ -5,37 +5,34 @@
     min-height: 100vh;
     width: 100%;
     color: #ffffff; 
-    // REMOVED: Massive top padding to bring content up
     padding: $space-md 0 $space-xxl; 
 
     @media (max-width: $breakpoint-sm) {
-        padding-top: $space-sm; // Minimal top gap on mobile
+        padding-top: $space-sm; 
     }
 
     .label {
+        // MATCHED: Synchronized with coursesPage label
         color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
         text-transform: uppercase;
         font-weight: $font-weight-bold;
-        font-size: $font-size-xs;
+        font-size: 0.85rem; 
         letter-spacing: 2px;
         display: block;
         margin-bottom: $space-sm;
     }
 }
 
-// SHARED GRID STRUCTURE
 .featured-hero {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
-    // RESTORED: Original wide gap between text and carousel
-    gap: $space-xxxxl; 
+    gap: $space-xl; // MATCHED: Reduced from xxxxp to xl to match course-card-row
     align-items: flex-start;
-    // REDUCED: Gap between this section and the next
     margin-bottom: $space-xxl; 
 
     @media (max-width: $breakpoint-md) {
         grid-template-columns: 1fr;
-        gap: $space-xxxxl; // Keep the original gap on mobile as well
+        gap: $space-md; 
     }
 
     .hero-text {
@@ -44,12 +41,15 @@
             font-size: $font-size-h2; 
             margin-bottom: $space-md; 
             font-weight: $font-weight-bold;
-            text-transform: none; // Title casing
+            text-transform: none; 
         }
         .progress-essay p {
+            // MATCHED: Same 1.1rem size and 1.6 line-height as infoContainer/Courses
             color: #ffffff !important;
-            line-height: 1.8;
-            font-size: 1.05rem;
+            line-height: 1.6; 
+            font-size: 1.1rem; 
+            opacity: 1; 
+            margin-bottom: $space-md;
         }
     }
 }
@@ -62,7 +62,6 @@
         aspect-ratio: 4 / 3;
         border-radius: $border-radius-sm; 
         overflow: hidden; 
-        box-shadow: none; 
         background-color: #171717;
         
         .carousel-progressive {
@@ -83,8 +82,18 @@
 
     .hero-artwork-titles {
         margin-top: $space-md;
-        .art-title { display: block; font-weight: $font-weight-bold; font-size: $font-size-sm; }
-        .student-info { font-size: $font-size-xs; font-style: italic; opacity: 0.6; }
+        .art-title { 
+            display: block; 
+            font-weight: $font-weight-bold; 
+            font-size: 0.85rem; // MATCHED: Consistent metadata size
+            color: #ffffff;
+        }
+        .student-info { 
+            font-size: 0.85rem; 
+            font-style: italic; 
+            color: #ffffff;
+            opacity: 0.8; 
+        }
     }
 }
 
@@ -108,34 +117,44 @@
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: $space-sm;
         span {
-            font-size: $font-size-xs;
+            font-size: 0.85rem; 
             font-style: italic;
-            opacity: 0.5;
-            text-transform: none;
+            opacity: 0.8; 
+            color: #ffffff;
         }
     }
 }
 
-// CALCULATOR STYLES
 .timeline-calculator {
-    // REDUCED: Space around the calculator
     margin: $space-xxl 0; 
     padding: $space-xl 0; 
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     
-    h3 { color: #ffffff; text-transform: none; }
+    h3 { 
+        color: #ffffff; 
+        text-transform: none; 
+        font-size: $font-size-h3;
+        font-weight: $font-weight-bold;
+    }
     input[type="range"] { width: 100%; max-width: 400px; accent-color: $color-cta-primary-warm; }
-    .hours-display { font-size: 3.5rem; color: color.adjust($color-cta-primary-warm, $lightness: 25%); margin: $space-md 0; }
-    // RESTORED: Original wide gap for results
-    .results-wrap { display: flex; justify-content: center; gap: $space-xxxxl; }
+    .hours-display { 
+        font-size: 3.5rem; 
+        color: color.adjust($color-cta-primary-warm, $lightness: 25%); 
+        margin: $space-md 0; 
+    }
+    .results-wrap { 
+        display: flex; 
+        justify-content: center; 
+        gap: $space-xl; 
+    }
 }
 
 .nav-btn {
     position: absolute;
     top: 50%; transform: translateY(-50%);
-    background: none; color: #ffffff; border: none; font-size: 2.5rem; cursor: pointer; opacity: 0.5;
+    background: none; color: #ffffff; border: none; font-size: 2.5rem; cursor: pointer; opacity: 0.6;
     z-index: 20;
     &:hover { opacity: 1; }
     &.prev { left: 10px; } &.next { right: 10px; }
@@ -143,7 +162,6 @@
 
 .exhibition-final-section {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    // REDUCED: Space at the top of the final section
     padding-top: $space-xl; 
     margin-bottom: 0;
 }

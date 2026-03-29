@@ -29,7 +29,7 @@
         font-weight: $font-weight-bold; // Matched bold weight
 
         @media (max-width: $breakpoint-sm) {
-            font-size: $font-size-h3;
+            font-size: $font-size-h3; // UNTOUCHED
             letter-spacing: 0.2rem;
         }
     }
@@ -72,6 +72,10 @@
         font-weight: $font-weight-bold;
         margin: 0;
         letter-spacing: 0.0625rem;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 1.15rem; // SCALED FOR MOBILE
+        }
     }
 
     .review-stars {
@@ -80,7 +84,11 @@
         font-size: 0.75rem;
         margin-top: $space-xxs;
         letter-spacing: 0.125rem;
-        opacity: 0.9;
+        opacity: 1; // FULL BRIGHTNESS
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 0.9rem; // SLIGHTLY LARGER ON MOBILE
+        }
     }
 }
 
@@ -89,15 +97,21 @@
     
     .source-text, .source-link {
         font-size: $font-size-xxs;
-        // Light grey but keeping it legible, similar to the student-info opacity
-        color: rgba(255, 255, 255, 0.6);
+        // BRIGHTER
+        color: #ffffff;
+        opacity: 0.8;
         text-transform: uppercase;
         letter-spacing: 0.0625rem;
         text-decoration: none;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 0.95rem; // SCALED FOR MOBILE
+        }
     }
 
     .source-link:hover {
         color: #ffffff;
+        opacity: 1;
     }
 }
 
@@ -110,9 +124,11 @@
         margin: 0;
         font-weight: $font-weight-normal;
         white-space: pre-line;
+        opacity: 1;
 
         @media (max-width: $breakpoint-sm) {
-            font-size: $font-size-base;
+            // SCALED FOR MOBILE TO MATCH INFOCONTAINER
+            font-size: 1.25rem; 
             line-height: 1.6;
         }
     }

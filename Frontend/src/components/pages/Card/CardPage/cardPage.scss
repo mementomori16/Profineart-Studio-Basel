@@ -19,23 +19,31 @@
         .cardHeader {
             width: 100%;
             padding: global.$space-md 0 global.$space-lg 0; 
-            text-align: center;
+            // CENTRALIZED
+            text-align: center; 
             border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
 
             .pageTitle {
                 margin: 0;
-                font-size: global.$font-size-h3;
-                font-weight: global.$font-weight-light;
                 color: #ffffff !important; 
+                // TEASER STYLE: BIG, BOLD, SPACED
+                font-size: global.$font-size-h2 !important; 
+                font-weight: global.$font-weight-bold;
                 text-transform: uppercase;
-                letter-spacing: 0.2rem;
+                letter-spacing: 0.4rem; 
+                line-height: 1.2;
+
+                @media (max-width: global.$breakpoint-sm) {
+                    font-size: global.$font-size-h3 !important;
+                    letter-spacing: 0.2rem; 
+                }
             }
         }
 
         .cardContentLayout {
             display: flex;
             flex-direction: column;
-            padding: global.$space-xl 0 0 0; // Removed bottom padding
+            padding: global.$space-xl 0 0 0; 
             gap: global.$space-xl;
 
             @media (min-width: global.$breakpoint-lg) {
@@ -43,54 +51,72 @@
                 gap: global.$space-xxl; 
             }
 
-            .column-left { width: 100%; order: 2; @media (min-width: global.$breakpoint-lg) { width: 65%; order: 1; }}
-            .column-right { width: 100%; order: 1; @media (min-width: global.$breakpoint-lg) { width: 35%; order: 2; display: flex; flex-direction: column; gap: global.$space-md; }}
-        }
-
-       .backNavigationSection {
-    display: flex;
-    justify-content: flex-start; 
-    padding: 0;
-    margin-top: global.$space-md; // Small gap from the content above
-    border: none; // Line removed
-
-    .backToCourses {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        // Increased visibility: changed from 0.4 to 0.8 opacity
-        color: rgba(255, 255, 255, 0.8); 
-        text-decoration: none;
-        font-size: 0.8rem; // Slightly larger for visibility
-        font-weight: global.$font-weight-semibold;
-        text-transform: lowercase;
-        letter-spacing: 0.05rem;
-        padding: global.$space-sm 0;
-        transition: all 0.3s ease;
-
-        .arrow {
-            font-family: serif;
-            font-size: 1.1rem;
-            line-height: 0;
-            transition: transform 0.3s ease;
-        }
-
-        &:hover {
-            color: #ffffff;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); // Subtle glow on hover
+            .column-left { 
+                width: 100%; 
+                order: 2; 
+                @media (min-width: global.$breakpoint-lg) { 
+                    width: 65%; 
+                    order: 1; 
+                }
+            }
             
-            .arrow {
-                transform: translateX(-3px); // Micro-interaction
+            .column-right { 
+                width: 100%; 
+                order: 1; 
+                @media (min-width: global.$breakpoint-lg) { 
+                    width: 35%; 
+                    order: 2; 
+                    display: flex; 
+                    flex-direction: column; 
+                    gap: global.$space-md; 
+                }
             }
         }
-    }
+
+        .backNavigationSection {
+            display: flex;
+            justify-content: flex-start; 
+            padding: 0;
+            margin-top: global.$space-md; 
+            border: none; 
+
+            .backToCourses {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: #ffffff; 
+                text-decoration: none;
+                font-size: 0.9rem; 
+                font-weight: global.$font-weight-semibold;
+                text-transform: lowercase;
+                letter-spacing: 0.05rem;
+                padding: global.$space-sm 0;
+                transition: all 0.3s ease;
+                opacity: 0.9;
+
+                .arrow {
+                    font-family: serif;
+                    font-size: 1.2rem;
+                    line-height: 0;
+                    transition: transform 0.3s ease;
+                }
+
+                &:hover {
+                    opacity: 1;
+                    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); 
+                    
+                    .arrow {
+                        transform: translateX(-3px); 
+                    }
+                }
+            }
         }
     }
 
     .similarProductsContainer {
         width: 100%;
         max-width: global.$breakpoint-xxl;
-        margin-top: 0; // Sits flush with back button line
+        margin-top: 0; 
         
         @media (max-width: global.$breakpoint-sm) {
             width: 100vw;

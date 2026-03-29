@@ -19,7 +19,7 @@
         color: global.$color-text-light !important; 
         text-transform: uppercase;
         font-weight: global.$font-weight-bold;
-        font-size: global.$font-size-sm !important; 
+        font-size: 0.95rem !important; // Increased from global.$font-size-sm
         letter-spacing: 2px;
         display: block;
         margin-bottom: global.$space-sm;
@@ -32,16 +32,16 @@
         margin-bottom: global.$space-xl;
         border: 1px solid rgba(255, 255, 255, 0.08); 
 
-        // Removed background/border but kept a professional side-gap
         &.no-bg-mobile {
             @media (max-width: global.$breakpoint-sm) {
                 background: transparent !important;
                 border: none !important;
-                padding: 0 global.$space-md !important; // Keeps text from touching edges
+                padding: 0 global.$space-md !important; 
             }
         }
 
         .detailsTitle {
+            // RESTORED EXACTLY
             @include global.info-container-details-title;
             color: #ffffff !important; 
             font-size: global.$font-size-h4 !important; 
@@ -53,18 +53,18 @@
 
     .description, .detailsText {
         @include global.info-container-description;
-        
         color: #ffffff !important;
         line-height: 1.8;
 
         p, div, span, li {
             color: #ffffff !important;
             line-height: 1.8;
-            font-size: 1rem;
+            font-size: 1.1rem; // Increased from 1rem
             margin-bottom: global.$space-md;
         }
 
         h2, h3 {
+            // RESTORED EXACTLY
             color: #ffffff !important;
             font-size: global.$font-size-h4 !important; 
             font-weight: global.$font-weight-bold !important;
@@ -73,10 +73,10 @@
             text-transform: none;
         }
 
-        // Task: Make gray titles (h5) a little bigger
         h5 {
+            // RESTORED EXACTLY (Gray titles)
             color: global.$color-text-light !important;
-            font-size: global.$font-size-md !important; // Increased from sm
+            font-size: global.$font-size-md !important; 
             text-transform: uppercase;
             letter-spacing: 0.1rem;
             font-weight: global.$font-weight-bold;

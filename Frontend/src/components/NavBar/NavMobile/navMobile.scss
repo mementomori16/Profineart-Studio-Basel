@@ -37,7 +37,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
 
   .basket-icon {
     position: relative;
-    color: $color-surface;
+    color: #ffffff; // BRIGHTER
     display: flex;
     align-items: center;
 
@@ -66,7 +66,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
     cursor: pointer;
     z-index: 1010;
     .hamburger-react {
-      color: $color-surface;
+      color: #ffffff; // BRIGHTER
     }
     svg path {
       stroke-width: 2px !important;
@@ -117,14 +117,17 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
         width: 100%;
         max-width: 100%;
         padding-right: $space-sm;
-        .search-bar { width: 100% !important; }
+        .search-bar { 
+          width: 100% !important; 
+          font-size: 1.15rem; // SCALED FOR MOBILE
+        }
       }
     }
 
     .mobile-link {
-      color: $color-navbar-title;
+      color: #ffffff; // BRIGHTER
       font-family: $font-family-base;
-      font-size: 0.9rem; 
+      font-size: 1.25rem; // SCALED FOR MOBILE
       font-weight: $font-weight-semibold;
       text-decoration: none;
       position: relative;
@@ -152,7 +155,6 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
       }
     }
 
-    // --- SUBMENU WITH HIGH CONTRAST ---
     .mobile-submenu {
       list-style: none;
       padding: 0;
@@ -167,7 +169,7 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
         max-height: 800px;
         margin-top: $space-sm;
         padding-left: $space-md;
-        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        border-left: 1px solid rgba(255, 255, 255, 0.3); // MORE VISIBLE
       }
 
       .mobile-sublink {
@@ -175,10 +177,10 @@ $header-mobile-height: calc(2rem + 2 * #{$space-sm});
         justify-content: space-between;
         align-items: center;
         padding: $space-sm 0;
-        // Bright contrast set here
-        color: $color-navbar-title; 
+        color: #ffffff; // BRIGHTER
+        opacity: 0.9;
         text-decoration: none;
-        font-size: 0.85rem;
+        font-size: 1.15rem; // SCALED FOR MOBILE
         font-weight: $font-weight-semibold;
         transition: all 0.2s ease;
 

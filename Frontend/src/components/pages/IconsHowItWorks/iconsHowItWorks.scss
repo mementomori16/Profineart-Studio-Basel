@@ -1,13 +1,11 @@
 @use "../../../global.scss" as *;
 
 .how-it-works-section {
-    // REDUCED: Changed from $space-xl to $space-sm for a tighter top gap
     padding: $space-sm 0 $space-xxxxl 0; 
     width: 100%;
     background-color: #171717;
 
     @media (max-width: $breakpoint-md) {
-        // REDUCED: Changed from $space-lg to $space-xs for mobile
         padding: $space-xs 0 $space-xxl 0;
     }
 
@@ -29,7 +27,7 @@
 
         .how-main-title {
             color: #ffffff;
-            font-size: $font-size-h2; 
+            font-size: $font-size-h2; // UNTOUCHED
             font-weight: $font-weight-bold;
             text-align: left;
             text-transform: uppercase;
@@ -38,7 +36,7 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 
             @media (max-width: $breakpoint-sm) {
-                font-size: $font-size-h3;
+                font-size: $font-size-h3; // UNTOUCHED
                 letter-spacing: 0.2rem;
             }
         }
@@ -110,7 +108,7 @@
 
     .step-title {
         color: #ffffff;
-        font-size: 1.1rem; 
+        font-size: 1.1rem; // UNTOUCHED
         font-weight: $font-weight-bold;
         text-transform: uppercase;
         margin-bottom: $space-sm;
@@ -126,12 +124,17 @@
         text-align: center;
         opacity: 1; 
         margin: 0;
+
+        @media (max-width: $breakpoint-sm) {
+            // SCALED FOR MOBILE
+            font-size: 1.15rem; 
+        }
     }
 }
 
 .flow-arrow {
     padding-top: 2.5rem;
-    color: rgba(255, 255, 255, 0.25); 
+    color: rgba(255, 255, 255, 0.4); // BRIGHTER
     font-size: 1.5rem;
     font-weight: bold;
     

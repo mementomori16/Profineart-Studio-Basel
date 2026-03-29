@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   background-color: $color-navbar; // Updated to match mobile
-  color: $color-secondary;
+  color: #ffffff; // BRIGHTER
   box-shadow: $shadow-sm;
   z-index: 1000;
 }
@@ -53,7 +53,7 @@
         font-family: $font-family-base;
         font-size: 0.9rem; 
         font-weight: $font-weight-semibold;
-        color: $color-navbar-title;
+        color: #ffffff; 
         text-decoration: none;
         position: relative;
         padding: 0.5rem 0;
@@ -101,7 +101,7 @@
         visibility: hidden;
         transition: opacity 0.2s ease;
         z-index: 1001;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.01);
 
         &::before {
           content: '';
@@ -123,7 +123,7 @@
             justify-content: space-between;
             align-items: center;
             padding: $space-sm $space-lg;
-            color: $color-navbar-title;
+            color: #ffffff;
             font-size: 0.85rem;
             text-decoration: none;
             transition: all 0.2s ease;
@@ -131,7 +131,7 @@
             
             &:hover { 
               color: $color-navbar-title-hover;
-              background-color: rgba(255, 255, 255, 0.03);
+              background-color: rgba(255, 255, 255, 0.05);
               padding-left: calc(#{$space-lg} + 4px); // Premium nudge
               
               .nudge-icon { opacity: 1 !important; transform: translateX(3px); }
@@ -158,9 +158,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: $color-surface; // Synced with mobile basket color
+      color: #ffffff; // Synced with mobile basket color
 
-      &:hover { color: $color-button-blue-2; }
+      &:hover { color: rgb(161, 160, 160); }
 
       .basket-badge {
         position: absolute;
@@ -189,7 +189,7 @@
     gap: $space-md;
     height: 4.5rem;
     .nav-logo { .nav-logo-img { height: 3rem; } }
-    .nav-menu { gap: $space-lg; .nav-item .nav-link { font-size: 0.8rem; } }
+    .nav-menu { gap: $space-lg; .nav-item .nav-link { font-size: 0.82rem; } }
     .nav-right-actions { gap: $space-md; .search-bar-container { min-width: 200px; } }
   }
 }

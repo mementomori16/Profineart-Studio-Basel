@@ -10,7 +10,7 @@
         text-align: center;
         margin-bottom: global.$space-xl;
         color: #ffffff;
-        font-size: global.$font-size-h3;
+        font-size: global.$font-size-h3; // UNTOUCHED
         display: flex;
         align-items: center;
         justify-content: center;
@@ -29,6 +29,10 @@
         justify-content: center;
         font-size: global.$font-size-sm;
         text-align: center;
+
+        @media (max-width: global.$breakpoint-sm) {
+            font-size: 1.1rem; // SCALED FOR MOBILE
+        }
 
         .error-icon {
             flex-shrink: 0;
@@ -59,7 +63,6 @@
         gap: global.$space-md;
         margin-bottom: global.$space-md;
 
-        // RESPONSIVE STACKING
         @media (max-width: global.$breakpoint-md) {
             flex-direction: column;
             text-align: center;
@@ -67,7 +70,7 @@
         }
 
         .item-image-container {
-            width: 8rem; // Slightly larger for better visibility
+            width: 8rem; 
             height: 6rem;
             border-radius: global.$border-radius-sm;
             overflow: hidden;
@@ -93,12 +96,17 @@
             h3 { 
                 color: #ffffff; 
                 margin: 0 0 4px 0; 
-                font-size: global.$font-size-h6; 
+                font-size: global.$font-size-h6; // UNTOUCHED
             }
             p { 
-                color: rgba(255, 255, 255, 0.6); 
+                color: #ffffff; // BRIGHTER
+                opacity: 1;
                 margin: 0; 
                 font-size: global.$font-size-sm; 
+
+                @media (max-width: global.$breakpoint-sm) {
+                    font-size: 1.15rem; // SCALED FOR MOBILE
+                }
             }
         }
 
@@ -126,6 +134,8 @@
 
                 @media (max-width: global.$breakpoint-md) {
                     width: 100%;
+                    font-size: 1.1rem; // EASIER TO READ ON MOBILE
+                    padding: global.$space-md global.$space-xl;
                 }
 
                 &:hover:not(:disabled) {
@@ -143,8 +153,9 @@
 
             .btn-remove-subtle {
                 background: none;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                color: rgba(255, 255, 255, 0.4);
+                border: 1px solid rgba(255, 255, 255, 0.2); // INCREASED BORDER VISIBILITY
+                color: #ffffff; // BRIGHTER
+                opacity: 0.7;
                 padding: global.$space-xs global.$space-md;
                 border-radius: global.$border-radius-xl;
                 display: flex;
@@ -157,9 +168,11 @@
                 @media (max-width: global.$breakpoint-md) {
                     border: none;
                     text-decoration: underline;
+                    font-size: 1rem; // SCALED FOR MOBILE
                 }
 
                 &:hover {
+                    opacity: 1;
                     color: global.$color-error;
                     border-color: global.$color-error;
                     background: rgba(global.$color-error, 0.05);
@@ -185,16 +198,26 @@
             color: #ffffff; 
             margin: 0; 
             font-weight: global.$font-weight-semibold; 
+
+            @media (max-width: global.$breakpoint-sm) {
+                font-size: 1.25rem; // SCALED FOR MOBILE
+            }
         }
 
         .btn-clear-cart {
             background: none;
             border: none;
-            color: rgba(255, 255, 255, 0.3);
+            color: #ffffff; // BRIGHTER
+            opacity: 0.5;
             text-decoration: underline;
             cursor: pointer;
             font-size: global.$font-size-sm;
-            &:hover { color: global.$color-error; }
+
+            @media (max-width: global.$breakpoint-sm) {
+                font-size: 1rem; // SCALED FOR MOBILE
+            }
+
+            &:hover { color: global.$color-error; opacity: 1; }
         }
     }
 
@@ -202,8 +225,9 @@
         text-align: center;
         padding: global.$space-xxl;
         p { 
-            color: rgba(255, 255, 255, 0.5); 
-            font-size: global.$font-size-h5; 
+            color: #ffffff; // BRIGHTER
+            opacity: 1;
+            font-size: global.$font-size-h5; // UNTOUCHED
         }
         .btn-back-to-courses { 
             @extend .btn-cta-primary; 

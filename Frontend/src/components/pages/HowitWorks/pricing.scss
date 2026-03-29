@@ -2,7 +2,7 @@
 @use '../../../global.scss' as *;
 
 .pricing-senior-engine {
-    // MATCHED: Students Gallery top padding
+    // MATCHED: Students Gallery/InfoContainer top padding
     padding: $space-md 0 $space-xxl; 
     color: #ffffff;
 
@@ -10,30 +10,31 @@
         padding-top: $space-sm; 
     }
 
-    // BASE LABEL STYLE
+    // BASE LABEL STYLE - Bright & Scaled for Mobile
     .eyebrow, .block-label, .label {
         text-transform: uppercase;
         font-weight: $font-weight-bold;
         font-size: $font-size-xs;
         letter-spacing: 2px;
         display: block;
-        // MATCHED: Gap under the premium label
         margin-bottom: $space-sm; 
         color: #ffffff; 
+        opacity: 1;
+
+        @media (max-width: $breakpoint-sm) {
+            font-size: 1.1rem; // BUMPED ON MOBILE
+        }
     }
 
     .compact-hero {
         margin-bottom: $space-xl; 
         
-        // THE ONLY PREMIUM COLOR
         .eyebrow {
             color: color.adjust($color-cta-primary-warm, $lightness: 25%);
         }
 
         .main-title {
             font-size: $font-size-h2; 
-            // FIXED: Changed top margin from $space-xs to $space-md 
-            // to match the gap in StudentsWorks
             margin: $space-md 0 $space-md; 
             color: #ffffff;
             font-weight: $font-weight-bold;
@@ -45,15 +46,20 @@
             line-height: 1.8;
             font-size: 1.05rem;
             max-width: 900px;
+            opacity: 1;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.25rem; // BUMPED ON MOBILE TO MATCH INFOCONTAINER
+            }
         }
     }
 
-    // Rest of the component structure remains the same
     .pricing-matrix {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: $space-xl;
         margin-bottom: $space-xl; 
+
         @media (max-width: $breakpoint-md) { 
             grid-template-columns: 1fr;
             gap: $space-md; 
@@ -87,6 +93,12 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             font-size: $font-size-sm;
             color: #ffffff;
+            opacity: 1;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.1rem; // BUMPED ON MOBILE
+            }
+
             .pkg-value { font-weight: $font-weight-bold; }
         }
 
@@ -95,6 +107,11 @@
             font-size: $font-size-sm;
             color: #ffffff;
             line-height: 1.6;
+            opacity: 1;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.1rem; // BUMPED ON MOBILE
+            }
         }
     }
 
@@ -118,6 +135,11 @@
                 line-height: 1.8;
                 font-size: 1.05rem; 
                 margin: 0;
+                opacity: 1;
+
+                @media (max-width: $breakpoint-sm) {
+                    font-size: 1.25rem; // BUMPED ON MOBILE
+                }
             }
         }
     }
@@ -138,12 +160,20 @@
         .text-stack {
             display: flex;
             flex-direction: column;
-            gap: $space-xs; // Adds breathing room between title and subtitle
+            gap: $space-xs; 
             text-align: left;
         }
 
         .top-line { color: #ffffff; font-weight: $font-weight-bold; font-size: $font-size-md; }
-        .sub-line { font-size: $font-size-sm; color: #ffffff; }
+        .sub-line { 
+            font-size: $font-size-sm; 
+            color: #ffffff;
+            opacity: 1;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1.15rem; // BUMPED ON MOBILE
+            }
+        }
         .arrow-svg { color: #ffffff; font-size: $font-size-h3; }
     }
 
@@ -153,7 +183,21 @@
         gap: $space-xl;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: $space-xl;
-        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; gap: $space-md; }
-        .policy-block p { font-size: $font-size-sm; color: #ffffff; line-height: 1.7; }
+
+        @media (max-width: $breakpoint-md) { 
+            grid-template-columns: 1fr; 
+            gap: $space-md; 
+        }
+
+        .policy-block p { 
+            font-size: $font-size-sm; 
+            color: #ffffff; 
+            line-height: 1.7;
+            opacity: 1;
+
+            @media (max-width: $breakpoint-sm) {
+                font-size: 1rem; // BUMPED ON MOBILE
+            }
+        }
     }
 }
