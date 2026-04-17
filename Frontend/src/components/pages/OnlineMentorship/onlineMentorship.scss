@@ -1,0 +1,117 @@
+@use "sass:color";
+@use '../../../global.scss' as *;
+
+.online-mentorship-engine {
+    padding: $space-md 0 $space-xxl;
+    color: #ffffff;
+
+    @media (max-width: $breakpoint-sm) {
+        padding-top: $space-sm;
+    }
+
+    // Standard Label Style across your PWA
+    .label, .block-label {
+        color: color.adjust($color-cta-primary-warm, $lightness: 25%);
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: $space-sm;
+    }
+
+    .featured-hero {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: $space-xl;
+        align-items: flex-start;
+        margin-bottom: $space-xxl;
+
+        @media (max-width: $breakpoint-md) {
+            grid-template-columns: 1fr;
+        }
+
+        .hero-text {
+            h1 {
+                font-size: $font-size-h2;
+                font-weight: $font-weight-bold;
+                margin-bottom: $space-md;
+                color: #ffffff;
+            }
+            .progress-essay p {
+                line-height: 1.8;
+                font-size: 1.1rem;
+                margin-bottom: $space-md;
+                color: #ffffff;
+            }
+        }
+    }
+
+    .pricing-matrix {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: $space-xl;
+        margin-bottom: $space-xxl;
+
+        @media (max-width: $breakpoint-md) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .matrix-column {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: $space-xl;
+        display: flex;
+        flex-direction: column;
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: $space-sm;
+            margin-bottom: $space-lg;
+            
+            h3 { font-size: $font-size-md; margin: 0; font-weight: $font-weight-bold; }
+            .meta-tag { font-size: $font-size-xs; font-weight: $font-weight-bold; }
+        }
+
+        .rate-row {
+            display: flex;
+            justify-content: space-between;
+            padding: $space-sm 0;
+            font-size: $font-size-sm;
+        }
+
+        .btn-book-now {
+            width: 100%;
+            margin-top: auto;
+            padding: $space-md;
+            background-color: $color-cta-primary-warm;
+            border: none;
+            color: white;
+            font-weight: $font-weight-bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: $border-radius-xl; // Matching your cart button radius
+            transition: background-color 0.3s ease;
+
+            &:hover { background-color: $color-cta-primary-hover; }
+        }
+    }
+
+    .policy-matrix {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $space-xl;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: $space-xl;
+
+        @media (max-width: $breakpoint-md) {
+            grid-template-columns: 1fr;
+        }
+
+        p { font-size: $font-size-sm; line-height: 1.7; opacity: 1; color: #ffffff; }
+    }
+}

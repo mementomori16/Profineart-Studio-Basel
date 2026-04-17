@@ -6,7 +6,8 @@ import { FaCalendarAlt, FaExclamationCircle } from 'react-icons/fa';
 import { format, parseISO } from 'date-fns';
 
 import { Product, SlotSelection, CustomerDetails, LessonPackage } from '../../../../../Backend/types/Product';
-import { PRODUCT_PACKAGES } from '../../../../../Backend/data/products';
+// Import both lists to find Mentorship prices/labels
+import { PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../../../../../Backend/data/products';
 import StripeTrustSeal from '../../StripeTrustSeal/StripeTrustSeal'; 
 import './contactDetailsForm.scss';
 
@@ -31,6 +32,7 @@ interface ContactDetailsFormProps {
     onTitleClick: () => void; 
     onSubmit: (details: FullCustomerDetails) => Promise<void>;
     isLoading: boolean;
+    requiresAddress: boolean; // Fixed: Added to interface
 }
 
 const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
@@ -41,6 +43,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     onTitleClick, 
     onSubmit,
     isLoading,
+    requiresAddress, // Destructured
 }) => {
     const { t } = useTranslation();
 
@@ -58,8 +61,10 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     const [validationError, setValidationError] = useState<string | null>(null);
 
     const getPackageLabel = (packageId: string): string => {
-        const pkg = PRODUCT_PACKAGES.find(p => p.id === packageId) as LessonPackage | undefined;
-        return pkg ? t(`packages.${pkg.id}.label`, { defaultValue: pkg.label }) : t('common.unknown');
+        // Search across BOTH lists so Mentorship (ID 900+) is found
+        const allPackages = [...PRODUCT_PACKAGES, ...CONSULTATION_PACKAGES];
+        const pkg = allPackages.find(p => p.id === packageId) as LessonPackage | undefined;
+        return pkg ? t(`packages.${pkg.id}.label`, { defaultValue: pkg.label || pkg.name }) : t('common.unknown');
     };
 
     const getProductBriefDescription = (id: number) => t(`products.${id}.briefDescription`); 
@@ -70,7 +75,12 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!details.name || !details.email || !details.streetAndNumber || !details.index || !details.city || !details.country) {
+
+        // Validation: Only require address fields if requiresAddress is true
+        const isPersonalValid = details.name && details.email;
+        const isAddressValid = !requiresAddress || (details.streetAndNumber && details.index && details.city && details.country);
+
+        if (!isPersonalValid || !isAddressValid) {
             setValidationError(t('validation.requiredFields') || 'Required fields missing.');
             return;
         }
@@ -179,32 +189,37 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                     </div>
                 </div>
 
-                <h4 className="h5">{t('checkout.addressDetails')}</h4>
-                <div className="form-group-grid-address">
-                    <div className="form-field">
-                        <label>{t('form.streetAndNumber')} <span className="text-danger">*</span></label>
-                        <input type="text" name="streetAndNumber" value={details.streetAndNumber} onChange={handleChange} required />
-                    </div>
-                    <div className="form-field">
-                        <label>{t('form.apartmentAndFloor')}</label>
-                        <input type="text" name="apartmentAndFloor" value={details.apartmentAndFloor} onChange={handleChange} />
-                    </div>
-                </div>
+                {/* ADDRESS FIELDS: Only rendered if requiresAddress is true */}
+                {requiresAddress && (
+                    <>
+                        <h4 className="h5">{t('checkout.addressDetails')}</h4>
+                        <div className="form-group-grid-address">
+                            <div className="form-field">
+                                <label>{t('form.streetAndNumber')} <span className="text-danger">*</span></label>
+                                <input type="text" name="streetAndNumber" value={details.streetAndNumber} onChange={handleChange} required={requiresAddress} />
+                            </div>
+                            <div className="form-field">
+                                <label>{t('form.apartmentAndFloor')}</label>
+                                <input type="text" name="apartmentAndFloor" value={details.apartmentAndFloor} onChange={handleChange} />
+                            </div>
+                        </div>
 
-                <div className="form-group-grid-address grid-3">
-                    <div className="form-field">
-                        <label>{t('form.index')} <span className="text-danger">*</span></label>
-                        <input type="text" name="index" value={details.index} onChange={handleChange} required />
-                    </div>
-                    <div className="form-field">
-                        <label>{t('form.city')} <span className="text-danger">*</span></label>
-                        <input type="text" name="city" value={details.city} onChange={handleChange} required />
-                    </div>
-                    <div className="form-field">
-                        <label>{t('form.country')} <span className="text-danger">*</span></label>
-                        <input type="text" name="country" value={details.country} onChange={handleChange} required />
-                    </div>
-                </div>
+                        <div className="form-group-grid-address grid-3">
+                            <div className="form-field">
+                                <label>{t('form.index')} <span className="text-danger">*</span></label>
+                                <input type="text" name="index" value={details.index} onChange={handleChange} required={requiresAddress} />
+                            </div>
+                            <div className="form-field">
+                                <label>{t('form.city')} <span className="text-danger">*</span></label>
+                                <input type="text" name="city" value={details.city} onChange={handleChange} required={requiresAddress} />
+                            </div>
+                            <div className="form-field">
+                                <label>{t('form.country')} <span className="text-danger">*</span></label>
+                                <input type="text" name="country" value={details.country} onChange={handleChange} required={requiresAddress} />
+                            </div>
+                        </div>
+                    </>
+                )}
 
                 <div className="form-field">
                     <label>{t('form.message')}</label>

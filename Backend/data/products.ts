@@ -409,6 +409,31 @@ export const testimonials: Testimonial[] = [
   }
 ];
 
+export const CONSULTATION_PACKAGES: LessonPackage[] = [
+    {
+        id: 'consult_20',
+        name: 'Professional Audit',
+        description: '20 min focused Q&A or portfolio check.',
+        lessons: 1,
+        durationMinutes: 20,
+        price: 70,
+        label: '20 Minutes - 70 CHF',
+        type: 'online_consult',
+        requiresAddress: false
+    },
+    {
+        id: 'consult_45',
+        name: 'Career & Portfolio Strategy',
+        description: '40 min deep dive into your art career.',
+        lessons: 1,
+        durationMinutes: 40,
+        price: 125,
+        label: '40 Minutes - 125 CHF',
+        type: 'online_consult',
+        requiresAddress: false
+    }
+];
+
 export const products = {
   
   courses: courses,

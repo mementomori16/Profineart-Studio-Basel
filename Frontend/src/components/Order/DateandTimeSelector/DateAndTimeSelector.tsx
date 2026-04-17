@@ -83,7 +83,24 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     const [isLoadingSlots, setIsLoadingSlots] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    // RESET LOGIC: Triggers when the user switches to a different product category
+    useEffect(() => {
+        if (packages.length > 0) {
+            setSelectedPackage(packages[0]);
+        }
+        setSelectedDate(getTomorrow());
+        setSelectedSlot(null);
+        setAvailableSlots([]);
+        setAddress('');
+        setAddressValidated(false);
+        setAddressError(null);
+        setError(null);
+    }, [productId, packages]);
+
     const formattedDate = selectedDate ? DateTime.fromJSDate(selectedDate).toISODate() : '';
+
+    // NEW LOGIC: Check if this package type bypasses physical distance checks
+    const isOnlineMentorship = selectedPackage.sessionType === 'online_consult' || selectedPackage.requiresAddress === false;
 
     // Guard against empty packages array
     if (packages.length === 0 || !selectedPackage.durationMinutes) {
@@ -102,9 +119,9 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         return acc;
     }, {} as Record<string, LessonPackage[]>);
 
-    const columnOrder = ['2 Sessions', '1.5 Sessions', '1 Session'];
+    const columnOrder = ['2 Sessions', '1.5 Sessions', '1 Session', 'online_consult'];
     const packageColumns = columnOrder.map(key => ({
-        title: key,
+        title: key === 'online_consult' ? 'Online Mentorship' : key,
         packages: groupedPackages[key] || []
     })).filter(column => column.packages.length > 0);
 
@@ -159,7 +176,10 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
     // --- HANDLERS ---
     const handleNextStep = () => {
-        if (!selectedSlot || !addressValidated || !formattedDate) {
+        // MODIFIED: If it's online, we don't care about address validation
+        const canProceedWithAddress = isOnlineMentorship ? true : addressValidated;
+
+        if (!selectedSlot || !canProceedWithAddress || !formattedDate) {
             setError(t('error.completeAllSteps') || 'Please select a date, time slot, and validate your address.');
             return;
         }
@@ -172,7 +192,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
             price: selectedPackage.price,
             selectedDate: formattedDate,
             selectedTime: selectedSlot.time,
-            address: address,
+            address: isOnlineMentorship ? "Online Mentorship" : address,
         };
 
         onNextStep(selection);
@@ -234,10 +254,18 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
     return (
         <div className="date-time-selector-container">
+            {/* 1. PACKAGE SELECTOR */}
             <div className="section-group package-select-group">
-                <h3><FaShoppingCart /> {t('checkout.selectPackageTitle')}</h3>
+                <h3>
+                    <FaShoppingCart /> 
+                    {isOnlineMentorship 
+                        ? t('checkout.selectPackageTitleOnline') 
+                        : t('checkout.selectPackageTitle')}
+                </h3>
                 <p className="package-instruction-text">
-                    {t('checkout.packageInstruction')}
+                    {isOnlineMentorship 
+                        ? t('checkout.packageInstructionOnline') 
+                        : t('checkout.packageInstruction')}
                 </p>
 
                 <div className="package-options-columns">
@@ -301,7 +329,6 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                             </p>
                         ) : availableSlots.length > 0 ? (
                             <div className="time-slots-grid">
-                                {/* Removed the groupedSlots mapping and hour titles here */}
                                 <div className="time-slots-row">
                                     {availableSlots.map(slot => (
                                         <button
@@ -324,46 +351,48 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                 </div>
             </div>
 
-            {/* 3. ADDRESS INPUT AND VALIDATION */}
-            <div className="section-group address-group">
-                <h3><FaMapMarkerAlt /> {t('checkout.enterAddressTitle') || '3. Enter your address'}</h3>
-                
-                <p className="address-instruction-text">
-                    {t('checkout.addressInstruction') || "The teacher can drive to your address if it is within a **25 km radius** of Basel."}
-                </p>
+            {/* 3. ADDRESS INPUT AND VALIDATION (Hidden for Mentorship) */}
+            {!isOnlineMentorship && (
+                <div className="section-group address-group">
+                    <h3><FaMapMarkerAlt /> {t('checkout.enterAddressTitle') || '3. Enter your address'}</h3>
+                    
+                    <p className="address-instruction-text">
+                        {t('checkout.addressInstruction') || "The teacher can drive to your address if it is within a **25 km radius** of Basel."}
+                    </p>
 
-                <div className="address-controls">
-                    <input
-                        type="text"
-                        placeholder={t('checkout.addressPlaceholder')}
-                        value={address}
-                        onChange={(e) => {
-                            setAddress(e.target.value);
-                            setAddressValidated(false);
-                            setAddressError(null);
-                        }}
-                        className="address-input"
-                    />
-                    <button
-                        className="btn-validate"
-                        onClick={handleAddressValidation}
-                        disabled={!address.trim() || isAddressValidating}
-                    >
-                        {isAddressValidating ? t('checkout.addressValidating') : t('checkout.addressCheckButton')}
-                    </button>
+                    <div className="address-controls">
+                        <input
+                            type="text"
+                            placeholder={t('checkout.addressPlaceholder')}
+                            value={address}
+                            onChange={(e) => {
+                                setAddress(e.target.value);
+                                setAddressValidated(false);
+                                setAddressError(null);
+                            }}
+                            className="address-input"
+                        />
+                        <button
+                            className="btn-validate"
+                            onClick={handleAddressValidation}
+                            disabled={!address.trim() || isAddressValidating}
+                        >
+                            {isAddressValidating ? t('checkout.addressValidating') : t('checkout.addressCheckButton')}
+                        </button>
+                    </div>
+
+                    {addressValidated && (
+                        <p className="validation-message success">
+                            <FaCheckCircle /> {t('checkout.addressValidSuccess')}
+                        </p>
+                    )}
+                    {addressError && (
+                        <p className="validation-message error">
+                            <FaExclamationCircle /> {addressError}
+                        </p>
+                    )}
                 </div>
-
-                {addressValidated && (
-                    <p className="validation-message success">
-                        <FaCheckCircle /> {t('checkout.addressValidSuccess')}
-                    </p>
-                )}
-                {addressError && (
-                    <p className="validation-message error">
-                        <FaExclamationCircle /> {addressError}
-                    </p>
-                )}
-            </div>
+            )}
 
             {/* NEXT STEP BUTTON */}
             <div className="form-actions next-step-button">
@@ -371,7 +400,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                     type="button"
                     className="btn-primary"
                     onClick={handleNextStep}
-                    disabled={!selectedSlot || isLoadingSlots || !addressValidated}
+                    disabled={!selectedSlot || isLoadingSlots || (!isOnlineMentorship && !addressValidated)}
                 >
                     {t('checkout.continueToDetails')}
                 </button>

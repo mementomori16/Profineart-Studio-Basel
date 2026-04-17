@@ -17,6 +17,7 @@ import HowItWorks from "../components/pages/HowitWorks/Pricing";
 import StudentsWorks from "../components/pages/StudentsWorks/StudentsWorks";
 import VideoPage from "../components/pages/VideoPage/VideoPage";
 import { FlyerGenerator } from "../components/FlyerTemplate/FlyerGenerator";
+import OnlineMentorship from "../components/pages/OnlineMentorship/OnlineMentorship";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
             { path: "courses", element: <Courses /> },
             { path: "how-it-works", element: <HowItWorks /> },
             { path: "students-works", element: <StudentsWorks /> },
+            { path: "online-mentorship", element: <OnlineMentorship /> },
             { path: "legalinfo", element: <LegalInfo /> },
             { path: "terms-of-use", element: <TermsOfUse /> },
             { path: "video-page", element: <VideoPage /> },

@@ -12,6 +12,9 @@ export interface LessonPackage {
     label: string; // Display label (e.g., "5 Sessions x 90 min - 390 CHF")
     isFeatured?: boolean;
     sessionType?: string;
+
+    type?: 'physical' | 'online_consult' | 'online_class'; 
+    requiresAddress?: boolean;
 }
 
 // --- Booking/Slot Selection Types (Frontend State) ---

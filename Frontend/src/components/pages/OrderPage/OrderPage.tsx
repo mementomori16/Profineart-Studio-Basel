@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Product, SlotSelection } from '../../../../../Backend/types/Product'; 
-import { courses, PRODUCT_PACKAGES } from '../../../../../Backend/data/products'; 
+import { Product, SlotSelection, LessonPackage } from '../../../../../Backend/types/Product'; 
+import { courses, PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../../../../../Backend/data/products'; 
 import productsData from '../../../locales/en/translation.json'; 
 
 import DateAndTimeSelector from '../../../components/Order/DateandTimeSelector/DateAndTimeSelector'; 
@@ -40,6 +40,9 @@ const OrderPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [product, setProduct] = useState<Product | null>(null);
     const [slotSelection, setSlotSelection] = useState<SlotSelection | null>(initialSlot);
+    
+    const [availablePackages, setAvailablePackages] = useState<LessonPackage[]>([]);
+
     const customerDetails = getInitialDetails(); 
 
     useEffect(() => {
@@ -49,21 +52,39 @@ const OrderPage: React.FC = () => {
     useEffect(() => {
         const productIdStr = id || '';
         const productIdNum = parseInt(productIdStr, 10);
-        const selectedProduct = courses.find(c => c.id === productIdNum);
 
-        if (!selectedProduct) {
-            setError(t('error.productNotFound'));
-            return;
+        if (productIdNum === 900) {
+            // Priority: Load Mentorship Packages
+            setAvailablePackages(CONSULTATION_PACKAGES);
+            setProduct({
+                id: 900,
+                title: "Online Mentorship",
+                slug: "online-mentorship",
+                category: "Mixed",
+                briefDescription: "Professional Art Audit and Mentorship",
+                image: { 
+                    lowResUrl: "https://res.cloudinary.com/dvzing79y/image/upload/v1739016335/Mentoring_Product_Image_low_ayicf2.webp", 
+                    highResUrl: "https://res.cloudinary.com/dvzing79y/image/upload/v1739016335/Mentoring_Product_Image_high_v6cl6t.webp" 
+                },
+                thumbnails: []
+            } as Product);
+        } else {
+            setAvailablePackages(PRODUCT_PACKAGES);
+            const selectedProduct = courses.find(c => c.id === productIdNum);
+
+            if (!selectedProduct) {
+                setError(t('error.productNotFound'));
+                return;
+            }
+
+            const richData = (productsData.products as any)[productIdStr];
+            const mergedProduct: Product = {
+                ...selectedProduct,
+                title: richData?.title || selectedProduct.title || "Course",
+                briefDescription: richData?.briefDescription || selectedProduct.briefDescription
+            };
+            setProduct(mergedProduct);
         }
-
-        const richData = (productsData.products as any)[productIdStr];
-        const mergedProduct: Product = {
-            ...selectedProduct,
-            title: richData?.title || selectedProduct.title || "Course",
-            briefDescription: richData?.briefDescription || selectedProduct.briefDescription
-        };
-
-        setProduct(mergedProduct);
     }, [id, t]);
 
     const handleNextStep = (selection: SlotSelection) => {
@@ -74,9 +95,10 @@ const OrderPage: React.FC = () => {
 
     const handleBackStep = () => setStep(1); 
 
-    // ✅ FIXED: Navigate to the new /course/slug route
     const handleNavigateBackToProduct = () => {
-        if (product?.slug) {
+        if (product?.id === 900) {
+            navigate('/online-mentorship');
+        } else if (product?.slug) {
             navigate(`/course/${product.slug}`);
         } else {
             navigate('/courses');
@@ -84,8 +106,10 @@ const OrderPage: React.FC = () => {
     };
     
     if (error && !product) return <div className="order-page-error">{error}</div>;
-    if (!product) return <div className="order-page-loading">{t('common.loading')}...</div>;
+    if (!product || availablePackages.length === 0) return <div className="order-page-loading">{t('common.loading')}...</div>;
     
+    const currentPackage = availablePackages.find(p => p.id === slotSelection?.packageId);
+
     return (
         <div className="order-page container">
             <div className="order-content-wrapper"> 
@@ -99,7 +123,7 @@ const OrderPage: React.FC = () => {
                     <DateAndTimeSelector 
                         productId={product.id.toString()}
                         onNextStep={handleNextStep}
-                        packages={PRODUCT_PACKAGES} 
+                        packages={availablePackages} 
                     />
                 )}
 
@@ -110,6 +134,7 @@ const OrderPage: React.FC = () => {
                         initialDetails={customerDetails}
                         onBackStep={handleBackStep}
                         onTitleClick={handleNavigateBackToProduct} 
+                        requiresAddress={currentPackage?.requiresAddress ?? true}
                     />
                 )}
             </div> 

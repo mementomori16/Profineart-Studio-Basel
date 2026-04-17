@@ -1,8 +1,8 @@
 {
  "home": {
     "home": "Home",
-    
-    "howItWorks": "Price & Format",
+    "onlineMentorship": "Online Mentorship",
+    "howItWorks": "How It Works",
     "courses": "Course Booking",
     "about": "About",
     "studentsWorks": "Students Gallery",
@@ -221,6 +221,8 @@
     "totalPrice": "Total Price",
     "selectPackageTitle": "1. Choose Lesson Package",
     "packageInstruction": "For multi-lesson packages, select your package and book only your first lesson date and time. The remaining sessions will be scheduled directly with your instructor after purchase. Packages do not expire.",
+    "selectPackageTitleOnline": "1. Choose Mentorship Duration",
+    "packageInstructionOnline": "Select the duration for your online session. After purchase, you will receive a link for the video call at the scheduled time.",
     "pickDateAndTimeTitle": "2. Pick Date and Time",
     "selectDatePlaceholder": "Select a date",
     "enterAddressTitle": "3. Enter Your Address",
@@ -540,6 +542,21 @@
       "caption": "Solo Exhibition by Shay R. | Acrylic on Canvas Series"
     }
     },
+
+   "mentorship": {
+    "label": "Online Professional Guidance",
+    "title": "Direct Online Mentorship",
+    "description": "Navigate the complexities of the contemporary art world through real-time video sessions. From technical portfolio critiques and art history context to the business of selling artworks and career strategy—including specialized guidance for aspiring tattoo artists. This is not a pre-recorded course; it is a live, personal consultation designed to bridge the gap between amateur practice and professional authority.",
+    "heroCaption": "Live Video Consultation & Strategy",
+    "consultationFee": "Session Fee",
+    "cta": "Book Session",
+    "academicTitle": "Art History & Theory",
+    "academicText": "Deepen the work with historical context and understanding of the contemporary field.",
+    "businessTitle": "Market & Sales",
+    "businessText": "Strategic advice on how to position, price, and sell artworks in today's market.",
+    "portfolioTitle": "Technical Critique",
+    "portfolioText": "Direct feedback on composition, mechanics, and the development of a professional portfolio."
+  },
 
 
   "contactPage": {

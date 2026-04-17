@@ -10,6 +10,7 @@ interface ContactDetailsProps {
     initialDetails: FullCustomerDetails; 
     onBackStep: () => void;
     onTitleClick: () => void;
+    requiresAddress: boolean; // Added to fix the TS error
 }
 
 const ContactDetails: React.FC<ContactDetailsProps> = ({
@@ -18,6 +19,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
     initialDetails,
     onBackStep,
     onTitleClick,
+    requiresAddress, // Destructured here
 }) => {
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +48,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
             lessons: slotSelection.lessons,
             durationMinutes: slotSelection.durationMinutes,
             // This is the key the backend is looking for
-            address: combinedAddress, 
+            address: !requiresAddress ? "Online Mentorship" : combinedAddress, 
             name: fullDetails.name,
             email: fullDetails.email,
             phone: fullDetails.phone,
@@ -84,6 +86,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({
                 onTitleClick={onTitleClick}
                 onSubmit={handleSubmitOrder} 
                 isLoading={isLoading}
+                requiresAddress={requiresAddress} // Passing it down to the form
             />
         </div>
     );

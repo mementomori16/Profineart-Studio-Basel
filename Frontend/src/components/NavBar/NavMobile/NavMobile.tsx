@@ -29,6 +29,7 @@ const routes = [
         { label: t('home.courseList.contemporary'), path: '/course/contemporary-painting-course' },
       ]
     },
+    { label: t('home.onlineMentorship'), path: '/online-mentorship' },
     { label: t('home.howItWorks'), path: '/how-it-works' },
     { label: t('home.studentsWorks'), path: '/students-works' },
     { label: t('home.about'), path: '/about' },

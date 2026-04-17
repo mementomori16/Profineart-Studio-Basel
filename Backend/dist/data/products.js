@@ -358,6 +358,30 @@ export const testimonials = [
         clientImage: "",
     }
 ];
+export const CONSULTATION_PACKAGES = [
+    {
+        id: 'consult_20',
+        name: 'Professional Audit',
+        description: '20 min focused Q&A or portfolio check.',
+        lessons: 1,
+        durationMinutes: 20,
+        price: 50,
+        label: '20 Minutes - 50 CHF',
+        type: 'online_consult',
+        requiresAddress: false
+    },
+    {
+        id: 'consult_45',
+        name: 'Career & Portfolio Strategy',
+        description: '45 min deep dive into your art career.',
+        lessons: 1,
+        durationMinutes: 45,
+        price: 100,
+        label: '45 Minutes - 100 CHF',
+        type: 'online_consult',
+        requiresAddress: false
+    }
+];
 export const products = {
     courses: courses,
     testimonials: testimonials,
