@@ -1,13 +1,16 @@
 import axios from 'axios';
-import { PRODUCT_PACKAGES } from '../data/products.js';
+// ADDED: Added CONSULTATION_PACKAGES to ensure online durations are recognized
+import { PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../data/products.js';
 import { DateTime } from 'luxon';
 // --- CRITICAL FIX: Reverting to the standard Google Sheets URL format ---
 // This path structure is more reliable for publicly shared CSV files.
 const SCHEDULE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTwsYJfuTfwBE1hA7wA7MRedNg5jsArQFahWZWn1dgxlBmLAbS7_hRUD1KV4y41Lwg0cc9J3wHPaTQb/pub?gid=0&single=true&output=csv';
 // Defines the fixed increment for time slot start times (every half hour)
 const SLOT_INCREMENT_MINUTES = 30;
-// Helper to map package durations to their IDs
-const packageDurationMap = PRODUCT_PACKAGES.reduce((acc, pkg) => {
+// NEW: Combined list to allow the mapper to "see" online durations (20/40 min)
+const ALL_PACKAGES = [...PRODUCT_PACKAGES, ...CONSULTATION_PACKAGES];
+// Helper to map package durations to their IDs (Updated to use ALL_PACKAGES)
+const packageDurationMap = ALL_PACKAGES.reduce((acc, pkg) => {
     acc[pkg.durationMinutes] = pkg.id;
     return acc;
 }, {});
@@ -120,10 +123,10 @@ export const getAvailableSlots = async (_productId, date, duration) => {
         const availableSlots = [];
         if (operatingHours && operatingHours.isAvailable) {
             const packageDurationId = packageDurationMap[duration];
-            // CRITICAL: Get the price for the specific duration
-            const packagePrice = PRODUCT_PACKAGES.find(p => p.durationMinutes === duration)?.price || 0;
+            // CRITICAL FIX: Use ALL_PACKAGES to find the price for 20/40 minute online sessions
+            const packagePrice = ALL_PACKAGES.find(p => p.durationMinutes === duration)?.price || 0;
             if (!packageDurationId) {
-                console.warn(`Skipping slot generation: Unknown duration ${duration}. Check PRODUCT_PACKAGES mapping.`);
+                console.warn(`Skipping slot generation: Unknown duration ${duration}. Check ALL_PACKAGES mapping.`);
                 return [];
             }
             let currentTimeMinutes = operatingHours.startTime;

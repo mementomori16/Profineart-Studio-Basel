@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { TimeSlot } from '../types/Booking.js';
-import { PRODUCT_PACKAGES } from '../data/products.js'; 
+// ADDED: Added CONSULTATION_PACKAGES to ensure online durations are recognized
+import { PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../data/products.js'; 
 import { DateTime } from 'luxon';
 
 // --- CRITICAL FIX: Reverting to the standard Google Sheets URL format ---
@@ -10,8 +11,11 @@ const SCHEDULE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTwsYJ
 // Defines the fixed increment for time slot start times (every half hour)
 const SLOT_INCREMENT_MINUTES = 30;
 
-// Helper to map package durations to their IDs
-const packageDurationMap = PRODUCT_PACKAGES.reduce((acc, pkg) => {
+// NEW: Combined list to allow the mapper to "see" online durations (20/40 min)
+const ALL_PACKAGES = [...PRODUCT_PACKAGES, ...CONSULTATION_PACKAGES];
+
+// Helper to map package durations to their IDs (Updated to use ALL_PACKAGES)
+const packageDurationMap = ALL_PACKAGES.reduce((acc, pkg) => {
     acc[pkg.durationMinutes] = pkg.id;
     return acc;
 }, {} as Record<number, string>);
@@ -38,6 +42,7 @@ const SWISS_HOLIDAYS: string[] = [
     // ------------------- 2025 -------------------
     '2025-12-25', // Christmas Day 
     '2025-12-26', // St. Stephen's Day 
+
     // ------------------- 2026 -------------------
     '2026-01-01', // New Year's Day
     '2026-04-03', // Good Friday
@@ -48,6 +53,7 @@ const SWISS_HOLIDAYS: string[] = [
     '2026-08-01', // Swiss National Day
     '2026-12-25', // Christmas Day 
     '2026-12-26', // St. Stephen's Day 
+
     // ------------------- 2027 -------------------
     '2027-01-01', // New Year's Day
     '2027-03-26', // Good Friday
@@ -138,11 +144,12 @@ export const getAvailableSlots = async (_productId: string, date: string, durati
 
         if (operatingHours && operatingHours.isAvailable) {
             const packageDurationId = packageDurationMap[duration];
-            // CRITICAL: Get the price for the specific duration
-            const packagePrice = PRODUCT_PACKAGES.find(p => p.durationMinutes === duration)?.price || 0; 
+            
+            // CRITICAL FIX: Use ALL_PACKAGES to find the price for 20/40 minute online sessions
+            const packagePrice = ALL_PACKAGES.find(p => p.durationMinutes === duration)?.price || 0; 
 
             if (!packageDurationId) {
-                console.warn(`Skipping slot generation: Unknown duration ${duration}. Check PRODUCT_PACKAGES mapping.`);
+                console.warn(`Skipping slot generation: Unknown duration ${duration}. Check ALL_PACKAGES mapping.`);
                 return [];
             }
 

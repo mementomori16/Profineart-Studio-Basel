@@ -6,7 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        // Pointing to the Functions Emulator, not the "Backend" folder
+        target: 'http://127.0.0.1:5001/profineart-studio-basel/europe-west1/api',
         changeOrigin: true,
       },
     },

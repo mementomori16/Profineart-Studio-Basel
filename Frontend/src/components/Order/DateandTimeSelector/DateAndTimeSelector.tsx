@@ -69,11 +69,13 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         return date;
     };
 
+    // All hooks must remain at the top level
     const [selectedDate, setSelectedDate] = useState<Date | null>(getTomorrow());
     const [availableSlots, setAvailableSlots] = useState<AvailableSlot[]>([]);
     const [selectedSlot, setSelectedSlot] = useState<AvailableSlot | null>(null);
 
-    const [selectedPackage, setSelectedPackage] = useState<LessonPackage>(packages.length > 0 ? packages[0] : {} as LessonPackage);
+    // FIX: Initialize with a dummy object to ensure it is overwritten by the useEffect reset
+    const [selectedPackage, setSelectedPackage] = useState<LessonPackage>({} as LessonPackage);
 
     const [address, setAddress] = useState<string>('');
     const [isAddressValidating, setIsAddressValidating] = useState(false);
@@ -83,9 +85,12 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     const [isLoadingSlots, setIsLoadingSlots] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // RESET LOGIC: Triggers when the user switches to a different product category
+    // ====================================================================
+    // CRITICAL RESET LOGIC: Triggers when the user switches products
+    // ====================================================================
     useEffect(() => {
-        if (packages.length > 0) {
+        if (packages && packages.length > 0) {
+            // FORCE selection of the first package in the NEW package array
             setSelectedPackage(packages[0]);
         }
         setSelectedDate(getTomorrow());
@@ -95,39 +100,21 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         setAddressValidated(false);
         setAddressError(null);
         setError(null);
+        
+        // Reset view to top when switching products
+        window.scrollTo(0, 0);
     }, [productId, packages]);
 
     const formattedDate = selectedDate ? DateTime.fromJSDate(selectedDate).toISODate() : '';
 
-    // NEW LOGIC: Check if this package type bypasses physical distance checks
-    const isOnlineMentorship = selectedPackage.sessionType === 'online_consult' || selectedPackage.requiresAddress === false;
-
-    // Guard against empty packages array
-    if (packages.length === 0 || !selectedPackage.durationMinutes) {
-        return <div className="date-time-selector-container error-state">
-            <p className="error-message"><FaExclamationCircle /> {t('error.productNotFound') || 'No lesson packages available. Please configure product data.'}</p>
-        </div>;
-    }
-
-    // --- Data Transformation for Column Display ---
-    const groupedPackages = packages.reduce((acc, pkg) => {
-        const type = pkg.sessionType || 'Other';
-        if (!acc[type]) {
-            acc[type] = [];
-        }
-        acc[type].push(pkg);
-        return acc;
-    }, {} as Record<string, LessonPackage[]>);
-
-    const columnOrder = ['2 Sessions', '1.5 Sessions', '1 Session', 'online_consult'];
-    const packageColumns = columnOrder.map(key => ({
-        title: key === 'online_consult' ? 'Online Mentorship' : key,
-        packages: groupedPackages[key] || []
-    })).filter(column => column.packages.length > 0);
-
+    // Online check logic
+    const isOnlineMentorship = selectedPackage?.sessionType === 'online_consult' || selectedPackage?.requiresAddress === false;
 
     // --- FETCH AVAILABILITY ---
     const fetchAvailability = useCallback(async (dateString: string, durationInMins: number) => {
+        // Prevent API calls if data isn't ready
+        if (!durationInMins || !productId) return;
+
         setIsLoadingSlots(true);
         setError(null);
         setSelectedSlot(null);
@@ -161,9 +148,9 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     }, [t, productId]);
 
     useEffect(() => {
-        if (formattedDate && selectedPackage.durationMinutes) {
+        if (formattedDate && selectedPackage?.durationMinutes) {
             const date = DateTime.fromISO(formattedDate, { zone: 'utc' });
-            if (date.weekday === 7 || isClientSwissHoliday(formattedDate)) {
+            if (date.weekday === 7 || (formattedDate && isClientSwissHoliday(formattedDate))) {
                 setAvailableSlots([]);
                 setError(t('checkout.noServiceOnSundayOrHoliday') || 'No lessons available on Sundays or official holidays.');
                 return;
@@ -171,12 +158,11 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
 
             fetchAvailability(formattedDate, selectedPackage.durationMinutes);
         }
-    }, [formattedDate, fetchAvailability, selectedPackage.durationMinutes, t]);
+    }, [formattedDate, fetchAvailability, selectedPackage?.durationMinutes, t]);
 
 
     // --- HANDLERS ---
     const handleNextStep = () => {
-        // MODIFIED: If it's online, we don't care about address validation
         const canProceedWithAddress = isOnlineMentorship ? true : addressValidated;
 
         if (!selectedSlot || !canProceedWithAddress || !formattedDate) {
@@ -228,13 +214,10 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
         }
     };
 
-
+    // Helper functions for DatePicker
     const getDayClassName = (date: Date) => {
         const dateISO = DateTime.fromJSDate(date).toISODate();
-        if (date.getDay() === 0) { // Sunday
-            return 'calendar-holiday-date';
-        }
-        if (dateISO && isClientSwissHoliday(dateISO)) {
+        if (date.getDay() === 0 || (dateISO && isClientSwissHoliday(dateISO))) {
             return 'calendar-holiday-date';
         }
         return '';
@@ -243,18 +226,41 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     const filterAvailableDates = (date: Date) => {
         const dateISO = DateTime.fromJSDate(date).toISODate();
         const tomorrow = getTomorrow();
-        const isPastOrToday = date < tomorrow;
-
-        if (date.getDay() === 0 || (dateISO && isClientSwissHoliday(dateISO))) {
-            return false;
-        }
-
-        return !isPastOrToday;
+        if (date.getDay() === 0 || (dateISO && isClientSwissHoliday(dateISO))) return false;
+        return date >= tomorrow;
     };
+
+    // ====================================================================
+    // GUARD CLAUSE (MUST BE BELOW HOOKS)
+    // ====================================================================
+    if (!packages || packages.length === 0 || !selectedPackage?.id) {
+        return (
+            <div className="date-time-selector-container error-state">
+                <p className="error-message">
+                    <FaExclamationCircle /> 
+                    {t('error.productNotFound') || 'Loading product options...'}
+                </p>
+            </div>
+        );
+    }
+
+    // --- Data Transformation for Column Display ---
+    const groupedPackages = packages.reduce((acc, pkg) => {
+        const type = pkg.sessionType || 'Other';
+        if (!acc[type]) acc[type] = [];
+        acc[type].push(pkg);
+        return acc;
+    }, {} as Record<string, LessonPackage[]>);
+
+    const columnOrder = ['2 Sessions', '1.5 Sessions', '1 Session', 'online_consult'];
+    const packageColumns = columnOrder.map(key => ({
+        title: key === 'online_consult' ? 'Online Mentorship' : key,
+        packages: groupedPackages[key] || []
+    })).filter(column => column.packages.length > 0);
 
     return (
         <div className="date-time-selector-container">
-            {/* 1. PACKAGE SELECTOR */}
+            {/* 1. PACKAGE SELECTOR SECTION */}
             <div className="section-group package-select-group">
                 <h3>
                     <FaShoppingCart /> 
@@ -301,7 +307,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                 </div>
             </div>
 
-            {/* 2. DATE AND TIME SELECTOR */}
+            {/* 2. DATE AND TIME SELECTOR SECTION */}
             <div className="section-group date-time-group">
                 <h3><FaCalendarAlt /> {t('checkout.pickDateAndTimeTitle')}</h3>
                 <div className="date-time-controls">
@@ -325,7 +331,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                         <label>{t('form.timeSlots')}</label>
                         {isLoadingSlots ? (
                             <p className="loading-message">
-                                {t('checkout.loadingSlotsMessage', { lessons: selectedPackage.lessons, duration: selectedPackage.durationMinutes })}
+                                {t('checkout.loadingSlotsMessage') || 'Loading available times...'}
                             </p>
                         ) : availableSlots.length > 0 ? (
                             <div className="time-slots-grid">
@@ -394,7 +400,7 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
                 </div>
             )}
 
-            {/* NEXT STEP BUTTON */}
+            {/* FORM ACTIONS */}
             <div className="form-actions next-step-button">
                 <button
                     type="button"

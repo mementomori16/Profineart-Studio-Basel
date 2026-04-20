@@ -365,19 +365,19 @@ export const CONSULTATION_PACKAGES = [
         description: '20 min focused Q&A or portfolio check.',
         lessons: 1,
         durationMinutes: 20,
-        price: 50,
-        label: '20 Minutes - 50 CHF',
+        price: 70,
+        label: '20 Minutes - 70 CHF',
         type: 'online_consult',
         requiresAddress: false
     },
     {
         id: 'consult_45',
         name: 'Career & Portfolio Strategy',
-        description: '45 min deep dive into your art career.',
+        description: '40 min deep dive into your art career.',
         lessons: 1,
-        durationMinutes: 45,
-        price: 100,
-        label: '45 Minutes - 100 CHF',
+        durationMinutes: 40,
+        price: 125,
+        label: '40 Minutes - 125 CHF',
         type: 'online_consult',
         requiresAddress: false
     }

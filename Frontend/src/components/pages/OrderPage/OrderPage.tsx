@@ -53,6 +53,17 @@ const OrderPage: React.FC = () => {
         const productIdStr = id || '';
         const productIdNum = parseInt(productIdStr, 10);
 
+        // --- FIX: RESET STALE LOCALSTORAGE DATA ---
+        if (slotSelection?.packageId) {
+            const isOnline = productIdNum === 900;
+            const savedIsOnline = slotSelection.packageId.startsWith('consult');
+            if (isOnline !== savedIsOnline) {
+                localStorage.removeItem(LS_SLOT_KEY);
+                setSlotSelection(null);
+                setStep(1);
+            }
+        }
+
         if (productIdNum === 900) {
             // Priority: Load Mentorship Packages
             setAvailablePackages(CONSULTATION_PACKAGES);
@@ -85,7 +96,7 @@ const OrderPage: React.FC = () => {
             };
             setProduct(mergedProduct);
         }
-    }, [id, t]);
+    }, [id, t, slotSelection?.packageId]); // Added dependency to watch for reset
 
     const handleNextStep = (selection: SlotSelection) => {
         setSlotSelection(selection);
@@ -120,11 +131,21 @@ const OrderPage: React.FC = () => {
                 </div>
 
                 {step === 1 && (
-                    <DateAndTimeSelector 
-                        productId={product.id.toString()}
-                        onNextStep={handleNextStep}
-                        packages={availablePackages} 
-                    />
+                    <div className="selection-header">
+                        {/* Dynamically show correct sub-instruction based on product */}
+                        <h2 className="text-center">
+                            {product.id === 900 ? t('checkout.selectPackageTitleOnline') : t('checkout.selectPackageTitle')}
+                        </h2>
+                        <p className="text-center mb-4">
+                            {product.id === 900 ? t('checkout.packageInstructionOnline') : t('checkout.packageInstruction')}
+                        </p>
+                        
+                        <DateAndTimeSelector 
+                            productId={product.id.toString()}
+                            onNextStep={handleNextStep}
+                            packages={availablePackages} 
+                        />
+                    </div>
                 )}
 
                 {step === 2 && slotSelection && (
@@ -134,7 +155,8 @@ const OrderPage: React.FC = () => {
                         initialDetails={customerDetails}
                         onBackStep={handleBackStep}
                         onTitleClick={handleNavigateBackToProduct} 
-                        requiresAddress={currentPackage?.requiresAddress ?? true}
+                        // Ensuring online (900) doesn't force address validation
+                        requiresAddress={product.id === 900 ? false : (currentPackage?.requiresAddress ?? true)}
                     />
                 )}
             </div> 

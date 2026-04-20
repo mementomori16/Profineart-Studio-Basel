@@ -418,18 +418,18 @@ export const CONSULTATION_PACKAGES: LessonPackage[] = [
         durationMinutes: 20,
         price: 70,
         label: '20 Minutes - 70 CHF',
-        type: 'online_consult',
+        sessionType: 'online_consult',
         requiresAddress: false
     },
     {
-        id: 'consult_45',
+        id: 'consult_40',
         name: 'Career & Portfolio Strategy',
         description: '40 min deep dive into your art career.',
         lessons: 1,
         durationMinutes: 40,
         price: 125,
         label: '40 Minutes - 125 CHF',
-        type: 'online_consult',
+        sessionType: 'online_consult',
         requiresAddress: false
     }
 ];

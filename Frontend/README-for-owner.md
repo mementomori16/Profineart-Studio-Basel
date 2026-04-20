@@ -100,3 +100,31 @@ How to deploy Functions
 How to deploy on firebase: 
 1. npm run build
 2. firebase deploy --only hosting
+
+*** 
+How to deploy Backend (Functions) and the Frontend together so the backend will work: 
+
+1. Terminal 1 (The Backend):
+Go to your project root and start the emulators so your functions folder is active:
+
+Bash
+firebase emulators:start
+
+2. Terminal 2 (The Frontend):
+Open a second terminal, go into the Frontend folder, and run:
+
+Bash
+npm run dev
+
+3. Verification
+When you open http://localhost:5173/ now:
+
+The Frontend tries to fetch slots from /api/schedule/slots.
+
+Vite sees the /api prefix and redirects the request to http://127.0.0.1:5001/.../api/schedule/slots.
+
+Your functions folder (which has the 185-line code we updated) receives the request, fetches the Google Sheet, and returns the slots.
+
+Note: If you see an error in the terminal saying Cannot find module '../data/products.js', make sure you have copied the data and types folders into your functions directory, as Firebase Functions can only "see" what is inside the functions folder.
+
+Try this setup—once the proxy points to 5001, the bridge to your Google Sheets logic should be wide open.
