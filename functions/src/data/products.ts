@@ -274,8 +274,6 @@ export const courses: Product[] = [
       
     ],
 
-    
-
     medium: 'Course',
     briefDescription: undefined,
     title: undefined

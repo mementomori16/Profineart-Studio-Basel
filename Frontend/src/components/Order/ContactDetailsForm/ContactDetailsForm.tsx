@@ -32,7 +32,7 @@ interface ContactDetailsFormProps {
     onTitleClick: () => void; 
     onSubmit: (details: FullCustomerDetails) => Promise<void>;
     isLoading: boolean;
-    requiresAddress: boolean; // Fixed: Added to interface
+    requiresAddress: boolean; 
 }
 
 const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
@@ -43,7 +43,7 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     onTitleClick, 
     onSubmit,
     isLoading,
-    requiresAddress, // Destructured
+    requiresAddress, 
 }) => {
     const { t } = useTranslation();
 
@@ -61,13 +61,33 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     const [validationError, setValidationError] = useState<string | null>(null);
 
     const getPackageLabel = (packageId: string): string => {
-        // Search across BOTH lists so Mentorship (ID 900+) is found
         const allPackages = [...PRODUCT_PACKAGES, ...CONSULTATION_PACKAGES];
         const pkg = allPackages.find(p => p.id === packageId) as LessonPackage | undefined;
         return pkg ? t(`packages.${pkg.id}.label`, { defaultValue: pkg.label || pkg.name }) : t('common.unknown');
     };
 
-    const getProductBriefDescription = (id: number) => t(`products.${id}.briefDescription`); 
+    // ============================================================
+    // ROBUST DESCRIPTION LOGIC
+    // ============================================================
+    const getProductBriefDescription = (id: number) => {
+        // Log the packageId to console so you can see exactly what value it has
+        console.log("Current Package ID:", slotSelection.packageId);
+
+        if (id === 900) {
+            const pkgId = slotSelection.packageId.toString();
+            
+            // Check if the ID contains "20" or "40" to be safe
+            if (pkgId.includes('20')) {
+                return t('mentorship.pkgDesc20');
+            }
+            if (pkgId.includes('40')) {
+                return t('mentorship.pkgDesc40');
+            }
+            return t('mentorship.label');
+        }
+        
+        return t(`products.${id}.briefDescription`);
+    };
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setDetails({ ...details, [e.target.name]: e.target.value });
@@ -76,7 +96,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validation: Only require address fields if requiresAddress is true
         const isPersonalValid = details.name && details.email;
         const isAddressValid = !requiresAddress || (details.streetAndNumber && details.index && details.city && details.country);
 
@@ -127,9 +146,10 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                     </div>
                     <div className="product-details">
                         <p className="course-title"><strong>{product.title}</strong></p>
-                        {getProductBriefDescription(product.id) && (
-                            <p className="brief-description">{getProductBriefDescription(product.id)}</p>
-                        )}
+                        {/* This is the critical line. It now uses the robust check 
+                            for pkgDesc20 or pkgDesc40.
+                        */}
+                        <p className="brief-description">{getProductBriefDescription(product.id)}</p>
                     </div>
                 </div>
 
@@ -189,7 +209,6 @@ const ContactDetailsForm: React.FC<ContactDetailsFormProps> = ({
                     </div>
                 </div>
 
-                {/* ADDRESS FIELDS: Only rendered if requiresAddress is true */}
                 {requiresAddress && (
                     <>
                         <h4 className="h5">{t('checkout.addressDetails')}</h4>

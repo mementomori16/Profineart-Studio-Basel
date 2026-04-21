@@ -1,20 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { CONSULTATION_PACKAGES } from '../../../../../Backend/data/products'; 
+import { 
+    FaLayerGroup, 
+    FaGlobe, 
+    FaCalendarCheck, 
+    FaClock 
+} from 'react-icons/fa'; 
 import './onlineMentorship.scss';
 
 const OnlineMentorship: React.FC = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const lowRes = "https://res.cloudinary.com/dpayqcrg5/image/upload/v1776688345/002154-120kbadjusted_fsrfcw.jpg";
+    const highRes = "https://res.cloudinary.com/dpayqcrg5/image/upload/v1776692095/002154-500kbadjusted_wlcx5m.jpg";
+    
+    const [currentImg, setCurrentImg] = useState(lowRes);
+
     useEffect(() => {
         document.body.style.backgroundColor = '#171717'; 
+        
+        const img = new Image();
+        img.src = highRes;
+        img.onload = () => {
+            setCurrentImg(highRes);
+        };
+
         return () => { document.body.style.backgroundColor = ''; };
     }, []);
 
-    const handleBooking = () => {
-        navigate('/order/900');
+    const handleBooking = (packageId: string) => {
+        navigate('/order/900', { state: { preferredPackageId: packageId } });
     };
 
     return (
@@ -32,7 +50,7 @@ const OnlineMentorship: React.FC = () => {
                         <div className="exhibition-clean-frame">
                             <div className="exhibition-progressive">
                                 <img 
-                                    src="/assets/mentorship-hero.jpg" 
+                                    src={currentImg} 
                                     alt={t('mentorship.title')} 
                                     className="premium-frame loaded" 
                                 />
@@ -51,15 +69,38 @@ const OnlineMentorship: React.FC = () => {
                                 <h3>{pkg.name}</h3>
                                 <span className="meta-tag">{pkg.durationMinutes} Min</span>
                             </div>
+
+                            <div className="unified-meta-line">
+                                <div className="meta-item">
+                                    <FaLayerGroup /> 
+                                    <span>{t('coursesPage.meta.level')}</span>
+                                </div>
+                                <div className="meta-item">
+                                    <FaGlobe /> 
+                                    <span>{t('mentorship.onlineFormat', { defaultValue: 'Online via Video' })}</span> 
+                                </div>
+                                <div className="meta-item">
+                                    <FaCalendarCheck /> 
+                                    <span>{t('coursesPage.meta.date')}</span>
+                                </div>
+                                <div className="meta-item">
+                                    <FaClock /> 
+                                    <span>{pkg.durationMinutes} Min</span>
+                                </div>
+                            </div>
+
                             <div className="rates-list">
                                 <div className="rate-row">
                                     <span className="pkg-name">{t('mentorship.consultationFee')}</span>
                                     <span className="pkg-value">{pkg.price} CHF</span>
                                 </div>
                             </div>
+                            
                             <div className="column-footer">
-                                <p>{pkg.description}</p>
-                                <button className="btn-book-now" onClick={handleBooking}>
+                                <p className="pkg-description">
+                                    {pkg.durationMinutes === 20 ? t('mentorship.pkgDesc20') : t('mentorship.pkgDesc40')}
+                                </p>
+                                <button className="btn-book-now" onClick={() => handleBooking(pkg.id)}>
                                     {t('mentorship.cta')}
                                 </button>
                             </div>

@@ -545,9 +545,10 @@
 
    "mentorship": {
     "label": "Online Professional Guidance",
-    "title": "Direct Online Mentorship",
-    "description": "Navigate the complexities of the contemporary art world through real-time video sessions. From technical portfolio critiques and art history context to the business of selling artworks and career strategy—including specialized guidance for aspiring tattoo artists. This is not a pre-recorded course; it is a live, personal consultation designed to bridge the gap between amateur practice and professional authority.",
-    "heroCaption": "Live Video Consultation & Strategy",
+    "title": "Online One-on-One Mentorship",
+    "onlineFormat": "Online via Video",
+    "briefDescription": "Live video consultation for technical portfolio audit and art career strategy.",
+"description": "Navigate the complexities of the contemporary art world through real-time video sessions. From technical portfolio critiques and art history context to the business of selling artworks and career strategy—including specialized guidance for aspiring tattoo artists. This is not a pre-recorded course; it is a live, personal consultation designed to bridge the gap between amateur practice and professional authority. Sessions are led by Ilya Medvedev, founder and instructor at Profineart. An artist and educator with an MFA from Bezalel Academy, the creator of the academy’s methodology and digital platform, with a practice spanning 1,000+ professional works. This mentorship is a vital opportunity for artists of all levels—from beginners to advanced—seeking to refine artistic skills and gain mastery in oil painting, Byzantine iconography, anatomical drawing, or the secrets of aquarelle. It is a chance to acquire precious, specialized information immediately, saving years of independent searching and potential failure.",    "heroCaption": "Live Video Consultation & Strategy",
     "consultationFee": "Session Fee",
     "cta": "Book Session",
     "academicTitle": "Art History & Theory",
@@ -555,7 +556,9 @@
     "businessTitle": "Market & Sales",
     "businessText": "Strategic advice on how to position, price, and sell artworks in today's market.",
     "portfolioTitle": "Technical Critique",
-    "portfolioText": "Direct feedback on composition, mechanics, and the development of a professional portfolio."
+    "portfolioText": "Direct feedback on composition, mechanics, and the development of a professional portfolio.",
+    "pkgDesc20": "A concise, high-impact session focusing on a specific technical hurdle or portfolio piece.",
+    "pkgDesc40": "An in-depth consultation covering career strategy, market positioning, and detailed technical audit."
   },
 
 

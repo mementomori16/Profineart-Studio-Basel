@@ -52,13 +52,13 @@ const isClientSwissHoliday = (dateString: string) => CLIENT_SWISS_HOLIDAYS.inclu
 interface DateAndTimeSelectorProps {
     productId: string;
     onNextStep: (selection: SlotSelection) => void;
-    // The packages array is now received via props from OrderPage
     packages: LessonPackage[];
+    initialPackageId?: string; // ADDED THIS LINE
 }
 
 const BACKEND_URL = '';
 
-const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, onNextStep, packages }) => {
+const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, onNextStep, packages, initialPackageId }) => {
     const { t } = useTranslation();
 
     // --- Define "Tomorrow" as the earliest possible booking date ---
@@ -86,24 +86,31 @@ const DateAndTimeSelector: React.FC<DateAndTimeSelectorProps> = ({ productId, on
     const [error, setError] = useState<string | null>(null);
 
     // ====================================================================
-    // CRITICAL RESET LOGIC: Triggers when the user switches products
+    // CRITICAL RESET LOGIC: Triggers when the user switches products or arrives
     // ====================================================================
     useEffect(() => {
         if (packages && packages.length > 0) {
-            // FORCE selection of the first package in the NEW package array
-            setSelectedPackage(packages[0]);
+            // FIX: If we have an initialPackageId (from navigation state), find it. 
+            // Otherwise, keep current selection or default to first.
+            const targetPkg = (initialPackageId && packages.find(p => p.id === initialPackageId)) 
+                              || packages.find(p => p.id === selectedPackage.id) 
+                              || packages[0];
+
+            setSelectedPackage(targetPkg);
         }
-        setSelectedDate(getTomorrow());
-        setSelectedSlot(null);
-        setAvailableSlots([]);
-        setAddress('');
-        setAddressValidated(false);
-        setAddressError(null);
-        setError(null);
         
-        // Reset view to top when switching products
-        window.scrollTo(0, 0);
-    }, [productId, packages]);
+        // Reset everything else only if it's a completely new product context
+        if (productId) {
+            setSelectedDate(getTomorrow());
+            setSelectedSlot(null);
+            setAvailableSlots([]);
+            setAddress('');
+            setAddressValidated(false);
+            setAddressError(null);
+            setError(null);
+            window.scrollTo(0, 0);
+        }
+    }, [productId, packages, initialPackageId]);
 
     const formattedDate = selectedDate ? DateTime.fromJSDate(selectedDate).toISODate() : '';
 

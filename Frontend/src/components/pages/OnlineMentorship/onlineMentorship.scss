@@ -2,14 +2,13 @@
 @use '../../../global.scss' as *;
 
 .online-mentorship-engine {
-    padding: $space-md 0 $space-xxl;
-    color: #ffffff;
+    padding: $space-md 0 $space-xxxxl;
+    color: #ffffff; // Bright white global text
 
     @media (max-width: $breakpoint-sm) {
         padding-top: $space-sm;
     }
 
-    // Standard Label Style across your PWA
     .label, .block-label {
         color: color.adjust($color-cta-primary-warm, $lightness: 25%);
         text-transform: uppercase;
@@ -22,10 +21,10 @@
 
     .featured-hero {
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: $space-xl;
+        grid-template-columns: 1.2fr 1fr;
+        gap: $space-xxl;
         align-items: flex-start;
-        margin-bottom: $space-xxl;
+        margin-bottom: $space-xxxxl;
 
         @media (max-width: $breakpoint-md) {
             grid-template-columns: 1fr;
@@ -35,14 +34,43 @@
             h1 {
                 font-size: $font-size-h2;
                 font-weight: $font-weight-bold;
-                margin-bottom: $space-md;
+                margin-bottom: $space-lg;
                 color: #ffffff;
+                line-height: 1.1;
             }
             .progress-essay p {
-                line-height: 1.8;
-                font-size: 1.1rem;
+                line-height: 1.7;
+                font-size: 1.05rem;
                 margin-bottom: $space-md;
                 color: #ffffff;
+                text-align: justify;
+
+                @media (max-width: $breakpoint-sm) {
+                    text-align: left;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .hero-media {
+            .exhibition-clean-frame {
+                box-shadow: $shadow-xl;
+                border-radius: $border-radius-sm;
+                overflow: hidden;
+                
+                img {
+                    width: 100%;
+                    display: block;
+                }
+
+                .under-image-meta {
+                    background: rgba(255, 255, 255, 0.05);
+                    padding: $space-xs $space-sm;
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    color: #ffffff; // Fixed to bright white
+                }
             }
         }
     }
@@ -51,7 +79,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr); 
         gap: $space-xl;
-        margin-bottom: $space-xxl;
+        margin-bottom: $space-xxxxl;
 
         @media (max-width: $breakpoint-md) {
             grid-template-columns: 1fr;
@@ -64,6 +92,11 @@
         padding: $space-xl;
         display: flex;
         flex-direction: column;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-8px);
+        }
 
         .column-header {
             display: flex;
@@ -71,22 +104,71 @@
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: $space-sm;
-            margin-bottom: $space-lg;
+            margin-bottom: $space-md;
             
-            h3 { font-size: $font-size-md; margin: 0; font-weight: $font-weight-bold; }
-            .meta-tag { font-size: $font-size-xs; font-weight: $font-weight-bold; }
+            h3 { 
+                font-size: $font-size-md; 
+                margin: 0; 
+                font-weight: $font-weight-bold; 
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #ffffff; // Fixed to bright white
+            }
+            .meta-tag { 
+                font-size: $font-size-xs; 
+                font-weight: $font-weight-bold; 
+                color: #ffffff; // Fixed to bright white
+            }
         }
 
-        .rate-row {
+        .unified-meta-line {
             display: flex;
-            justify-content: space-between;
-            padding: $space-sm 0;
-            font-size: $font-size-sm;
+            flex-wrap: wrap;
+            gap: $space-sm $space-md; 
+            margin-bottom: $space-lg;
+            
+            .meta-item {
+                color: #ffffff; // Fixed to bright white
+                font-size: 0.75rem;
+                display: flex;
+                align-items: center;
+                gap: 0.35rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+
+                svg { 
+                    color: color.adjust($color-cta-primary-warm, $lightness: 30%); 
+                    font-size: 0.9rem; 
+                }
+            }
+        }
+
+        .rates-list {
+            margin-bottom: $space-lg;
+            .rate-row {
+                display: flex;
+                justify-content: space-between;
+                padding: $space-xs 0;
+                font-size: 1.1rem;
+                font-weight: $font-weight-bold;
+                color: #ffffff; // Fixed to bright white
+            }
+        }
+
+        .column-footer {
+            margin-top: auto;
+            
+            .pkg-description {
+                color: #ffffff; // Fixed to bright white
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: $space-xl;
+                min-height: 5rem;
+            }
         }
 
         .btn-book-now {
             width: 100%;
-            margin-top: auto;
             padding: $space-md;
             background-color: $color-cta-primary-warm;
             border: none;
@@ -94,10 +176,12 @@
             font-weight: $font-weight-bold;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: $border-radius-xl; // Matching your cart button radius
+            border-radius: $border-radius-xl;
             transition: background-color 0.3s ease;
 
-            &:hover { background-color: $color-cta-primary-hover; }
+            &:hover { 
+                background-color: $color-cta-primary-hover; 
+            }
         }
     }
 
@@ -106,12 +190,18 @@
         grid-template-columns: repeat(3, 1fr);
         gap: $space-xl;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: $space-xl;
+        padding-top: $space-xxl;
 
         @media (max-width: $breakpoint-md) {
             grid-template-columns: 1fr;
         }
 
-        p { font-size: $font-size-sm; line-height: 1.7; opacity: 1; color: #ffffff; }
+        .policy-block {
+            p { 
+                font-size: $font-size-sm; 
+                line-height: 1.7; 
+                color: #ffffff; // Fixed to bright white
+            }
+        }
     }
 }
