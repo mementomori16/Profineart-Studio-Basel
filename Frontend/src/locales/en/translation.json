@@ -543,23 +543,55 @@
     }
     },
 
-   "mentorship": {
-    "label": "Online Professional Guidance",
-    "title": "Online One-on-One Mentorship",
-    "onlineFormat": "Online via Video",
-    "briefDescription": "Live video consultation for technical portfolio audit and art career strategy.",
-"description": "Navigate the complexities of the contemporary art world through real-time video sessions. From technical portfolio critiques and art history context to the business of selling artworks and career strategy—including specialized guidance for aspiring tattoo artists. This is not a pre-recorded course; it is a live, personal consultation designed to bridge the gap between amateur practice and professional authority. Sessions are led by Ilya Medvedev, founder and instructor at Profineart. An artist and educator with an MFA from Bezalel Academy, the creator of the academy’s methodology and digital platform, with a practice spanning 1,000+ professional works. This mentorship is a vital opportunity for artists of all levels—from beginners to advanced—seeking to refine artistic skills and gain mastery in oil painting, Byzantine iconography, anatomical drawing, or the secrets of aquarelle. It is a chance to acquire precious, specialized information immediately, saving years of independent searching and potential failure.",    "heroCaption": "Live Video Consultation & Strategy",
-    "consultationFee": "Session Fee",
-    "cta": "Book Session",
-    "academicTitle": "Art History & Theory",
-    "academicText": "Deepen the work with historical context and understanding of the contemporary field.",
-    "businessTitle": "Market & Sales",
-    "businessText": "Strategic advice on how to position, price, and sell artworks in today's market.",
-    "portfolioTitle": "Technical Critique",
-    "portfolioText": "Direct feedback on composition, mechanics, and the development of a professional portfolio.",
-    "pkgDesc20": "A concise, high-impact session focusing on a specific technical hurdle or portfolio piece.",
-    "pkgDesc40": "An in-depth consultation covering career strategy, market positioning, and detailed technical audit."
-  },
+ "mentorship": {
+  "label": "Online Professional Guidance",
+  "title": "Online One-on-One Mentorship",
+  "onlineFormat": "Online via Video",
+  "description": "Navigate the complexities of the contemporary art world through real-time video sessions. This is not a pre-recorded course; it is a live, personal consultation designed to bridge the gap between amateur practice and professional authority. Resolve the technical or professional barriers in your practice today.",
+  "features": [
+    {
+      "id": "educator",
+      "title": "THE LEAD EDUCATOR: A PROFILE OF MASTERY",
+      "text": "This mentorship is led by Ilya Medvedev, founder of Profineart, a contemporary fine artist and certified senior educator with over 15 years of professional practice. Holding a B.Ed.FA and Art Teaching Certification from the Hamidrasha Faculty of the Arts, as well as Master of Fine Arts credentials from the Bezalel Academy of Arts and Design, the mentor offers a rare bridge between academic rigor and street-level precision. With a practice spanning 1,000+ professional works, the methodology focuses on the elite 'eye-brain-hand' connection."
+    },
+    {
+      "id": "precision",
+      "title": "EXTREME PRECISION & PEDAGOGY",
+      "text": "Five years of experience as a tattoo artist and street portraitist developed a 'no-stencil' philosophy—the ability to render life with absolute freehand accuracy. Since 2012, the mentor has trained a diverse spectrum of professionals, including game designers and medical surgeons, developing hyper-realistic painting modules to sharpen surgical visual acuity."
+    },
+    {
+      "id": "depth",
+      "title": "HISTORICAL DEPTH & METHODOLOGY",
+      "text": "Seven years of dedicated Byzantine Iconography study in Greece and Jerusalem provides a profound understanding of ancient materials, egg tempera, and gilding. This mentorship offers a vital opportunity to acquire precious, specialized information immediately, saving years of independent searching and potential failure."
+    },
+    {
+      "id": "troubleshooting",
+      "title": "TECHNICAL TROUBLESHOOTING & CRITIQUE",
+      "text": "Receive direct feedback on composition, anatomy, and the mechanics of painting—from the physics of oil transitions to the precision of egg tempera glazing, aquarelle, and historical iconography techniques. Fix failing works or elevate successful ones through exact adjustments provided in real-time."
+    },
+    {
+      "id": "strategy",
+      "title": "PORTFOLIO & MARKET STRATEGY",
+      "text": "Navigate art academy entrance requirements and sponsorship applications. Refine professional portfolios to international standards and receive strategic advice on pricing, gallery contracts, and artwork promotion—including specialized guidance for aspiring tattoo artists."
+    },
+    {
+      "id": "science",
+      "title": "MATERIAL SCIENCE & SOURCING",
+      "text": "Solve the challenge of expensive equipment by learning to source high-quality pigments, brushes, and surfaces at professional prices. Receive guidance on the chemistry of mediums, archival preparation, and archival museum-level quality for every work produced."
+    }
+  ],
+  "heroCaption": "Live Video Consultation & Strategy",
+  "academicTitle": "Art History & Theory",
+  "academicText": "Deepen the work through historical context and a profound understanding of the contemporary field.",
+  "businessTitle": "Market & Logistics",
+  "businessText": "Strategic advice on pricing, gallery contracts, and resolving logistics like transportation and insurance.",
+  "portfolioTitle": "Technical Audit",
+  "portfolioText": "Direct, live feedback on composition, anatomy, and the mechanics of professional portfolio development.",
+  "consultationFee": "Session Fee",
+  "cta": "Book Session",
+  "pkgDesc20": "A concise, high-impact session focusing on a specific technical hurdle, material advice, or portfolio piece.",
+  "pkgDesc40": "An in-depth consultation covering career strategy, market positioning, and detailed technical audit."
+},
 
 
   "contactPage": {

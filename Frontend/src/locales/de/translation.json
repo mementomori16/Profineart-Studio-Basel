@@ -558,6 +558,55 @@
       }
     }
   },
+ "mentorship": {
+  "label": "Professionelle Online-Beratung",
+  "title": "Individuelles Online-Mentoring",
+  "onlineFormat": "Online per Video",
+  "description": "Die Komplexität der zeitgenössischen Kunstwelt durch Echtzeit-Videositzungen meistern. Dies ist kein vorab aufgezeichneter Kurs, sondern eine persönliche Live-Beratung, um die Lücke zwischen Amateurpraxis und professioneller Autorität zu schließen. Technische oder berufliche Barrieren in der eigenen Praxis noch heute lösen.",
+  "features": [
+    {
+      "id": "educator",
+      "title": "DIE HAUPTLEHRKRAFT: EIN PROFIL DER MEISTERSCHAFT",
+      "text": "Dieses Mentoring wird von Ilya Medvedev geleitet, Gründungsmitglied von Profineart, zeitgenössische Fachkraft für Bildende Kunst und zertifizierte Senior-Lehrkraft mit über 15 Jahren Berufserfahrung. Mit einem B.Ed.FA und einer Zertifizierung für Kunstpädagogik der Hamidrasha Faculty of the Arts sowie Master of Fine Arts-Referenzen der Bezalel Academy of Arts and Design bietet die Mentorenschaft eine seltene Brücke zwischen akademischer Strenge und praktischer Präzision. Bei einer Praxis, die über 1.000 professionelle Werke umfasst, liegt der Schwerpunkt der Methodik auf der hochklassigen „Auge-Gehirn-Hand“-Verbindung."
+    },
+    {
+      "id": "precision",
+      "title": "EXTREME PRÄZISION & PÄDAGOGIK",
+      "text": "Fünf Jahre Erfahrung als Tätowier- und Straßenporträt-Fachkraft entwickelten eine „No-Stencil“-Philosophie – die Fähigkeit, das Leben mit absoluter Freihandgenauigkeit darzustellen. Seit 2012 wurden verschiedenste Fachleute ausgebildet, darunter Gamedesigner sowie chirurgisches Personal, wobei hyperrealistische Malmodule zur Schärfung der visuellen Akutität entwickelt wurden."
+    },
+    {
+      "id": "depth",
+      "title": "HISTORISCHE TIEFE & METHODIK",
+      "text": "Sieben Jahre intensives Studium der byzantinischen Ikonographie in Griechenland und Jerusalem vermitteln ein tiefes Verständnis für antike Materialien, Eitempera und Vergoldung. Dieses Mentoring bietet die Gelegenheit, wertvolles Fachwissen sofort zu erwerben und spart so Jahre unabhängiger Suche und potenzieller Misserfolge."
+    },
+    {
+      "id": "troubleshooting",
+      "title": "TECHNISCHE FEHLERBEHEBUNG & KRITIK",
+      "text": "Direktes Feedback zu Komposition, Anatomie und der Mechanik der Malerei erhalten – von der Physik der Öl-Übergänge bis zur Präzision der Eitempera-Lasur, Aquarellmalerei und historischen Ikonographietechniken. Fehlerhafte Werke korrigieren oder erfolgreiche Arbeiten durch exakte Anpassungen in Echtzeit aufwerten."
+    },
+    {
+      "id": "strategy",
+      "title": "PORTFOLIO & MARKTSTRATEGIE",
+      "text": "Anforderungen für die Aufnahme an Kunstakademien und Sponsoring-Anträge erfolgreich bewältigen. Professionelle Portfolios auf internationale Standards verfeinern und strategische Beratung zu Preisgestaltung, Galerieverträgen und Kunstvermarktung erhalten – einschließlich spezialisierter Anleitung für angehende Tätowier-Fachkräfte."
+    },
+    {
+      "id": "science",
+      "title": "MATERIALWISSENSCHAFT & BESCHAFFUNG",
+      "text": "Die Herausforderung teurer Ausrüstung lösen, indem gelernt wird, hochwertige Pigmente, Pinsel und Malgründe zu Profi-Preisen zu beziehen. Beratung zur Chemie von Malmitteln, zur archivgerechten Vorbereitung und zur Sicherung von Museumsqualität für jedes geschaffene Werk."
+    }
+  ],
+  "heroCaption": "Live-Videoberatung & Strategie",
+  "academicTitle": "Kunstgeschichte & Theorie",
+  "academicText": "Die Arbeit durch historischen Kontext und ein tiefes Verständnis des zeitgenössischen Feldes vertiefen.",
+  "businessTitle": "Markt & Logistik",
+  "businessText": "Strategische Beratung zu Preisgestaltung, Galerieverträgen und zur Lösung logistischer Fragen wie Transport und Versicherung.",
+  "portfolioTitle": "Technisches Audit",
+  "portfolioText": "Direktes Live-Feedback zu Komposition, Anatomie und der Mechanik der professionellen Portfolioentwicklung.",
+  "consultationFee": "Sitzungsgebühr",
+  "cta": "Sitzung buchen",
+  "pkgDesc20": "Eine kompakte, wirkungsvolle Sitzung mit Fokus auf eine spezifische technische Hürde, Materialberatung oder ein Portfoliostück.",
+  "pkgDesc40": "Eine eingehende Beratung zu Karrierestrategie, Marktpositionierung und detailliertem technischen Audit."
+},
   "termsPage": {
     "mainTitle": "Nutzungsbedingungen",
     "section1": {

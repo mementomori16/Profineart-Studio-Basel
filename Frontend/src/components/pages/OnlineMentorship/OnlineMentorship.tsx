@@ -21,13 +21,9 @@ const OnlineMentorship: React.FC = () => {
 
     useEffect(() => {
         document.body.style.backgroundColor = '#171717'; 
-        
         const img = new Image();
         img.src = highRes;
-        img.onload = () => {
-            setCurrentImg(highRes);
-        };
-
+        img.onload = () => setCurrentImg(highRes);
         return () => { document.body.style.backgroundColor = ''; };
     }, []);
 
@@ -43,17 +39,23 @@ const OnlineMentorship: React.FC = () => {
                         <span className="label">{t('mentorship.label')}</span>
                         <h1>{t('mentorship.title')}</h1>
                         <div className="progress-essay">
-                            <p>{t('mentorship.description')}</p>
+                            <div className="feature-item">
+                                <p>{t('mentorship.description')}</p>
+                            </div>
+
+                            {/* This maps all the text sections from the JSON features array */}
+                            {(t('mentorship.features', { returnObjects: true }) as any[]).map((feature) => (
+                                <div className="feature-item" key={feature.id}>
+                                    <h4 className="item-label">{feature.title}</h4>
+                                    <p>{feature.text}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className="hero-media">
                         <div className="exhibition-clean-frame">
                             <div className="exhibition-progressive">
-                                <img 
-                                    src={currentImg} 
-                                    alt={t('mentorship.title')} 
-                                    className="premium-frame loaded" 
-                                />
+                                <img src={currentImg} alt={t('mentorship.title')} className="premium-frame loaded" />
                             </div>
                             <div className="under-image-meta">
                                 <span>{t('mentorship.heroCaption')}</span>
@@ -69,33 +71,18 @@ const OnlineMentorship: React.FC = () => {
                                 <h3>{pkg.name}</h3>
                                 <span className="meta-tag">{pkg.durationMinutes} Min</span>
                             </div>
-
                             <div className="unified-meta-line">
-                                <div className="meta-item">
-                                    <FaLayerGroup /> 
-                                    <span>{t('coursesPage.meta.level')}</span>
-                                </div>
-                                <div className="meta-item">
-                                    <FaGlobe /> 
-                                    <span>{t('mentorship.onlineFormat', { defaultValue: 'Online via Video' })}</span> 
-                                </div>
-                                <div className="meta-item">
-                                    <FaCalendarCheck /> 
-                                    <span>{t('coursesPage.meta.date')}</span>
-                                </div>
-                                <div className="meta-item">
-                                    <FaClock /> 
-                                    <span>{pkg.durationMinutes} Min</span>
-                                </div>
+                                <div className="meta-item"><FaLayerGroup /> <span>{t('coursesPage.meta.level')}</span></div>
+                                <div className="meta-item"><FaGlobe /> <span>{t('mentorship.onlineFormat')}</span></div>
+                                <div className="meta-item"><FaCalendarCheck /> <span>{t('coursesPage.meta.date')}</span></div>
+                                <div className="meta-item"><FaClock /> <span>{pkg.durationMinutes} Min</span></div>
                             </div>
-
                             <div className="rates-list">
                                 <div className="rate-row">
                                     <span className="pkg-name">{t('mentorship.consultationFee')}</span>
                                     <span className="pkg-value">{pkg.price} CHF</span>
                                 </div>
                             </div>
-                            
                             <div className="column-footer">
                                 <p className="pkg-description">
                                     {pkg.durationMinutes === 20 ? t('mentorship.pkgDesc20') : t('mentorship.pkgDesc40')}
@@ -110,15 +97,15 @@ const OnlineMentorship: React.FC = () => {
 
                 <footer className="policy-matrix">
                     <div className="policy-block">
-                        <span className="block-label">{t('mentorship.academicTitle')}</span>
+                        <span className="block-label footer-white-label">{t('mentorship.academicTitle')}</span>
                         <p>{t('mentorship.academicText')}</p>
                     </div>
                     <div className="policy-block">
-                        <span className="block-label">{t('mentorship.businessTitle')}</span>
+                        <span className="block-label footer-white-label">{t('mentorship.businessTitle')}</span>
                         <p>{t('mentorship.businessText')}</p>
                     </div>
                     <div className="policy-block">
-                        <span className="block-label">{t('mentorship.portfolioTitle')}</span>
+                        <span className="block-label footer-white-label">{t('mentorship.portfolioTitle')}</span>
                         <p>{t('mentorship.portfolioText')}</p>
                     </div>
                 </footer>

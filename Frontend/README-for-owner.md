@@ -108,7 +108,7 @@ How to deploy Backend (Functions) and the Frontend together so the backend will 
 Go to your project root and start the emulators so your functions folder is active:
 
 Bash
-firebase emulators:start
+
 
 2. Terminal 2 (The Frontend):
 Open a second terminal, go into the Frontend folder, and run:

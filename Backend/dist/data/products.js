@@ -371,7 +371,7 @@ export const CONSULTATION_PACKAGES = [
         requiresAddress: false
     },
     {
-        id: 'consult_45',
+        id: 'consult_40',
         name: 'Career & Portfolio Strategy',
         description: '40 min deep dive into your art career.',
         lessons: 1,

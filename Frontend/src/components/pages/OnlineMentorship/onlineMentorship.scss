@@ -3,7 +3,7 @@
 
 .online-mentorship-engine {
     padding: $space-md 0 $space-xxxxl;
-    color: #ffffff; // Bright white global text
+    color: #ffffff;
 
     @media (max-width: $breakpoint-sm) {
         padding-top: $space-sm;
@@ -17,6 +17,10 @@
         letter-spacing: 2px;
         display: block;
         margin-bottom: $space-sm;
+    }
+
+    .footer-white-label {
+        color: #ffffff !important;
     }
 
     .featured-hero {
@@ -38,16 +42,30 @@
                 color: #ffffff;
                 line-height: 1.1;
             }
-            .progress-essay p {
-                line-height: 1.7;
-                font-size: 1.05rem;
-                margin-bottom: $space-md;
-                color: #ffffff;
-                text-align: justify;
+            .progress-essay {
+                .feature-item {
+                    margin-bottom: $space-xl;
 
-                @media (max-width: $breakpoint-sm) {
-                    text-align: left;
-                    font-size: 1rem;
+                    .item-label {
+                        color: #ffffff !important;
+                        font-size: 1.35rem; 
+                        font-weight: $font-weight-bold;
+                        margin-bottom: $space-sm;
+                        display: block;
+                        text-transform: uppercase;
+                    }
+
+                    p {
+                        line-height: 1.7;
+                        font-size: 1.05rem;
+                        margin-bottom: $space-md;
+                        color: #ffffff;
+                        text-align: left; // FIXED: Removed 'justify' to eliminate gaps
+
+                        @media (max-width: $breakpoint-sm) {
+                            font-size: 1rem;
+                        }
+                    }
                 }
             }
         }
@@ -57,19 +75,14 @@
                 box-shadow: $shadow-xl;
                 border-radius: $border-radius-sm;
                 overflow: hidden;
-                
-                img {
-                    width: 100%;
-                    display: block;
-                }
-
+                img { width: 100%; display: block; }
                 .under-image-meta {
                     background: rgba(255, 255, 255, 0.05);
                     padding: $space-xs $space-sm;
                     font-size: 0.75rem;
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    color: #ffffff; // Fixed to bright white
+                    color: #ffffff;
                 }
             }
         }
@@ -80,10 +93,7 @@
         grid-template-columns: repeat(2, 1fr); 
         gap: $space-xl;
         margin-bottom: $space-xxxxl;
-
-        @media (max-width: $breakpoint-md) {
-            grid-template-columns: 1fr;
-        }
+        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
     }
 
     .matrix-column {
@@ -94,9 +104,7 @@
         flex-direction: column;
         transition: transform 0.3s ease;
 
-        &:hover {
-            transform: translateY(-8px);
-        }
+        &:hover { transform: translateY(-8px); }
 
         .column-header {
             display: flex;
@@ -108,17 +116,12 @@
             
             h3 { 
                 font-size: $font-size-md; 
-                margin: 0; 
                 font-weight: $font-weight-bold; 
                 text-transform: uppercase;
                 letter-spacing: 1px;
-                color: #ffffff; // Fixed to bright white
+                color: #ffffff;
             }
-            .meta-tag { 
-                font-size: $font-size-xs; 
-                font-weight: $font-weight-bold; 
-                color: #ffffff; // Fixed to bright white
-            }
+            .meta-tag { font-size: $font-size-xs; font-weight: $font-weight-bold; color: #ffffff; }
         }
 
         .unified-meta-line {
@@ -126,62 +129,31 @@
             flex-wrap: wrap;
             gap: $space-sm $space-md; 
             margin-bottom: $space-lg;
-            
             .meta-item {
-                color: #ffffff; // Fixed to bright white
-                font-size: 0.75rem;
-                display: flex;
-                align-items: center;
-                gap: 0.35rem;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-
-                svg { 
-                    color: color.adjust($color-cta-primary-warm, $lightness: 30%); 
-                    font-size: 0.9rem; 
-                }
+                color: #ffffff; font-size: 0.75rem; display: flex; align-items: center; gap: 0.35rem;
+                text-transform: uppercase; letter-spacing: 0.5px;
+                svg { color: color.adjust($color-cta-primary-warm, $lightness: 30%); font-size: 0.9rem; }
             }
         }
 
-        .rates-list {
-            margin-bottom: $space-lg;
-            .rate-row {
-                display: flex;
-                justify-content: space-between;
-                padding: $space-xs 0;
-                font-size: 1.1rem;
-                font-weight: $font-weight-bold;
-                color: #ffffff; // Fixed to bright white
-            }
+        .rates-list .rate-row {
+            display: flex; justify-content: space-between; padding: $space-xs 0;
+            font-size: 1.1rem; font-weight: $font-weight-bold; color: #ffffff;
         }
 
         .column-footer {
             margin-top: auto;
-            
             .pkg-description {
-                color: #ffffff; // Fixed to bright white
-                font-size: 1rem;
-                line-height: 1.6;
-                margin-bottom: $space-xl;
-                min-height: 5rem;
+                color: #ffffff; font-size: 1rem; line-height: 1.6; margin-bottom: $space-xl; min-height: 5rem;
+                text-align: left; // FIXED: Gaps removed
             }
         }
 
         .btn-book-now {
-            width: 100%;
-            padding: $space-md;
-            background-color: $color-cta-primary-warm;
-            border: none;
-            color: white;
-            font-weight: $font-weight-bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: $border-radius-xl;
-            transition: background-color 0.3s ease;
-
-            &:hover { 
-                background-color: $color-cta-primary-hover; 
-            }
+            width: 100%; padding: $space-md; background-color: $color-cta-primary-warm;
+            border: none; color: white; font-weight: $font-weight-bold; text-transform: uppercase;
+            cursor: pointer; border-radius: $border-radius-xl; transition: background-color 0.3s ease;
+            &:hover { background-color: $color-cta-primary-hover; }
         }
     }
 
@@ -191,17 +163,7 @@
         gap: $space-xl;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: $space-xxl;
-
-        @media (max-width: $breakpoint-md) {
-            grid-template-columns: 1fr;
-        }
-
-        .policy-block {
-            p { 
-                font-size: $font-size-sm; 
-                line-height: 1.7; 
-                color: #ffffff; // Fixed to bright white
-            }
-        }
+        @media (max-width: $breakpoint-md) { grid-template-columns: 1fr; }
+        .policy-block p { font-size: $font-size-sm; line-height: 1.7; color: #ffffff; text-align: left; }
     }
 }
