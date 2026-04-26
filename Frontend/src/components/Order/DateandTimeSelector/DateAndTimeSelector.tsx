@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DateTime } from 'luxon';
 import { FaCalendarAlt, FaShoppingCart, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
-import { SlotSelection, LessonPackage, AvailableSlot } from '../../../../../Backend/types/Product';
+import { SlotSelection, LessonPackage, AvailableSlot } from '../../../../../functions/src/types/Product';
 import './dateAndTimeSelector.scss';
 
 // ====================================================================

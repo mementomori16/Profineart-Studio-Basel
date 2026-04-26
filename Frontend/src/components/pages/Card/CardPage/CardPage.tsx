@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import CardContainer from '../CardContainer/CardContainer'; 
 import InfoContainer from '../InfoContainer/InfoContainer';
 import SimilarProducts from '../../../SimilarProducts/SimilarProducts';
-import { products } from '../../../../../../Backend/data/products';
+import { products } from '../../../../../../functions/src/data/products';
 import ViewGallery from '../../View Gallery/ViewGallery'; 
-import { Product } from '../../../../../../Backend/types/Product'; 
+import { Product } from '../../../../../../functions/src/types/Product'; 
 import { useSeo } from '../../../../hooks/useSeo';
 
 import './cardPage.scss';

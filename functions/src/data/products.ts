@@ -425,8 +425,8 @@ export const CONSULTATION_PACKAGES: LessonPackage[] = [
         description: '40 min deep dive into your art career.',
         lessons: 1,
         durationMinutes: 40,
-        price: 125,
-        label: '40 Minutes - 125 CHF',
+        price: 130,
+        label: '40 Minutes - 1 CHF',
         sessionType: 'online_consult',
         requiresAddress: false
     }

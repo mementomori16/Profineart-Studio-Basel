@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Product, SlotSelection, LessonPackage } from '../../../../../Backend/types/Product';
-import { courses, PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../../../../../Backend/data/products';
+import { Product, SlotSelection, LessonPackage } from '../../../../../functions/src/types/Product';
+import { courses, PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../../../../../functions/src/data/products';
 import productsData from '../../../locales/en/translation.json';
 
 import DateAndTimeSelector from '../../../components/Order/DateandTimeSelector/DateAndTimeSelector';

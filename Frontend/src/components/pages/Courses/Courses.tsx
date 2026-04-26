@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { courses } from '../../../../../Backend/data/products'; 
+import { courses } from '../../../../../functions/src/data/products'; 
 import { FaLayerGroup, FaMapMarkerAlt, FaCalendarCheck, FaUserFriends, FaArrowRight } from 'react-icons/fa'; 
 import { useSeo } from '../../../hooks/useSeo'; 
 import './courses.scss';

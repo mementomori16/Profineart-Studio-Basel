@@ -16,12 +16,21 @@ export async function sendConfirmationEmail(details: FulfillmentDetails): Promis
     const client = getPostmarkClient();
     const logoUrl = "https://res.cloudinary.com/dpayqcrg5/image/upload/v1770316951/Group_29_qprfgd.png";
 
+    // Dynamic Content for Online Mentorship
+    const isOnline = details.address === "Online Mentorship";
+    const locationLabel = isOnline ? "Platform" : "Location";
+    const locationValue = isOnline ? "Online Video Meeting" : details.address;
+    
+    const mentorNote = isOnline 
+        ? "The mentor will contact you, to provide the online video link."
+        : "The mentor will contact you shortly to confirm the appointment, discuss the required materials, and talk about the upcoming session to ensure all artistic goals are met.";
+
     try {
         await client.sendEmail({
             "From": `"Profineart Studio Basel" <info@profineart.ch>`,
             "To": details.email,
             "Subject": `🎨 Booking Confirmed: ${details.packageName}`,
-            "TextBody": `Your payment was successful and the art session is officially secured.\n\nPackage: ${details.packageName}\nDate: ${details.date}\nTime: ${details.time}\n\nThe mentor will contact you shortly to confirm and discuss the session. For inquiries, contact info@profineart.ch.`,
+            "TextBody": `Your payment was successful and the art session is officially secured.\n\nPackage: ${details.packageName}\nDate: ${details.date}\nTime: ${details.time}\n\n${mentorNote}`,
             "HtmlBody": `
 <!DOCTYPE html>
 <html>
@@ -47,14 +56,9 @@ export async function sendConfirmationEmail(details: FulfillmentDetails): Promis
 <body>
     <div class="wrapper">
         <div class="container">
-            <div class="header" style="padding: 50px 20px; text-align: center; background-color: #171717;">
-    <img 
-        src="${logoUrl}" 
-        alt="Profineart Studio Basel" 
-        width="280" 
-        style="display: inline-block; width: 280px; height: auto; border: 0; outline: none; text-decoration: none;"
-    >
-</div>
+            <div class="header">
+                <img src="${logoUrl}" alt="Profineart Studio Basel" width="280">
+            </div>
             <div class="content">
                 <h2 class="main-heading">Booking Confirmed</h2>
                 <p>The payment was successful and the art session is officially secured. This mentorship focuses on mastering the visual language of art through historical tradition and contemporary standards.</p>
@@ -63,14 +67,14 @@ export async function sendConfirmationEmail(details: FulfillmentDetails): Promis
                     <div class="detail-item"><span class="label">Course</span><span class="value">${details.packageName}</span></div>
                     <div class="detail-item"><span class="label">Scheduled Date</span><span class="value">${details.date}</span></div>
                     <div class="detail-item"><span class="label">Time</span><span class="value">${details.time}</span></div>
-                    <div class="detail-item"><span class="label">Location</span><span class="value">${details.address}</span></div>
+                    <div class="detail-item"><span class="label">${locationLabel}</span><span class="value">${locationValue}</span></div>
                 </div>
 
                 <div class="mentor-note">
-                    The mentor will contact you shortly to confirm the appointment, discuss the required materials, and talk about the upcoming session to ensure all artistic goals are met.
+                    ${mentorNote}
                 </div>
 
-                <p>If you want to reschedule, cancel, or have any questions, please contact <a href="mailto:info@profineart.ch" class="contact-link">info@profineart.ch</a> or simply reply to this email.</p>
+                <p>If you want to reschedule, cancel, or have any questions, please contact <a href="mailto:info@profineart.ch" class="contact-link">info@profineart.ch</a>.</p>
 
                 <div style="text-align: center;">
                     <a href="https://profineart.ch" class="pill-button">Back to Studio</a>
@@ -113,14 +117,11 @@ export async function sendOwnerNotification(details: FulfillmentDetails): Promis
                         <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Client</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.name}</td></tr>
                         <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Email</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.email}</td></tr>
                         <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Phone</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.phone}</td></tr>
-                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Birthdate</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.birthdate}</td></tr>
                         <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Address</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.address}</td></tr>
                         <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Package</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.packageName}</td></tr>
                         <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Date/Time</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.date} at ${details.time}</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);"><strong>Message</strong></td><td style="padding: 10px; border: 1px solid rgba(255,255,255,0.1);">${details.message || 'No message provided.'}</td></tr>
                     </table>
-                    <div style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                        <strong>Customer Message:</strong><br>${details.message || 'None'}
-                    </div>
                 </div>
             `,
             "MessageStream": "outbound"

@@ -5,9 +5,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { FaCalendarAlt, FaExclamationCircle } from 'react-icons/fa';
 import { format, parseISO } from 'date-fns';
 
-import { Product, SlotSelection, CustomerDetails, LessonPackage } from '../../../../../Backend/types/Product';
+import { Product, SlotSelection, CustomerDetails, LessonPackage } from '../../../../../functions/src/types/Product';
 // Import both lists to find Mentorship prices/labels
-import { PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../../../../../Backend/data/products';
+import { PRODUCT_PACKAGES, CONSULTATION_PACKAGES } from '../../../../../functions/src/data/products';
 import StripeTrustSeal from '../../StripeTrustSeal/StripeTrustSeal'; 
 import './contactDetailsForm.scss';
 

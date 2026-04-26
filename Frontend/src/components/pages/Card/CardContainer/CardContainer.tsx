@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Product, ProductImage } from '../../../../../../Backend/types/Product';
+import { Product, ProductImage } from '../../../../../../functions/src/types/Product';
 import './cardContainer.scss';
 
 const CardContainer: React.FC<{ product: Product, onOpenGallery: (i: number) => void }> = ({ product, onOpenGallery }) => {

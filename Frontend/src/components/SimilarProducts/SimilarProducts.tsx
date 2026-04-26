@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { products } from '../../../../Backend/data/products';
-import { Product } from '../../../../Backend/types/Product';
+import { products } from '../../../../functions/src/data/products';
+import { Product } from '../../../../functions/src/types/Product';
 import './similarProducts.scss';
 
 interface SimilarProductsProps {

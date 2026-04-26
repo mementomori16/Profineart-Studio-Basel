@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import ContactDetailsForm, { FullCustomerDetails } from '../ContactDetailsForm/ContactDetailsForm';
-import { Product, SlotSelection } from '../../../../../Backend/types/Product';
+import { Product, SlotSelection } from '../../../../../functions/src/types/Product';
 
 interface ContactDetailsProps {
     product: Product;

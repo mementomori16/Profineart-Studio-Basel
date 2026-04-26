@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../../context/CartContext/CartContext';
-import { Product } from '../../../../../../Backend/types/Product';
+import { Product } from '../../../../../../functions/src/types/Product';
 import { useSeo } from '../../../../hooks/useSeo'; 
 import './infoContainer.scss';
 
